@@ -6,6 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     hardware.url = "github:nixos/nixos-hardware";
+    impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
 
     home-manager = {
@@ -35,6 +36,9 @@
           # overlays = with overlays; [ additions wallpapers modifications ];
           config.allowUnfree = true;
         }
+      );
+      packages = forAllSystems (system:
+        import ./pkgs { pkgs = legacyPackages.${system}; }
       );
       devShells = forAllSystems (system: {
         default = import ./shell.nix { pkgs = legacyPackages.${system}; };

@@ -1,0 +1,16 @@
+keys:
+  # Users
+  - &users:
+    - &lukasz 35655963B7835180125FE55DD7BCC570927C355B
+  # Hosts
+  - &hosts:
+    - &ldlat age1xhv0vxwgn0fzup499sc0dae6az6la923w2vjlx698zld9dgrmpaskmnksr
+    - &bolek age132dpzukya0qetf5tt76anl86ca6rflq5jwsvk8cpntaevt6g23ysalwqcy
+creation_rules:
+  - path_regex: hosts/common/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *ldlat
+      - *bolek
+      pgp:
+      - *lukasz
