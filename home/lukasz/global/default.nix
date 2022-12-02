@@ -39,6 +39,9 @@ in
           "Downloads"
           "Pictures"
           "Videos"
+          "Projects"
+          "Org"
+          "Roam"
         ];
         allowOther = true;
       };
