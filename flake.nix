@@ -17,6 +17,7 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
