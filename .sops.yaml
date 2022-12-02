@@ -6,7 +6,7 @@ keys:
   - &hosts:
     - &dziad age12rpy3yed80elgpeuvwcr67s7zljuut9sg8ya2jqycpk5wwlvrv3qd99ngm
     - &ldlat age1xhv0vxwgn0fzup499sc0dae6az6la923w2vjlx698zld9dgrmpaskmnksr
-    - &bolek age132dpzukya0qetf5tt76anl86ca6rflq5jwsvk8cpntaevt6g23ysalwqcy
+    - &bolek age1za9tjs4tpk4stjs3fdmdw8hyfy5l6p2uvmllv847akkkuh568dks2gvrag
 creation_rules:
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:

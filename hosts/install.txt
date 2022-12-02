@@ -7,6 +7,7 @@ btrfs subvolume create /mnt/boot
 btrfs subvolume create /mnt/swap
 btrfs subvolume create /mnt/persist
 umount /mnt
+ln -s /dev/vda1 /dev/disk/by-label/<label>
 mount -o compress=zstd,subvol=root /dev/vda1 /mnt
 mkdir /mnt/{nix,boot,swap,persist}
 mount -o subvol=boot /dev/vda1 /mnt/boot
