@@ -30,6 +30,7 @@
     rec {
       overlays = import ./overlays;
       nixosModules = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
       legacyPackages = forAllSystems (system:
         import nixpkgs {
           inherit system;
