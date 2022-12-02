@@ -30,6 +30,8 @@
     enableAllTerminfo = true;
   };
 
+  security.sudo.wheelNeedsPassword = false;
+
   # Allows users to allow others on their binds
   programs.fuse.userAllowOther = true;
 
