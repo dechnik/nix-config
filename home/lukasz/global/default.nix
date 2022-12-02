@@ -7,6 +7,8 @@ in
   imports = [
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.nix-colors.homeManagerModule
+    ../features/nvim
+    ../features/cli
   ] ++ (builtins.attrValues outputs.homeManagerModules);
   colorscheme = lib.mkDefault colorSchemes.gruvbox-dark-hard;
 
