@@ -21,6 +21,9 @@ in
       "libvirtd"
       "deluge"
     ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPX+YNQ780Dt8kG7lMcFKQRXCCWCm/9cMTq72y94oVV6 (none)"
+    ];
 
     passwordFile = config.sops.secrets.lukasz-password.path;
   };
