@@ -15,3 +15,5 @@ mount -o compress=zstd,noatime,subvol=nix /dev/vda1 /mnt/nix
 mount -o compress=zstd,subvol=persist /dev/vda1 /mnt/persist
 mount -o noatime,subvol=swap /dev/vda1 /mnt/swap
 nixos-generate-config --root /mnt
+
+#echo 'password' | gpg --allow-secret-key-import --pinentry-mode loopback --passphrase-fd 0 --import key.asc
