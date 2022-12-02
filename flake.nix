@@ -29,6 +29,7 @@
     in
     rec {
       overlays = import ./overlays;
+      nixosModules = import ./modules/nixos;
       legacyPackages = forAllSystems (system:
         import nixpkgs {
           inherit system;
