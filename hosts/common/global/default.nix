@@ -1,4 +1,4 @@
-{ lib, inputs, outputs, ... }:
+{ pkgs, lib, inputs, outputs, ... }:
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
@@ -12,6 +12,10 @@
   networking.domain = "dechnik.net";
 
   environment = {
+    systemPackages = with pkgs; [
+      git
+      #nextcloud-client
+    ];
     loginShellInit = ''
       # Activate home-manager environment, if not already
       [ -d "$HOME/.nix-profile" ] || /nix/var/nix/profiles/per-user/$USER/home-manager/activate &> /dev/null
