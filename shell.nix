@@ -16,6 +16,7 @@
     home-manager
     git
 
+    alejandra
     sops
     gnupg
     age

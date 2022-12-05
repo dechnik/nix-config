@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
+    ./acme.nix
     ./fish.nix
     ./zsh.nix
     ./locale.nix
