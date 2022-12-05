@@ -3,6 +3,7 @@
     ./bash.nix
     ./bat.nix
     ./fish.nix
+    ./zsh.nix
     ./git.nix
     # ./gpg.nix
     # ./nix-index.nix
@@ -11,7 +12,7 @@
     # ./screen.nix
     ./shellcolor.nix
     # ./ssh.nix
-    # ./starship.nix
+    ./starship.nix
     # ./xpo.nix
   ];
   home.packages = with pkgs; [

@@ -22,7 +22,6 @@ in
       "deluge"
     ];
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPX+YNQ780Dt8kG7lMcFKQRXCCWCm/9cMTq72y94oVV6 (none)"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIoesh7W8TLj9mw+WquNWgeLnQ9FHxh+5ZkPNrObXnv (none)"
     ];
 

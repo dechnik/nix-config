@@ -3,6 +3,7 @@
   imports = [
     inputs.impermanence.nixosModules.impermanence
     ./fish.nix
+    ./zsh.nix
     ./locale.nix
     ./nix.nix
     ./openssh.nix
