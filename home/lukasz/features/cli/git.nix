@@ -11,6 +11,10 @@
     userName = "lukasz Dechnik";
     userEmail = "lukasz@dechnik.net";
     extraConfig = {
+      credential = {
+        UseHttpPath = true;
+        helper = "!aws codecommit credential-helper $@";
+      };
       feature.manyFiles = true;
       init.defaultBranch = "master";
       url."https://github.com/".insteadOf = "git://github.com/";

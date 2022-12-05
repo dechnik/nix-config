@@ -5,13 +5,13 @@
     ./fish.nix
     ./zsh.nix
     ./git.nix
-    # ./gpg.nix
+    ./gpg.nix
     # ./nix-index.nix
     # ./pfetch.nix
     # ./ranger.nix
     # ./screen.nix
     ./shellcolor.nix
-    # ./ssh.nix
+    ./ssh.nix
     ./starship.nix
     # ./xpo.nix
   ];
