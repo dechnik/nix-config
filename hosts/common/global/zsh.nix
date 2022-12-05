@@ -3,6 +3,5 @@
     enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
-    autocd = true;
   };
 }
