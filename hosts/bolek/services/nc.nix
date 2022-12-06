@@ -18,7 +18,7 @@
             proxy_set_header X-Forwarded-Proto $scheme;
             add_header Front-End-Https on;
             proxy_pass http://10.30.10.9:80;
-            '';
+          '';
         };
         "/.well-known/carddav" = {
           return = "301 $scheme://$host/remote.php/dav";
@@ -26,7 +26,13 @@
         "/.well-known/caldav" = {
           return = "301 $scheme://$host/remote.php/dav";
         };
-        "/robots.txt" = {};
+        "/robots.txt" = {
+          extraConfig = ''
+            allow all;
+            log_not_found off;
+            access_log off;
+          '';
+        };
       };
     };
   };
