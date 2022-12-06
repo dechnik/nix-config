@@ -1,9 +1,14 @@
 { config, ... }:
 {
+  security.acme.certs = {
+    "nc.dechnik.net" = {
+    };
+  };
   services = {
     nginx.virtualHosts."nc.dechnik.net" = {
       forceSSL = true;
-      enableACME = true;
+      # enableACME = true;
+      useACMEHost = "nc.dechnik.net";
       extraConfig = ''
         client_max_body_size 0;
         underscores_in_headers on;
