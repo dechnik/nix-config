@@ -10,23 +10,28 @@ in
     ../features/nvim
     ../features/cli
   ] ++ (builtins.attrValues outputs.homeManagerModules);
-  colorscheme = lib.mkDefault colorSchemes.gruvbox-dark-hard;
 
-  home.file.".colorscheme".text = config.colorscheme.slug;
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+    };
+  };
+
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      warn-dirty = false;
+    };
+  };
 
   systemd.user.startServices = "sd-switch";
 
   programs = {
     home-manager.enable = true;
     git.enable = true;
-  };
-
-  nix = {
-    package = pkgs.nix;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
-      warn-dirty = false;
-    };
   };
 
   home = {
@@ -49,4 +54,8 @@ in
       };
     };
   };
+  colorscheme = lib.mkDefault colorSchemes.gruvbox-dark-hard;
+
+  home.file.".colorscheme".text = config.colorscheme.slug;
+
 }

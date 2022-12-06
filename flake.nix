@@ -21,7 +21,7 @@
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      inherit (nixpkgs.lib) filterAttrs traceVal;
+      inherit (nixpkgs.lib) filterAttrs;
       inherit (builtins) mapAttrs elem;
       inherit (self) outputs;
       notBroken = x: !(x.meta.broken or false);
@@ -32,24 +32,15 @@
       overlays = import ./overlays;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
-      legacyPackages = forAllSystems (system:
-        import nixpkgs {
-          inherit system;
-          overlays = with overlays; [ additions modifications ];
-          # overlays = with overlays; [ additions wallpapers modifications ];
-          config.allowUnfree = true;
-        }
-      );
       packages = forAllSystems (system:
-        import ./pkgs { pkgs = legacyPackages.${system}; }
+        nixpkgs.legacyPackages.${system}.callPackage ./pkgs { }
       );
       devShells = forAllSystems (system: {
-        default = import ./shell.nix { pkgs = legacyPackages.${system}; };
+        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
       });
       nixosConfigurations = rec {
         # Desktop
         bolek = nixpkgs.lib.nixosSystem {
-          pkgs = legacyPackages."x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/bolek ];
         };
@@ -57,7 +48,7 @@
       homeConfigurations = {
         # Desktop
         "lukasz@bolek" = home-manager.lib.homeManagerConfiguration {
-          pkgs = legacyPackages."x86_64-linux";
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/lukasz/bolek.nix ];
         };

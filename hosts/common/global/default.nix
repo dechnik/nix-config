@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.impermanence.nixosModules.impermanence
+    inputs.home-manager.nixosModules.home-manager
     ./acme.nix
     ./fish.nix
     ./zsh.nix
@@ -11,24 +12,29 @@
     ./sops.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
-  networking.domain = "dechnik.net";
+  home-manager = {
+    useUserPackages = true;
+    extraSpecialArgs = { inherit inputs outputs; };
+  };
+
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   environment = {
     systemPackages = with pkgs; [
       git
       #nextcloud-client
     ];
-    loginShellInit = ''
-      # Activate home-manager environment, if not already
-      [ -d "$HOME/.nix-profile" ] || /nix/var/nix/profiles/per-user/$USER/home-manager/activate &> /dev/null
-    '';
 
     # Persist logs, timers, etc
     persistence = {
       "/persist".directories = [ "/var/lib/systemd" "/var/log" "/srv" ];
     };
 
-    # Add terminfo files
     enableAllTerminfo = true;
   };
 
@@ -38,6 +44,7 @@
   programs.fuse.userAllowOther = true;
 
   hardware.enableRedistributableFirmware = true;
+  networking.domain = "dechnik.net";
 
   # Increase open file limit for sudoers
   security.pam.loginLimits = [
