@@ -33,7 +33,7 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
       packages = forAllSystems (system:
-        nixpkgs.legacyPackages.${system}.callPackage ./pkgs { }
+        import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
       );
       devShells = forAllSystems (system: {
         default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
