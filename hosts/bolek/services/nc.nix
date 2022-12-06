@@ -2,6 +2,7 @@
 {
   security.acme.certs = {
     "nc.dechnik.net" = {
+      group = "nginx";
     };
   };
   services = {
