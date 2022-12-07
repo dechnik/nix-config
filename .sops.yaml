@@ -16,3 +16,9 @@ creation_rules:
       - *bolek
       pgp:
       - *lukasz
+  - path_regex: hosts/bolek/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *bolek
+      pgp:
+      - *lukasz

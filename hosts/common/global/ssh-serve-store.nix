@@ -4,7 +4,7 @@
     sshServe = {
       enable = true;
       keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAz0dIbaTuAihil/si33MQSFH5yBFoupwnV5gcq2CCbO nix-ssh"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPhDh8CMMyRIPUKJkRinxdjG3bgebxq/ETia4leBR8R0 nix-ssh"
       ];
       protocol = "ssh";
       write = true;
