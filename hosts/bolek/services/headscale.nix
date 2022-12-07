@@ -1,11 +1,11 @@
 { config, lib, ... }:
 {
-  services = {
-    acme.certs = {
-      "tailscale.dechnik.net" = {
-        group = "nginx";
-      };
+  security.acme.certs = {
+    "tailscale.dechnik.net" = {
+      group = "nginx";
     };
+  };
+  services = {
     headscale = {
       enable = true;
       address = "0.0.0.0";
