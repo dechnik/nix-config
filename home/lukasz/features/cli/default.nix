@@ -6,7 +6,7 @@
     ./zsh.nix
     ./git.nix
     ./gpg.nix
-    # ./nix-index.nix
+    ./nix-index.nix
     # ./pfetch.nix
     # ./ranger.nix
     # ./screen.nix
