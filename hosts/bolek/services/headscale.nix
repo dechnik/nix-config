@@ -5,6 +5,7 @@
       group = "nginx";
     };
   };
+  networking.firewall.allowedUDPPorts = [3478];
   services = {
     headscale = {
       enable = true;
@@ -20,6 +21,9 @@
       port = 8085;
       serverUrl = "https://tailscale.dechnik.net";
       settings = {
+        ip_prefixes = [
+          "10.100.10.0/10"
+        ];
         logtail.enabled = false;
         log.level = "warn";
       };
@@ -33,14 +37,19 @@
           proxyPass = "http://localhost:${toString config.services.headscale.port}";
           proxyWebsockets = true;
           extraConfig = ''
-            proxy_set_header Host $server_name;
-            proxy_buffering off;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
-            add_header Strict-Transport-Security "max-age=15552000; includeSubDomains" always;
+            keepalive_requests          100000;
+            keepalive_timeout           160s;
+            proxy_buffering             off;
+            proxy_connect_timeout       75;
+            proxy_ignore_client_abort   on;
+            proxy_read_timeout          900s;
+            proxy_send_timeout          600;
+            send_timeout                600;
           '';
         };
+        extraConfig = ''
+          access_log /var/log/nginx/tailscale.dechnik.net.access.log;
+        '';
       };
     };
   };

@@ -13,6 +13,7 @@
       extraConfig = ''
         client_max_body_size 0;
         underscores_in_headers on;
+        access_log /var/log/nginx/nc.dechnik.net.access.log;
       '';
       locations = {
         "/" = {
