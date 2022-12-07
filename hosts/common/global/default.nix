@@ -9,6 +9,7 @@
     ./locale.nix
     ./nix.nix
     ./openssh.nix
+    ./podman.nix
     ./sops.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
