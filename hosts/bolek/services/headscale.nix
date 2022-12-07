@@ -22,7 +22,7 @@
       serverUrl = "https://tailscale.dechnik.net";
       settings = {
         ip_prefixes = [
-          "10.100.10.0/10"
+          "10.100.0.0/16"
         ];
         logtail.enabled = false;
         log.level = "warn";
