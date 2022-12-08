@@ -13,6 +13,9 @@
   networking = {
     hostName = "bolek"; # Define your hostname.
     useDHCP = true;
+    extraHosts = ''
+      127.0.0.1 cache.dechnik.net
+    '';
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
