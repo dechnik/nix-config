@@ -3,18 +3,13 @@
   nix = {
     settings = {
       substituters = [
+        "https://cache.dechnik.net"
         "https://nix-community.cachix.org"
-        "https://helix.cachix.org"
-        "https://fufexan.cachix.org"
       ];
       trusted-public-keys = [
+        "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-        "fufexan.cachix.org-1:LwCDjCJNJQf5XD2BV+yamQIMZfcKWR9ISIFy5curUsY="
       ];
-      # substituters = [ "https://cache.m7.rs" ];
-      # trusted-public-keys = [ "cache.m7.rs:kszZ/NSwE/TjhOcPPQ16IuUiuRSisdiIwhKZCxguaWg=" ];
-      # cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ=
       trusted-users = [ "root" "@wheel" ];
       auto-optimise-store = lib.mkDefault true;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
