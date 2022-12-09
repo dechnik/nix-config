@@ -1,7 +1,8 @@
 {
   imports = [
-    ./hydra.nix
     ./binary-cache.nix
+    ./hydra.nix
+    ./git-remote.nix
     ./nginx.nix
     ./nc.nix
     ./headscale.nix
