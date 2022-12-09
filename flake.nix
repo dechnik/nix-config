@@ -32,12 +32,20 @@
       overlays = import ./overlays;
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
+
       packages = forAllSystems (system:
         import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
       );
+
       devShells = forAllSystems (system: {
         default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
       });
+
+      hydraJobs = {
+        packages = mapAttrs (sys: filterAttrs (_: pkg: (elem sys pkg.meta.platforms && notBroken pkg))) packages;
+        nixos = mapAttrs (_: cfg: cfg.config.system.build.toplevel) nixosConfigurations;
+      };
+
       nixosConfigurations = rec {
         # Desktop
         bolek = nixpkgs.lib.nixosSystem {
@@ -45,6 +53,7 @@
           modules = [ ./hosts/bolek ];
         };
       };
+
       homeConfigurations = {
         # Desktop
         "lukasz@bolek" = home-manager.lib.homeManagerConfiguration {
@@ -53,6 +62,7 @@
           modules = [ ./home/lukasz/bolek.nix ];
         };
       };
+
       nixConfig = {
         extra-substituters = [
           "https://cache.dechnik.net"
