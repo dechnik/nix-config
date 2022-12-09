@@ -2,6 +2,7 @@ mkfs.btrfs -L <label> /dev/vda1
 mkdir -p /mnt
 mount /dev/vda1 /mnt
 btrfs subvolume create /mnt/root
+btrfs subvolume create /mnt/root-blank
 btrfs subvolume create /mnt/nix
 btrfs subvolume create /mnt/boot
 btrfs subvolume create /mnt/swap
