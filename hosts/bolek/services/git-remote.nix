@@ -23,9 +23,7 @@
       shell = "${pkgs.bash}/bin/bash";
       group = "git";
       packages = [ pkgs.git ];
-      openssh.authorizedKeys.keys = [
-        config.users.users.lukasz.openssh.authorizedKeys.keys
-      ];
+      openssh.authorizedKeys.keys = config.users.users.lukasz.openssh.authorizedKeys.keys;
     };
     groups.git = { };
   };
