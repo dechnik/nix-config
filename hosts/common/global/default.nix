@@ -11,6 +11,7 @@
     ./nix.nix
     ./openssh.nix
     ./podman.nix
+    ./postgres.nix
     ./sops.nix
     ./ssh-serve-store.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
