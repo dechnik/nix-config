@@ -68,6 +68,9 @@ in
       "hydra.dechnik.net" = {
         forceSSL = true;
         useACMEHost = "hydra.dechnik.net";
+        extraConfig = ''
+          access_log /var/log/nginx/hydra.dechnik.net.access.log;
+        '';
         locations = {
           "/".proxyPass =
             "http://localhost:${toString config.services.hydra.port}";
