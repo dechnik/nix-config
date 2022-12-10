@@ -25,5 +25,15 @@
         };
       });
     };
+    scgit = prev.cgit-pink.overrideAttrs (_oldAttrs: {
+      pname = "scgit";
+      version = "0.1";
+      src = final.fetchFromSourcehut {
+        owner = "~lukasz";
+        repo = "scgit";
+        rev = "2cd05c95827fb94740e876733dc6f7fe88340de2";
+        sha256 = "sha256-95mRJ3ZCSkLHqehFQdwM2BY0h+YDhohwpnRiF6/lZtA=";
+      };
+    });
   };
 }
