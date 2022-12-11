@@ -5,6 +5,14 @@
   ...
 }: {
   # home.packages = [pkgs.pure-prompt];
+  home.persistence = {
+    "/persist/home/lukasz" = {
+      files = [
+        ".local/share/zsh_history"
+      ];
+      allowOther = true;
+    };
+  };
 
   programs.zsh = {
     enable = true;
