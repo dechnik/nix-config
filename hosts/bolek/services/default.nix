@@ -4,7 +4,7 @@
     ./hydra.nix
     # ./cgit
     # ./git-remote.nix
-    ./gitea.nix
+    ./gitea
     ./nginx.nix
     ./nc.nix
     ./headscale.nix
