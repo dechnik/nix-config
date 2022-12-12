@@ -45,6 +45,9 @@
         server = {
           SSH_PORT = 22;
         };
+        service = {
+          DISABLE_REGISTRATION = true;
+        };
         log = {
           LEVEL = "Warn";
         };
