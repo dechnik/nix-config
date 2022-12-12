@@ -22,9 +22,6 @@
     gitea = {
       enable = true;
       stateDir = "/srv/gitea";
-      log = {
-        level = "Warn";
-      };
       user = "gitea";
       database = {
         type = "sqlite3";
@@ -33,10 +30,6 @@
         user = "gitea";
         path = "/srv/gitea/data/gitea.db";
         createDatabase = true;
-      };
-      ssh = {
-        # enable = true;
-        clonePort = 22;
       };
       lfs = {
         enable = true;
@@ -47,9 +40,17 @@
       domain = "git.dechnik.net";
       rootUrl = "https://git.dechnik.net/";
       httpAddress = "0.0.0.0";
-      httpPort = 3000;
-      cookieSecure = true;
+      httpPort = 3333;
       settings = {
+        server = {
+          SSH_PORT = 22;
+        };
+        log = {
+          LEVEL = "Warn";
+        };
+        session = {
+          COOKIE_SECURE = true;
+        };
         mailer = {
           ENABLED = false;
         };
