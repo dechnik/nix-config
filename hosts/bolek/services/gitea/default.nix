@@ -58,6 +58,7 @@
           ENABLED = false;
         };
         ui = {
+          THEMES = "auto,gitea,arc-green,gruvbox-dark";
           DEFAULT_THEME = "gruvbox-dark";
         };
         picture = {
