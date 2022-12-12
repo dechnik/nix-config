@@ -7,8 +7,8 @@
   # home.packages = [pkgs.pure-prompt];
   home.persistence = {
     "/persist/home/lukasz" = {
-      files = [
-        ".local/share/zsh_history"
+      directories = [
+        ".local/share/zsh"
       ];
       allowOther = true;
     };
@@ -27,7 +27,7 @@
       expireDuplicatesFirst = true;
       save = 150000;
       size = 150000;
-      path = "${config.xdg.dataHome}/zsh_history";
+      path = "${config.xdg.dataHome}/zsh/history";
     };
     initExtra = ''
       # autoloads
