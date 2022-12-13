@@ -4,11 +4,11 @@
     settings = {
       substituters = [
         "https://cache.dechnik.net"
-        "https://nix-community.cachix.org"
+        # "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
         "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
       trusted-users = [ "root" "@wheel" ];
       auto-optimise-store = lib.mkDefault true;

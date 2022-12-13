@@ -48,6 +48,10 @@
 
       nixosConfigurations = rec {
         # Desktop
+        dziad = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/dziad ];
+        };
         bolek = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/bolek ];
@@ -56,6 +60,11 @@
 
       homeConfigurations = {
         # Desktop
+        "lukasz@dziad" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/lukasz/dziad.nix ];
+        };
         "lukasz@bolek" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
@@ -66,11 +75,11 @@
       nixConfig = {
         extra-substituters = [
           "https://cache.dechnik.net"
-          "https://nix-community.cachix.org"
+          # "https://nix-community.cachix.org"
         ];
         extra-trusted-public-keys = [
           "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+          # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
       };
     };

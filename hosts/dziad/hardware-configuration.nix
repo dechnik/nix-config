@@ -7,25 +7,31 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
+      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+      kernelModules = [ "kvm-amd" ];
     };
-    kernelModules = [ "kvm-intel" ];
     loader = {
-      grub = {
+      systemd-boot = {
         enable = true;
-        version = 2;
-        device = "/dev/vda";
+        consoleMode = "max";
       };
+      efi.canTouchEfiVariables = true;
     };
   };
 
-  fileSystems."/boot" =
-    { device = "/dev/vda1";
-      fsType = "btrfs";
-      options = [ "subvol=boot" ];
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/a6ce31dc-4c87-4950-970a-9a1d3a0b5968";
+    fsType = "btrfs";
+    options = ["noatime"];
+  };
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-uuid/A2C4-DBDC";
+      fsType = "vfat";
+    };
+  };
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = true;
 }

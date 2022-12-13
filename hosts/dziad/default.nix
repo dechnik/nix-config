@@ -38,7 +38,7 @@
   hardware = {
     opengl = {
       enable = true;
-      extraPackages = with pkgs; [ amdvlk ];
+      extraPackages = with pkgs; [ vaapiVdpau ];
       driSupport = true;
       driSupport32Bit = true;
     };
