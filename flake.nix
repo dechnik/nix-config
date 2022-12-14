@@ -18,6 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    hyprland.url = "github:hyprwm/hyprland";
+    hyprwm-contrib.url = "github:hyprwm/contrib";
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
