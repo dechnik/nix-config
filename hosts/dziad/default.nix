@@ -4,6 +4,7 @@
   imports =
     [
       inputs.hardware.nixosModules.common-cpu-amd
+      inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
       inputs.hardware.nixosModules.common-pc-ssd
 
       ./hardware-configuration.nix
@@ -30,8 +31,6 @@
   };
 
   services.dbus.packages = [ pkgs.gcr ];
-
-  services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
 
   xdg.portal = {
     enable = true;
