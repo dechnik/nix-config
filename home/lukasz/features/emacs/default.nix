@@ -102,13 +102,13 @@ in {
   # };
   services.emacs = {
     enable = true;
-    package = emacs-overlay.emacsPgtkNativeComp;
+    package = emacs-overlay.emacsPgtk;
     client.enable = true;
   };
   systemd.user.services.emacs.Service.Environment = "PATH=${pkgs.libnotify}/bin";
   programs.emacs = {
     enable = true;
-    package = emacs-overlay.emacsPgtkNativeComp;
+    package = emacs-overlay.emacsPgtk;
     overrides = final: _prev: {
       nix-theme = final.callPackage ./theme.nix { inherit config; };
     };
