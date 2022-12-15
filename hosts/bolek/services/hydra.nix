@@ -55,7 +55,7 @@ in
       buildMachinesFiles = [
         (mkBuildMachinesFile [
           {
-            uri = "ssh://lukasz@10.10.10.3";
+            uri = "ssh://nix-ssh@10.10.10.3";
             systems = [ "x86_64-linux" ];
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 12;
