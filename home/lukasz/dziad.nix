@@ -2,6 +2,7 @@
   imports = [
     ./global
     ./features/emacs
+    ./features/trusted
     ./features/desktop/hyprland
   ];
 

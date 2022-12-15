@@ -25,6 +25,9 @@
         };
       });
     };
+    xdg-utils-spawn-terminal = prev.xdg-utils.overrideAttrs (oldAttrs: rec {
+      patches = (oldAttrs.patches or [ ]) ++ [ ./xdg-open-spawn-terminal.diff ];
+    });
     scgit = prev.cgit-pink.overrideAttrs (_oldAttrs: {
       pname = "scgit";
       version = "0.1";
