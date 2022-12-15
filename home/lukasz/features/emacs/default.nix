@@ -6,7 +6,7 @@
 }: let
   c = config.xdg.configHome;
   h = config.home.homeDirectory;
-  my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtkNativeComp;
+  emacs-overlay = inputs.emacs-overlay.packages.${pkgs.system};
   # my_emacs = pkgs.emacs28NativeComp;
 in {
   # home.file.".emacs.d" = {
@@ -39,7 +39,7 @@ in {
       type = "Application";
       terminal = false;
       startupWMClass = "Emacs";
-      exec = "${my_emacs}/bin/emacsclient -create-frame --alternate-editor= --no-wait %F";
+      exec = "${emacs-overlay}/bin/emacsclient -create-frame --alternate-editor= --no-wait %F";
       # Exec=sh -c "if [ -n \\"\\$*\\" ]; then exec emacsclient --alternate-editor= --display=\\"\\$DISPLAY\\" \\"\\$@\\"; else exec emacsclient --alternate-editor= --create-frame; fi" placeholder %F
       icon = "emacs";
       categories = ["Development" "TextEditor"];
@@ -102,14 +102,18 @@ in {
   # };
   services.emacs = {
     enable = true;
-    package = my_emacs;
+    package = emacs-overlay.emacsPgtkNativeComp;
     client.enable = true;
   };
   systemd.user.services.emacs.Service.Environment = "PATH=${pkgs.libnotify}/bin";
   programs.emacs = {
     enable = true;
-    package = my_emacs;
+    package = emacs-overlay.emacsPgtkNativeComp;
+    overrides = final: _prev: {
+      nix-theme = final.callPackage ./theme.nix { inherit config; };
+    };
     extraPackages = epkgs: (with epkgs; [
+      nix-theme
       vterm
       all-the-icons-ivy
     ]);
