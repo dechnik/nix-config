@@ -4,7 +4,6 @@
   imports =
     [
       inputs.hardware.nixosModules.common-cpu-amd
-      inputs.hardware.nixosModules.common-gpu-nvidia-nonprime
       inputs.hardware.nixosModules.common-pc-ssd
 
       ./hardware-configuration.nix
@@ -30,12 +29,20 @@
     dconf.enable = true;
   };
 
+  services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
+
   services.dbus.packages = [ pkgs.gcr ];
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
   };
+
+  hardware.nvidia.modesetting.enable = true;
+
+  environment.systemPackages = [
+    pkgs.nvidia-vaapi-driver
+  ];
 
   hardware = {
     opengl = {
