@@ -32,4 +32,5 @@
       enabled = true;
     }
   ];
+  wallpaper = "";
 }
