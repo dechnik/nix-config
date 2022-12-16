@@ -3,7 +3,11 @@
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
 in
-{
+{  home = {
+    sessionVariables = {
+      BROWSER = "firefox";
+    };
+  };
   # programs.browserpass.enable = true;
   programs.firefox = {
     enable = true;

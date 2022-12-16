@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   imports = [
+    ./kitty.nix
+    ./mako.nix
+    ./swayidle.nix
+    ./swaylock.nix
+    ./wofi.nix
     ./zathura.nix
   ];
   home.packages = with pkgs; [
