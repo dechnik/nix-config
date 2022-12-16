@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  user = "misterio";
+  user = "lukasz";
   greetd = "${pkgs.greetd.greetd}/bin/greetd";
   gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
 
