@@ -32,7 +32,7 @@ in
   };
 
   sops.secrets.lukasz-password = {
-    sopsFile = ../secrets.yaml;
+    sopsFile = ../../secrets.yaml;
     neededForUsers = true;
   };
 
