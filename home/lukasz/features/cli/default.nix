@@ -25,7 +25,7 @@
     exa # Better ls
     ripgrep # Better grep
     fd # Better find
-    httpie # Better curl
+    # httpie # Better curl
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printer
 
