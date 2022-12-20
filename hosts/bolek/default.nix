@@ -7,7 +7,7 @@
       ./services
 
       ../common/global
-      ../common/users/lukasz.nix
+      ../common/users/lukasz
     ];
 
   networking = {

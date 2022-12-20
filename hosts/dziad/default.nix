@@ -9,7 +9,7 @@
       ./hardware-configuration.nix
 
       ../common/global
-      ../common/users/lukasz.nix
+      ../common/users/lukasz
 
       ../common/optional/pipewire.nix
       ../common/optional/greetd.nix

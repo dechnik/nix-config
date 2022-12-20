@@ -36,7 +36,7 @@ in
     neededForUsers = true;
   };
 
-  home-manager.users.lukasz = import ../../../home/lukasz/${config.networking.hostName}.nix;
+  home-manager.users.lukasz = import home/${config.networking.hostName}.nix;
 
   services.geoclue2.enable = true;
   security.pam.services = { swaylock = { }; };

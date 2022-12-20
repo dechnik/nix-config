@@ -20,16 +20,14 @@
       height = 1440;
       refreshRate = 75;
       workspace = "1";
-      enabled = true;
+      isPrimary = true;
     }
     {
       name = "DP-1";
-      isSecondary = true;
       width = 2560;
       height = 1440;
       x = 2560;
       workspace = "2";
-      enabled = true;
     }
   ];
   wallpaper = "";
