@@ -3,6 +3,7 @@
     ./global
     ./features/emacs
     ./features/trusted
+    ./features/desktop/optional/nvidia.nix
     ./features/desktop/hyprland
     ./features/desktop/terminal
   ];
