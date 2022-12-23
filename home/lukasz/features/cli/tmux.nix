@@ -47,6 +47,14 @@
       # messaging
       set -g message-style fg=black,bg=yellow
       set -g message-command-style fg=blue,bg=black
+      # C-b is not acceptable -- Vim uses it
+      set-option -g prefix C-a
+      bind-key C-a last-window
+      # hjkl pane traversal
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
       #window mode
       setw -g mode-style bg=colour6,fg=colour0
       bind -T root F12  \
