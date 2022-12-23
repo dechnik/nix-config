@@ -6,6 +6,7 @@
     ./swaylock.nix
     ./wofi.nix
     ./zathura.nix
+    ./waybar.nix
   ];
   home.packages = with pkgs; [
     grim
