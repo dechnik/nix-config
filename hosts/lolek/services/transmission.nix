@@ -5,6 +5,7 @@
       enable = true;
       openFirewall = true;
       openRPCPort = true;
+      downloadDirPermissions = "777";
       settings = {
         rpc-bind-address = "0.0.0.0";
         download-dir = "/data/new";
