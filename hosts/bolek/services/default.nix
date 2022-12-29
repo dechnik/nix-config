@@ -8,5 +8,6 @@
     ./nginx.nix
     ./nc.nix
     ./headscale.nix
+    ./nginx-jellyfin.nix
   ];
 }
