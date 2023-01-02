@@ -10,16 +10,18 @@
     headscale = {
       enable = true;
       address = "0.0.0.0";
-      dns = {
-        baseDomain = "dechnik.net";
-        magicDns = true;
-        domains = [ "ts.dechnik.net" ];
-        nameservers = [
-          "9.9.9.9"
-        ];
+      settings = {
+        dns_config = {
+          baseDomain = "dechnik.net";
+          magicDns = true;
+          domains = [ "ts.dechnik.net" ];
+          nameservers = [
+            "9.9.9.9"
+          ];
+        };
+        serverUrl = "https://tailscale.dechnik.net";
       };
       port = 8085;
-      serverUrl = "https://tailscale.dechnik.net";
       settings = {
         ip_prefixes = [
           "10.100.0.0/16"
