@@ -35,19 +35,28 @@
       "tailscale.dechnik.net" = {
         forceSSL = true;
         useACMEHost = "tailscale.dechnik.net";
-        locations."/" = {
-          proxyPass = "http://localhost:${toString config.services.headscale.port}";
-          proxyWebsockets = true;
-          extraConfig = ''
-            keepalive_requests          100000;
-            keepalive_timeout           160s;
-            proxy_buffering             off;
-            proxy_connect_timeout       75;
-            proxy_ignore_client_abort   on;
-            proxy_read_timeout          900s;
-            proxy_send_timeout          600;
-            send_timeout                600;
-          '';
+        locations = {
+          "/" = {
+            proxyPass = "http://localhost:${toString config.services.headscale.port}";
+            proxyWebsockets = true;
+            extraConfig = ''
+              keepalive_requests          100000;
+              keepalive_timeout           160s;
+              proxy_buffering             off;
+              proxy_connect_timeout       75;
+              proxy_ignore_client_abort   on;
+              proxy_read_timeout          900s;
+              proxy_send_timeout          600;
+              send_timeout                600;
+            '';
+          };
+          "/metrics" = {
+            proxyPass = "http://127.0.0.1:${toString config.services.headscale.port}";
+            extraConfig = ''
+              allow 10.0.0.0/8;
+              deny all;
+            '';
+          };
         };
         extraConfig = ''
           access_log /var/log/nginx/tailscale.dechnik.net.access.log;
