@@ -7,6 +7,7 @@
     ./gitea
     ./nginx.nix
     ./nc.nix
+    ./rss.nix
     ./headscale.nix
     ./nginx-jellyfin.nix
   ];
