@@ -6,7 +6,6 @@
 }: let
   c = config.xdg.configHome;
   h = config.home.homeDirectory;
-  emacs-overlay = inputs.emacs-overlay.packages.${pkgs.system};
   # my_emacs = pkgs.emacs28NativeComp;
 in {
   # home.file.".emacs.d" = {
@@ -102,13 +101,13 @@ in {
   # };
   services.emacs = {
     enable = true;
-    package = emacs-overlay.emacsPgtk;
+    package = pkgs.emacs-gtk;
     client.enable = true;
   };
   systemd.user.services.emacs.Service.Environment = "PATH=${pkgs.libnotify}/bin";
   programs.emacs = {
     enable = true;
-    package = emacs-overlay.emacsPgtk;
+    package = pkgs.emacs-gtk;
     overrides = final: _prev: {
       nix-theme = final.callPackage ./theme.nix { inherit config; };
     };
