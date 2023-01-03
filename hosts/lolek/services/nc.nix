@@ -15,6 +15,7 @@ in
         trustedProxies = ["10.30.10.12"];
         adminuser = "root";
         adminpassFile = config.sops.secrets.nextcloud-password.path;
+        overwriteProtocol = "https";
         dbtype = "pgsql";
         dbhost = "/run/postgresql";
         dbname = "nextcloud";
