@@ -16,6 +16,8 @@ in
     };
   };
 
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
   sops.secrets.nextcloud-password = {
     owner = "nextcloud";
     group = "nextcloud";
