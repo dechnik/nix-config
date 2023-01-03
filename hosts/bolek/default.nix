@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./services
 
+      ../common/optional/qemu-vm.nix
       ../common/global
       ../common/users/lukasz
     ];
