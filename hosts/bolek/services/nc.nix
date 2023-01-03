@@ -4,8 +4,21 @@
     "nc.dechnik.net" = {
       group = "nginx";
     };
+    "nextcloud.dechnik.net" = {
+      group = "nginx";
+    };
   };
   services = {
+    nginx.virtualHosts."nextcloud.dechnik.net" = {
+      forceSSL = true;
+      useACMEHost = "nextcloud.dechnik.net";
+      locations = {
+        "/" = {
+          proxyPass = "http://10.30.10.14:80";
+          proxyWebsockets = true;
+        };
+      };
+    };
     nginx.virtualHosts."nc.dechnik.net" = {
       forceSSL = true;
       # enableACME = true;
