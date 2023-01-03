@@ -38,6 +38,11 @@ in
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+  systemd.services."nextcloud-setup" = {
+    requires = ["postgresql.service"];
+    after = ["postgresql.service"];
+  };
+
   sops.secrets.nextcloud-password = {
     owner = "nextcloud";
     group = "nextcloud";
