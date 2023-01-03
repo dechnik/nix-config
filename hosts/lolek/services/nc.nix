@@ -11,8 +11,12 @@ in
       https = true;
       enableBrokenCiphersForSSE = false;
       home = "/media/nextcloud";
-      config.adminuser = "root";
-      config.adminpassFile = config.sops.secrets.nextcloud-password.path;
+      config = {
+        trustedProxies = ["10.30.10.12"];
+        adminuser = "root";
+        adminpassFile = config.sops.secrets.nextcloud-password.path;
+        dbtype = "pgsql";
+      };
     };
   };
 
