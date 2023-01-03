@@ -35,6 +35,11 @@ in
       ensureDatabases = [ "nextcloud" ];
     };
   };
+  environment.persistence = {
+    "/persist".directories = [
+      "/var/lib/postgresql"
+    ];
+  };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
