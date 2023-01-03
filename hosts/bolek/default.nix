@@ -7,7 +7,6 @@
       ./services
 
       ../common/optional/qemu-vm.nix
-      ../common/optional/postgres.nix
       ../common/global
       ../common/users/lukasz
     ];
