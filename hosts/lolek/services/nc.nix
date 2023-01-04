@@ -11,6 +11,7 @@ in
       https = true;
       enableBrokenCiphersForSSE = false;
       home = "/media/nextcloud";
+      maxUploadSize = "10G";
       config = {
         trustedProxies = ["10.30.10.12"];
         adminuser = "root";
@@ -23,7 +24,7 @@ in
         defaultPhoneRegion = "PL";
       };
       extraOptions = {
-        bulkupload.enabled = false;
+        "bulkupload.enabled" = false;
       };
     };
     postgresql = {
