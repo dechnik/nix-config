@@ -12,11 +12,40 @@
     nginx.virtualHosts."nextcloud.dechnik.net" = {
       forceSSL = true;
       useACMEHost = "nextcloud.dechnik.net";
+      extraConfig = ''
+        client_max_body_size 0;
+        underscores_in_headers on;
+        access_log /var/log/nginx/nextcloud.dechnik.net.access.log;
+      '';
       locations = {
         "/" = {
-          proxyPass = "http://10.30.10.14:80";
-          proxyWebsockets = true;
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Host $http_host;
+            proxy_set_header Host $host;
+            proxy_set_header X-Forwarded-For $remote_addr;
+            proxy_set_header X-Forwarded-IP $remote_addr;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            add_header Front-End-Https on;
+            proxy_pass http://10.30.10.14:80;
+          '';
         };
+        "/.well-known/carddav" = {
+          return = "301 $scheme://$host/remote.php/dav";
+        };
+        "/.well-known/caldav" = {
+          return = "301 $scheme://$host/remote.php/dav";
+        };
+        "/robots.txt" = {
+          extraConfig = ''
+            allow all;
+            log_not_found off;
+            access_log off;
+          '';
+        };
+        # "/" = {
+        #   proxyPass = "http://10.30.10.14:80";
+        #   proxyWebsockets = true;
+        # };
       };
     };
     nginx.virtualHosts."nc.dechnik.net" = {
