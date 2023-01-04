@@ -22,6 +22,9 @@ in
         dbuser = "nextcloud";
         defaultPhoneRegion = "PL";
       };
+      extraOptions = {
+        bulkupload.enabled = false;
+      };
     };
     postgresql = {
       ensureUsers = [
