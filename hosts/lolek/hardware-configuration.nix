@@ -19,10 +19,10 @@
     };
   };
 
-  fileSystems."/media" = {
-    device = "/dev/disk/by-label/MEDIA";
-    fsType = "ext4";
-  };
+  # fileSystems."/media" = {
+  #   device = "/dev/disk/by-label/MEDIA";
+  #   fsType = "ext4";
+  # };
 
   fileSystems."/boot" =
     { device = "/dev/sda1";
