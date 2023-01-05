@@ -63,7 +63,6 @@ in {
     binutils # native-comp needs 'as', provided by this
 
     ## Doom dependencies
-    git
     (ripgrep.override {withPCRE2 = true;})
     gnutls # for TLS connectivity
 
