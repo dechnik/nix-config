@@ -42,15 +42,12 @@
 
   hardware.nvidia.modesetting.enable = true;
 
-  environment.systemPackages = [
-    pkgs.nvidia-vaapi-driver
-  ];
-
   hardware = {
     opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      extraPackages = with pkgs; [ libvdpau-va-gl vaapiVdpau ];
     };
   };
 
