@@ -11,6 +11,12 @@
       package = pkgs.searxng;
       environmentFile = config.sops.secrets.searx-env.path;
       runInUwsgi = true;
+      uwsgiConfig = {
+        disable-logging = true;
+        http = ":8080";                   # serve via HTTP...
+        socket = "/run/searx/searx.sock"; # ...or UNIX socket
+        chmod-socket = "660";
+      };
       settings = {
         server = {
           secret_key = "@SEARX_SECRET_KEY@";
