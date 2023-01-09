@@ -8,6 +8,7 @@
     ./nginx.nix
     ./nc.nix
     ./rss.nix
+    ./searx.nix
     ./headscale.nix
     ./nginx-jellyfin.nix
   ];
