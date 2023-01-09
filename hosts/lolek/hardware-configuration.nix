@@ -19,6 +19,11 @@
     };
   };
 
+  fileSystems."/media" = {
+    device = "/dev/disk/by-label/media";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" =
     { device = "/dev/sda1";
       fsType = "btrfs";
