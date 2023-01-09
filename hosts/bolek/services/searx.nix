@@ -19,7 +19,11 @@
         chmod-socket = "660";
       };
       settings = {
+        search = {
+          autocomplete = "duckduckgo";
+        };
         server = {
+          image_proxy = true;
           secret_key = "@SEARX_SECRET_KEY@";
           base_url = "https://sx.dechnik.net/";
         };
