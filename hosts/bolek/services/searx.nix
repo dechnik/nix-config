@@ -5,6 +5,9 @@
       group = "nginx";
     };
   };
+  users.users = {
+    nginx.extraGroups = [ "searx" ];
+  };
   services = {
     searx = {
       enable = true;
