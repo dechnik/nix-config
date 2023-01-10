@@ -14,13 +14,13 @@
       grub = {
         enable = true;
         version = 2;
-        device = "/dev/sda";
+        device = "/dev/vda";
       };
     };
   };
 
   fileSystems."/boot" =
-    { device = "/dev/sda1";
+    { device = "/dev/vda1";
       fsType = "btrfs";
       options = [ "subvol=boot" ];
     };
