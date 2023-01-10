@@ -8,6 +8,7 @@ keys:
     - &ldlat age1xhv0vxwgn0fzup499sc0dae6az6la923w2vjlx698zld9dgrmpaskmnksr
     - &bolek age1gn9jn003lasz9spqfkhvgkzfhhnqth3anj652lmppz8ljhp23uks97tacc
     - &lolek age1we0m4g25wp59jgn3nw5sn4lhtgkesp35r777ry7rn4zr4s038ufq2s2kyp
+    - &tola age1lwsmxcqngugcx3rrgekw8leytq2q2zjwjnnp7f8h2q338yhkqeqs7e05wt
 creation_rules:
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
@@ -16,6 +17,7 @@ creation_rules:
       - *ldlat
       - *bolek
       - *lolek
+      - *tola
       pgp:
       - *lukasz
   - path_regex: hosts/bolek/secrets.ya?ml$
