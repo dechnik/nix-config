@@ -6,6 +6,7 @@
     ./gtk.nix
     ./pavucontrol.nix
     ./playerctl.nix
+    ./qt.nix
   ];
 
   xdg.mimeApps.enable = true;
