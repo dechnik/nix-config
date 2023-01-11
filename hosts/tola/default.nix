@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
 
       ../common/optional/qemu-vm.nix
+      ../common/optional/xserver.nix
       ../common/optional/gnome.nix
       ../common/global
       ../common/users/lukasz
