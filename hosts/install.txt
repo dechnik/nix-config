@@ -24,4 +24,7 @@ dd if=/dev/zero of=/mnt/swap/swapfile bs=1M count=8192
 chmod 0600 /mnt/swap/swapfile
 mkswap /mnt/swap/swapfile
 
+mkdir /persist/home/lukasz
+chown -R lukasz:users /persist/home/lukasz
+
 #echo 'password' | gpg --allow-secret-key-import --pinentry-mode loopback --passphrase-fd 0 --import key.asc
