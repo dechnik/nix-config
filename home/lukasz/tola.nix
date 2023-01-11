@@ -7,4 +7,8 @@
     ./features/desktop/terminal
   ];
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
+
+  monitors = [
+  ];
+  wallpaper = "";
 }
