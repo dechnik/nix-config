@@ -304,6 +304,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1660842467,
+        "narHash": "sha256-lSer61lI5X61/3zjMu4OSUqdKSCW2jM1rU6B3WLBOj4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9b9f4bb4e1125a2b9734b05a4c35ff388cabec05",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "firefox-addons": "firefox-addons",
@@ -314,7 +330,8 @@
         "impermanence": "impermanence",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_4",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "website": "website"
       }
     },
     "sops-nix": {
@@ -349,6 +366,25 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "website": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1673594284,
+        "narHash": "sha256-L/PrLkFtGdwQ3yI1li6S6eu6nxsXg90Fk+S7UrgAcoU=",
+        "owner": "~lukasz",
+        "repo": "website",
+        "rev": "ed6ce3dad333a99f2a4488a7984a48c65101b0fe",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~lukasz",
+        "ref": "master",
+        "repo": "website",
+        "type": "sourcehut"
       }
     },
     "wlroots": {

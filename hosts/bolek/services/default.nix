@@ -9,6 +9,7 @@
     ./nc.nix
     ./rss.nix
     ./searx.nix
+    ./website.nix
     ./headscale.nix
     ./nginx-jellyfin.nix
   ];

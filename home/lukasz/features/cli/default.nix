@@ -29,7 +29,7 @@
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printer
 
-    rnix-lsp # Nix LSP
+    nil # Nix LSP
     nixfmt # Nix formatter
   ];
 }
