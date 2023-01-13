@@ -14,7 +14,7 @@
       runInUwsgi = true;
       uwsgiConfig = {
         disable-logging = true;
-        http = ":8080";                   # serve via HTTP...
+        http = ":8088";                   # serve via HTTP...
         socket = "/run/searx/searx.sock"; # ...or UNIX socket
         chmod-socket = "660";
       };
@@ -23,6 +23,7 @@
           autocomplete = "duckduckgo";
         };
         server = {
+          port = 8088;
           image_proxy = true;
           secret_key = "@SEARX_SECRET_KEY@";
           base_url = "https://sx.dechnik.net/";
