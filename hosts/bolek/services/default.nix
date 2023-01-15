@@ -3,7 +3,7 @@
     ./binary-cache.nix
     ./hydra.nix
     # ./cgit
-    # ./git-remote.nix
+    ./git-remote.nix
     # ./gitea
     ./nginx.nix
     ./nc.nix
