@@ -6,27 +6,25 @@ let
   } ''
     sass ${file} > $out
   '';
+  partials = "${inputs.website.packages.${pkgs.system}.main}/public/cgit_partials";
 in
 {
-  security.acme.certs = {
-    "git.dechnik.net" = {
-      group = "nginx";
-    };
-  };
   services = {
-    nginx.virtualHosts."git.dechnik.net" = {
+    nginx.virtualHosts."dechnik.net" = {
       forceSSL = true;
-      useACMEHost = "git.dechnik.net";
+      useACMEHost = "dechnik.net";
       extraConfig = ''
         access_log /var/log/nginx/git.dechnik.net.access.log;
       '';
       locations = {
-        "=/style.css" = {
+        "=/git/style.css" = {
           alias = compileSass ./cgit.scss;
         };
-        "/" = {
+        "=/git".return = "301 https://dechnik.net/git/";
+        "/git/" = {
           root = "${cgit}/cgit";
           extraConfig = ''
+            rewrite ^/git/(.*) /$1 break;
             include ${pkgs.nginx}/conf/uwsgi_params;
             uwsgi_modifier1 9;
             uwsgi_pass unix:/run/uwsgi/cgit.sock;
@@ -74,6 +72,8 @@ in
     enable-git-config=1
 
     css=/git/style.css
+    head-include=${partials}/head.html
+    nav-include=${partials}/nav.html
 
     readme=:README.md
     readme=:readme.md
