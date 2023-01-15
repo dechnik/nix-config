@@ -15,4 +15,5 @@
       };
     };
   };
+  users.groups.transmission.members = [ "transmission" config.services.jellyfin.user ];
 }
