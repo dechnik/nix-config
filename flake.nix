@@ -53,6 +53,10 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/dziad ];
         };
+        ldlat = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/ldlat ];
+        };
         bolek = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/bolek ];
@@ -73,6 +77,11 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/lukasz/dziad.nix ];
+        };
+        "lukasz@ldlat" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/lukasz/ldlat.nix ];
         };
         "lukasz@bolek" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
