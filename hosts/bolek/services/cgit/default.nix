@@ -13,9 +13,6 @@ in
     nginx.virtualHosts."dechnik.net" = {
       forceSSL = true;
       useACMEHost = "dechnik.net";
-      extraConfig = ''
-        access_log /var/log/nginx/git.dechnik.net.access.log;
-      '';
       locations = {
         "=/git/style.css" = {
           alias = compileSass ./cgit.scss;
