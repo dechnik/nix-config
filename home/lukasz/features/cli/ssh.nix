@@ -15,7 +15,7 @@ in
         }];
       };
       trusted = lib.hm.dag.entryBefore [ "net" ] {
-        host = "dziad ldlat dechnik.net *.dechnik.net *.ts.dechnik.net";
+        host = "dechnik.net *.dechnik.net *.ts.dechnik.net";
         forwardAgent = true;
       };
     };
