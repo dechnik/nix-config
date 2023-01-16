@@ -362,11 +362,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1673594284,
-        "narHash": "sha256-L/PrLkFtGdwQ3yI1li6S6eu6nxsXg90Fk+S7UrgAcoU=",
+        "lastModified": 1673854617,
+        "narHash": "sha256-yC2z+/OplfCnLx8WqvMhTIPTzuzdTPn54Jx2fsM0tRI=",
         "owner": "~lukasz",
         "repo": "website",
-        "rev": "ed6ce3dad333a99f2a4488a7984a48c65101b0fe",
+        "rev": "ff0825e4885b54b8bf181dbd33ff816131841301",
         "type": "sourcehut"
       },
       "original": {
