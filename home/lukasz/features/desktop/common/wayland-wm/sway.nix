@@ -25,6 +25,7 @@ in
         # Focus parent or child
         "${modifier}+bracketleft" = "focus parent";
         "${modifier}+bracketright" = "focus child";
+        "${modifier}+Return" = "exec ${terminal}";
       };
       bars = [ ];
 
