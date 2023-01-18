@@ -3,7 +3,7 @@ let
   wofi = "${pkgs.wofi}/bin/wofi";
   kitty = "${config.programs.kitty.package}/bin/kitty";
   inherit (config.colorscheme) colors;
-  modifier = "Mod4";
+  modifier = "Mod1";
   terminal = kitty;
 in
 {
@@ -26,6 +26,7 @@ in
         "${modifier}+bracketleft" = "focus parent";
         "${modifier}+bracketright" = "focus child";
       };
+      bars = [ ];
 
       colors = {
         focused = {
