@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./gammastep.nix
+    # ./gammastep.nix
     # ./kitty.nix
     ./mako.nix
     ./swayidle.nix
