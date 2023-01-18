@@ -1,28 +1,25 @@
-{
-  config,
-  colors,
-  osConfig,
-  lib,
-  pkgs,
-  ...
-}: let
-  _ = lib.getExe;
-  dependencies = with pkgs; [
-    config.wayland.windowManager.hyprland.package
-    wlogout
-    libjack2
-    coreutils
-    wireplumber
-    pavucontrol
-    gnugrep
-    perl
-    bash
-    gawk
-    gnused
-    findutils
-  ];
-  jq = "${pkgs.gojq}/bin/gojq";
+{ config, lib, pkgs, ... }:
+
+let
+  # Dependencies
+  jq = "${pkgs.jq}/bin/jq";
   xml = "${pkgs.xmlstarlet}/bin/xml";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
+  journalctl = "${pkgs.systemd}/bin/journalctl";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  playerctld = "${pkgs.playerctl}/bin/playerctld";
+  neomutt = "${pkgs.neomutt}/bin/neomutt";
+  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+  btm = "${pkgs.bottom}/bin/btm";
+  wofi = "${pkgs.wofi}/bin/wofi";
+  ikhal = "${pkgs.khal}/bin/ikhal";
+
+  terminal = "${pkgs.kitty}/bin/kitty";
+  terminal-spawn = cmd: "${terminal} $SHELL -i -c ${cmd}";
+
+  calendar = terminal-spawn ikhal;
+  systemMonitor = terminal-spawn btm;
+
   # Function to simplify making waybar outputs
   jsonOutput = name: { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? "" }: "${pkgs.writeShellScriptBin "waybar-${name}" ''
     set -euo pipefail
@@ -35,466 +32,353 @@
       --arg percentage "${percentage}" \
       '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
   ''}/bin/waybar-${name}";
-in {
-
-  # home.file.".config/waybar/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;
-  # };
-  home.packages = dependencies;
+in
+{
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.overrideAttrs (
-      old: {
-        src = pkgs.fetchFromGitHub {
-          owner = "Alexays";
-          repo = "Waybar";
-          rev = "0.9.16";
-          sha256 = "sha256-hcU0ijWIN7TtIPkURVmAh0kanQWkBUa22nubj7rSfBs=";
-        };
-        preBuildPhases = ["hyprlandPatch"];
-        hyprlandPatch = "sed -i \'s/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = \"hyprctl dispatch workspace \" + name_;\\n\\tsystem(command.c_str());/g\' /build/source/src/modules/wlr/workspace_manager.cpp";
-        # mesonFlags = old.mesonFlags ++ ["-Dexperimental=true" "-Djack=disabled"];
-        mesonFlags = old.mesonFlags ++ ["-Dexperimental=true"];
-      }
-    );
-    # package = if (osConfig.networking.hostName == "dziad")
-    # then pkgs.waybar.overrideAttrs (
-    #   old: {
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "Alexays";
-    #       repo = "Waybar";
-    #       rev = "0.9.16";
-    #       sha256 = "sha256-hcU0ijWIN7TtIPkURVmAh0kanQWkBUa22nubj7rSfBs=";
-    #     };
-    #     preBuildPhases = ["hyprlandPatch"];
-    #     hyprlandPatch = "sed -i \'s/zext_workspace_handle_v1_activate(workspace_handle_);/const std::string command = \"hyprctl dispatch workspace \" + name_;\\n\\tsystem(command.c_str());/g\' /build/source/src/modules/wlr/workspace_manager.cpp";
-    #     # mesonFlags = old.mesonFlags ++ ["-Dexperimental=true" "-Djack=disabled"];
-    #     mesonFlags = old.mesonFlags ++ ["-Dexperimental=true" "-Dwireplumber=disabled"];
-    #   }
-    # )
-    # else if (osConfig.networking.hostName == "ldlat")
-    # then pkgs.waybar
-    # else pkgs.waybar;
-    settings = [
-      {
-        name = "main-bar";
-        id = "main-bar";
-        layer = "top";
-        mode = "dock";
-        exclusive = true;
-        passthrough = false;
-        position = "top";
-        gtk-layer-shell = true;
-        height = 24;
-        #width = 0;
-        #spacing = 6;
-        #margin = 0;
-        #margin-top = 0;
-        #margin-bottom = 0;
-        #margin-left = 0;
-        #margin-right = 0;
-        #fixed-center = true;
-        # ipc = true;
-        # modules-left = ["wlr/workspaces" "hyprland/window"];
-        modules-left = ["wlr/workspaces"];
-        # modules-left = if (osConfig.networking.hostName == "ldlat")
-        #                then ["sway/workspaces" "sway/mode"]
-        #                else ["wlr/workspaces"];
-        modules-right = ["custom/unread-mail" "cpu" "memory" "pulseaudio" "network" "clock" "tray"];
+    settings = {
 
-        "custom/power" = {
-          format = "襤";
-          tooltip = false;
-          on-click = "${_ pkgs.wlogout} -p layer-shell";
-        };
+      secondary = {
+        mode = "dock";
+        layer = "top";
+        height = 32;
+        width = 100;
+        margin = "6";
+        position = "bottom";
+        modules-center = (lib.optionals config.wayland.windowManager.sway.enable [
+          "sway/workspaces"
+          "sway/mode"
+        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+          "wlr/workspaces"
+        ]);
+
         "wlr/workspaces" = {
-          format = "{name}";
-          sort-by-name = true;
           on-click = "activate";
-          disable-scroll = true;
         };
-        "sway/mode" = {
-          format = "<span style=\"italic\">{}</span>";
+      };
+
+      primary = {
+        mode = "dock";
+        layer = "top";
+        height = 40;
+        margin = "6";
+        position = "top";
+        output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
+        modules-left = [
+          "custom/menu"
+          "custom/currentplayer"
+          "custom/player"
+        ];
+        modules-center = [
+          "cpu"
+          "custom/gpu"
+          "memory"
+          "clock"
+          "pulseaudio"
+          "custom/gammastep"
+          "custom/gpg-agent"
+        ];
+        modules-right = [
+          "network"
+          "custom/tailscale-ping"
+          "battery"
+          "tray"
+          "custom/hostname"
+        ];
+
+        clock = {
+          format = "{:%d/%m %H:%M}";
+          tooltip-format = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
+          on-click = calendar;
         };
-        "cpu" = {
+        cpu = {
+          format = "   {usage}%";
+          on-click = systemMonitor;
+        };
+        "custom/gpu" = {
           interval = 5;
-          format = " LOAD: {usage}%";
+          return-type = "json";
+          exec = jsonOutput "gpu" {
+            text = "$(cat /sys/class/drm/card0/device/gpu_busy_percent)";
+            tooltip = "GPU Usage";
+          };
+          format = "力  {}%";
+          on-click = systemMonitor;
         };
-        "memory" = {
-          interval = 10;
-          format = " USED: {used:0.1f}G";
+        memory = {
+          format = "  {}%";
+          interval = 5;
+          on-click = systemMonitor;
         };
-        "pulseaudio" = {
-          format = "{icon} {volume}%";
-          format-muted = " Mute";
-          format-bluetooth = " {volume}% {format_source}";
-          format-bluetooth-muted = " Mute";
-          format-source = " {volume}%";
-          format-source-muted = "";
+        pulseaudio = {
+          format = "{icon}  {volume}%";
+          format-muted = "   0%";
           format-icons = {
             headphone = "";
-            hands-free = "";
             headset = "";
-            phone = "";
             portable = "";
-            car = "";
-            default = ["" "" ""];
+            default = [ "" "" "" ];
           };
-          scroll-step = 5.0;
-          on-click = "amixer set Master toggle";
-          on-click-right = "${_ pkgs.pavucontrol}";
-          smooth-scrolling-threshold = 1;
+          on-click = pavucontrol;
         };
-        "network" = {
-          interval = 5;
-          format-wifi = " {essid}";
-          format-ethernet = " {ipaddr}/{cidr}";
-          format-linked = " {ifname} (No IP)";
-          format-disconnected = "睊 Disconnected";
-          format-disabled = "睊 Disabled";
-          format-alt = " {bandwidthUpBits} |  {bandwidthDownBits}";
-          tooltip-format = " {ifname} via {gwaddr}";
-          on-click-right = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "零";
+            deactivated = "鈴";
+          };
         };
-        "clock" = {
-          interval = 60;
-          align = 0;
-          rotate = 0;
-          tooltip-format = "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>";
-          format = " {:%H:%M}";
-          format-alt = " {:%a %b %d, %G}";
+        battery = {
+          bat = "BAT0";
+          interval = 10;
+          format-icons = [ "" "" "" "" "" "" "" "" "" "" ];
+          format = "{icon} {capacity}%";
+          format-charging = " {capacity}%";
+          onclick = "";
         };
-        "tray" = {
-          # icon-size = 12;
-          spacing = 10;
+        "sway/window" = {
+          max-length = 20;
         };
-        "custom/unread-mail" = {
-          interval = 60;
+        network = {
+          interval = 3;
+          format-wifi = "   {essid}";
+          format-ethernet = " Connected";
+          format-disconnected = "";
+          tooltip-format = ''
+            {ifname}
+            {ipaddr}/{cidr}
+            Up: {bandwidthUpBits}
+            Down: {bandwidthDownBits}'';
+          on-click = "";
+        };
+        "custom/tailscale-ping" = {
+          interval = 2;
           return-type = "json";
-          exec = jsonOutput "unread-mail" {
+          exec =
+            let
+              targets = {
+                electra = { host = "electra"; icon = " "; };
+                merope = { host = "merope"; icon = " "; };
+                atlas = { host = "atlas"; icon = " "; };
+                maia = { host = "maia"; icon = " "; };
+                pleione = { host = "pleione"; icon = " "; };
+              };
+
+              showPingCompact = { host, icon }: "${icon} $ping_${host}";
+              showPingLarge = { host, icon }: "${icon} ${host}: $ping_${host}";
+              setPing = { host, ... }: ''
+                ping_${host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${host}="Disconnected"
+              '';
+            in
+            jsonOutput "tailscale-ping" {
+              pre = ''
+                set -o pipefail
+                ${builtins.concatStringsSep "\n" (map setPing (builtins.attrValues targets))}
+              '';
+              text = "${showPingCompact targets.electra} / ${showPingCompact targets.merope}";
+              tooltip = builtins.concatStringsSep "\n" (map showPingLarge (builtins.attrValues targets));
+            };
+          format = "{}";
+          on-click = "";
+        };
+        "custom/menu" = {
+          return-type = "json";
+          exec = jsonOutput "menu" {
+            text = "";
+            tooltip = ''$(cat /etc/os-release | grep PRETTY_NAME | cut -d '"' -f2)'';
+          };
+          on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
+        };
+        "custom/hostname" = {
+          exec = "echo $USER@$(hostname)";
+          on-click = terminal;
+        };
+        "custom/gpg-agent" = {
+          interval = 2;
+          return-type = "json";
+          exec =
+            let keyring = import ../../../trusted/keyring.nix { inherit pkgs; };
+            in
+            jsonOutput "gpg-agent" {
+              pre = ''status=$(${keyring.isUnlocked} && echo "unlocked" || echo "locked")'';
+              alt = "$status";
+              tooltip = "GPG is $status";
+            };
+          format = "{icon}";
+          format-icons = {
+            "locked" = "";
+            "unlocked" = "";
+          };
+          on-click = "";
+        };
+        "custom/gammastep" = {
+          interval = 5;
+          return-type = "json";
+          exec = jsonOutput "gammastep" {
             pre = ''
-              count=$(find ~/.local/share/mail/*/Inbox/new -type f | wc -l)
-              if [ "$count" == "0" ]; then
-                subjects="No new mail"
-                status="read"
+              if unit_status="$(${systemctl} --user is-active gammastep)"; then
+                status="$unit_status ($(${journalctl} --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs))"
               else
-                subjects=$(\
-                  grep -h "Subject: " -r ~/.local/share/mail/*/Inbox/new | cut -d ':' -f2- | \
-                  perl -CS -MEncode -ne 'print decode("MIME-Header", $_)' | ${xml} esc | sed -e 's/^/\-/'\
-                )
-                status="unread"
-              fi
-              if pgrep mbsync &>/dev/null; then
-                status="syncing"
+                status="$unit_status"
               fi
             '';
-            text = "$count";
-            tooltip = "$subjects";
-            alt = "$status";
+            alt = "\${status:-inactive}";
+            tooltip = "Gammastep is $status";
           };
+          format = "{icon}";
+          format-icons = {
+            "activating" = " ";
+            "deactivating" = " ";
+            "inactive" = "? ";
+            "active (Night)" = " ";
+            "active (Nighttime)" = " ";
+            "active (Transition (Night)" = " ";
+            "active (Transition (Nighttime)" = " ";
+            "active (Day)" = " ";
+            "active (Daytime)" = " ";
+            "active (Transition (Day)" = " ";
+            "active (Transition (Daytime)" = " ";
+          };
+          on-click = "${systemctl} --user is-active gammastep && ${systemctl} --user stop gammastep || ${systemctl} --user start gammastep";
+        };
+        "custom/currentplayer" = {
+          interval = 2;
+          return-type = "json";
+          exec = jsonOutput "currentplayer" {
+            pre = ''
+              player="$(${playerctl} status -f "{{playerName}}" 2>/dev/null || echo "No player active" | cut -d '.' -f1)"
+              count="$(${playerctl} -l | wc -l)"
+              if ((count > 1)); then
+                more=" +$((count - 1))"
+              else
+                more=""
+              fi
+            '';
+            alt = "$player";
+            tooltip = "$player ($count available)";
+            text = "$more";
+          };
+          format = "{icon}{}";
+          format-icons = {
+            "No player active" = " ";
+            "Celluloid" = " ";
+            "spotify" = " 阮";
+            "ncspot" = " 阮";
+            "qutebrowser" = "爵";
+            "firefox" = " ";
+            "discord" = " ﭮ ";
+            "sublimemusic" = " ";
+            "kdeconnect" = " ";
+          };
+          on-click = "${playerctld} shift";
+          on-click-right = "${playerctld} unshift";
+        };
+        "custom/player" = {
+          exec-if = "${playerctl} status";
+          exec = ''${playerctl} metadata --format '{"text": "{{artist}} - {{title}}", "alt": "{{status}}", "tooltip": "{{title}} ({{artist}} - {{album}})"}' '';
+          return-type = "json";
+          interval = 2;
+          max-length = 30;
           format = "{icon} {}";
           format-icons = {
-            "read" = "";
-            "unread" = "";
-            "syncing" = "";
+            "Playing" = "契";
+            "Paused" = " ";
+            "Stopped" = "栗";
           };
+          on-click = "${playerctl} play-pause";
         };
-      }
-    ];
+      };
+
+    };
+    # Cheatsheet:
+    # x -> all sides
+    # x y -> vertical, horizontal
+    # x y z -> top, horizontal, bottom
+    # w x y z -> top, right, bottom, left
     style = let inherit (config.colorscheme) colors; in /* css */ ''
       * {
-          /* `otf-font-awesome` is required to be installed for icons */
-          font-family: iosevka, Roboto, Helvetica, Arial, sans-serif, "Font Awesome 5 Free";
-          font-size: 14px;
+        font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
+        font-size: 12pt;
+        padding: 0 8px;
+      }
+
+      .modules-right {
+        margin-right: -15px;
+      }
+
+      .modules-left {
+        margin-left: -15px;
+      }
+
+      window#waybar.top {
+        opacity: 0.95;
+        padding: 0;
+        background-color: #${colors.base00};
+        border: 2px solid #${colors.base0C};
+        border-radius: 10px;
+      }
+      window#waybar.bottom {
+        opacity: 0.90;
+        background-color: #${colors.base00};
+        border: 2px solid #${colors.base0C};
+        border-radius: 10px;
       }
 
       window#waybar {
-      /*    background-color: rgba(43, 48, 59, 0.5);
-          border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
-          color: #a89984;
-          background-color: #282828;
-      /*    transition-property: background-color;
-          transition-duration: .5s;*/
+        color: #${colors.base05};
       }
-
-      window#waybar.hidden {
-          opacity: 0.2;
-      }
-
-      /*
-      window#waybar.empty {
-          background-color: transparent;
-      }
-      window#waybar.solo {
-          background-color: #FFFFFF;
-      }
-      */
-
-      /*window#waybar.termite {
-          background-color: #3F3F3F;
-      }
-
-      window#waybar.chromium {
-          background-color: #000000;
-          border: none;
-      }*/
 
       #workspaces button {
-          padding: 0 10px;
-          background-color: #282828;
-          color: #ebdbb2;
-          /* Use box-shadow instead of border so the text isn't offset */
-          box-shadow: inset 0 -3px transparent;
-          /* Avoid rounded borders under each workspace name */
-          border: none;
-          border-radius: 0;
+        background-color: #${colors.base01};
+        color: #${colors.base05};
+        margin: 4px;
       }
-
-      /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
-      #workspaces button:hover {
-          background: rgba(0, 0, 0, 0.2);
-      /*    box-shadow: inset 0 -3px #fbf1c7;
-      */
-          background-color: #3c3836;
+      #workspaces button.hidden {
+        background-color: #${colors.base00};
+        color: #${colors.base04};
       }
-
+      #workspaces button.focused,
       #workspaces button.active {
-      /*    box-shadow: inset 0 -3px #fbf1c7;
-      */
-          background-color: #3c3836;
-          color: #ebdbb2;
-      }
-      #workspaces button.focused {
-      /*    box-shadow: inset 0 -3px #fbf1c7;
-      */
-          background-color: #3c3836;
-          color: #ebdbb2;
-      }
-
-      #workspaces button.urgent {
-          background-color: #fbf1c7;
-          color: #3c3836;
-      }
-
-      #mode {
-          background-color: #64727D;
-          border-bottom: 3px solid #fbf1c7;
-      }
-
-      #clock,
-      #battery,
-      #cpu,
-      #custom-mail,
-      #custom-unread-mail,
-      #memory,
-      #disk,
-      #temperature,
-      #backlight,
-      #network,
-      #pulseaudio,
-      #custom-media,
-      #tray,
-      #mode,
-      #idle_inhibitor,
-      #custom-poweroff,
-      #custom-suspend,
-      #mpd {
-          padding: 0 10px;
-          background-color: #282828;
-          color: #ebdbb2;
-      }
-
-      #window,
-      #workspaces {
-          margin: 0 4px;
-      }
-
-      /* If workspaces is the leftmost module, omit left margin */
-      .modules-left > widget:first-child > #workspaces {
-          margin-left: 0;
-      }
-
-      /* If workspaces is the rightmost module, omit right margin */
-      .modules-right > widget:last-child > #workspaces {
-          margin-right: 0;
+        background-color: #${colors.base0A};
+        color: #${colors.base00};
       }
 
       #clock {
-          color: #8ec07c;
+        background-color: #${colors.base0C};
+        color: #${colors.base00};
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 10px;
       }
 
-      #battery {
-          color: #d3869b;
+      #custom-menu {
+        background-color: #${colors.base0C};
+        color: #${colors.base00};
+        padding-left: 15px;
+        padding-right: 22px;
+        margin-left: 0;
+        margin-right: 10px;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 10px;
       }
-
-      #battery.charging, #battery.plugged {
-          color: #d3869b;
+      #custom-hostname {
+        background-color: #${colors.base0C};
+        color: #${colors.base00};
+        padding-left: 15px;
+        padding-right: 18px;
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 10px;
       }
-
-      @keyframes blink {
-          to {
-              background-color: #fbf1c7;
-              color: #df3f71;
-          }
-      }
-
-      #battery.critical:not(.charging) {
-          background-color: #282828;
-          color: #d3869b;
-          animation-name: blink;
-          animation-duration: 0.5s;
-          animation-timing-function: linear;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-      }
-
-      label:focus {
-          background-color: #000000;
-      }
-
-      #backlight {
-          color: #458588;
-      }
-
-      #temperature {
-          color: #fabd2f;
-      }
-
-      #temperature.critical {
-          background-color: #fbf1c7;
-          color: #b57614;
-      }
-
-      #memory {
-          color: #b8bb26;
-      }
-
-      #network {
-          color: #fb4934;
-      }
-
-      #network.disconnected {
-          background-color: #fbf1c7;
-          color: #9d0006;
-      }
-
-      /*#disk {
-          background-color: #964B00;
-      }*/
-
-      #pulseaudio {
-          color: #fe8019;
-      }
-
-      #custom-mail {
-          color: #458588;
-          /*margin-top: 4px;*/
-          margin-bottom: 0px;
-      }
-      #custom-unread-mail {
-          color: #458588;
-      }
-
-      #pulseaudio.muted {
-          background-color: #fbf1c7;
-          color: #af3a03;
-      }
-
       #tray {
-      }
-
-      #tray > .needs-attention {
-          background-color: #fbf1c7;
-          color: #3c3836;
-      }
-
-      #idle_inhibitor {
-          background-color: #282828;
-          color: #ebdbb2;
-      }
-
-      #idle_inhibitor.activated {
-          background-color: #fbf1c7;
-          color: #3c3836;
-      }
-
-      #custom-media {
-          background-color: #66cc99;
-          color: #2a5c45;
-          min-width: 100px;
-      }
-
-      #custom-media.custom-spotify {
-          background-color: #66cc99;
-      }
-
-      #custom-media.custom-vlc {
-          background-color: #ffa000;
-      }
-
-      #mpd {
-          background-color: #66cc99;
-          color: #2a5c45;
-      }
-
-      #mpd.disconnected {
-          background-color: #f53c3c;
-      }
-
-      #mpd.stopped {
-          background-color: #90b1b1;
-      }
-
-      #mpd.paused {
-          background-color: #51a37a;
-      }
-
-      #language {
-          background: #00b093;
-          color: #740864;
-          padding: 0 5px;
-          margin: 0 5px;
-          min-width: 16px;
-      }
-
-      #keyboard-state {
-          background: #97e1ad;
-          color: #000000;
-          padding: 0 0px;
-          margin: 0 5px;
-          min-width: 16px;
-      }
-
-      #keyboard-state > label {
-          padding: 0 5px;
-      }
-
-      #keyboard-state > label.locked {
-          background: rgba(0, 0, 0, 0.2);
+        color: #${colors.base05};
       }
     '';
-    # systemd = {
-    #   enable = true;
-    #   target = "graphical-session.target";
-    # };
-  };
-  systemd.user.services.waybar = {
-    Unit = {
-      Description = "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
-      Documentation = "https://github.com/Alexays/Waybar/wiki";
-      PartOf = ["graphical-session.target"];
-      After = ["graphical-session.target"];
-    };
-
-    Service = {
-      Environment = "PATH=/run/wrappers/bin:${lib.makeBinPath dependencies}";
-      ExecStart = "${config.programs.waybar.package}/bin/waybar";
-      ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
-      Restart = "on-failure";
-      KillMode = "mixed";
-    };
-
-    Install.WantedBy = ["graphical-session.target"];
   };
 }
