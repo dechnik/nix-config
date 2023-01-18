@@ -6,6 +6,7 @@
     ./features/trusted
     ./features/desktop/hyprland
     ./features/desktop/terminal
+    ./features/desktop/common/wayland-wm/sway.nix
   ];
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
