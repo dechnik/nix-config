@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
+    ./gammastep.nix
+    # ./kitty.nix
     ./mako.nix
     ./swayidle.nix
     ./swaylock.nix

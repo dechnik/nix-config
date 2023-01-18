@@ -6,7 +6,7 @@
     aliases = {
       pushall = "!git remote | xargs -L1 git push --all";
       graph = "log --decorate --oneline --graph";
-      add-nowhitespace = "!git diff -U0 -w --no-color | !git apply --cached --ignore-whitespace --unidiff-zero -";
+      add-nowhitespace = "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero -";
     };
     userName = "lukasz Dechnik";
     userEmail = "lukasz@dechnik.net";
