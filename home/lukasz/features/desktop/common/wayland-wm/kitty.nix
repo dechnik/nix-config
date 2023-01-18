@@ -19,7 +19,7 @@ in
     enable = true;
     font = {
       name = config.fontProfiles.monospace.family;
-      size = 12;
+      size = 10;
     };
     settings = {
       window_padding_width = 15;

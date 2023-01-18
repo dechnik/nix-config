@@ -3,6 +3,7 @@
   imports = [
     # ./gammastep.nix
     ./kitty.nix
+    ./alacritty.nix
     ./mako.nix
     ./swayidle.nix
     ./swaylock.nix
