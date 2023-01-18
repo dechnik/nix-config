@@ -27,7 +27,7 @@ in
         "${modifier}+bracketright" = "focus child";
         "${modifier}+Return" = "exec ${terminal}";
       };
-      bars = [ ];
+      # bars = [ ];
 
       colors = {
         focused = {
