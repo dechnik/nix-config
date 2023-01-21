@@ -69,6 +69,10 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/tola ];
         };
+        iso = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/iso ];
+        };
       };
 
       homeConfigurations = {
