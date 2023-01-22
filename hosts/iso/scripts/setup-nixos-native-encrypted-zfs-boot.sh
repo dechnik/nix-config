@@ -378,7 +378,7 @@ function select_boot_drives () {
     while true; do
       # Choose a connected drive.
       local connected_drives
-      connected_drives=$(lsblk -n -d -S -o model,serial,size,name,path,state)
+      connected_drives=$(lsblk -n -d -o model,serial,size,name,path,state)
       selector_items=$connected_drives
 
       .log $L_5NOTICE " ZFS_POOL_DRIVES: ${ZFS_POOL_DRIVES[*]}"
