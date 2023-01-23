@@ -7,13 +7,15 @@
       inputs.hardware.nixosModules.common-pc-ssd
 
       ./hardware-configuration.nix
+      ./boot-loader.nix
 
       ../common/global
       ../common/users/lukasz
 
       ../common/optional/pipewire.nix
       ../common/optional/greetd.nix
-      ../common/optional/quietboot.nix
+      ../common/optional/zfs.nix
+      # ../common/optional/quietboot.nix
     ];
 
   networking = {
@@ -23,7 +25,8 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
