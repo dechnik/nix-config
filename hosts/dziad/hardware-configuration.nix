@@ -19,14 +19,12 @@
     };
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/a6ce31dc-4c87-4950-970a-9a1d3a0b5968";
-    fsType = "btrfs";
-    options = ["noatime"];
-  };
-
   fileSystems = {
     "/boot" = {
+      device = "/dev/disk/by-uuid/be1c825f-1e04-4e02-a4d9-bf6676806b76";
+      fsType = "ext4";
+    };
+    "/boot/efi" = {
       device = "/dev/disk/by-uuid/A2C4-DBDC";
       fsType = "vfat";
     };
