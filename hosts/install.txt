@@ -1,4 +1,5 @@
 mkfs.btrfs -L <label> /dev/vda1
+# mkfs.btrfs -m raid10 -d raid10 /dev/sdb /dev/sdc /dev/sdd /dev/sde
 mkdir -p /mnt
 mount /dev/vda1 /mnt
 btrfs subvolume create /mnt/root

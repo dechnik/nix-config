@@ -14,8 +14,8 @@
 
       ../common/optional/pipewire.nix
       ../common/optional/greetd.nix
-      ../common/optional/zfs.nix
-      # ../common/optional/quietboot.nix
+      # ../common/optional/zfs.nix
+      ../common/optional/quietboot.nix
     ];
 
   networking = {
