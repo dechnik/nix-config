@@ -7,7 +7,7 @@
       inputs.hardware.nixosModules.common-pc-ssd
 
       ./hardware-configuration.nix
-      ./boot-loader.nix
+      # ./boot-loader.nix
 
       ../common/global
       ../common/users/lukasz
