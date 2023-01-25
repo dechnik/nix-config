@@ -27,6 +27,12 @@ in
     }];
   };
 
+  sops.secrets.ssh-config = {
+    sopsFile = ../secrets.yaml;
+    group = "users";
+    mode = "0440";
+  };
+
   programs.ssh = {
     # Each hosts public key
     knownHosts = builtins.mapAttrs (name: _: {

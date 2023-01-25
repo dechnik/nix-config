@@ -19,6 +19,7 @@ in
         forwardAgent = true;
       };
     };
+    includes = [ "/var/run/secrets/ssh-config" ];
   };
 
   home.persistence = {
