@@ -12,12 +12,12 @@ let
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
   btm = "${pkgs.bottom}/bin/btm";
   wofi = "${pkgs.wofi}/bin/wofi";
-  ikhal = "${pkgs.khal}/bin/ikhal";
+  # ikhal = "${pkgs.khal}/bin/ikhal";
 
   terminal = "${pkgs.kitty}/bin/kitty";
   terminal-spawn = cmd: "${terminal} $SHELL -i -c ${cmd}";
 
-  calendar = terminal-spawn ikhal;
+  # calendar = terminal-spawn ikhal;
   systemMonitor = terminal-spawn btm;
 
   # Function to simplify making waybar outputs
@@ -91,7 +91,7 @@ in
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-          on-click = calendar;
+          # on-click = calendar;
         };
         cpu = {
           format = "   {usage}%";
