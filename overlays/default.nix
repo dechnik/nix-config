@@ -14,6 +14,9 @@
     xdg-utils-spawn-terminal = prev.xdg-utils.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [ ./xdg-open-spawn-terminal.diff ];
     });
+    khal = prev.khal.overridePythonAttrs (_: {
+      doCheck = false;
+    });
     scgit = prev.cgit-pink.overrideAttrs (_: {
       pname = "scgit";
       version = "0.1";
