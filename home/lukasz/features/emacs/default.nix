@@ -123,6 +123,13 @@ in {
     DOOMDIR = "${c}/doom";
   };
 
+  home.persistence = {
+    "/persist/home/lukasz".directories = [
+      ".emacs.d"
+      ".config/doom"
+    ];
+  };
+
   home.activation = {
     installDoomEmacs = ''
       export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"

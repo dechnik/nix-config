@@ -51,9 +51,9 @@ in
     };
   };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 8192;
-  }];
+  # swapDevices = [{
+  #   device = "/swap/swapfile";
+  #   size = 8192;
+  # }];
 
 }

@@ -1,17 +1,17 @@
 { colorscheme }: ''
   general {
-    gaps_in=15
-    gaps_out=20
-    border_size=2.7
+    gaps_in=2
+    gaps_out=2
+    border_size=2
     col.active_border=0xff${colorscheme.colors.base0C}
     col.inactive_border=0xff${colorscheme.colors.base02}
     cursor_inactive_timeout=4
   }
 
   decoration {
-    active_opacity=0.88
-    inactive_opacity=0.68
-    fullscreen_opacity=1.0
+    # active_opacity=0.88
+    # inactive_opacity=0.68
+    # fullscreen_opacity=1.0
     rounding=5
     blur=true
     blur_size=6
@@ -58,6 +58,8 @@
 
   input {
     kb_layout=pl
+    repeat_rate = 60
+    repeat_delay = 250
     touchpad {
       disable_while_typing=false
     }

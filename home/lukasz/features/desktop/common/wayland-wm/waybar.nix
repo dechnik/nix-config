@@ -14,7 +14,7 @@ let
   wofi = "${pkgs.wofi}/bin/wofi";
   ikhal = "${pkgs.khal}/bin/ikhal";
 
-  terminal = "${pkgs.kitty}/bin/kitty";
+  terminal = "${pkgs.kitty}/bin/alacritty";
   terminal-spawn = cmd: "${terminal} $SHELL -i -c ${cmd}";
 
   calendar = terminal-spawn ikhal;
@@ -159,11 +159,10 @@ in
           exec =
             let
               targets = {
-                electra = { host = "electra"; icon = " "; };
-                merope = { host = "merope"; icon = " "; };
-                atlas = { host = "atlas"; icon = " "; };
-                maia = { host = "maia"; icon = " "; };
-                pleione = { host = "pleione"; icon = " "; };
+                dziad = { host = "dziad"; icon = " "; };
+                bolek = { host = "bolek"; icon = " "; };
+                lolek = { host = "lolek"; icon = " "; };
+                tola = { host = "tola"; icon = " "; };
               };
 
               showPingCompact = { host, icon }: "${icon} $ping_${host}";
@@ -177,7 +176,7 @@ in
                 set -o pipefail
                 ${builtins.concatStringsSep "\n" (map setPing (builtins.attrValues targets))}
               '';
-              text = "${showPingCompact targets.electra} / ${showPingCompact targets.merope}";
+              text = "${showPingCompact targets.bolek} / ${showPingCompact targets.lolek}";
               tooltip = builtins.concatStringsSep "\n" (map showPingLarge (builtins.attrValues targets));
             };
           format = "{}";
