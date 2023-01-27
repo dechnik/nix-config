@@ -9,6 +9,9 @@
 let
   inherit (config.colorscheme) colors;
 in {
+  home.sessionVariables = {
+    TERMINAL = "alacritty";
+  };
   programs.alacritty = {
     enable = true;
     settings = {

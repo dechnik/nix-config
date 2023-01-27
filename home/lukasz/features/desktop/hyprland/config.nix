@@ -57,14 +57,14 @@
   }
 
   input {
-    kb_layout=br
+    kb_layout=pl
     touchpad {
       disable_while_typing=false
     }
   }
 
   # Startup
-  # exec-once=waybar
+  exec-once=waybar
   exec-once=mako
   exec-once=swayidle -w
 
