@@ -1,4 +1,4 @@
-{ colorscheme }: ''
+{ colorscheme, wallpaper }: ''
   general {
     gaps_in=2
     gaps_out=2
@@ -67,6 +67,7 @@
 
   # Startup
   exec-once=waybar
+  exec=swaybg -i ${wallpaper} --mode fill
   exec-once=mako
   exec-once=swayidle -w
 
@@ -121,7 +122,7 @@
 
 
   # Window manager controls
-  bind=SUPERSHIFT,q,killactive
+  bind=SUPER,q,killactive
   bind=SUPERSHIFT,e,exit
 
   bind=SUPER,s,togglesplit

@@ -30,5 +30,5 @@
       workspace = "2";
     }
   ];
-  wallpaper = "";
+  wallpaper = "https://git.sr.ht/~lukasz/dotfiles/tree/master/item/home/graphical/files/config/wallpaper.png";
 }
