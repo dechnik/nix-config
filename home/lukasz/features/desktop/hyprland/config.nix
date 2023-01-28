@@ -82,7 +82,7 @@
   bind=SUPER,w,exec,$BROWSER
 
   bind=SUPER,x,exec,wofi -S drun -x 10 -y 10 -W 25% -H 60%
-  bind=SUPER,d,exec,wofi -S run
+  bind=SUPER,d,exec,wofi -S drun,run -t $TERMINAL
   bind=,Scroll_Lock,exec,pass-wofi # fn+k
   bind=,XF86Calculator,exec,pass-wofi # fn+f12
 

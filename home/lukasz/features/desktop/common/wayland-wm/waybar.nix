@@ -143,7 +143,7 @@ in
         };
         network = {
           interval = 3;
-          format-wifi = "   {essid}";
+          format-wifi = " {essid}";
           format-ethernet = " Connected";
           format-disconnected = "";
           tooltip-format = ''
@@ -160,9 +160,9 @@ in
             let
               targets = {
                 dziad = { host = "dziad"; icon = " "; };
-                bolek = { host = "bolek"; icon = " "; };
-                lolek = { host = "lolek"; icon = " "; };
-                tola = { host = "tola"; icon = " "; };
+                bolek = { host = "bolek"; icon = "B "; };
+                lolek = { host = "lolek"; icon = "L "; };
+                tola = { host = "tola"; icon = "T "; };
               };
 
               showPingCompact = { host, icon }: "${icon} $ping_${host}";

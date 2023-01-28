@@ -22,6 +22,7 @@ in
       size = 10;
     };
     settings = {
+      background_opacity = "0.9";
       window_padding_width = 15;
       foreground = "#${colors.base05}";
       background = "#${colors.base00}";
