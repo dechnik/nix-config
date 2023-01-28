@@ -14,7 +14,7 @@ let
   wofi = "${pkgs.wofi}/bin/wofi";
   ikhal = "${pkgs.khal}/bin/ikhal";
 
-  terminal = "${pkgs.kitty}/bin/alacritty";
+  terminal = "${pkgs.kitty}/bin/kitty";
   terminal-spawn = cmd: "${terminal} $SHELL -i -c ${cmd}";
 
   calendar = terminal-spawn ikhal;
