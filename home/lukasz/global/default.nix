@@ -44,6 +44,7 @@ in
         directories = [
           "Documents"
           "Downloads"
+          "Music"
           "Pictures"
           "Videos"
           "Projects"
