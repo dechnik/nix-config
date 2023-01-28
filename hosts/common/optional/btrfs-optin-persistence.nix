@@ -51,6 +51,14 @@ in
     };
   };
 
+  environment.persistence."/persist" = {
+    users.lukasz = {
+      directories = [
+        { directory = ".gnupg"; mode = "0700"; }
+      ];
+    };
+  };
+
   # swapDevices = [{
   #   device = "/swap/swapfile";
   #   size = 8192;

@@ -130,12 +130,12 @@ in {
     ];
   };
 
-  home.activation = {
-    installDoomEmacs = ''
-      export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
-      if [ ! -d "${h}/.emacs.d" ]; then
-        git clone https://github.com/doomemacs/doomemacs.git ${h}/.emacs.d
-      fi
-    '';
-  };
+  # home.activation = {
+  #   installDoomEmacs = ''
+  #     export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
+  #     if [ ! -d "${h}/.emacs.d" ]; then
+  #       git clone https://github.com/doomemacs/doomemacs.git ${h}/.emacs.d
+  #     fi
+  #   '';
+  # };
 }

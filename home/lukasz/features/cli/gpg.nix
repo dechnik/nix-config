@@ -63,9 +63,9 @@ in
         ];
       };
     };
-  home.persistence = {
-    "/persist/home/lukasz".directories = [ ".gnupg" ];
-  };
+  # home.persistence = {
+  #   "/persist/home/lukasz".directories = [ ".gnupg" ];
+  # };
 
   # Link /run/user/$UID/gnupg to ~/.gnupg-sockets
   # So that SSH config does not have to know the UID
