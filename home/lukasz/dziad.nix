@@ -27,8 +27,13 @@
       width = 2560;
       height = 1440;
       x = 2560;
-      workspace = "2";
+      workspace = "9";
     }
   ];
-  wallpaper = "https://git.sr.ht/~lukasz/dotfiles/tree/master/item/home/graphical/files/config/wallpaper.png";
+
+  wallpaper = builtins.fetchurl rec {
+    name = "wallpaper-${sha256}.png";
+    url = "https://git.sr.ht/~lukasz/dotfiles/blob/master/home/graphical/files/config/wallpaper.png";
+    sha256 = "37bfdbb9cd427e2c6ebee1de458f6a96704d47962220332c5b7e2e316fef77e0";
+  };
 }
