@@ -41,7 +41,7 @@ in
       secondary = {
         mode = "dock";
         layer = "top";
-        height = 32;
+        height = 24;
         width = 100;
         margin = "6";
         position = "bottom";
@@ -54,6 +54,8 @@ in
 
         "wlr/workspaces" = {
           on-click = "activate";
+          format = "{name}";
+          sort-by-name = true;
         };
       };
 
@@ -304,11 +306,11 @@ in
       }
 
       .modules-right {
-        margin-right: -15px;
+        margin-right: -4px;
       }
 
       .modules-left {
-        margin-left: -15px;
+        margin-left: -4px;
       }
 
       window#waybar.top {
