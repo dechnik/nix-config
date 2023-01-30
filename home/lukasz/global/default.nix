@@ -8,6 +8,7 @@ in
     inputs.impermanence.nixosModules.home-manager.impermanence
     inputs.nix-colors.homeManagerModule
     ../features/nvim
+    ../features/helix
     ../features/cli
   ] ++ (builtins.attrValues outputs.homeManagerModules);
 
