@@ -6,7 +6,7 @@ in
   home.packages = [ pkgs.swaylock-effects ];
   programs.swaylock = {
     settings = {
-      effect-blur = "30x3";
+      effect-blur = "20x3";
       fade-in = 0.1;
 
       font = config.fontProfiles.regular.family;
