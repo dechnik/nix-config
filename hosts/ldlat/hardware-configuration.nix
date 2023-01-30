@@ -3,6 +3,7 @@
   imports =
     [
       ../common/optional/btrfs-optin-persistence.nix
+      ../common/optional/encrypted-root.nix
     ];
 
   boot = {
@@ -19,17 +20,9 @@
     };
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/a6ce31dc-4c87-4950-970a-9a1d3a0b5968";
-    fsType = "btrfs";
-    options = ["noatime"];
-  };
-
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-uuid/A2C4-DBDC";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/D065-07C9";
+    fsType = "vfat";
   };
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
