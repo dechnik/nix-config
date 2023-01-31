@@ -7,6 +7,7 @@
     ./pavucontrol.nix
     ./playerctl.nix
     ./qt.nix
+    ./virt.nix
   ];
 
   xdg.mimeApps.enable = true;
@@ -14,6 +15,5 @@
     xdg-utils-spawn-terminal
     lyrics
     meld
-    spiceto
   ];
 }

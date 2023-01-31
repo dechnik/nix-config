@@ -93,6 +93,8 @@
   bind=,XF86Launch5,exec,swaylock -S
   bind=,XF86Launch4,exec,swaylock -S
 
+  bind=SUPER,F3,exec,spicemenu
+
   # Screenshots
   bind=,Print,exec,grimblast --notify copy output
   bind=SHIFT,Print,exec,grimblast --notify copy active
