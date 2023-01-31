@@ -41,7 +41,7 @@ in
       secondary = {
         mode = "dock";
         layer = "top";
-        height = 24;
+        height = 32;
         width = 100;
         margin = "6";
         position = "bottom";
@@ -306,11 +306,11 @@ in
       }
 
       .modules-right {
-        margin-right: -4px;
+        margin-right: -24px;
       }
 
       .modules-left {
-        margin-left: -4px;
+        margin-left: -24px;
       }
 
       window#waybar.top {

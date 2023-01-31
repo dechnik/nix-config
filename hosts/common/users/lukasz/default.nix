@@ -38,7 +38,7 @@ in
 
   sops.secrets.lukasz-pprofile = {
     sopsFile = ../../secrets.yaml;
-    neededForUsers = true;
+    owner = "lukasz";
   };
 
   home-manager.users.lukasz = import home/${config.networking.hostName}.nix;
