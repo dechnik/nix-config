@@ -14,6 +14,5 @@
     xdg-utils-spawn-terminal
     lyrics
     meld
-    spice
   ];
 }
