@@ -38,7 +38,7 @@ shift $((OPTIND-1))
 if [[ -z "$PASSWORD" ]]; then
     PASSWORD=""
     echo -n Password:
-    read -s PASSWORD
+    read -r -s PASSWORD
     echo
 fi
 if [[ -z "$USERNAME" ]]; then
