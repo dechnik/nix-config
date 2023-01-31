@@ -1,6 +1,6 @@
-{ lib, writeShellApplication, virt-viewer }: (writeShellApplication {
+{ lib, writeShellApplication }: (writeShellApplication {
   name = "spice";
-  runtimeInputs = [ virt-viewer ];
+  # runtimeInputs = [ virt-viewer ];
   text = builtins.readFile ./spice.sh;
 }) // {
   meta = with lib; {
