@@ -6,4 +6,5 @@
   wl-mirror-pick = pkgs.callPackage ./wl-mirror-pick { };
   plymouth-spinner-monochrome = pkgs.callPackage ./plymouth-spinner-monochrome { };
   xpo = pkgs.callPackage ./xpo { };
+  spice = pkgs.callPackage ./spice { };
 }
