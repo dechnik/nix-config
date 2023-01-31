@@ -36,6 +36,11 @@ in
     neededForUsers = true;
   };
 
+  sops.secrets.lukasz-pprofile = {
+    sopsFile = ../../secrets.yaml;
+    neededForUsers = true;
+  };
+
   home-manager.users.lukasz = import home/${config.networking.hostName}.nix;
 
   services.geoclue2.enable = true;
