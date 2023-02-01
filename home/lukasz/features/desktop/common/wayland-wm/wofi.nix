@@ -15,9 +15,9 @@ in
     (lib.optional passEnabled pass-wofi);
 
   xdg.configFile."wofi/config".text = ''
-    image_size=48
-    columns=3
-    allow_images=true
+    image_size=32
+    columns=1
+    allow_images=false
     insensitive=true
 
     run-always_parse_args=true
