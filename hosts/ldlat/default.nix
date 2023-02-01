@@ -14,6 +14,7 @@
 
       ../common/optional/pipewire.nix
       ../common/optional/greetd.nix
+      ../common/optional/wireless.nix
     ];
 
   networking = {
