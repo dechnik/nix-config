@@ -8,6 +8,12 @@
     #   ${builtins.readFile config.sops.secrets.l2tp-ebi-conn.path}
     # '';
   };
+  services.strongswan = {
+    enable = false;
+    secrets = [
+      "ipsec.d/*.secrets"
+    ];
+  };
   sops.secrets = {
     l2tp-conn = {
       sopsFile = ../secrets.yaml;
@@ -21,7 +27,7 @@
     ipsec-secrets = {
       sopsFile = ../secrets.yaml;
       neededForUsers = true;
-      path = "/etc/ipsec.secrets";
+      path = "/etc/ipsec.d/my.secrets";
     };
   };
 }
