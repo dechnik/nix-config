@@ -16,6 +16,7 @@
         enable = true;
         version = 2;
         device = "/dev/vda";
+        enableCryptodisk = true;
       };
     };
   };
