@@ -1,3 +1,5 @@
+cryptsetup luksFormat --type luks2 --label olek_crypt /dev/vda1
+cryptsetup open /dev/disk/by-label/olek_crypt olek
 mkfs.btrfs -L <label> /dev/vda1
 # mkfs.btrfs -m raid10 -d raid10 /dev/sdb /dev/sdc /dev/sdd /dev/sde
 mkdir -p /mnt
@@ -10,13 +12,13 @@ btrfs subvolume create /mnt/swap
 btrfs subvolume create /mnt/persist
 umount /mnt
 ln -s /dev/vda1 /dev/disk/by-label/<label>
-mount -o compress=zstd,subvol=root /dev/vda1 /mnt
+mount -o compress=zstd,subvol=root /dev/disk/by-label/<label> /mnt
 mkdir /mnt/{nix,boot,swap,persist}
-mount -o subvol=boot /dev/vda1 /mnt/boot
-mount -o compress=zstd,noatime,subvol=nix /dev/vda1 /mnt/nix
-mount -o compress=zstd,subvol=persist /dev/vda1 /mnt/persist
-mount -o noatime,subvol=swap /dev/vda1 /mnt/swap
-nixos-generate-config --root /mnt
+mount -o subvol=boot /dev/disk/by-label/<label> /mnt/boot
+mount -o compress=zstd,noatime,subvol=nix /dev/disk/by-label/<label> /mnt/nix
+mount -o compress=zstd,subvol=persist /dev/disk/by-label/<label> /mnt/persist
+mount -o noatime,subvol=swap /dev/disk/by-label/<label> /mnt/swap
+# nixos-generate-config --root /mnt
 
 truncate -s 0 /mnt/swap/swapfile
 chattr +C /mnt/swap/swapfile
@@ -25,7 +27,7 @@ dd if=/dev/zero of=/mnt/swap/swapfile bs=1M count=8192
 chmod 0600 /mnt/swap/swapfile
 mkswap /mnt/swap/swapfile
 
-mkdir /mnt/persist/home/lukasz
+mkdir -p /mnt/persist/home/lukasz
 chown -R lukasz:users /mnt/persist/home/lukasz
 
 #echo 'password' | gpg --allow-secret-key-import --pinentry-mode loopback --passphrase-fd 0 --import key.asc
