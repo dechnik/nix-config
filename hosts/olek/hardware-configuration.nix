@@ -15,8 +15,13 @@
       grub = {
         enable = true;
         version = 2;
-        device = "/dev/vda";
+        device = "nodev";
+        efiSupport = true;
         enableCryptodisk = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
       };
     };
   };
