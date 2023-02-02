@@ -26,9 +26,8 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/olek";
-      fsType = "btrfs";
-      options = [ "subvol=boot" ];
+    { device = "/dev/disk/by-label/ESP";
+      fsType = "vfat";
     };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

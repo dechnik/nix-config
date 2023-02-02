@@ -14,7 +14,7 @@ umount /mnt
 ln -s /dev/vda1 /dev/disk/by-label/<label>
 mount -o compress=zstd,subvol=root /dev/disk/by-label/<label> /mnt
 mkdir /mnt/{nix,boot,swap,persist}
-mount -o subvol=boot /dev/disk/by-label/<label> /mnt/boot
+# mount -o subvol=boot /dev/disk/by-label/<label> /mnt/boot
 mount -o compress=zstd,noatime,subvol=nix /dev/disk/by-label/<label> /mnt/nix
 mount -o compress=zstd,subvol=persist /dev/disk/by-label/<label> /mnt/persist
 mount -o noatime,subvol=swap /dev/disk/by-label/<label> /mnt/swap
