@@ -12,16 +12,11 @@
     };
     kernelModules = [ "kvm-intel" ];
     loader = {
-      grub = {
+      systemd-boot = {
         enable = true;
-        version = 2;
-        device = "nodev";
-        efiSupport = true;
-        enableCryptodisk = true;
+        consoleMode = "max";
       };
-      efi = {
-        canTouchEfiVariables = true;
-      };
+      efi.canTouchEfiVariables = true;
     };
   };
 
