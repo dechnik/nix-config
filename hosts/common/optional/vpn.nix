@@ -41,5 +41,9 @@ in
       sopsFile = ../secrets.yaml;
       path = "/etc/ipsec.d/my.secrets";
     };
+    ipsec-config = {
+      sopsFile = ../secrets.yaml;
+      path = "/etc/ipsec.conf";
+    };
   };
 }
