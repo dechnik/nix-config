@@ -21,7 +21,7 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/vda1";
+    { device = "/dev/disk/by-label/olek";
       fsType = "btrfs";
       options = [ "subvol=boot" ];
     };
