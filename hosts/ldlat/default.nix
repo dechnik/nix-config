@@ -15,6 +15,8 @@
       ../common/optional/pipewire.nix
       ../common/optional/greetd.nix
       ../common/optional/wireless.nix
+      ../common/optional/bluetooth.nix
+      ../common/optional/printing.nix
     ];
 
   networking = {
