@@ -13,11 +13,8 @@ in
     settings = {
       PasswordAuthentication = false;
       PermitRootLogin = "no";
+      StreamLocalBindUnlink = "yes";
     };
-    # Automatically remove stale sockets
-    extraConfig = ''
-      StreamLocalBindUnlink yes
-    '';
     # Allow forwarding ports to everywhere
     gatewayPorts = "clientspecified";
 
