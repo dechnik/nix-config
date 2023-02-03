@@ -1,4 +1,10 @@
+{ outputs, inputs }:
 {
+  # Master nixpkgs
+  master = final: prev: {
+    master = inputs.nixpkgs-master.legacyPackages.${final.system};
+  };
+
   additions = final: _prev: import ../pkgs { pkgs = final; };
 
   # Modifies existing packages

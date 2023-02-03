@@ -1,9 +1,23 @@
 {
   description = "My NixOS configuration";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.dechnik.net"
+      "https://hyprland.cachix.org"
+      "https://nix-community.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     # Nix ecossystem
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
 
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
@@ -24,32 +38,21 @@
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      inherit (nixpkgs.lib) filterAttrs;
-      inherit (builtins) mapAttrs elem;
       inherit (self) outputs;
-      notBroken = x: !(x.meta.broken or false);
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
+      forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
     in
-    rec {
-      overlays = import ./overlays;
+    {
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
-      packages = forAllSystems (system:
-        import ./pkgs { pkgs = nixpkgs.legacyPackages.${system}; }
-      );
+      overlays = import ./overlays { inherit inputs outputs; };
+      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.callPackage ./shell.nix { };
-      });
+      packages = forEachPkgs (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachPkgs (pkgs: import ./shell.nix { inherit pkgs; });
 
-      hydraJobs = {
-        packages = mapAttrs (sys: filterAttrs (_: pkg: (elem sys pkg.meta.platforms && notBroken pkg))) packages;
-        nixos = mapAttrs (_: cfg: cfg.config.system.build.toplevel) nixosConfigurations;
-      };
-
-      nixosConfigurations = rec {
+      nixosConfigurations = {
         # Desktop
         dziad = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
@@ -115,17 +118,5 @@
         };
       };
 
-      nixConfig = {
-        extra-substituters = [
-          "https://cache.dechnik.net"
-          "https://hyprland.cachix.org"
-          "https://nix-community.cachix.org"
-        ];
-        extra-trusted-public-keys = [
-          "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
-         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        ];
-      };
     };
 }

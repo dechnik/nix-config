@@ -408,6 +408,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1675415259,
+        "narHash": "sha256-kxaWG942u56LbMsrkBpYQ7m4GyeKOdEa2FdW3oUcV9Y=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b2e3a85446bb72caa528c33b9e1914f073a358f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1674352297,
@@ -531,6 +547,7 @@
         "impermanence": "impermanence",
         "nix-colors": "nix-colors",
         "nixpkgs": "nixpkgs_5",
+        "nixpkgs-master": "nixpkgs-master",
         "sops-nix": "sops-nix",
         "website": "website"
       }
