@@ -2,6 +2,7 @@
 {
   imports = [
     ./firefox.nix
+    ./nextcloud.nix
     ./font.nix
     ./gtk.nix
     ./pavucontrol.nix
