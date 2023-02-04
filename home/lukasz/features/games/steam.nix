@@ -27,11 +27,11 @@ in
       directories = [
         ".local/share/Paradox Interactive"
         ".paradoxlauncher"
-        ".local/share/Steam"
-        # {
-        #   directory = ".local/share/Steam";
-        #   method = "symlink";
-        # }
+        # ".local/share/Steam"
+        {
+          directory = ".local/share/Steam";
+          method = "symlink";
+        }
       ];
     };
   };
