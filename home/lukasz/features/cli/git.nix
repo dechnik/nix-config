@@ -23,7 +23,7 @@
     ignores = [ ".direnv" "result" ];
     signing = {
       signByDefault = true;
-      key = "D627C2E908C218A4";
+      key = "CE738DF1C1B0BCA2F343FFD0D627C2E908C218A4";
     };
   };
 }
