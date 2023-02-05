@@ -49,14 +49,14 @@ in
           {
             source = fetchKey {
               url = "https://keys.openpgp.org/vks/v1/by-fingerprint/35655963B7835180125FE55DD7BCC570927C355B";
-              sha256 = "sha256:0z9pnm5i910j808dpdybz9wy62jgv3s9al23pnx6rg2gjbdy5w90";
+              sha256 = "sha256:0y683smdzz9zqa957dqny9k29vhap4k3i5fp5rzf1fwjnmc2ib2g";
             };
             trust = 5;
           }
           {
             source = fetchKey {
               url = "https://keys.openpgp.org/vks/v1/by-fingerprint/7C80BD2C48817A0B7AD6E0D04FF55C0369CABA69";
-              sha256 = "sha256:05xj11137znm1rjskiw4z2m04l4w0kk8d37wpd89azw60bdk4w6c";
+              sha256 = "sha256:1n7zy45667ddns50iaq6nfmkvzv1w5nvgs0d25if87zc67f1jmdv";
             };
             trust = 5;
           }
