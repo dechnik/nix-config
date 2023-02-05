@@ -78,10 +78,6 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/olek ];
         };
-        iso = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/iso ];
-        };
       };
 
       homeConfigurations = {

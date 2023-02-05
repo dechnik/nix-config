@@ -93,11 +93,11 @@ let
         yubikey-personalization
         yubikey-personalization-gui
         yubico-piv-tool
-        yubioath-desktop
+        yubioath-flutter
 
         # Testing
-        ent
-        (haskell.lib.justStaticExecutables haskellPackages.hopenpgp-tools)
+        # ent
+        # (haskell.lib.justStaticExecutables haskellPackages.hopenpgp-tools)
 
         # Password generation tools
         diceware
