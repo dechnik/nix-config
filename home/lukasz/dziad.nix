@@ -5,6 +5,7 @@
     ./features/trusted
     ./features/games
     ./features/desktop/optional/nvidia.nix
+    ./features/desktop/optional/nextcloud.nix
     ./features/desktop/hyprland
   ];
 
