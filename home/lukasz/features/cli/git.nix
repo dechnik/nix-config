@@ -23,7 +23,7 @@
     ignores = [ ".direnv" "result" ];
     signing = {
       signByDefault = true;
-      key = "D7BCC570927C355B";
+      key = "D627C2E908C218A4";
     };
   };
 }
