@@ -11,4 +11,11 @@
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
   };
+  home.persistence = {
+    "/persist/home/lukasz" = {
+      directories = [
+        ".local/share/remmina"
+      ];
+    };
+  };
 }

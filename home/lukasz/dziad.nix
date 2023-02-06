@@ -6,6 +6,7 @@
     ./features/games
     ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/nextcloud.nix
+    ./features/desktop/optional/work.nix
     ./features/desktop/hyprland
   ];
 
