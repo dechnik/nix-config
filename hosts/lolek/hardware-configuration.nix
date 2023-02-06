@@ -30,6 +30,11 @@
       options = [ "subvol=boot" ];
     };
 
+  swapDevices = [{
+    device = "/swap/swapfile";
+    size = 8196;
+  }];
+
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
