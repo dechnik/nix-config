@@ -15,6 +15,7 @@
     "/persist/home/lukasz" = {
       directories = [
         ".local/share/remmina"
+        ".config/Slack"
       ];
     };
   };

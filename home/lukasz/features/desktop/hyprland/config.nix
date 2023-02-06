@@ -90,7 +90,7 @@
   bind=,XF86Tools,exec,pkill -USR1 waybar # profile button
 
   # Lock screen
-  bind=,XF86Launch5,exec,swaylock -S
+  bind=SUPER,L,exec,swaylock -S
   bind=,XF86Launch4,exec,swaylock -S
 
   bind=SUPER,F3,exec,spicemenu
