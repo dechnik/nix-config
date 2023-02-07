@@ -14,8 +14,14 @@ let
             --set NIX_REDIRECTS "${pkgs.ppp}/sbin/pppd=$out/bin/pppd"
         '';
   };
+  ipsec = pkgs.writeShellScriptBin "ipsec" ''
+    exec ${pkgs.strongswan}/bin/ipsec "$@"
+  '';
 in
 {
+  environment.systemPackages = [
+    ipsec
+  ];
   networking.firewall.allowedTCPPorts = [ 1701 ];
   networking.firewall.allowedUDPPorts = [ 1701 500 4500 ];
   services.xl2tpd = {
