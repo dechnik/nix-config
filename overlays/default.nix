@@ -23,6 +23,9 @@
     khal = prev.khal.overridePythonAttrs (_: {
       doCheck = false;
     });
+    todoman = prev.todoman.overridePythonAttrs (_: {
+      doCheck = false;
+    });
     scgit = prev.cgit-pink.overrideAttrs (_: {
       pname = "scgit";
       version = "0.1";

@@ -9,9 +9,9 @@
   services = {
     headscale = {
       enable = true;
-      address = "0.0.0.0";
       settings = {
         dns_config = {
+          override_local_dns = true;
           baseDomain = "dechnik.net";
           magicDns = true;
           domains = [ "ts.dechnik.net" ];
@@ -20,15 +20,13 @@
           ];
         };
         serverUrl = "https://tailscale.dechnik.net";
-      };
-      port = 8085;
-      settings = {
         ip_prefixes = [
           "10.100.0.0/16"
         ];
         logtail.enabled = false;
         log.level = "warn";
       };
+      port = 8085;
     };
 
     nginx.virtualHosts = {
