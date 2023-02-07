@@ -31,9 +31,10 @@ in
   services.strongswan = {
     enable = true;
     secrets = [
-      "ipsec.d/*.secrets"
+      "/etc/ipsec.d/*.secrets"
     ];
   };
+  systemd.services.strongswan.environment.STRONGSWAN_CONF = lib.mkForce "/run/secrets/strongswan-config";
   sops.secrets = {
     l2tp-config = {
       sopsFile = ../secrets.yaml;
@@ -50,6 +51,9 @@ in
     ipsec-config = {
       sopsFile = ../secrets.yaml;
       path = "/etc/ipsec.conf";
+    };
+    strongswan-config = {
+      sopsFile = ../secrets.yaml;
     };
   };
 }
