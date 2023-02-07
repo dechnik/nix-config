@@ -3,8 +3,10 @@
     ./global
     ./features/emacs
     ./features/trusted
-    ./features/desktop/optional/nvidia.nix
+    ./features/trusted/mail
     ./features/desktop/hyprland
+    ./features/desktop/optional/nextcloud.nix
+    ./features/desktop/optional/work.nix
   ];
 
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
