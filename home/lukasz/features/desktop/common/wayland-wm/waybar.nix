@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ outputs, config, lib, pkgs, ... }:
 
 let
   # Dependencies
@@ -160,27 +160,23 @@ in
           return-type = "json";
           exec =
             let
-              targets = {
-                dziad = { host = "dziad"; icon = " "; };
-                bolek = { host = "bolek"; icon = "B "; };
-                lolek = { host = "lolek"; icon = "L "; };
-                tola = { host = "tola"; icon = "T "; };
-                olek = { host = "olek"; icon = "O "; };
-              };
-
-              showPingCompact = { host, icon }: "${icon} $ping_${host}";
-              showPingLarge = { host, icon }: "${icon} ${host}: $ping_${host}";
-              setPing = { host, ... }: ''
-                ping_${host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${host}="Disconnected"
-              '';
+              inherit (builtins) concatStringsSep attrNames;
+              hosts = attrNames outputs.nixosConfigurations;
+              homeMachine = "bolek";
+              remoteMachine = "lolek";
             in
             jsonOutput "tailscale-ping" {
+              # Build variables for each host
               pre = ''
                 set -o pipefail
-                ${builtins.concatStringsSep "\n" (map setPing (builtins.attrValues targets))}
+                ${concatStringsSep "\n" (map (host: ''
+                  ping_${host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${host}="Disconnected"
+                '') hosts)}
               '';
-              text = "${showPingCompact targets.bolek} / ${showPingCompact targets.lolek}";
-              tooltip = builtins.concatStringsSep "\n" (map showPingLarge (builtins.attrValues targets));
+              # Access a remote machine's and a home machine's ping
+              text = "B $ping_${remoteMachine} / L $ping_${homeMachine}";
+              # Show pings from all machines
+              tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${host}") hosts);
             };
           format = "{}";
           on-click = "";
