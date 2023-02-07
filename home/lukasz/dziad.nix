@@ -3,6 +3,7 @@
     ./global
     ./features/emacs
     ./features/trusted
+    ./features/trusted/mail
     ./features/games
     ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/nextcloud.nix

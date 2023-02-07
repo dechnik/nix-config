@@ -165,7 +165,7 @@ in
                 bolek = { host = "bolek"; icon = "B "; };
                 lolek = { host = "lolek"; icon = "L "; };
                 tola = { host = "tola"; icon = "T "; };
-                olek = { host = "olek"; icon = "O"; };
+                olek = { host = "olek"; icon = "O "; };
               };
 
               showPingCompact = { host, icon }: "${icon} $ping_${host}";
