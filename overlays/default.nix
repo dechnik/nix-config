@@ -9,23 +9,18 @@
 
   # Modifies existing packages
   modifications = final: prev: {
-    vimPlugins = prev.vimPlugins // {
-      vim-numbertoggle = prev.vimPlugins.vim-numbertoggle.overrideAttrs
-        (oldAttrs: {
-          patches = (oldAttrs.patches or [ ])
-            ++ [ ./vim-numbertoggle-command-mode.patch ];
-        });
-    } // final.callPackage ../pkgs/vim-plugins { };
-
     xdg-utils-spawn-terminal = prev.xdg-utils.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [ ./xdg-open-spawn-terminal.diff ];
     });
+
     khal = prev.khal.overridePythonAttrs (_: {
       doCheck = false;
     });
+
     todoman = prev.todoman.overridePythonAttrs (_: {
       doCheck = false;
     });
+
     scgit = prev.cgit-pink.overrideAttrs (_: {
       pname = "scgit";
       version = "0.1";
