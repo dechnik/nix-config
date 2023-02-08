@@ -1,4 +1,3 @@
-
 { pkgs, config, lib, ... }:
 let
   fetchKey = { url, sha256 ? lib.fakeSha256 }:

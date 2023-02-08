@@ -6,6 +6,8 @@
     ./zsh.nix
     ./git.nix
     ./gpg.nix
+    ./neovim.nix
+    ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix
     # ./ranger.nix

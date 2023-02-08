@@ -35,6 +35,9 @@
     hyprwm-contrib.url = "github:hyprwm/contrib";
 
     website.url = "sourcehut:~lukasz/website/master";
+    neovim = {
+      url = "sourcehut:~lukasz/neovim";
+    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let

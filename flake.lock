@@ -340,6 +340,24 @@
         "type": "github"
       }
     },
+    "neovim": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_5"
+      },
+      "locked": {
+        "lastModified": 1675856974,
+        "narHash": "sha256-lhjQtM5LQV4bwcAazyD1s+Z6DZthHBmEce9Iyz8GfC8=",
+        "owner": "~lukasz",
+        "repo": "neovim",
+        "rev": "9ebc3cced47f3a2c692199dc6e46bc85405e303f",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~lukasz",
+        "repo": "neovim",
+        "type": "sourcehut"
+      }
+    },
     "nix-colors": {
       "inputs": {
         "base16-schemes": "base16-schemes",
@@ -490,6 +508,22 @@
     },
     "nixpkgs_5": {
       "locked": {
+        "lastModified": 1675757258,
+        "narHash": "sha256-pIRer8vdsoherlRKpzfnHbMZ5TsAcvRlXHCIaHkIUbg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "af96094e9b8eb162d70a84fa3b39f4b7a8b264d2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
         "lastModified": 1674459583,
         "narHash": "sha256-L0UZl/u2H3HGsrhN+by42c5kNYeKtdmJiPzIRvEVeiM=",
         "owner": "nixos",
@@ -504,7 +538,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_7": {
       "locked": {
         "lastModified": 1674236650,
         "narHash": "sha256-B4GKL1YdJnII6DQNNJ4wDW1ySJVx2suB1h/v4Ql8J0Q=",
@@ -520,7 +554,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_8": {
       "locked": {
         "lastModified": 1660842467,
         "narHash": "sha256-lSer61lI5X61/3zjMu4OSUqdKSCW2jM1rU6B3WLBOj4=",
@@ -545,8 +579,9 @@
         "hyprland": "hyprland",
         "hyprwm-contrib": "hyprwm-contrib",
         "impermanence": "impermanence",
+        "neovim": "neovim",
         "nix-colors": "nix-colors",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nixpkgs-master": "nixpkgs-master",
         "sops-nix": "sops-nix",
         "website": "website"
@@ -576,7 +611,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_7",
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
@@ -610,7 +645,7 @@
     },
     "website": {
       "inputs": {
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1673854617,
