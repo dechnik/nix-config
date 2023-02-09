@@ -22,8 +22,11 @@ in
   environment.systemPackages = [
     ipsec
   ];
-  networking.firewall.allowedTCPPorts = [ 1701 ];
-  networking.firewall.allowedUDPPorts = [ 1701 500 4500 ];
+  networking.firewall = {
+    allowedTCPPorts = [ 1701 ];
+    allowedUDPPorts = [ 1701 500 4500 ];
+    extraCommands = "iptables --insert INPUT --protocol ESP --jump ACCEPT";
+  };
   services.xl2tpd = {
     enable = true;
   };
