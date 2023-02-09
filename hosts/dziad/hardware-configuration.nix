@@ -27,11 +27,6 @@
     fsType = "ext4";
   };
 
-  fileSystems."/old" = {
-    device = "/dev/disk/by-uuid/e623974d-e893-4fa6-aec5-b8540c5bc704";
-    fsType = "btrfs";
-  };
-
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/A2C4-DBDC";
     fsType = "vfat";
