@@ -25,6 +25,9 @@ in
     };
   };
   security = {
+    pam.services = {
+      greetd.enableGnomeKeyring = true;
+    };
     polkit.enable = true;
   };
 }
