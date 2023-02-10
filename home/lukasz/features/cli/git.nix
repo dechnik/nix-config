@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
   programs.git = {
     enable = true;
@@ -17,13 +17,11 @@
       };
       feature.manyFiles = true;
       init.defaultBranch = "master";
-      url."https://github.com/".insteadOf = "git://github.com/";
+      user.signing.key = "CE738DF1C1B0BCA2F343FFD0D627C2E908C218A4";
+      commit.gpgSign = true;
+      gpg.program = "${config.programs.gpg.package}/bin/gpg2";
     };
-    lfs = { enable = true; };
+    lfs.enable = true;
     ignores = [ ".direnv" "result" ];
-    signing = {
-      signByDefault = true;
-      key = "CE738DF1C1B0BCA2F343FFD0D627C2E908C218A4";
-    };
   };
 }
