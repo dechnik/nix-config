@@ -29,10 +29,4 @@
   # Ensure group exists
   users.groups.network = { };
 
-  # Persist imperative config
-  environment.persistence = {
-    "/persist".files = [
-      "/etc/wpa_supplicant.conf"
-    ];
-  };
 }
