@@ -9,7 +9,10 @@
     ./qt.nix
     ./virt.nix
   ];
-
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
+  };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal

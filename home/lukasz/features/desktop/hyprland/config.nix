@@ -87,7 +87,7 @@
   bind=,XF86Calculator,exec,pass-wofi # fn+f12
 
   # Toggle waybar
-  bind=,XF86Tools,exec,pkill -USR1 waybar # profile button
+  bind=SUPER,b,exec,pkill -USR1 waybar # profile button
 
   # Lock screen
   bind=SUPER,L,exec,swaylock -S
