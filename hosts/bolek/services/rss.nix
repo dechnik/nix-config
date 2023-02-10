@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 let
   rssport = 49999;
-in {
+in
+{
   security.acme.certs = {
     "rss.dechnik.net" = {
       group = "nginx";

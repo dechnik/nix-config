@@ -1,13 +1,14 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: let
+{ pkgs
+, inputs
+, config
+, ...
+}:
+let
   c = config.xdg.configHome;
   h = config.home.homeDirectory;
   # my_emacs = pkgs.emacs28NativeComp;
-in {
+in
+{
   # home.file.".emacs.d" = {
   #   source = pkgs.fetchFromGitHub {
   #       owner = "doomemacs";
@@ -33,7 +34,7 @@ in {
       name = "emacs-client";
       desktopName = "Emacs Client";
       genericName = "Text Editor";
-      keywords = ["Text" "Editor"];
+      keywords = [ "Text" "Editor" ];
       comment = "Edit text";
       type = "Application";
       terminal = false;
@@ -41,29 +42,32 @@ in {
       exec = "${emacs-overlay}/bin/emacsclient -create-frame --alternate-editor= --no-wait %F";
       # Exec=sh -c "if [ -n \\"\\$*\\" ]; then exec emacsclient --alternate-editor= --display=\\"\\$DISPLAY\\" \\"\\$@\\"; else exec emacsclient --alternate-editor= --create-frame; fi" placeholder %F
       icon = "emacs";
-      categories = ["Development" "TextEditor"];
-      mimeTypes = ["text/english"
-                   "text/plain"
-                   "text/x-makefile"
-                   "text/x-c++hdr"
-                   "text/x-c++src"
-                   "text/x-chdr"
-                   "text/x-csrc"
-                   "text/x-java"
-                   "text/x-moc"
-                   "text/x-pascal"
-                   "text/x-tcl"
-                   "text/x-tex"
-                   "application/x-shellscript"
-                   "text/x-c"
-                   "text/x-c++"];
+      categories = [ "Development" "TextEditor" ];
+      mimeTypes = [
+        "text/english"
+        "text/plain"
+        "text/x-makefile"
+        "text/x-c++hdr"
+        "text/x-c++src"
+        "text/x-chdr"
+        "text/x-csrc"
+        "text/x-java"
+        "text/x-moc"
+        "text/x-pascal"
+        "text/x-tcl"
+        "text/x-tex"
+        "application/x-shellscript"
+        "text/x-c"
+        "text/x-c++"
+      ];
     };
-  in [
+  in
+  [
     ## Emacs itself
     binutils # native-comp needs 'as', provided by this
 
     ## Doom dependencies
-    (ripgrep.override {withPCRE2 = true;})
+    (ripgrep.override { withPCRE2 = true; })
     gnutls # for TLS connectivity
 
     ## Optional dependencies
@@ -74,7 +78,7 @@ in {
 
     ## Module dependencies
     # :checkers spell
-    (aspellWithDicts (ds: with ds; [en en-computers en-science]))
+    (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
     # :tools editorconfig
     editorconfig-core-c # per-project style config
     # :tools lookup & :lang org +roam

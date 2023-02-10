@@ -5,7 +5,7 @@
       group = "nginx";
     };
   };
-  networking.firewall.allowedUDPPorts = [3478];
+  networking.firewall.allowedUDPPorts = [ 3478 ];
   services = {
     headscale = {
       enable = true;

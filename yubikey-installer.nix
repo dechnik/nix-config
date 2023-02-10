@@ -15,18 +15,19 @@ let
 
       xserverCfg = config.services.xserver;
 
-      pinentryFlavour = if xserverCfg.desktopManager.lxqt.enable || xserverCfg.desktopManager.plasma5.enable then
-        "qt"
-      else if xserverCfg.desktopManager.xfce.enable then
-        "gtk2"
-      else if xserverCfg.enable || config.programs.sway.enable then
-        "gnome3"
-      else
-        "curses";
+      pinentryFlavour =
+        if xserverCfg.desktopManager.lxqt.enable || xserverCfg.desktopManager.plasma5.enable then
+          "qt"
+        else if xserverCfg.desktopManager.xfce.enable then
+          "gtk2"
+        else if xserverCfg.enable || config.programs.sway.enable then
+          "gnome3"
+        else
+          "curses";
 
       # Instead of hard-coding the pinentry program, chose the appropriate one
       # based on the environment of the image the user has chosen to build.
-      gpg-agent-conf = runCommand "gpg-agent.conf" {} ''
+      gpg-agent-conf = runCommand "gpg-agent.conf" { } ''
         sed '/pinentry-program/d' ${drduhConfig}/gpg-agent.conf > $out
         echo "pinentry-program ${pinentry.${pinentryFlavour}}/bin/pinentry" >> $out
       '';
@@ -54,7 +55,8 @@ let
         paths = [ view-yubikey-guide shortcut ];
       };
 
-    in {
+    in
+    {
       nixpkgs.config = { allowBroken = true; };
 
       isoImage.isoBaseName = lib.mkForce "nixos-yubikey";
@@ -116,8 +118,8 @@ let
       # Comment all of these lines out if you'll need internet access
       boot.initrd.network.enable = false;
       networking.dhcpcd.enable = false;
-      networking.dhcpcd.allowInterfaces = [];
-      networking.interfaces = {};
+      networking.dhcpcd.allowInterfaces = [ ];
+      networking.interfaces = { };
       networking.firewall.enable = true;
       networking.useDHCP = false;
       networking.useNetworkd = false;
@@ -142,18 +144,20 @@ let
       # Copy the contents of contrib to the home directory, add a shortcut to
       # the guide on the desktop, and link to the whole repo in the documents
       # folder.
-      system.activationScripts.yubikeyGuide = let
-        homeDir = "/home/nixos/";
-        desktopDir = homeDir + "Desktop/";
-        documentsDir = homeDir + "Documents/";
-      in ''
-        mkdir -p ${desktopDir} ${documentsDir}
-        chown nixos ${homeDir} ${desktopDir} ${documentsDir}
+      system.activationScripts.yubikeyGuide =
+        let
+          homeDir = "/home/nixos/";
+          desktopDir = homeDir + "Desktop/";
+          documentsDir = homeDir + "Documents/";
+        in
+        ''
+          mkdir -p ${desktopDir} ${documentsDir}
+          chown nixos ${homeDir} ${desktopDir} ${documentsDir}
 
-        cp -R ${contrib}/* ${homeDir}
-        ln -sf ${yubikey-guide}/share/applications/yubikey-guide.desktop ${desktopDir}
-        ln -sfT ${src} ${documentsDir}/YubiKey-Guide
-      '';
+          cp -R ${contrib}/* ${homeDir}
+          ln -sf ${yubikey-guide}/share/applications/yubikey-guide.desktop ${desktopDir}
+          ln -sfT ${src} ${documentsDir}/YubiKey-Guide
+        '';
     };
 
   nixos = import <nixpkgs/nixos/release.nix> {
@@ -166,6 +170,7 @@ let
   #nixos-yubikey = nixos.iso_gnome;
   nixos-yubikey = nixos.iso_plasma5;
 
-in {
+in
+{
   inherit nixos-yubikey;
 }

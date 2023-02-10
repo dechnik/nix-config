@@ -1,7 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
       ../common/optional/btrfs-optin-persistence.nix
     ];
 
@@ -25,7 +26,8 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/sda1";
+    {
+      device = "/dev/sda1";
       fsType = "btrfs";
       options = [ "subvol=boot" ];
     };

@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   # home.packages = [pkgs.pure-prompt];
   home.persistence = {
@@ -87,6 +86,6 @@
       us = "systemctl --user";
       rs = "sudo systemctl";
     };
-    shellGlobalAliases = {exa = "exa --icons --git";};
+    shellGlobalAliases = { exa = "exa --icons --git"; };
   };
 }

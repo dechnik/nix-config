@@ -15,7 +15,7 @@ in
       simple-tab-groups
     ];
     profiles.lukasz = {
-      bookmarks = {};
+      bookmarks = { };
       settings = {
         "browser.disableResetPrompt" = true;
         "browser.download.panel.shown" = true;

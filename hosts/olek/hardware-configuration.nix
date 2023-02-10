@@ -1,7 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
       ../common/optional/btrfs-optin-persistence.nix
       ../common/optional/encrypted-root.nix
     ];
@@ -21,7 +22,8 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/ESP";
+    {
+      device = "/dev/disk/by-label/ESP";
       fsType = "vfat";
     };
 

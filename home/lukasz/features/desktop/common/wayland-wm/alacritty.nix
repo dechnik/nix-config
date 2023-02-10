@@ -1,14 +1,14 @@
-{
-  colors,
-  default,
-  config,
-  pkgs,
-  ...
+{ colors
+, default
+, config
+, pkgs
+, ...
 }:
 # terminals
 let
   inherit (config.colorscheme) colors;
-in {
+in
+{
   programs.alacritty = {
     enable = true;
     settings = {

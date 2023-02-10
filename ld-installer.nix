@@ -2,16 +2,18 @@ let
   configuration = { config, lib, pkgs, ... }:
     with pkgs;
     let
-      pinentryFlavour = if xserverCfg.desktopManager.lxqt.enable || xserverCfg.desktopManager.plasma5.enable then
-        "qt"
-      else if xserverCfg.desktopManager.xfce.enable then
-        "gtk2"
-      else if xserverCfg.enable || config.programs.sway.enable then
-        "gnome3"
-      else
-        "curses";
+      pinentryFlavour =
+        if xserverCfg.desktopManager.lxqt.enable || xserverCfg.desktopManager.plasma5.enable then
+          "qt"
+        else if xserverCfg.desktopManager.xfce.enable then
+          "gtk2"
+        else if xserverCfg.enable || config.programs.sway.enable then
+          "gnome3"
+        else
+          "curses";
 
-    in {
+    in
+    {
       nixpkgs.config = { allowBroken = true; };
 
       isoImage.isoBaseName = lib.mkForce "nixos-ld";
@@ -67,6 +69,7 @@ let
   #nixos-yubikey = nixos.iso_gnome;
   #nixos-yubikey = nixos.iso_plasma5;
 
-in {
+in
+{
   inherit nixos-ld;
 }

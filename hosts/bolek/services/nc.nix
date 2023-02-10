@@ -13,8 +13,8 @@ in
   };
 
   systemd.services."nextcloud-setup" = {
-    requires = ["postgresql.service"];
-    after = ["postgresql.service"];
+    requires = [ "postgresql.service" ];
+    after = [ "postgresql.service" ];
   };
 
   sops.secrets.nextcloud-password = {
@@ -33,7 +33,7 @@ in
       home = "/media/nextcloud";
       maxUploadSize = "10G";
       config = {
-        trustedProxies = ["10.30.10.12"];
+        trustedProxies = [ "10.30.10.12" ];
         adminuser = "root";
         adminpassFile = config.sops.secrets.nextcloud-password.path;
         overwriteProtocol = "https";

@@ -14,7 +14,7 @@
       runInUwsgi = true;
       uwsgiConfig = {
         disable-logging = true;
-        http = ":8088";                   # serve via HTTP...
+        http = ":8088"; # serve via HTTP...
         socket = "/run/searx/searx.sock"; # ...or UNIX socket
         chmod-socket = "660";
       };

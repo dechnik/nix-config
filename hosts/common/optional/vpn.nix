@@ -1,18 +1,18 @@
 { config, lib, pkgs, ... }:
 let
   xl2tpd-ppp-wrapped = pkgs.stdenv.mkDerivation {
-    name         = "xl2tpd-ppp-wrapped";
-    phases       = [ "installPhase" ];
-    nativeBuildInputs  = with pkgs; [ makeWrapper ];
+    name = "xl2tpd-ppp-wrapped";
+    phases = [ "installPhase" ];
+    nativeBuildInputs = with pkgs; [ makeWrapper ];
     installPhase = ''
-          mkdir -p $out/bin
-          makeWrapper ${pkgs.ppp}/sbin/pppd $out/bin/pppd \
-            --set LD_PRELOAD    "${pkgs.libredirect}/lib/libredirect.so" \
-            --set NIX_REDIRECTS "/etc/ppp=/etc/xl2tpd/ppp"
-          makeWrapper ${pkgs.xl2tpd}/bin/xl2tpd $out/bin/xl2tpd \
-            --set LD_PRELOAD    "${pkgs.libredirect}/lib/libredirect.so" \
-            --set NIX_REDIRECTS "${pkgs.ppp}/sbin/pppd=$out/bin/pppd"
-        '';
+      mkdir -p $out/bin
+      makeWrapper ${pkgs.ppp}/sbin/pppd $out/bin/pppd \
+        --set LD_PRELOAD    "${pkgs.libredirect}/lib/libredirect.so" \
+        --set NIX_REDIRECTS "/etc/ppp=/etc/xl2tpd/ppp"
+      makeWrapper ${pkgs.xl2tpd}/bin/xl2tpd $out/bin/xl2tpd \
+        --set LD_PRELOAD    "${pkgs.libredirect}/lib/libredirect.so" \
+        --set NIX_REDIRECTS "${pkgs.ppp}/sbin/pppd=$out/bin/pppd"
+    '';
   };
   ipsec = pkgs.writeShellScriptBin "ipsec" ''
     exec ${pkgs.strongswan}/bin/ipsec "$@"

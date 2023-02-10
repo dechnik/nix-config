@@ -36,8 +36,9 @@
   wayland.windowManager.hyprland = {
     enable = true;
     # package = inputs.hyprland.packages.${pkgs.system}.default;
-    package = if osConfig.hardware.nvidia.modesetting.enable then inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
-              else inputs.hyprland.packages.${pkgs.system}.default;
+    package =
+      if osConfig.hardware.nvidia.modesetting.enable then inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
+      else inputs.hyprland.packages.${pkgs.system}.default;
     extraConfig =
       (import ./monitors.nix {
         inherit lib;
