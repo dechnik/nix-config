@@ -9,8 +9,8 @@
   };
   environment.persistence = {
     "/persist".directories = [ "/etc/cups/ppd" ];
-    "/persist".files = [
-      "/etc/cups/printers.conf"
-    ];
+    # "/persist".files = [
+    #   "/etc/cups/printers.conf"
+    # ];
   };
 }
