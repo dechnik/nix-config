@@ -39,23 +39,9 @@
           "/" = {
             proxyPass = "http://localhost:${toString config.services.headscale.port}";
             proxyWebsockets = true;
-            extraConfig = ''
-              keepalive_requests          100000;
-              keepalive_timeout           160s;
-              proxy_buffering             off;
-              proxy_connect_timeout       75;
-              proxy_ignore_client_abort   on;
-              proxy_read_timeout          900s;
-              proxy_send_timeout          600;
-              send_timeout                600;
-            '';
           };
           "/metrics" = {
             proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
-            extraConfig = ''
-              allow 10.0.0.0/8;
-              deny all;
-            '';
           };
         };
         extraConfig = ''
