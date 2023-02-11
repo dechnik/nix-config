@@ -27,6 +27,10 @@ in
     nextcloud = {
       inherit hostName;
       package = pkgs.nextcloud25;
+      extraApps = with pkgs.nextcloud25Packages.apps; {
+        inherit mail contacts;
+      };
+      extraAppsEnable = true;
       enable = true;
       https = true;
       enableBrokenCiphersForSSE = false;
