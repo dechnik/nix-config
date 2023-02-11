@@ -1,7 +1,7 @@
 { colorscheme, wallpaper }: ''
   general {
     gaps_in=2
-    gaps_out=2
+    gaps_out=1
     border_size=2
     col.active_border=0xff${colorscheme.colors.base0C}
     col.inactive_border=0xff${colorscheme.colors.base02}
@@ -77,7 +77,7 @@
 
   # Program bindings
   bind=SUPER,Return,exec,$TERMINAL
-  # bind=SUPER,w,exec,makoctl dismiss
+  bind=SUPER,m,exec,makoctl dismiss
   bind=SUPER,v,exec,$TERMINAL $SHELL -ic nvim
   bind=SUPER,w,exec,$BROWSER
 

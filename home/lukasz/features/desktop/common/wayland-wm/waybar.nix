@@ -43,7 +43,7 @@ in
         layer = "top";
         height = 32;
         width = 100;
-        margin = "6";
+        margin = "0";
         position = "bottom";
         modules-center = (lib.optionals config.wayland.windowManager.sway.enable [
           "sway/workspaces"
@@ -63,7 +63,7 @@ in
         mode = "dock";
         layer = "top";
         height = 40;
-        margin = "6";
+        margin = "0";
         position = "top";
         output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
         modules-left = [
