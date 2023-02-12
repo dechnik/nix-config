@@ -5,23 +5,31 @@ let
 in
 {
   # programs.browserpass.enable = true;
+  home.packages = with pkgs; [ tridactyl-native ];
   programs.firefox = {
     enable = true;
     extensions = with addons; [
       ublock-origin
       bitwarden
       darkreader
-      surfingkeys
+      # surfingkeys
+      tridactyl
       simple-tab-groups
     ];
     profiles.lukasz = {
       bookmarks = { };
       settings = {
+        # Enable DRM
+        "media.eme.enabled" = true;
         "browser.disableResetPrompt" = true;
         "browser.download.panel.shown" = true;
         "browser.download.useDownloadDir" = false;
+        # GPU acceleration
+        "media.rdd-ffmpeg.enabled" = true;
         "media.ffmpeg.vaapi.enabled" = true;
+        "media.navigator.mediadatadecoder_vpx_enabled" = true;
         "media.ffvpx.enabled" = false;
+        "media.rdd-process.enabled" = false;
         "browser.aboutConfig.showWarning" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.shell.checkDefaultBrowser" = false;
@@ -33,6 +41,13 @@ in
         "privacy.trackingprotection.enabled" = true;
         "signon.rememberSignons" = false;
       };
+
+      userChrome = ''
+        /* Hide the thin line between the tabs and the main viewport. */
+        #navigator-toolbox {
+          border-bottom: none !important;
+        }
+      '';
     };
   };
 
