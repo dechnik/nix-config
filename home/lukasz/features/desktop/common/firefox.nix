@@ -6,6 +6,14 @@ in
 {
   # programs.browserpass.enable = true;
   home.packages = with pkgs; [ tridactyl-native ];
+  xdg.configFile."tridactyl/tridactylrc".text = ''
+    " Clear the config
+    sanitise tridactyllocal tridactylsync
+    " Use custom theme
+    colourscheme --url https://github.com/jrolfs/gruvbox-material-tridactyl/releases/download/v0.1.1/dark-soft.css gruvbox-material
+    set searchurls.sx https://sx.dechnik.net/search?q=
+    set searchengine sx
+  '';
   programs.firefox = {
     enable = true;
     extensions = with addons; [
