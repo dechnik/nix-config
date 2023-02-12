@@ -16,16 +16,16 @@ in
   '';
   programs.firefox = {
     enable = true;
-    extensions = with addons; [
-      ublock-origin
-      bitwarden
-      darkreader
-      # surfingkeys
-      tridactyl
-      simple-tab-groups
-    ];
     profiles.lukasz = {
       bookmarks = { };
+      extensions = with addons; [
+        ublock-origin
+        bitwarden
+        darkreader
+        # surfingkeys
+        tridactyl
+        simple-tab-groups
+      ];
       settings = {
         # Enable DRM
         "media.eme.enabled" = true;
