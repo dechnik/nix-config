@@ -23,9 +23,17 @@ in
     swanctl
   ];
   networking.firewall = {
+    checkReversePath = "loose";
     allowedTCPPorts = [ 1701 ];
     allowedUDPPorts = [ 1701 500 4500 ];
-    extraCommands = "iptables --insert INPUT --protocol ESP --jump ACCEPT";
+    extraInputRules = ''
+      ip protocol { ah, esp } accept
+      meta ipsec exists meta l4proto { tcp, udp } th dport 53 accept
+    '';
+    extraForwardRules = ''
+      meta ipsec exists accept
+      rt ipsec exists accept
+    '';
   };
   services.xl2tpd = {
     enable = true;
