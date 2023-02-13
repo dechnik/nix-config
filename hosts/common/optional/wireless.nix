@@ -14,6 +14,9 @@
       "dziadowo5" = {
         psk = "@PSK_HOME@";
       };
+      "biuro" = {
+        psk = "@PSK_BIURO@";
+      };
     };
 
     # Imperative
