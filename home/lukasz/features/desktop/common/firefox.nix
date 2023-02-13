@@ -16,6 +16,9 @@ in
   '';
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox.override {
+      cfg = { enableTridactylNative = true; };
+    };
     extensions = with addons; [
       ublock-origin
       bitwarden
