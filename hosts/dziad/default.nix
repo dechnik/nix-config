@@ -55,7 +55,10 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    extraPortals = [
+      inputs.xdph.packages.${pkgs.system}.default
+    ];
+    wlr.enable = false;
   };
 
   hardware.nvidia.modesetting.enable = true;
