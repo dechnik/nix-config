@@ -1,7 +1,7 @@
 { inputs, ... }: {
   imports = [
     ./global
-    # ./features/emacs
+    ./features/emacs
     ./features/trusted
     ./features/trusted/mail
     ./features/desktop/hyprland
