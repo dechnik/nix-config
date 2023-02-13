@@ -90,7 +90,7 @@
   bind=SUPER,b,exec,pkill -USR1 waybar # profile button
 
   # Lock screen
-  bind=SUPER,L,exec,swaylock -S
+  bind=SUPER,Escape,exec,wlogout -p layer-shell
   bind=,XF86Launch4,exec,swaylock -S
 
   bind=SUPER,F3,exec,spicemenu

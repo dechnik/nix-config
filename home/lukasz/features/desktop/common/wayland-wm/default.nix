@@ -20,6 +20,7 @@
     pulseaudio
     slurp
     waypipe
+    wlogout
     wf-recorder
     wl-clipboard
     wl-mirror
