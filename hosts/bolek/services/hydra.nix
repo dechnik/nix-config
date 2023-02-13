@@ -62,6 +62,13 @@ in
             speedFactor = 150;
           }
           {
+            uri = "ssh://nix-ssh@ldlat";
+            systems = [ "x86_64-linux" "aarch64-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 6;
+            speedFactor = 100;
+          }
+          {
             uri = "localhost";
             systems = [ "x86_64-linux" "aarch64-linux" ];
             maxJobs = 8;
