@@ -1,10 +1,10 @@
-{ inputs, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 {
   imports =
     [
-      inputs.hardware.nixosModules.common-cpu-intel
-      inputs.hardware.nixosModules.common-gpu-intel
+      # inputs.hardware.nixosModules.common-cpu-intel
+      # inputs.hardware.nixosModules.common-gpu-intel
       inputs.hardware.nixosModules.common-pc-ssd
 
       ./hardware-configuration.nix
@@ -48,6 +48,11 @@
 
   services.dbus.packages = [ pkgs.gcr ];
 
+  services.thermald.enable = lib.mkDefault true;
+  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
+  # Enable fwupd
+  services.fwupd.enable = lib.mkDefault true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [
@@ -62,6 +67,9 @@
       driSupport = true;
       driSupport32Bit = true;
     };
+    cpu.intel.updateMicrocode = true;
+
+    enableRedistributableFirmware = true;
   };
 
   system.stateVersion = "22.05"; # Did you read the comment?
