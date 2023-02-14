@@ -8,6 +8,7 @@
     ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/nextcloud.nix
     ./features/desktop/optional/work.nix
+    ./features/desktop/hyprland/nvidia.nix
     ./features/desktop/hyprland
   ];
 

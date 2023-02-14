@@ -1,13 +1,5 @@
-{ inputs, lib, osConfig, config, pkgs, ... }:
-let
-  hyprland-pkg = if osConfig.hardware.nvidia.modesetting.enable then inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
-      else inputs.hyprland.packages.${pkgs.system}.default;
-  hyprland-displaylink = hyprland-pkg.override {
-     wlroots = inputs.hyprland.packages.x86_64-linux.wlroots-hyprland.overrideAttrs (_: {
-       patches = [../../../../../pkgs/patches/displaylink.patch];
-     });
-  };
-in {
+{ inputs, lib, config, pkgs, ... }:
+{
   imports = [
     ../common
     ../common/wayland-wm
@@ -44,8 +36,6 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.default;
-    package = hyprland-displaylink;
     extraConfig =
       (import ./monitors.nix {
         inherit lib;
