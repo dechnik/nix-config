@@ -188,11 +188,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1675886181,
-        "narHash": "sha256-hY+W8uvkaAxISdzXCJ3ndvbgPkbEpu0Lbjlln0dIjxs=",
+        "lastModified": 1676406551,
+        "narHash": "sha256-qE7BSEFIslnhIj6CT0gyRX2fwqWgzUd1AE4e5fNAMfQ=",
         "owner": "~lukasz",
         "repo": "neovim",
-        "rev": "43a235e7a0904b8bf24ba096ee46f4238ac17b7b",
+        "rev": "2d9933799105201b90142db50f4bb19d4c982159",
         "type": "sourcehut"
       },
       "original": {
