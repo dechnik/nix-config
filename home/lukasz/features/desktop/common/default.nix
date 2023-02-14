@@ -13,6 +13,9 @@
     enable = true;
     components = [ "secrets" ];
   };
+  home.persistence = {
+    "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
+  };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal

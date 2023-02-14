@@ -94,6 +94,7 @@ in
       };
       aws = {
         format = "on [$symbol$profile(\\($region\\))]($style)";
+        disabled = true;
       };
 
       # Icon changes only \/
