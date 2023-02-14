@@ -2,6 +2,7 @@
   imports = [
     ./global
     ./features/emacs
+    ./features/cli/work.nix
     ./features/trusted
     ./features/trusted/mail
     ./features/desktop/hyprland
