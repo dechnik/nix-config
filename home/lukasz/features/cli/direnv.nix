@@ -5,4 +5,7 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
   };
+  home.persistence = {
+    "/persist/home/lukasz".directories = [ ".local/share/direnv" ];
+  };
 }
