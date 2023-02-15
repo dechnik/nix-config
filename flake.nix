@@ -43,6 +43,7 @@
     };
 
     website.url = "sourcehut:~lukasz/website/master";
+    emacs-overlay.url = "github:nix-community/emacs-overlay/1046546c5d006fbe854e7944cd784b16e0d9494a";
     neovim = {
       url = "sourcehut:~lukasz/neovim";
     };

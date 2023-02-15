@@ -7,6 +7,7 @@ let
   c = config.xdg.configHome;
   h = config.home.homeDirectory;
   # my_emacs = pkgs.emacs28NativeComp;
+  my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
 in
 {
   # home.file.".emacs.d" = {
@@ -104,7 +105,7 @@ in
   # };
   services.emacs = {
     enable = true;
-    package = pkgs.emacs-gtk;
+    package = my_emacs;
     client.enable = true;
   };
   home = {
@@ -115,7 +116,7 @@ in
   systemd.user.services.emacs.Service.Environment = "PATH=${pkgs.libnotify}/bin";
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-gtk;
+    package = my_emacs;
     overrides = final: _prev: {
       nix-theme = final.callPackage ./theme.nix { inherit config; };
     };
