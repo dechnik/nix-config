@@ -5,7 +5,7 @@
   services.unifi.unifiPackage = pkgs.unifi;
   services.unifi.openFirewall = true;
 
-  firewall = {
+  networking.firewall = {
     allowedTCPPorts = [
       8080 # Port for UAP to inform controller.
       8880 # Port for HTTP portal redirect, if guest portal is enabled.
