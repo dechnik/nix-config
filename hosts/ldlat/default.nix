@@ -17,6 +17,7 @@
       ../common/optional/wireless.nix
       ../common/optional/bluetooth.nix
       ../common/optional/printing.nix
+      ../common/optional/vpn.nix
     ];
 
   networking = {
