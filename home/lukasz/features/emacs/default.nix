@@ -86,6 +86,7 @@ in
     sqlite
     # :lang latex & :lang org (latex previews)
     texlive.combined.scheme-medium
+    rnix-lsp
     # emacs-client
   ];
   # systemd.user.services.emacs = {
