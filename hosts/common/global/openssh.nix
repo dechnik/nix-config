@@ -14,9 +14,9 @@ in
       PasswordAuthentication = false;
       PermitRootLogin = "no";
       StreamLocalBindUnlink = "yes";
+      GatewayPorts = "clientspecified";
     };
     # Allow forwarding ports to everywhere
-    gatewayPorts = "clientspecified";
 
     hostKeys = [{
       path = "${prefix}/etc/ssh/ssh_host_ed25519_key";

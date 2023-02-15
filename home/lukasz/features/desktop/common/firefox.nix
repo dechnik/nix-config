@@ -19,15 +19,15 @@ in
     package = pkgs.firefox.override {
       cfg = { enableTridactylNative = true; };
     };
-    extensions = with addons; [
-      ublock-origin
-      bitwarden
-      darkreader
-      # surfingkeys
-      tridactyl
-      simple-tab-groups
-    ];
     profiles.lukasz = {
+      extensions = with addons; [
+        ublock-origin
+        bitwarden
+        darkreader
+        # surfingkeys
+        tridactyl
+        simple-tab-groups
+      ];
       bookmarks = { };
       settings = {
         # Enable DRM
