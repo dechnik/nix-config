@@ -18,7 +18,8 @@
       warn-dirty = false;
       system-features = [ "kvm" "big-parallel" ];
     };
-    package = pkgs.nixUnstable;
+    # package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.nix_2_12;
     gc = {
       automatic = true;
       dates = "weekly";

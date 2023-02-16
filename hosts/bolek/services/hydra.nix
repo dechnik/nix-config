@@ -37,6 +37,7 @@ in
   nix.extraOptions = ''
     allowed-uris = https:// http://
   '';
+  systemd.services.hydra-evaluator.environment.GC_DONT_GC = "true";
   services = {
     hydra = {
       enable = true;
