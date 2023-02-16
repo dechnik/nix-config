@@ -17,6 +17,7 @@
         http = ":8088"; # serve via HTTP...
         socket = "/run/searx/searx.sock"; # ...or UNIX socket
         chmod-socket = "660";
+        cache2 = "name=searxngcache,items=2000,blocks=2000,blocksize=4096,bitmap=1";
       };
       settings = {
         search = {
