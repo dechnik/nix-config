@@ -53,7 +53,7 @@
   }
 
   misc {
-    no_vfr=false
+    vfr=true
   }
 
   input {
