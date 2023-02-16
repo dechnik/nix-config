@@ -2,6 +2,7 @@
 {
   imports = [
     ./firefox.nix
+    ./chromium.nix
     ./font.nix
     ./gtk.nix
     ./pavucontrol.nix
