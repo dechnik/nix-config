@@ -4,6 +4,7 @@
     ./bat.nix
     ./fish.nix
     ./zsh.nix
+    ./fzf.nix
     ./git.nix
     ./gpg.nix
     ./neovim.nix
