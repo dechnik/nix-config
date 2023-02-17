@@ -10,6 +10,7 @@ keys:
     - &lolek age1we0m4g25wp59jgn3nw5sn4lhtgkesp35r777ry7rn4zr4s038ufq2s2kyp
     - &tola age1lwsmxcqngugcx3rrgekw8leytq2q2zjwjnnp7f8h2q338yhkqeqs7e05wt
     - &olek age1z58dyxqayvre9zanktn9gtn2p704cas874vjqd97zu5juuv975gq6jfkq2
+    - &tolek age10w0y5xpwanuwmgtenvtn8lmdj4dk2ql2z93r8s48jpjxpejtkcpspy2gfd
 creation_rules:
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
@@ -20,6 +21,7 @@ creation_rules:
       - *lolek
       - *tola
       - *olek
+      - *tolek
       pgp:
       - *lukasz
   - path_regex: hosts/bolek/secrets.ya?ml$

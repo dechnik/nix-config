@@ -91,6 +91,10 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/olek ];
         };
+        tolek = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/tolek ];
+        };
       };
 
       homeConfigurations = {
@@ -124,6 +128,11 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/lukasz/olek.nix ];
+        };
+        "lukasz@tolek" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/lukasz/tolek.nix ];
         };
       };
 
