@@ -4,6 +4,7 @@
 
     ../common/global
     ../common/users/lukasz
+    ../common/optional/qemu-vm.nix
   ];
 
   networking = {
