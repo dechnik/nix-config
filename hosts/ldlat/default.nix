@@ -26,6 +26,8 @@
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
+  environment.variables.HOSTNAME = "ldlat";
+
   boot = {
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     kernelPackages = pkgs.linuxKernel.packages.linux_zen.extend (self: super: {
