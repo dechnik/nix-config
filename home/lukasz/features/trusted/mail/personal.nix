@@ -11,6 +11,7 @@
     ${pkgs.protonmail-bridge}/bin/protonmail-bridge --cli
     systemctl --user start protonmail-bridge.service
   '';
+  hostname = builtins.getEnv "HOSTNAME";
 in {
   home.persistence = {
     "/persist/mail/lukasz" = {
@@ -51,7 +52,7 @@ in {
       realName = "Lukasz Dechnik";
       primary = true;
       userName = "ldechnik@protonmail.com";
-      passwordCommand = "${config.programs.password-store.package}/bin/pass ldechnik@pm.me";
+      passwordCommand = "${config.programs.password-store.package}/bin/pass ldechnik-${hostname}@pm.me";
       imap = {
         host = "127.0.0.1";
         port = 1143;
@@ -90,7 +91,7 @@ in {
       msmtp = {
         enable = true;
         extraConfig.from = "lukasz@dechnik.net";
-        # extraConfig.domain = osConfig.networking.hostName;
+        extraConfig.domain = hostname;
       };
       neomutt = {
         enable = true;

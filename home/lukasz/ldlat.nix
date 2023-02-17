@@ -12,6 +12,10 @@
     ./features/desktop/optional/work.nix
   ];
 
+  home.sessionVariables = {
+    HOSTNAME = "ldlat";
+  };
+
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
   # My setup's layout:

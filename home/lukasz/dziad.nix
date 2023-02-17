@@ -13,6 +13,10 @@
     ./features/desktop/hyprland
   ];
 
+  home.sessionVariables = {
+    HOSTNAME = "dziad";
+  };
+
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
   # My setup's layout:
