@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ inputs, pkgs, config, ... }:
 {
   security.acme.certs = {
     "sx.dechnik.net" = {
@@ -9,7 +9,8 @@
   services = {
     searx = {
       enable = true;
-      package = pkgs.searxng;
+      # package = pkgs.searxng;
+      package = inputs.nixpkgs-master.legacyPackages.${pkgs.system}.searxng;
       environmentFile = config.sops.secrets.searx-env.path;
       runInUwsgi = true;
       uwsgiConfig = {
