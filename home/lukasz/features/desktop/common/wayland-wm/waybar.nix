@@ -163,7 +163,7 @@ in
               inherit (builtins) concatStringsSep attrNames;
               hosts = attrNames outputs.nixosConfigurations;
               homeMachine = "bolek";
-              remoteMachine = "lolek";
+              remoteMachine = "tolek";
             in
             jsonOutput "tailscale-ping" {
               # Build variables for each host
@@ -174,7 +174,7 @@ in
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = "B $ping_${remoteMachine} / L $ping_${homeMachine}";
+              text = " $ping_${remoteMachine} / B $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${host}") hosts);
             };
