@@ -4,6 +4,7 @@
     ./features/emacs
     ./features/trusted
     ./features/trusted/mail
+    ./features/trusted/mail/personal.nix
     ./features/games
     ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/nextcloud.nix

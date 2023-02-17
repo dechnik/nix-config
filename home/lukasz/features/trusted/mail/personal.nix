@@ -1,5 +1,4 @@
 {
-  osConfig,
   lib,
   config,
   pkgs,
@@ -13,15 +12,17 @@
     systemctl --user start protonmail-bridge.service
   '';
 in {
-  systemd.user.services.mbsync.Service.Environment = "PATH=${pkgs.sops}/bin:${pkgs.gnupg}/bin GNUPGHOME=${config.xdg.dataHome}/gnupg";
+  home.persistence = {
+    "/persist/mail/lukasz" = {
+      directories = [
+        ".config/protonmail"
+      ];
+      allowOther = true;
+    };
+  };
   home.packages = [
     protonmail-cli
   ];
-
-  # Ensure the password store things are in the systemd session
-  systemd.user.sessionVariables = {
-    GNUPGHOME = "${config.xdg.dataHome}/gnupg";
-  };
 
   systemd.user.services.protonmail-bridge = {
     Install.WantedBy = [ "default.target" ];
@@ -50,7 +51,7 @@ in {
       realName = "Lukasz Dechnik";
       primary = true;
       userName = "ldechnik@protonmail.com";
-      passwordCommand = "${pkgs.pass}/bin/pass ldechnik-${osConfig.networking.hostName}@pm.me";
+      passwordCommand = "${config.programs.password-store.package}/bin/pass ldechnik@pm.me";
       imap = {
         host = "127.0.0.1";
         port = 1143;
@@ -70,7 +71,7 @@ in {
         };
       };
       gpg = {
-        key = "D7BCC570927C355B";
+        key = "D627C2E908C218A4";
         signByDefault = true;
       };
       mbsync = {
@@ -89,7 +90,7 @@ in {
       msmtp = {
         enable = true;
         extraConfig.from = "lukasz@dechnik.net";
-        extraConfig.domain = osConfig.networking.hostName;
+        # extraConfig.domain = osConfig.networking.hostName;
       };
       neomutt = {
         enable = true;

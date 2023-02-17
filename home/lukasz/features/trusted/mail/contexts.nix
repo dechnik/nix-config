@@ -5,7 +5,7 @@
 }:
 accounts:
 with lib; let
-  neomuttAccounts = filter (a: a.neomutt.enable) (attrValues accounts);
+  neomuttAccounts = filter (a: a.mu.enable) (attrValues accounts);
   primaryAccount =
     head (filter (a: a.primary) neomuttAccounts ++ neomuttAccounts);
   otherAccounts = filter (a: a != primaryAccount) neomuttAccounts;
