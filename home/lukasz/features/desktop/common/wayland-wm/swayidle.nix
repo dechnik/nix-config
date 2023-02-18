@@ -1,14 +1,15 @@
 { pkgs, lib, config, ... }:
 
 let
-  swaylock = "${pkgs.swaylock-effects}/bin/swaylock";
+  inherit (config) wallpaper;
+  swaylock = "${pkgs.swaylock}/bin/swaylock";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   pgrep = "${pkgs.procps}/bin/pgrep";
   hyprctl = "${pkgs.hyprland}/bin/hyprctl";
   swaymsg = "${pkgs.sway}/bin/swaymsg";
 
   isLocked = "${pgrep} -x swaylock";
-  actionLock = "${swaylock} -S --daemonize";
+  actionLock = "${swaylock} -i ${wallpaper} --daemonize";
 
   lockTime = 4 * 60; # TODO: configurable desktop (10 min)/laptop (4 min)
 

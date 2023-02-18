@@ -92,8 +92,8 @@
 
   # Lock screen
   bind=SUPER,Escape,exec,wlogout -p layer-shell
-  bind=SUPERSHIFT,Escape,exec,swaylock -S
-  bind=,XF86Launch4,exec,swaylock -S
+  bind=SUPERSHIFT,Escape,exec,swaylock -i ${wallpaper}
+  bind=,XF86Launch4,exec,swaylock -i ${wallpaper}
 
   bind=SUPER,F3,exec,spicemenu
 
