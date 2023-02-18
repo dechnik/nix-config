@@ -18,6 +18,8 @@
 
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
+  mailhost = "ldlat";
+
   # My setup's layout:
   #  ------   -----
   # | DP-2 | | DP-1|

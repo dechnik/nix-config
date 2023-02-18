@@ -19,6 +19,8 @@
 
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
+  mailhost = "dziad";
+
   # My setup's layout:
   #  ------   -----
   # | DP-2 | | DP-1|

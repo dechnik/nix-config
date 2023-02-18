@@ -11,7 +11,7 @@
     ${pkgs.protonmail-bridge}/bin/protonmail-bridge --cli
     systemctl --user start protonmail-bridge.service
   '';
-  hostname = builtins.getEnv "HOSTNAME";
+  inherit (config) mailhost;
 in {
   home.persistence = {
     "/persist/mail/lukasz" = {
@@ -38,6 +38,8 @@ in {
       ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge -l info --noninteractive";
       Restart = "on-failure";
       RestartSec = 3;
+      # Environment = "PATH=${config.programs.password-store.package}/bin PASSWORD_STORE_DIR=$HOME/.local/share/password-store";
+      Environment = [ "PATH=${config.programs.password-store.package}/bin" "PASSWORD_STORE_DIR=/home/lukasz/.local/share/password-store" ];
     };
   };
 
@@ -52,7 +54,7 @@ in {
       realName = "Lukasz Dechnik";
       primary = true;
       userName = "ldechnik@protonmail.com";
-      passwordCommand = "${config.programs.password-store.package}/bin/pass ldechnik-${hostname}@pm.me";
+      passwordCommand = "${config.programs.password-store.package}/bin/pass ldechnik-${mailhost}@pm.me";
       imap = {
         host = "127.0.0.1";
         port = 1143;
@@ -91,7 +93,7 @@ in {
       msmtp = {
         enable = true;
         extraConfig.from = "lukasz@dechnik.net";
-        extraConfig.domain = hostname;
+        extraConfig.domain = mailhost;
       };
       neomutt = {
         enable = true;

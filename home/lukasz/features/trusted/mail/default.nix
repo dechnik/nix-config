@@ -75,7 +75,7 @@ in {
         esac
       done
       ${pkgs.coreutils}/bin/touch "$lastrun"
-      ~/.nix-profile/bin/emacsclient -e '(mu4e-update-index)'
+      /etc/profiles/per-user/lukasz/bin/emacsclient -e '(mu4e-update-index)'
     '';
   };
 

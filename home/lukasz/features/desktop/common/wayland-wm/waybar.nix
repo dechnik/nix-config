@@ -79,6 +79,7 @@ in
           "pulseaudio"
           "custom/gammastep"
           "custom/gpg-agent"
+          "custom/unread-mail"
         ];
         modules-right = [
           "network"
@@ -174,7 +175,7 @@ in
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = " $ping_${remoteMachine} / B $ping_${homeMachine}";
+              text = "  $ping_${remoteMachine} / B $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${host}") hosts);
             };
@@ -210,6 +211,37 @@ in
             "unlocked" = "";
           };
           on-click = "";
+        };
+        "custom/unread-mail" = {
+          interval = 60;
+          return-type = "json";
+          exec = jsonOutput "unread-mail" {
+            pre = ''
+              count=$(find ~/.local/share/mail/*/Inbox/new -type f | wc -l)
+              if [ "$count" == "0" ]; then
+                subjects="No new mail"
+                status="read"
+              else
+                subjects=$(\
+                  grep -h "Subject: " -r ~/.local/share/mail/*/Inbox/new | cut -d ':' -f2- | \
+                  perl -CS -MEncode -ne 'print decode("MIME-Header", $_)' | ${xml} esc | sed -e 's/^/\-/'\
+                )
+                status="unread"
+              fi
+              if pgrep mbsync &>/dev/null; then
+                status="syncing"
+              fi
+            '';
+            text = "$count";
+            tooltip = "$subjects";
+            alt = "$status";
+          };
+          format = "{icon} {}";
+          format-icons = {
+            "read" = "";
+            "unread" = "";
+            "syncing" = "";
+          };
         };
         "custom/gammastep" = {
           interval = 5;
