@@ -236,7 +236,7 @@ in
             tooltip = "$subjects";
             alt = "$status";
           };
-          format = "{icon} {}";
+          format = "{icon}  {}";
           format-icons = {
             "read" = "";
             "unread" = "";
