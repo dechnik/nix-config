@@ -6,8 +6,8 @@
     group = "users";
     key = "/run/syncthing-key.pem";
     cert = "/run/syncthing-cert.pem";
-    dataDir = "/media/syncthing";
-    configDir = "/media/syncthing/.config";
+    # dataDir = "/media/syncthing";
+    # configDir = "/media/syncthing/.config";
     openDefaultPorts = true;
     devices = {
       bolek = {
