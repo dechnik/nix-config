@@ -7,6 +7,7 @@
     # ./gitea
     ./nginx.nix
     ./nc.nix
+    ./syncthing.nix
     ./rss.nix
     ./searx.nix
     ./website.nix
