@@ -82,6 +82,7 @@ in
           "custom/unread-mail"
         ];
         modules-right = [
+          "custom/gamemode"
           "network"
           "custom/tailscale-ping"
           "battery"
@@ -242,6 +243,15 @@ in
             "unread" = "";
             "syncing" = "";
           };
+        };
+        "custom/gamemode" = {
+          exec-if = "${gamemoded} --status | grep 'is active' -q";
+          interval = 2;
+          return-type = "json";
+          exec = jsonOutput "gamemode" {
+            tooltip = "Gamemode is active";
+          };
+          format = " ";
         };
         "custom/gammastep" = {
           interval = 5;
