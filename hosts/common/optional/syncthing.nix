@@ -15,12 +15,12 @@
       dziad = {
         id = "G2UU2SO-ETG3TAS-D2WXFDU-YZN3DTM-YQCB6I2-DMHKYD5-Q2XDJ3T-Y4LMCQI";
         name = "dziad";
-        introducer = true;
+        introducer = false;
       };
       bolek = {
         id = "WNVA2CT-I6VRIU4-WA47OW7-M7COY47-S2L7DN6-TOHVAUI-5RF37T2-Y3DINAQ";
         name = "bolek";
-        introducer = true;
+        introducer = false;
       };
     };
     folders = {
