@@ -10,6 +10,15 @@
     overrideFolders = true;
     # dataDir = "/media/syncthing";
     # configDir = "/media/syncthing/.config";
+    extraOptions = {
+      gui = {
+        theme = "black";
+      };
+      options = {
+        listenAddress = "tcp://0.0.0.0:22000,quic://0.0.0.0:22000";
+        globalAnnounceEnabled = false;
+      };
+    };
     openDefaultPorts = true;
     devices = {
       dziad = {
