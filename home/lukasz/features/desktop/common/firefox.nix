@@ -9,10 +9,18 @@ in
   xdg.configFile."tridactyl/tridactylrc".text = ''
     " Clear the config
     sanitise tridactyllocal tridactylsync
+    " Scroll settings
+    set smoothscroll true
+    " Use default new tab
+    set newtab about:newtab
     " Use custom theme
     colourscheme --url https://github.com/jrolfs/gruvbox-material-tridactyl/releases/download/v0.1.1/dark-soft.css gruvbox-material
     set searchurls.sx https://sx.dechnik.net/search?q=
     set searchengine sx
+    " Move between tabs
+    unbind h,l
+    bind h tabprev
+    bind l tabnext
   '';
   programs.firefox = {
     enable = true;
