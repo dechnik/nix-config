@@ -16,9 +16,25 @@
       ../common/optional/greetd.nix
       ../common/optional/wireless.nix
       ../common/optional/bluetooth.nix
+      ../common/optional/syncthing.nix
       ../common/optional/printing.nix
       ../common/optional/vpn.nix
     ];
+
+  sops.secrets = {
+    syncthing-cert = {
+      sopsFile = ./secrets.yaml;
+      owner = "lukasz";
+      mode = "0400";
+      path = "/run/syncthing-cert.pem";
+    };
+    syncthing-key = {
+      sopsFile = ./secrets.yaml;
+      owner = "lukasz";
+      mode = "0400";
+      path = "/run/syncthing-key.pem";
+    };
+  };
 
   networking = {
     hostName = "ldlat"; # Define your hostname.

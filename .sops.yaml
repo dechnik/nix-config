@@ -30,6 +30,12 @@ creation_rules:
       - *dziad
       pgp:
       - *lukasz
+  - path_regex: hosts/ldlat/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *ldlat
+      pgp:
+      - *lukasz
   - path_regex: hosts/bolek/secrets.ya?ml$
     key_groups:
     - age:
