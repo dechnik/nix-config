@@ -19,6 +19,7 @@
   };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
+    gnome.gnome-keyring
     xdg-utils-spawn-terminal
     lyrics
     meld
