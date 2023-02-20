@@ -15,7 +15,7 @@
         theme = "black";
       };
       options = {
-        listenAddress = "tcp://0.0.0.0:22000,quic://0.0.0.0:22000";
+        listenAddress = "tcp://0.0.0.0:22000, quic://0.0.0.0:22000";
         globalAnnounceEnabled = false;
       };
     };
