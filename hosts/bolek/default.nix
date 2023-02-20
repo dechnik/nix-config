@@ -7,7 +7,7 @@
       ./services
 
       ../common/optional/qemu-vm.nix
-      # ../common/optional/syncthing.nix
+      ../common/optional/syncthing.nix
       ../common/global
       ../common/users/lukasz
     ];
