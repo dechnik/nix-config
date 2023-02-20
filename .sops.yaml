@@ -24,6 +24,12 @@ creation_rules:
       - *tolek
       pgp:
       - *lukasz
+  - path_regex: hosts/dziad/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *dziad
+      pgp:
+      - *lukasz
   - path_regex: hosts/bolek/secrets.ya?ml$
     key_groups:
     - age:
