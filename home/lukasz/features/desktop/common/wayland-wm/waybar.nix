@@ -5,6 +5,7 @@ let
   jq = "${pkgs.jq}/bin/jq";
   xml = "${pkgs.xmlstarlet}/bin/xml";
   systemctl = "${pkgs.systemd}/bin/systemctl";
+  gamemoded = "${pkgs.gamemode}/bin/gamemoded";
   journalctl = "${pkgs.systemd}/bin/journalctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";

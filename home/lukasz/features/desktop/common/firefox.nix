@@ -16,6 +16,8 @@ in
     " Use custom theme
     colourscheme --url https://github.com/jrolfs/gruvbox-material-tridactyl/releases/download/v0.1.1/dark-soft.css gruvbox-material
     set searchurls.sx https://sx.dechnik.net/search?q=
+    set searchurls.no https://search.nixos.org/options?query=
+    set searchurls.np https://search.nixos.org/packages?query=
     set searchengine sx
     " Move between tabs
     unbind h,l

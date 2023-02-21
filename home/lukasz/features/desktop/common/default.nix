@@ -10,16 +10,15 @@
     ./qt.nix
     ./virt.nix
   ];
-  # services.gnome-keyring = {
-  #   enable = true;
-  #   components = [ "secrets" ];
-  # };
-  home.persistence = {
-    "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
   };
+  # home.persistence = {
+  #   "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
+  # };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
-    gnome.gnome-keyring
     xdg-utils-spawn-terminal
     lyrics
     meld

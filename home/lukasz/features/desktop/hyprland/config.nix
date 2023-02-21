@@ -66,7 +66,6 @@
   }
 
   # Startup
-  exec-once=gnome-keyring-daemon --start --components=secrets
   exec-once=waybar
   exec=swaybg -i ${wallpaper} --mode fill
   exec-once=mako

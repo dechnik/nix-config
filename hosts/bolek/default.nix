@@ -12,6 +12,8 @@
       ../common/users/lukasz
     ];
 
+  services.syncthing.guiAddress = "0.0.0.0:8384";
+
   sops.secrets = {
     syncthing-cert = {
       sopsFile = ./secrets.yaml;
