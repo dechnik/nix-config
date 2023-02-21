@@ -10,6 +10,7 @@
 , wl-clipboard
 , findutils
 , gnused
+, gnugrep
 , coreutils
 }:
 
@@ -38,6 +39,7 @@ stdenv.mkDerivation {
           wl-clipboard
           findutils
           gnused
+          gnugrep
           coreutils
         ]
       }"
