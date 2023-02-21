@@ -20,8 +20,10 @@ selected=$(find -L . -not -path '*\/.*' -path "*.gpg" -type f -printf '%P\n' | \
   sed 's/.gpg$//g' | \
   wofi -S dmenu -Q "$query") || exit 2
 
-username=$(echo "$selected" | cut -d '/' -f2)
-url=$(echo "$selected" | cut -d '/' -f1)
+#username=$(echo "$selected" | cut -d '/' -f2)
+#url=$(echo "$selected" | cut -d '/' -f1)
+
+#pass "$selected" | grep 'login:' | cut -d ' ' -f2
 
 fields="Password
 Username
@@ -36,10 +38,12 @@ case "$field" in
             { notify-send "Error" "No password for $selected" -i error -t 6000; exit 3; }
         ;;
     "Username")
-        value="$username"
+        value="$(pass "$selected" | grep 'login:' | cut -d ' ' -f2)" && [ -n "$value" ] || \
+            { notify-send "Error" "No password for $selected" -i error -t 6000; exit 3; }
         ;;
     "URL")
-        value="$url"
+        value="$(pass "$selected" | grep 'url:' | cut -d ' ' -f2)" && [ -n "$value" ] || \
+            { notify-send "Error" "No password for $selected" -i error -t 6000; exit 3; }
         ;;
     "OTP")
         value="$(pass otp "$selected")" || \
