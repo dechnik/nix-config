@@ -1,5 +1,13 @@
 { config, lib, pkgs, ... }:
 {
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    users.lukasz = {
+      directories = [
+        ".config/syncthing"
+      ];
+    };
+  };
   services.syncthing = {
     enable = true;
     user = "lukasz";
