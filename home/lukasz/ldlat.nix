@@ -8,7 +8,6 @@
     ./features/trusted/mail/personal.nix
     ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
-    ./features/desktop/optional/nextcloud.nix
     ./features/desktop/optional/work.nix
   ];
 
