@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 {
+  home.persistence = {
+    "/persist/home/lukasz".directories = [ ".config/syncthing" ];
+  };
   services.syncthing = {
     enable = true;
     user = "lukasz";
