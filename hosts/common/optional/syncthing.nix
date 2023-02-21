@@ -22,14 +22,23 @@
       dziad = {
         id = "MGREPZ7-UJS7KZL-OPKY7CP-JYBG7Y6-Y73VUQX-7FUGV63-YZS5BIB-LEHWQAX";
         name = "dziad";
+        addresses = [
+          "tcp://dziad:22000"
+        ];
       };
       ldlat = {
         id = "HQ2AMMU-YNEC5XM-V2PPJ4A-WMSM7D3-HHEGC7C-XBOYK4E-SKEE2VE-UG337AF";
         name = "ldlat";
+        addresses = [
+          "tcp://ldlat:22000"
+        ];
       };
       bolek = {
         id = "LVYEKHX-5Q2EPHS-6PHD5ZV-N5L3LAU-Z4AKWAS-7U6NFTY-EO4UPLK-SZ5PBQS";
         name = "bolek";
+        addresses = [
+          "tcp://bolek:22000"
+        ];
       };
     };
     folders = {
