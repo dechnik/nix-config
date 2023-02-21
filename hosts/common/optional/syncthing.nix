@@ -20,7 +20,7 @@
     openDefaultPorts = true;
     devices = {
       dziad = {
-        id = "G2UU2SO-ETG3TAS-D2WXFDU-YZN3DTM-YQCB6I2-DMHKYD5-Q2XDJ3T-Y4LMCQI";
+        id = "MGREPZ7-UJS7KZL-OPKY7CP-JYBG7Y6-Y73VUQX-7FUGV63-YZS5BIB-LEHWQAX";
         name = "dziad";
       };
       ldlat = {
@@ -28,7 +28,7 @@
         name = "ldlat";
       };
       bolek = {
-        id = "WNVA2CT-I6VRIU4-WA47OW7-M7COY47-S2L7DN6-TOHVAUI-5RF37T2-Y3DINAQ";
+        id = "LVYEKHX-5Q2EPHS-6PHD5ZV-N5L3LAU-Z4AKWAS-7U6NFTY-EO4UPLK-SZ5PBQS";
         name = "bolek";
       };
     };
