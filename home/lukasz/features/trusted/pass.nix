@@ -3,7 +3,7 @@
   programs.password-store = {
     enable = true;
     settings = { PASSWORD_STORE_DIR = "$HOME/.local/share/password-store"; };
-    package = pkgs.pass.withExtensions (exts: [ exts.pass-otp ]);
+    package = pkgs.pass.withExtensions (exts: [ exts.pass-otp exts.pass-import ]);
   };
 
   # Ensure the password store things are in the systemd session
