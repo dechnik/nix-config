@@ -10,10 +10,10 @@
     ./qt.nix
     ./virt.nix
   ];
-  services.gnome-keyring = {
-    enable = true;
-    components = [ "secrets" ];
-  };
+  # services.gnome-keyring = {
+  #   enable = true;
+  #   components = [ "secrets" ];
+  # };
   # home.persistence = {
   #   "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
   # };

@@ -50,6 +50,17 @@ in {
 
   config.accounts.email.maildirBasePath = maildirBase;
 
+  config.systemd.user.services.mbsync = {
+    Service =
+      let keyring = import ../keyring.nix { inherit pkgs; };
+      in
+      {
+        ExecCondition = ''
+          /bin/sh -c "${keyring.isUnlocked}"
+        '';
+      };
+  };
+
   config.services.mbsync = {
     preExec = "${config.xdg.dataHome}/mail/.presync";
     postExec = "${config.xdg.dataHome}/mail/.postsync";

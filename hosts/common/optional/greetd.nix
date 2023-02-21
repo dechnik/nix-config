@@ -25,6 +25,8 @@ in
     };
   };
   security = {
+    # unlock GPG keyring on login
+    pam.services.greetd.gnupg.enable = true;
     # pam.services = {
     #   greetd.enableGnomeKeyring = true;
     # };
