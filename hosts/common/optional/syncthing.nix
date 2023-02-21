@@ -4,6 +4,7 @@
     enable = true;
     user = "lukasz";
     group = "users";
+    configDir = "/home/lukasz/.config/syncthing";
     overrideFolders = false;
     overrideDevices = true;
     extraOptions = {
