@@ -50,4 +50,5 @@ case "$field" in
 esac
 
 wl-copy "$value"
-notify-send "Copied $field:" "$value" -i edit-copy -t 4000
+#notify-send "Copied $field:" "$value" -i edit-copy -t 4000
+notify-send "Copied $field:" "hidden" -i edit-copy -t 4000
