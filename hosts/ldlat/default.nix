@@ -34,6 +34,12 @@
       mode = "0400";
       path = "/run/syncthing-key.pem";
     };
+    spotify = {
+      sopsFile = ../common/secrets.yaml;
+      owner = "lukasz";
+      mode = "0400";
+      path = "/run/spotify";
+    };
   };
 
   networking = {

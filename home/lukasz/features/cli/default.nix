@@ -15,6 +15,7 @@
     # ./screen.nix
     ./shellcolor.nix
     ./ssh.nix
+    ./spotifytui.nix
     ./starship.nix
     ./xpo.nix
   ];
