@@ -23,5 +23,6 @@
     xdg-utils-spawn-terminal
     lyrics
     meld
+    gtk-pipe-viewer
   ];
 }
