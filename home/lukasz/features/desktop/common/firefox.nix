@@ -4,7 +4,7 @@ let
   addons = inputs.firefox-addons.packages.${pkgs.system};
 in
 {
-  # programs.browserpass.enable = true;
+  programs.browserpass.enable = true;
   home.packages = with pkgs; [ tridactyl-native ];
   xdg.configFile."tridactyl/tridactylrc".text = ''
     " Clear the config
@@ -34,6 +34,7 @@ in
         ublock-origin
         bitwarden
         darkreader
+        browserpass
         # surfingkeys
         tridactyl
         simple-tab-groups
