@@ -8,6 +8,5 @@
   xpo = pkgs.callPackage ./xpo { };
   spiceto = pkgs.callPackage ./spiceto { };
   cyrus-sasl-xoauth2 = pkgs.callPackage ./cyrus-sasl-xoauth2 { };
-  # isync-oauth2 = pkgs.callPackage ./isync-oauth2 { };
   oauth2ms = pkgs.callPackage ./oauth2ms { };
 }
