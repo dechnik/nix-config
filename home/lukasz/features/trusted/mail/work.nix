@@ -8,13 +8,12 @@
   folder-config = import ./folder-config.nix {inherit config lib;};
   maildirBase = "${config.xdg.dataHome}/mail";
 in {
-  systemd.user.services.mbsync.Service.Environment = "PATH=${pkgs.sops}/bin:${pkgs.gnupg}/bin GNUPGHOME=${config.xdg.dataHome}/gnupg";
-
-  # Ensure the password store things are in the systemd session
-  systemd.user.sessionVariables = {
-    GNUPGHOME = "${config.xdg.dataHome}/gnupg";
-  };
-
+  systemd.user.services.mbsync.Service.Environment = [
+    "SASL_PATH=${lib.concatStringsSep ":" [
+      "${pkgs.cyrus_sasl.out}/lib/sasl2"
+      "${pkgs.cyrus-sasl-xoauth2}/lib/sasl2"
+    ]}"
+  ];
   accounts.email.accounts = {
     "ebi" = {
       address = "lukasz@ebimedia.pl";
@@ -86,11 +85,11 @@ in {
 #+end_signature
       '';
       mu.enable = true;
-      imapnotify = {
-        enable = true;
-        boxes = ["Inbox"];
-        onNotify = "systemctl --user start mbsync.service";
-      };
+      # imapnotify = {
+      #   enable = true;
+      #   boxes = ["INBOX"];
+      #   onNotify = "systemctl --user start mbsync.service";
+      # };
     };
   };
 

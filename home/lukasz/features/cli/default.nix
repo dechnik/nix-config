@@ -24,6 +24,7 @@
     # distrobox # Nice escape hatch, integrates docker images with my environment
     cryptsetup
     unzip
+    zip
 
     bc # Calculator
     bottom # System viewer
