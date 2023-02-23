@@ -34,11 +34,11 @@
       mode = "0400";
       path = "/run/syncthing-key.pem";
     };
-    spotify = {
+    oauth2ms = {
       sopsFile = ../common/secrets.yaml;
       owner = "lukasz";
       mode = "0400";
-      path = "/run/spotify";
+      path = "/run/oauth2ms";
     };
   };
 

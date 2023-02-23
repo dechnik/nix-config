@@ -12,6 +12,13 @@ in {
   home.persistence = {
     "/persist/home/lukasz".directories = [ ".config/oauth2ms" ];
   };
+
+  home.activation = {
+    oauth2ms-config = ''
+      mkdir -p "$HOME/.config/oauth2ms"
+      ln -sf "/run/oauth2ms" "$HOME/.config/oauth2ms/config.json"
+    '';
+  };
   systemd.user.services.mbsync.Service.Environment = [
     "SASL_PATH=${lib.concatStringsSep ":" [
       "${pkgs.cyrus_sasl.out}/lib/sasl2"
