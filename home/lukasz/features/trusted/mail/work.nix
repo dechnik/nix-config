@@ -15,7 +15,7 @@ in {
   systemd.user.services.mbsync.Service.Environment = [
     "SASL_PATH=${lib.concatStringsSep ":" [
       "${pkgs.cyrus_sasl.out}/lib/sasl2"
-      "${pkgs.cyrus-sasl-xoauth2}/lib/sasl2"
+      "${pkgs.cyrus-sasl-xoauth2}/usr/lib/sasl2"
     ]}"
   ];
   accounts.email.accounts = {
