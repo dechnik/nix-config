@@ -6,6 +6,7 @@
     ./features/trusted
     ./features/trusted/mail
     ./features/trusted/mail/personal.nix
+    ./features/trusted/mail/work.nix
     ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
     ./features/desktop/optional/work.nix

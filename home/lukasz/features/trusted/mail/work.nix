@@ -1,5 +1,4 @@
 {
-  osConfig,
   lib,
   config,
   pkgs,
@@ -7,7 +6,12 @@
 }: let
   folder-config = import ./folder-config.nix {inherit config lib;};
   maildirBase = "${config.xdg.dataHome}/mail";
+
+  inherit (config) mailhost;
 in {
+  home.persistence = {
+    "/persist/home/lukasz".directories = [ ".config/oauth2ms" ];
+  };
   systemd.user.services.mbsync.Service.Environment = [
     "SASL_PATH=${lib.concatStringsSep ":" [
       "${pkgs.cyrus_sasl.out}/lib/sasl2"
@@ -19,7 +23,7 @@ in {
       address = "lukasz@ebimedia.pl";
       realName = "Lukasz Dechnik";
       userName = "lukasz@ebimedia.pl";
-      passwordCommand = "${pkgs.pass}/bin/pass lukasz@ebimedia.pl";
+      passwordCommand = "${pkgs.oauth2ms}/bin/oauth2ms";
       imap = {
         host = "outlook.office365.com";
         port = 993;
@@ -52,14 +56,15 @@ in {
         ];
         enable = true;
         extraConfig.account = {
-          AuthMechs = "LOGIN";
+          AuthMechs = "XOAUTH2";
           # SSLVersions = "TLSv1.2";
         };
       };
       msmtp = {
         enable = true;
         extraConfig.from = "lukasz@ebimedia.pl";
-        extraConfig.domain = osConfig.networking.hostName;
+        extraConfig.domain = mailhost;
+        extraConfig.auth = "xoauth2";
       };
       neomutt = {
         enable = true;
