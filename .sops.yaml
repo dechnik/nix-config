@@ -48,3 +48,9 @@ creation_rules:
       - *lolek
       pgp:
       - *lukasz
+  - path_regex: hosts/tolek/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *tolek
+      pgp:
+      - *lukasz
