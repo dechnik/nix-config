@@ -167,6 +167,7 @@ in
               hosts = attrNames outputs.nixosConfigurations;
               homeMachine = "bolek";
               remoteMachine = "tolek";
+              mailMachine = "ola";
             in
             jsonOutput "tailscale-ping" {
               # Build variables for each host
@@ -177,7 +178,7 @@ in
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine} / B $ping_${homeMachine}";
+              text = "  $ping_${remoteMachine} /   $ping_${mailMachine} / B $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${host}") hosts);
             };
