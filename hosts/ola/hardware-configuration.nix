@@ -10,11 +10,11 @@
       availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sd_mod" "sr_mod" ];
     };
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
-        consoleMode = "max";
+        version = 2;
+        device = "/dev/sda";
       };
-      efi.canTouchEfiVariables = true;
     };
   };
 
