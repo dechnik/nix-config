@@ -6,7 +6,7 @@
   mailserver = rec {
     enable = true;
     fqdn = "mail.dechnik.net";
-    sendingFqdn = "tolek.dechnik.net";
+    sendingFqdn = "ola.dechnik.net";
     domains = [
       "dechnik.net"
     ];
@@ -64,15 +64,15 @@
   };
 
   # Webmail
-  # services.roundcube = rec {
-  #   enable = true;
-  #   package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
-  #   hostName = "mail.dechnik.net";
-  #   extraConfig = ''
-  #     $config['smtp_server'] = "tls://${hostName}";
-  #     $config['smtp_user'] = "%u";
-  #     $config['smtp_user'] = "%p";
-  #     $config['plugins'] = [ "carddav" ];
-  #   '';
-  # };
+  services.roundcube = rec {
+    enable = true;
+    package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
+    hostName = "mail.dechnik.net";
+    extraConfig = ''
+      $config['smtp_server'] = "tls://${hostName}";
+      $config['smtp_user'] = "%u";
+      $config['smtp_user'] = "%p";
+      $config['plugins'] = [ "carddav" ];
+    '';
+  };
 }

@@ -4,7 +4,7 @@
     inputs.hardware.nixosModules.common-cpu-amd
     ./hardware-configuration.nix
 
-    # ./services
+    ./services
     ../common/global
     ../common/users/lukasz
   ];
