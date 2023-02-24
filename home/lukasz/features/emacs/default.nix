@@ -8,6 +8,10 @@ let
   h = config.home.homeDirectory;
   # my_emacs = pkgs.emacs28NativeComp;
   my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk;
+  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
+    python-lsp-server
+    pyls-isort
+  ] ++ python-lsp-server.optional-dependencies.all);
 in
 {
   # home.file.".emacs.d" = {
@@ -87,6 +91,7 @@ in
     # :lang latex & :lang org (latex previews)
     texlive.combined.scheme-medium
     rnix-lsp
+    pythonEnv
     # emacs-client
   ];
   # systemd.user.services.emacs = {
