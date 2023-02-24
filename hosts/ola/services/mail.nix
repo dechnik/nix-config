@@ -71,7 +71,7 @@
     extraConfig = ''
       $config['smtp_server'] = "tls://${hostName}";
       $config['smtp_user'] = "%u";
-      $config['smtp_user'] = "%p";
+      $config['smtp_pass'] = "%p";
       $config['plugins'] = [ "carddav" ];
     '';
   };
