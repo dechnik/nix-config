@@ -10,20 +10,25 @@
       availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sd_mod" "sr_mod" ];
     };
     loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot"; # ← use the same mount point here.
+      };
       grub = {
-        enable = true;
-        version = 2;
-        device = "/dev/sda";
+        efiSupport = true;
+        #efiInstallAsRemovable = true; # in case canTouchEfiVariables doesn't work for your system
+        device = "nodev";
       };
     };
   };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=boot" ];
+  fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-label/ESP";
+      fsType = "vfat";
     };
+  };
+
 
   swapDevices = [{
     device = "/swap/swapfile";
