@@ -11,6 +11,7 @@ keys:
     - &tola age1lwsmxcqngugcx3rrgekw8leytq2q2zjwjnnp7f8h2q338yhkqeqs7e05wt
     - &olek age1z58dyxqayvre9zanktn9gtn2p704cas874vjqd97zu5juuv975gq6jfkq2
     - &tolek age10w0y5xpwanuwmgtenvtn8lmdj4dk2ql2z93r8s48jpjxpejtkcpspy2gfd
+    - &ola age1m698qwx30eltu7akewj2zv8lda3rj6xgcgdcxghv0qxu6zs5pg4qst9jht
 creation_rules:
   - path_regex: hosts/common/secrets.ya?ml$
     key_groups:
@@ -22,6 +23,7 @@ creation_rules:
       - *tola
       - *olek
       - *tolek
+      - *ola
       pgp:
       - *lukasz
   - path_regex: hosts/dziad/secrets.ya?ml$
@@ -52,5 +54,11 @@ creation_rules:
     key_groups:
     - age:
       - *tolek
+      pgp:
+      - *lukasz
+  - path_regex: hosts/ola/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *ola
       pgp:
       - *lukasz
