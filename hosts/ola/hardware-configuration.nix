@@ -18,12 +18,12 @@
     };
   };
 
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-label/ESP";
-      fsType = "vfat";
+  fileSystems."/boot" =
+    {
+      device = "/dev/sda1";
+      fsType = "btrfs";
+      options = [ "subvol=boot" ];
     };
-  };
 
   swapDevices = [{
     device = "/swap/swapfile";
