@@ -73,11 +73,6 @@ in {
         extraConfig.domain = mailhost;
         extraConfig.auth = "xoauth2";
       };
-      neomutt = {
-        enable = true;
-        sendMailCommand = "msmtpq --read-recipients";
-        extraConfig = folder-config config.accounts.email.accounts;
-      };
       display-folders = [
         "Inbox"
         "Sent Items"

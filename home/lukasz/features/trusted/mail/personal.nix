@@ -6,71 +6,33 @@
 }: let
   folder-config = import ./folder-config.nix {inherit config lib;};
   maildirBase = "${config.xdg.dataHome}/mail";
-  protonmail-cli = pkgs.writeShellScriptBin "protonmail-cli" ''
-    systemctl --user stop protonmail-bridge.service
-    ${pkgs.protonmail-bridge}/bin/protonmail-bridge --cli
-    systemctl --user start protonmail-bridge.service
-  '';
   inherit (config) mailhost;
 in {
-  home.persistence = {
-    "/persist/mail/lukasz" = {
-      directories = [
-        ".config/protonmail"
-      ];
-      allowOther = true;
-    };
-  };
-  home.packages = [
-    protonmail-cli
-  ];
-
-  systemd.user.services.protonmail-bridge = {
-    Install.WantedBy = [ "default.target" ];
-
-    Unit = {
-      Description = "Protonmail Bridge";
-      After = [ "network.target" ];
-    };
-
-    Service = {
-      Type = "simple";
-      ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge -l info --noninteractive";
-      Restart = "on-failure";
-      RestartSec = 3;
-      # Environment = "PATH=${config.programs.password-store.package}/bin PASSWORD_STORE_DIR=$HOME/.local/share/password-store";
-      Environment = [ "PATH=${config.programs.password-store.package}/bin" "PASSWORD_STORE_DIR=/home/lukasz/.local/share/password-store" ];
-    };
-  };
-
   accounts.email.accounts = {
-    "proton" = {
+    "dechnik" = {
       address = "lukasz@dechnik.net";
       aliases = [
-        "ldechnik@pm.me"
         "admin@dechnik.net"
         "dechnik@dechnik.net"
       ];
       realName = "Lukasz Dechnik";
       primary = true;
-      userName = "ldechnik@protonmail.com";
-      passwordCommand = "${config.programs.password-store.package}/bin/pass ldechnik-${mailhost}@pm.me";
+      userName = "lukasz@dechnik.net";
+      passwordCommand = "${config.programs.password-store.package}/bin/pass mail.dechnik.net/lukasz@dechnik.net";
       imap = {
-        host = "127.0.0.1";
-        port = 1143;
+        host = "mail.dechnik.net";
+        port = 993;
         tls = {
           enable = true;
-          useStartTls = true;
-          certificatesFile = "${config.home.homeDirectory}/.config/protonmail/bridge/cert.pem";
+          useStartTls = false;
         };
       };
       smtp = {
-        host = "127.0.0.1";
-        port = 1025;
+        host = "mail.dechnik.net";
+        port = 587;
         tls = {
           enable = true;
           useStartTls = true;
-          certificatesFile = "${config.home.homeDirectory}/.config/protonmail/bridge/cert.pem";
         };
       };
       gpg = {
@@ -94,11 +56,6 @@ in {
         enable = true;
         extraConfig.from = "lukasz@dechnik.net";
         extraConfig.domain = mailhost;
-      };
-      neomutt = {
-        enable = true;
-        sendMailCommand = "msmtpq --read-recipients";
-        extraConfig = folder-config config.accounts.email.accounts;
       };
       display-folders = [
         "Inbox"
