@@ -114,11 +114,6 @@ in
     package = my_emacs;
     client.enable = true;
   };
-  home = {
-    sessionVariables = {
-      EDITOR = "emacsclient -create-frame --alternate-editor= --no-wait";
-    };
-  };
   systemd.user.services.emacs.Service.Environment = "PATH=${pkgs.libnotify}/bin";
   programs.emacs = {
     enable = true;

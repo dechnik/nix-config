@@ -7,11 +7,12 @@
     ./fzf.nix
     ./git.nix
     ./gpg.nix
+    ./lf.nix
     ./neovim.nix
     ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix
-    # ./ranger.nix
+    ./ranger.nix
     # ./screen.nix
     ./shellcolor.nix
     ./ssh.nix

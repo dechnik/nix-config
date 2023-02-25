@@ -1,6 +1,11 @@
 { inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [ inputs.neovim.packages.${pkgs.system}.main ];
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
   xdg.configFile."dashboard-nvim/.keep".text = "";
   xdg.desktopEntries = {
     nvim = {
