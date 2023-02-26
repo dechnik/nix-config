@@ -22,6 +22,10 @@ in
       size = 10;
     };
     settings = {
+      enable_audio_bell = "no";
+      visual_bell_duration = "0.1";
+      visual_bell_color = "#${colors.base08}";
+      copy_on_select = "clipboard";
       background_opacity = "0.9";
       window_padding_width = 15;
       foreground = "#${colors.base05}";
