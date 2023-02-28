@@ -255,11 +255,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1677612148,
-        "narHash": "sha256-DIK+EPdECZAefkJH3htMu27qTbh+zeCHWovBJQwPqeo=",
+        "lastModified": 1677613501,
+        "narHash": "sha256-ksBj+T6shfmS1TY/hnzYF2G3PH42vk7YVwejY+Sawh8=",
         "owner": "~lukasz",
         "repo": "neovim",
-        "rev": "18e72457298cf1d2978966f95622b0541afc3002",
+        "rev": "b937529868532a77308c148e4acd0a7c4d3225a1",
         "type": "sourcehut"
       },
       "original": {
