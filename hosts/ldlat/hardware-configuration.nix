@@ -33,6 +33,11 @@
     fsType = "vfat";
   };
 
+  swapDevices = [{
+    device = "/swap/swapfile";
+    size = 8192;
+  }];
+
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;
 }
