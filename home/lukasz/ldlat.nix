@@ -10,6 +10,7 @@
     ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
     ./features/desktop/optional/work.nix
+    ./features/desktop/optional/bluetooth.nix
   ];
 
   home.sessionVariables = {

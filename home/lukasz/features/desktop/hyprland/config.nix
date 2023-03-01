@@ -70,7 +70,7 @@
   exec-once=waybar
   exec=swaybg -i ${wallpaper} --mode fill
   exec-once=mako
-  exec-once=blueman-applet
+  # exec-once=blueman-applet
   exec-once=swayidle -w
 
   # Mouse binding
