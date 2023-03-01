@@ -4,6 +4,13 @@ let
   inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
 in
 rec {
+  home.pointerCursor = {
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 20;
+    gtk.enable = true;
+    x11.enable = true;
+  };
   gtk = {
     enable = true;
     font = {
