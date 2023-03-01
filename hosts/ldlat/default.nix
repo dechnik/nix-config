@@ -51,7 +51,7 @@
   environment.variables.HOSTNAME = "ldlat";
 
   boot = {
-    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen.extend (self: super: {
     #   evdi = super.evdi.overrideAttrs (o: rec {
     #     src = pkgs.fetchFromGitHub {

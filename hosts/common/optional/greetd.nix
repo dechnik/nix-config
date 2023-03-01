@@ -11,6 +11,10 @@ let
   ''}";
 in
 {
+  environment.systemPackages = with pkgs; [
+    bibata-cursors
+  ];
+  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   services.greetd = {
     enable = true;
     settings = {

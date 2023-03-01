@@ -12,6 +12,8 @@
     ./waybar.nix
   ];
   home.packages = with pkgs; [
+    glib
+    gsettings-desktop-schemas
     grim
     imv
     lyrics
