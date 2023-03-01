@@ -10,6 +10,11 @@ rec {
       name = config.fontProfiles.regular.family;
       size = 12;
     };
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 20;
+    };
     theme = {
       name = "${config.colorscheme.slug}";
       package = gtkThemeFromScheme { scheme = config.colorscheme; };
