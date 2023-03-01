@@ -4,6 +4,7 @@
     ./firefox.nix
     ./chromium.nix
     ./font.nix
+    ./cursor.nix
     ./mpv.nix
     ./gtk.nix
     ./pavucontrol.nix

@@ -29,6 +29,7 @@
       name = "HDMI-A-1";
       width = 1920;
       height = 1080;
+      x = 0;
       y = 1080;
       workspace = "1";
       isPrimary = true;
@@ -45,6 +46,8 @@
       name = "DVI-I-2";
       width = 1920;
       height = 1080;
+      x = 0;
+      y = 0;
       workspace = "8";
     }
     {
@@ -52,6 +55,7 @@
       width = 1920;
       height = 1080;
       x = 1920;
+      y = 0;
       workspace = "9";
     }
   ];

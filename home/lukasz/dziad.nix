@@ -30,6 +30,8 @@
       name = "DP-2";
       width = 2560;
       height = 1440;
+      x = 0;
+      y = 0;
       refreshRate = 75;
       workspace = "1";
       isPrimary = true;
@@ -39,6 +41,7 @@
       width = 2560;
       height = 1440;
       x = 2560;
+      y = 0;
       workspace = "9";
     }
   ];
