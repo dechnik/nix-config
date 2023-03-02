@@ -11,6 +11,7 @@
     ./features/desktop/optional/work.nix
     ./features/desktop/hyprland/nvidia.nix
     ./features/desktop/hyprland
+    ./features/desktop/optional/bluetooth.nix
   ];
 
   home.sessionVariables = {
