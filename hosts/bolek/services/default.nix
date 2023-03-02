@@ -6,7 +6,7 @@
     ./git-remote.nix
     # ./gitea
     ./nginx.nix
-    ./nc.nix
+    # ./nc.nix
     ./rss.nix
     ./searx.nix
     ./website.nix
