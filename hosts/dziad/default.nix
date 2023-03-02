@@ -64,6 +64,8 @@
 
   services.dbus.packages = [ pkgs.gcr ];
 
+  hardware.xpadneo.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = [
