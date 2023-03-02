@@ -3,12 +3,16 @@
   xdg.configFile."khal/config".text = ''
     [calendars]
 
-    [[calendars]]
-    path = ~/Documents/Calendars/*
-    type = discover
+    [[personal]]
+    path = ~/Documents/Calendars/Personal
+    color = dark green
+
+    [[work]]
+    path = ~/Documents/Calendars/Work
+    color = dark blue
 
     [locale]
     timeformat = %H:%M
-    dateformat = %d/%m/%Y
+    dateformat = %d-%m-%Y
   '';
 }
