@@ -45,7 +45,57 @@
       y = 0;
       workspace = "9";
     }
+    {
+      name = "HDMI-A-1";
+      width = 3840;
+      height = 2160;
+      refreshRate = 120;
+      x = 5120;
+      y = 0;
+      workspace = "8";
+    }
   ];
+  services = {
+    kanshi = {
+      enable = true;
+      systemdTarget = "graphical-session.target";
+      profiles = {
+        with-tv = {
+          outputs = [
+            {
+              criteria = "DP-2";
+              position = "0,0";
+              mode = "2560x1440@75Hz";
+            }
+            {
+              criteria = "DP-1";
+              position = "2560,0";
+              mode = "2560x1440@60Hz";
+            }
+            {
+              criteria = "HDMI-A-1";
+              position = "5120,0";
+              mode = "3840x2160@120Hz";
+            }
+          ];
+        };
+        no-tv = {
+          outputs = [
+            {
+              criteria = "DP-2";
+              position = "0,0";
+              mode = "2560x1440@75Hz";
+            }
+            {
+              criteria = "DP-1";
+              position = "2560,0";
+              mode = "2560x1440@60Hz";
+            }
+          ];
+        };
+      };
+    };
+  };
 
   wallpaper = builtins.fetchurl rec {
     name = "wallpaper-${sha256}.png";

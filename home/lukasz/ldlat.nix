@@ -78,18 +78,22 @@
             {
               criteria = "eDP-1";
               position = "1920,1080";
+              mode = "1920x1080@60Hz";
             }
             {
               criteria = "HDMI-A-1";
               position = "0,1080";
+              mode = "1920x1080@60Hz";
             }
             {
               criteria = "DVI-I-2";
               position = "0,0";
+              mode = "1920x1080@60Hz";
             }
             {
               criteria = "DVI-I-1";
               position = "1920,0";
+              mode = "1920x1080@60Hz";
             }
           ];
         };
