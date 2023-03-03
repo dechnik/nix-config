@@ -67,6 +67,7 @@
   services.dbus.packages = [ pkgs.gcr ];
 
   hardware.xpadneo.enable = true;
+  hardware.steam-hardware.enable = true;
 
   xdg.portal = {
     enable = true;
