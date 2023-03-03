@@ -28,16 +28,19 @@ in
       inherit hostName;
       package = pkgs.nextcloud25;
       extraApps = with pkgs.nextcloud25Packages.apps; {
-        inherit mail contacts;
+        inherit oidc;
       };
+      # Auto-update Nextcloud Apps
+      autoUpdateApps.enable = true;
+      # Set what time makes sense for you
+      autoUpdateApps.startAt = "05:00:00";
       extraAppsEnable = true;
       enable = true;
       https = true;
       enableBrokenCiphersForSSE = false;
-      home = "/media/nextcloud";
+      home = "/srv/nextcloud";
       maxUploadSize = "10G";
       config = {
-        trustedProxies = [ "10.30.10.12" ];
         adminuser = "root";
         adminpassFile = config.sops.secrets.nextcloud-password.path;
         overwriteProtocol = "https";
