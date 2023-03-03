@@ -159,7 +159,7 @@ in
           on-click = "";
         };
         "custom/tailscale-ping" = {
-          interval = 2;
+          interval = 10;
           return-type = "json";
           exec =
             let
