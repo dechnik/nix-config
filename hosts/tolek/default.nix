@@ -2,7 +2,7 @@
   imports = [
     ./hardware-configuration.nix
 
-    # ./services
+    ./services
     ../common/global
     ../common/users/lukasz
     ../common/optional/qemu-vm.nix
