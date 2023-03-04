@@ -4,6 +4,7 @@
     inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
     ./acme.nix
+    ./avahi.nix
     ./fail2ban.nix
     ./firewall.nix
     ./fish.nix
