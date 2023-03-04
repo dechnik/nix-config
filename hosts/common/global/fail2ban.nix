@@ -8,5 +8,16 @@
       "172.16.0.0/12"
       "192.168.0.0/16"
     ];
+    bantime-increment = {
+      enable = true;
+      maxtime = "168h";
+      factor = "4";
+    };
+
+    jails.DEFAULT = ''
+      blocktype = DROP
+      bantime = 1h
+      findtime = 1h
+    '';
   };
 }
