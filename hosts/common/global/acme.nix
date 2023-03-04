@@ -4,7 +4,8 @@
   security.acme = {
     defaults = {
       email = "lukasz@dechnik.net";
-      dnsProvider = "route53";
+      # dnsProvider = "route53";
+      dnsProvider = "cloudflare";
       credentialsFile = config.sops.secrets.acme-credentials.path;
     };
     acceptTerms = true;
