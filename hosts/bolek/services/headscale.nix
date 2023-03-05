@@ -37,6 +37,8 @@
         ip_prefixes = [
           "10.100.0.0/16"
         ];
+        grpc_listen_addr = "127.0.0.1:50443";
+        grpc_allow_insecure = true;
       };
     };
 
@@ -45,12 +47,33 @@
         forceSSL = true;
         useACMEHost = "tailscale.dechnik.net";
         locations = {
+          "/headscale." = {
+            extraConfig = ''
+                grpc_pass grpc://${config.services.headscale.settings.grpc_listen_addr};
+                  '';
+            priority = 1;
+          };
           "/" = {
             proxyPass = "http://localhost:${toString config.services.headscale.port}";
             proxyWebsockets = true;
+            extraConfig = ''
+              keepalive_requests          100000;
+              keepalive_timeout           160s;
+              proxy_buffering             off;
+              proxy_connect_timeout       75;
+              proxy_ignore_client_abort   on;
+              proxy_read_timeout          900s;
+              proxy_send_timeout          600;
+              send_timeout                600;
+              '';
           };
           "/metrics" = {
             proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
+            extraConfig = ''
+              allow 10.0.0.0/8;
+              deny all;
+              '';
+            priority = 2;
           };
         };
         extraConfig = ''
