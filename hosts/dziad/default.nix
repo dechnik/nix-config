@@ -18,7 +18,8 @@
       ../common/optional/vpn.nix
       ../common/optional/bluetooth.nix
       ../common/optional/syncthing.nix
-      ../common/optional/postfix.nix
+      # ../common/optional/postfix.nix
+      ../common/optional/gamemode.nix
       # ../common/optional/zfs.nix
       # ../common/optional/quietboot.nix
     ];
