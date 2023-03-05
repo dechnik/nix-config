@@ -30,7 +30,7 @@
         };
         dns_config = {
           override_local_dns = true;
-          baseDomain = "dechnik";
+          baseDomain = "dechnik.net";
         };
         serverUrl = "https://tailscale.dechnik.net";
         metrics_listen_addr = "127.0.0.1:8095";
