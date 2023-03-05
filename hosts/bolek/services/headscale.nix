@@ -1,5 +1,17 @@
 { config, lib, ... }:
 {
+  sops.secrets = {
+    headscale-private-key = {
+      sopsFile = ../secrets.yaml;
+      owner = "headscale";
+      mode = "0600";
+    };
+    headscale-noise-key = {
+      sopsFile = ../secrets.yaml;
+      owner = "headscale";
+      mode = "0600";
+    };
+  };
   security.acme.certs = {
     "tailscale.dechnik.net" = {
       group = "nginx";
@@ -12,22 +24,19 @@
       port = 8085;
       address = "127.0.0.1";
       settings = {
+        private_key_file = config.sops.secrets.headscale-private-key.path;
+        noise = {
+          private_key_path = config.sops.secrets.headscale-noise-key.path;
+        };
         dns_config = {
           override_local_dns = true;
-          baseDomain = "dechnik.net";
-          magicDns = true;
-          domains = [ "ts.dechnik.net" ];
-          nameservers = [
-            "9.9.9.9"
-          ];
+          baseDomain = "dechnik";
         };
         serverUrl = "https://tailscale.dechnik.net";
         metrics_listen_addr = "127.0.0.1:8095";
         ip_prefixes = [
           "10.100.0.0/16"
         ];
-        logtail.enabled = false;
-        log.level = "warn";
       };
     };
 
