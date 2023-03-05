@@ -39,6 +39,15 @@
         ];
         grpc_listen_addr = "127.0.0.1:50443";
         grpc_allow_insecure = true;
+        derp = {
+          server = {
+            enabled = true;
+            region_id = 999;
+            region_code = "dechnik";
+            region_name = "tailscale.dechnik.net";
+            stun_listen_addr = "0.0.0.0:3478";
+          };
+        };
       };
     };
 
