@@ -80,7 +80,7 @@
             proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
             extraConfig = ''
               allow 10.0.0.0/8;
-              satisfy any;
+              deny all;
               '';
             priority = 2;
           };
