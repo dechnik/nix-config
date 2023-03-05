@@ -92,6 +92,9 @@ in
     texlive.combined.scheme-medium
     rnix-lsp
     pythonEnv
+
+    # Node
+    nodejs-16_x
     # emacs-client
   ];
   # systemd.user.services.emacs = {
