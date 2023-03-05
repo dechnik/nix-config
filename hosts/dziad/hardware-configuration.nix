@@ -27,6 +27,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-label/GAMES";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/A2C4-DBDC";
     fsType = "vfat";
