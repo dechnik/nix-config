@@ -35,7 +35,8 @@
         serverUrl = "https://tailscale.dechnik.net";
         metrics_listen_addr = "127.0.0.1:8095";
         ip_prefixes = [
-          "10.100.0.0/16"
+          "fd7a:115c:a1e0::/48"
+          "100.64.0.0/10"
         ];
         grpc_listen_addr = "127.0.0.1:50443";
         grpc_allow_insecure = true;
