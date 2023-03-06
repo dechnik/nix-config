@@ -8,7 +8,7 @@
     ./rss.nix
     ./searx.nix
     ./website.nix
-    ./headscale.nix
+    # ./headscale.nix
     ./nginx-jellyfin.nix
   ];
 }

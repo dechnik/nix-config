@@ -11,6 +11,11 @@
       owner = "headscale";
       mode = "0600";
     };
+    headscale-oidc-secret = {
+      sopsFile = ../secrets.yaml;
+      owner = "headscale";
+      mode = "0600";
+    };
   };
   security.acme.certs = {
     "tailscale.dechnik.net" = {
@@ -22,7 +27,6 @@
     headscale = {
       enable = true;
       port = 8085;
-      address = "127.0.0.1";
       settings = {
         private_key_file = config.sops.secrets.headscale-private-key.path;
         noise = {
@@ -40,6 +44,15 @@
         ];
         grpc_listen_addr = "127.0.0.1:50443";
         grpc_allow_insecure = true;
+        oidc = {
+          issuer = "https://nextcloud.dechnik.net";
+          client_id = "00EczQNvd5f3yL8XD4Ff5sI4Qrynmc7nMfX3lSEKE61jbCICbSc4XiWSnA3QCYRe";
+          client_secret_file = config.sops.secrets.headscale-oidc-secret.path;
+
+          domain_map = {
+            ".*" = "dechnik.net";
+          };
+        };
         derp = {
           server = {
             enabled = true;
@@ -93,7 +106,7 @@
     };
   };
 
-  environment.systemPackages = [ config.services.headscale.package ];
+  environment.systemPackages = [ config.services.headscale.package pkgs.sqlite-interactive pkgs.sqlite-web ];
 
   environment.persistence = {
     "/persist".directories = [ "/var/lib/headscale" ];
