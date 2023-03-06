@@ -85,7 +85,7 @@ in
         modules-right = [
           "custom/gamemode"
           "network"
-          "custom/tailscale-ping"
+          # "custom/tailscale-ping"
           "battery"
           "tray"
           "custom/hostname"
@@ -174,7 +174,7 @@ in
               pre = ''
                 set -o pipefail
                 ${concatStringsSep "\n" (map (host: ''
-                  ping_${host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${host}="Disconnected"
+                  ping_${host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${host}="Dc"
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping

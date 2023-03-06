@@ -10,7 +10,7 @@
     ./fish.nix
     ./zsh.nix
     ./locale.nix
-    ./tailscale.nix
+    # ./tailscale.nix
     ./nix.nix
     ./openssh.nix
     ./podman.nix

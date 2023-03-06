@@ -15,11 +15,14 @@ in
         }];
       };
       trusted = lib.hm.dag.entryBefore [ "net" ] {
-        host = "dechnik.net *.dechnik.net *.ts.dechnik.net";
+        host = "dechnik.net *.dechnik.net";
         forwardAgent = true;
       };
     };
-    includes = [ "/var/run/secrets/ssh-config" ];
+    includes = [
+      "/var/run/secrets/ssh-config"
+      "config.d/*"
+    ];
   };
 
   home.persistence = {
