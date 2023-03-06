@@ -11,6 +11,7 @@
 
   networking = {
     hostName = "tolek";
+    domain = "oracle.dechnik.net";
     useDHCP = true;
   };
   system.stateVersion = "22.05";

@@ -11,6 +11,7 @@
 
   networking = {
     hostName = "ola";
+    domain = "hetzner.dechnik.net";
     useDHCP = true;
   };
   system.stateVersion = "22.05";

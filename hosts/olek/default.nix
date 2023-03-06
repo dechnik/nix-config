@@ -16,6 +16,7 @@
 
   networking = {
     hostName = "olek"; # Define your hostname.
+    domain = "pve.dechnik.net";
     useDHCP = true;
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };

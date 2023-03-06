@@ -30,6 +30,7 @@
 
   networking = {
     hostName = "bolek"; # Define your hostname.
+    domain = "pve.dechnik.net";
     useDHCP = true;
     extraHosts = ''
       127.0.0.1 cache.dechnik.net

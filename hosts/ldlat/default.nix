@@ -44,6 +44,7 @@
 
   networking = {
     hostName = "ldlat"; # Define your hostname.
+    domain = "dechnik.net";
     useDHCP = true;
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };

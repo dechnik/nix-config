@@ -53,7 +53,6 @@
   programs.fuse.userAllowOther = true;
 
   hardware.enableRedistributableFirmware = true;
-  networking.domain = "dechnik.net";
 
   # Increase open file limit for sudoers
   security.pam.loginLimits = [

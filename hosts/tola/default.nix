@@ -17,6 +17,7 @@
 
   networking = {
     hostName = "tola"; # Define your hostname.
+    domain = "pve.dechnik.net";
     useDHCP = true;
     extraHosts = ''
       10.30.10.12 cache.dechnik.net
