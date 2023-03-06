@@ -40,7 +40,7 @@
       inherit package;
     };
 
-    environment.persistence = lib.mkIf exitNode {
+    environment.persistence = lib.mkIf persist {
       "/persist".directories = [ "/var/lib/tailscale" ];
     };
 
