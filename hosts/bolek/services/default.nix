@@ -9,6 +9,7 @@
     ./searx.nix
     ./website.nix
     ./headscale.nix
+    ./tailscale.nix
     ./nginx-jellyfin.nix
   ];
 }
