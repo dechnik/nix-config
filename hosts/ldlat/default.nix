@@ -11,6 +11,7 @@
 
       ../common/global
       ../common/users/lukasz
+      ./services
 
       ../common/optional/pipewire.nix
       ../common/optional/greetd.nix
