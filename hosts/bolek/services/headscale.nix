@@ -16,6 +16,11 @@
       owner = "headscale";
       mode = "0600";
     };
+    headscale-acl = {
+      sopsFile = ../secrets.yaml;
+      owner = "headscale";
+      mode = "0600";
+    };
   };
   security.acme.certs = {
     "tailscale.dechnik.net" = {
@@ -32,6 +37,7 @@
         noise = {
           private_key_path = config.sops.secrets.headscale-noise-key.path;
         };
+        acl_policy_path = config.sops.secrets.headscale-acl.path;
         dns_config = {
           override_local_dns = true;
           baseDomain = "dechnik.net";
