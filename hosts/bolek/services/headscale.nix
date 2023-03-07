@@ -28,6 +28,12 @@
     };
   };
   networking.firewall.allowedUDPPorts = [ 3478 ];
+  systemd.services.headscale.environment = {
+    HEADSCALE_EXPERIMENTAL_FEATURE_SSH="1";
+    # HEADSCALE_LOG_LEVEL = "trace";
+    # GRPC_GO_LOG_VERBOSITY_LEVEL = "2";
+    # GRPC_GO_LOG_SEVERITY_LEVEL = "info";
+  };
   services = {
     headscale = {
       enable = true;
