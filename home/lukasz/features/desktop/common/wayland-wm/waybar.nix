@@ -163,8 +163,10 @@ in
           return-type = "json";
           exec =
             let
-              inherit (builtins) concatStringsSep attrNames;
-              hosts = attrNames outputs.nixosConfigurations;
+              inherit (builtins) concatStringsSep attrNames replaceStrings;
+              # hosts = attrNames outputs.nixosConfigurations;
+              hosts = lib.mapAttrsToList getTailscaleHosts outputs.nixosConfigurations;
+              getTailscaleHosts = _: cfg: replaceStrings [".dechnik.net"] [""] cfg.config.networking.fqdn;
               homeMachine = "bolek";
               remoteMachine = "tolek";
               mailMachine = "ola";
