@@ -13,6 +13,7 @@
       ../common/optional/postfix.nix
       ../common/global
       ../common/users/lukasz
+      ./services
     ];
 
   networking = {
