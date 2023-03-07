@@ -37,7 +37,7 @@
   services = {
     headscale = {
       enable = true;
-      port = 8085;
+      port = 8080;
       settings = {
         private_key_file = config.sops.secrets.headscale-private-key.path;
         noise = {
