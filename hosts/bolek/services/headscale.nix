@@ -66,15 +66,6 @@
             ".*" = "dechnik.net";
           };
         };
-        derp = {
-          server = {
-            enabled = true;
-            region_id = 999;
-            region_code = "dechnik";
-            region_name = "tailscale.dechnik.net";
-            stun_listen_addr = "0.0.0.0:3478";
-          };
-        };
       };
     };
 
