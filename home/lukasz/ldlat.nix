@@ -9,6 +9,7 @@
     ./features/trusted/mail/work.nix
     ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
+    ./features/desktop/wireless
     ./features/desktop/optional/work.nix
     ./features/desktop/optional/bluetooth.nix
   ];
