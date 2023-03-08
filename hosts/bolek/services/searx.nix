@@ -19,6 +19,9 @@
         socket = "/run/searx/searx.sock"; # ...or UNIX socket
         chmod-socket = "660";
         cache2 = "name=searxngcache,items=2000,blocks=2000,blocksize=4096,bitmap=1";
+        ignore-sigpipe = true;
+        ignore-write-errors = true;
+        disable-write-exception = true;
       };
       settings = {
         search = {
