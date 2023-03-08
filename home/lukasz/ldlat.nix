@@ -14,10 +14,6 @@
     ./features/desktop/optional/bluetooth.nix
   ];
 
-  home.sessionVariables = {
-    HOSTNAME = "ldlat";
-  };
-
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
   mailhost = "ldlat";

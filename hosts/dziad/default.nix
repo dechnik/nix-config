@@ -52,8 +52,6 @@
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
-  environment.variables.HOSTNAME = "dziad";
-
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
