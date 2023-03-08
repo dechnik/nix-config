@@ -85,7 +85,7 @@ in
         modules-right = [
           "custom/gamemode"
           "network"
-          # "custom/tailscale-ping"
+          "custom/tailscale-ping"
           "battery"
           "tray"
           "custom/hostname"
@@ -167,22 +167,22 @@ in
               # hosts = attrNames outputs.nixosConfigurations;
               hosts = lib.mapAttrsToList getTailscaleHosts outputs.nixosConfigurations;
               getTailscaleHosts = _: cfg: replaceStrings [".dechnik.net"] [""] cfg.config.networking.fqdn;
-              homeMachine = "bolek";
-              remoteMachine = "tolek";
-              mailMachine = "ola";
+              homeMachine = "bolek_pve";
+              remoteMachine = "tolek_oracle";
+              mailMachine = "ola_hetzner";
             in
             jsonOutput "tailscale-ping" {
               # Build variables for each host
               pre = ''
                 set -o pipefail
                 ${concatStringsSep "\n" (map (host: ''
-                  ping_${host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${host}="Dc"
+                  ping_${replaceStrings ["."] ["_"] host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${replaceStrings ["."] ["_"] host}="Dc"
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
               text = "  $ping_${remoteMachine} /   $ping_${mailMachine} / B $ping_${homeMachine}";
               # Show pings from all machines
-              tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${host}") hosts);
+              tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${replaceStrings ["."] ["_"] host}") hosts);
             };
           format = "{}";
           on-click = "";
