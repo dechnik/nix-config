@@ -14,7 +14,7 @@
     acceptDns ? false,
     reset ? true,
     reauth ? false,
-    ssh ? true,
+    ssh ? false,
     tags ? [],
   }: {
     networking.firewall = {
