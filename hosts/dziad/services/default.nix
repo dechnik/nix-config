@@ -1,6 +1,6 @@
 {
   imports = [
     ./unifi.nix
-    ./tailscale.nix
+    # ./tailscale.nix
   ];
 }

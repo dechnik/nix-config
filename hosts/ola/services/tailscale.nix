@@ -5,7 +5,7 @@
   ...
 }:(import ../../common/functions/tailscale.nix {inherit config pkgs lib;}).tailscale
   {
-    preAuthKey = "2ca1a07615758a089b515b8743ed4bf6433734ba83921d95"; # onetime key
+    preAuthKey = "1ed92e5bad2628077b97d56482e48916aff9043f7c246188"; # onetime key
     loginServer = "https://tailscale.dechnik.net";
     reauth = false;
     exitNode = true;

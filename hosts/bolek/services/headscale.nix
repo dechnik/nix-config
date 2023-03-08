@@ -29,7 +29,7 @@
   };
   networking.firewall.allowedUDPPorts = [ 3478 ];
   systemd.services.headscale.environment = {
-    HEADSCALE_EXPERIMENTAL_FEATURE_SSH="1";
+    # HEADSCALE_EXPERIMENTAL_FEATURE_SSH="1";
     # HEADSCALE_LOG_LEVEL = "trace";
     # GRPC_GO_LOG_VERBOSITY_LEVEL = "2";
     # GRPC_GO_LOG_SEVERITY_LEVEL = "info";
@@ -37,14 +37,13 @@
   services = {
     headscale = {
       enable = true;
-      port = 8080;
       settings = {
         private_key_file = config.sops.secrets.headscale-private-key.path;
         noise = {
           private_key_path = config.sops.secrets.headscale-noise-key.path;
         };
         # acl_policy_path = config.sops.secrets.headscale-acl.path;
-        acl_policy_path = "/var/lib/headscale/headscale-acl";
+        # acl_policy_path = "/var/lib/headscale/headscale-acl";
         dns_config = {
           override_local_dns = true;
           baseDomain = "dechnik.net";
