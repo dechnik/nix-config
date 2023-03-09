@@ -43,10 +43,19 @@
           private_key_path = config.sops.secrets.headscale-noise-key.path;
         };
         # acl_policy_path = config.sops.secrets.headscale-acl.path;
-        # acl_policy_path = "/var/lib/headscale/headscale-acl";
+        acl_policy_path = "/var/lib/headscale/headscale-acl";
         dns_config = {
           override_local_dns = true;
           baseDomain = "dechnik.net";
+        };
+        derp = {
+          server = {
+            enabled = true;
+            region_id = 999;
+            region_code = "dechnik";
+            region_name = "tailscale.dechnik.net";
+            stun_listen_addr = "0.0.0.0:3478";
+          };
         };
         serverUrl = "https://tailscale.dechnik.net";
         metrics_listen_addr = "127.0.0.1:8095";
