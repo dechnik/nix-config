@@ -10,6 +10,7 @@
       ../../common/optional/syncthing.nix
       ../../common/optional/postfix.nix
       ../../common/global
+      ../../common/global/network.nix
       ../../common/users/lukasz
     ];
 
@@ -28,10 +29,55 @@
     };
   };
 
+  my.wan = "ens19";
+  my.lan = "lan0";
+
   networking = {
     hostName = "bolek"; # Define your hostname.
     domain = "pve.dechnik.net";
-    useDHCP = true;
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
+    bridges = {
+      lan0.interfaces = [ ];
+    };
+
+    interfaces = {
+      ens18 = {
+        useDHCP = true;
+      };
+
+      ${config.my.wan} = {
+        useDHCP = true;
+        # ipv4.addresses = [
+        #   {
+        #     address = "185.243.216.95";
+        #     prefixLength = 24;
+        #   }
+        # ];
+        # ipv6.addresses = [
+        #   {
+        #     address = "2a03:94e0:ffff:185:243:216::95";
+        #     prefixLength = 118;
+        #   }
+        # ];
+
+        tempAddress = "disabled";
+      };
+
+      ${config.my.lan} = {
+        useDHCP = false;
+        ipv4.addresses = [
+          {
+            address = "10.60.0.1";
+            prefixLength = 24;
+          }
+        ];
+        tempAddress = "disabled";
+      };
+    };
+    # useDHCP = true;
     extraHosts = ''
       127.0.0.1 cache.dechnik.net
       127.0.0.1 tailscale.dechnik.net
