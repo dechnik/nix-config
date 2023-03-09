@@ -5,13 +5,13 @@
     [
       ./hardware-configuration.nix
 
-      ../common/optional/qemu-vm.nix
+      ../../common/optional/qemu-vm.nix
       # ../common/optional/greetd.nix
-      ../common/optional/xserver.nix
-      ../common/optional/gnome.nix
-      ../common/optional/postfix.nix
-      ../common/global
-      ../common/users/lukasz
+      ../../common/optional/xserver.nix
+      ../../common/optional/gnome.nix
+      ../../common/optional/postfix.nix
+      ../../common/global
+      ../../common/users/lukasz
       ./services
     ];
 

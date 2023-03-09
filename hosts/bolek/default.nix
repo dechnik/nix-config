@@ -6,11 +6,11 @@
       ./hardware-configuration.nix
       ./services
 
-      ../common/optional/qemu-vm.nix
-      ../common/optional/syncthing.nix
-      ../common/optional/postfix.nix
-      ../common/global
-      ../common/users/lukasz
+      ../../common/optional/qemu-vm.nix
+      ../../common/optional/syncthing.nix
+      ../../common/optional/postfix.nix
+      ../../common/global
+      ../../common/users/lukasz
     ];
 
   sops.secrets = {

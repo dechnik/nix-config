@@ -5,8 +5,8 @@
     ./hardware-configuration.nix
 
     ./services
-    ../common/global
-    ../common/users/lukasz
+    ../../common/global
+    ../../common/users/lukasz
   ];
 
   networking = {

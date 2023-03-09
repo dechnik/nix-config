@@ -13,7 +13,7 @@ keys:
     - &tolek age10w0y5xpwanuwmgtenvtn8lmdj4dk2ql2z93r8s48jpjxpejtkcpspy2gfd
     - &ola age16wd54jwn3q49yzwuq5c85c925qxzvtddn6l443rq3g7ylh8xvfwq2thh9c
 creation_rules:
-  - path_regex: hosts/common/secrets.ya?ml$
+  - path_regex: common/secrets.ya?ml$
     key_groups:
     - age:
       - *dziad

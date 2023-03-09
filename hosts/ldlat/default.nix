@@ -9,17 +9,17 @@
 
       ./hardware-configuration.nix
 
-      ../common/global
-      ../common/users/lukasz
+      ../../common/global
+      ../../common/users/lukasz
       ./services
 
-      ../common/optional/pipewire.nix
-      ../common/optional/greetd.nix
-      ../common/optional/wireless.nix
-      ../common/optional/bluetooth.nix
-      ../common/optional/syncthing.nix
-      ../common/optional/printing.nix
-      ../common/optional/vpn.nix
+     ../../common/optional/pipewire.nix
+     ../../common/optional/greetd.nix
+     ../../common/optional/wireless.nix
+     ../../common/optional/bluetooth.nix
+     ../../common/optional/syncthing.nix
+     ../../common/optional/printing.nix
+     ../../common/optional/vpn.nix
     ];
 
   sops.secrets = {
@@ -36,7 +36,7 @@
       path = "/run/syncthing-key.pem";
     };
     oauth2ms = {
-      sopsFile = ../common/secrets.yaml;
+      sopsFile = ../../common/secrets.yaml;
       owner = "lukasz";
       mode = "0400";
       path = "/run/oauth2ms";

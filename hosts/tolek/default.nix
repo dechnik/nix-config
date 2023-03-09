@@ -3,10 +3,10 @@
     ./hardware-configuration.nix
 
     ./services
-    ../common/global
-    ../common/users/lukasz
-    ../common/optional/qemu-vm.nix
-    ../common/optional/postfix.nix
+    ../../common/global
+    ../../common/users/lukasz
+    ../../common/optional/qemu-vm.nix
+    ../../common/optional/postfix.nix
   ];
 
   networking = {
