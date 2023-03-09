@@ -39,6 +39,7 @@
       "1.1.1.1"
       "1.0.0.1"
     ];
+    defaultGateway = "195.22.99.254";
     bridges = {
       lan0.interfaces = [ ];
     };
@@ -46,22 +47,22 @@
     interfaces = {
       ens18 = {
         useDHCP = true;
+        tempAddress = "disabled";
       };
 
       ${config.my.wan} = {
-        useDHCP = true;
-        # ipv4.addresses = [
-        #   {
-        #     address = "185.243.216.95";
-        #     prefixLength = 24;
-        #   }
-        # ];
-        # ipv6.addresses = [
-        #   {
-        #     address = "2a03:94e0:ffff:185:243:216::95";
-        #     prefixLength = 118;
-        #   }
-        # ];
+        ipv4.addresses = [
+          {
+            address = "195.22.99.45";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fe80::8cd9:35ff:fe05:bbdd";
+            prefixLength = 64;
+          }
+        ];
 
         tempAddress = "disabled";
       };
