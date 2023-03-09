@@ -28,6 +28,7 @@
     };
   };
   networking.firewall.allowedUDPPorts = [ 3478 ];
+  networking.firewall.allowedTCPPorts = [ 50443 ];
   systemd.services.headscale.environment = {
     # HEADSCALE_EXPERIMENTAL_FEATURE_SSH="1";
     # HEADSCALE_LOG_LEVEL = "trace";
@@ -53,7 +54,7 @@
             enabled = true;
             region_id = 999;
             region_code = "dechnik";
-            region_name = "tailscale.dechnik.net";
+            region_name = "stun.tailscale.dechnik.net";
             stun_listen_addr = "0.0.0.0:3478";
           };
         };
