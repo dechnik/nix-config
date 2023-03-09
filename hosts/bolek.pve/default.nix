@@ -78,12 +78,6 @@
         tempAddress = "disabled";
       };
     };
-    # useDHCP = true;
-    extraHosts = ''
-      127.0.0.1 cache.dechnik.net
-      127.0.0.1 tailscale.dechnik.net
-    '';
-    # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
   system.stateVersion = "22.05"; # Did you read the comment?
