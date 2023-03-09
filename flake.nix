@@ -71,37 +71,37 @@
 
       nixosConfigurations = {
         # Desktop
-        dziad = nixpkgs.lib.nixosSystem {
+        "dziad" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/dziad ];
         };
-        ldlat = nixpkgs.lib.nixosSystem {
+        "ldlat" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/ldlat ];
         };
-        bolek = nixpkgs.lib.nixosSystem {
+        "bolek.pve" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/bolek ];
+          modules = [ ./hosts/bolek.pve ];
         };
-        lolek = nixpkgs.lib.nixosSystem {
+        "lolek.pve" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/lolek ];
+          modules = [ ./hosts/lolek.pve ];
         };
-        tola = nixpkgs.lib.nixosSystem {
+        "tola.pve" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/tola ];
+          modules = [ ./hosts/tola.pve ];
         };
-        olek = nixpkgs.lib.nixosSystem {
+        "olek.pve" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/olek ];
+          modules = [ ./hosts/olek.pve ];
         };
-        tolek = nixpkgs.lib.nixosSystem {
+        "tolek.oracle" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/tolek ];
+          modules = [ ./hosts/tolek.oracle ];
         };
-        ola = nixpkgs.lib.nixosSystem {
+        "ola.hetzner" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/ola ];
+          modules = [ ./hosts/ola.hetzner ];
         };
       };
 

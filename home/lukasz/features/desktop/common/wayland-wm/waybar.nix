@@ -164,9 +164,7 @@ in
           exec =
             let
               inherit (builtins) concatStringsSep attrNames replaceStrings;
-              # hosts = attrNames outputs.nixosConfigurations;
-              hosts = lib.mapAttrsToList getTailscaleHosts outputs.nixosConfigurations;
-              getTailscaleHosts = _: cfg: replaceStrings [".dechnik.net"] [""] cfg.config.networking.fqdn;
+              hosts = attrNames outputs.nixosConfigurations;
               homeMachine = "bolek_pve";
               remoteMachine = "tolek_oracle";
               mailMachine = "ola_hetzner";
