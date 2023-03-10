@@ -51,9 +51,8 @@
     neovim = {
       url = "sourcehut:~lukasz/neovim";
     };
-    colmena.url = "github:zhaofengli/colmena";
   };
-  outputs = { self, nixpkgs, colmena, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       inherit (self) outputs;
       forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
@@ -63,7 +62,6 @@
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
-      # colmena = import ./colmena.nix { inherit inputs outputs; };
       overlays = import ./overlays { inherit inputs outputs; };
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
 
