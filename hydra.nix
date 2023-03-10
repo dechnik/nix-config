@@ -11,6 +11,5 @@ let
 in
 {
   pkgs = mapAttrs filterValidPkgs outputs.packages;
+  hosts = inputs.nixpkgs.lib.mapAttrs' getCfg outputs.nixosConfigurations;
 }
-  //
-  inputs.nixpkgs.lib.mapAttrs' getCfg outputs.nixosConfigurations
