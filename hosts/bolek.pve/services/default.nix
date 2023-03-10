@@ -10,6 +10,7 @@
     ./website.nix
     ./headscale.nix
     ./tailscale.nix
+    ./wireguard.nix
     ./nginx-jellyfin.nix
   ];
 }

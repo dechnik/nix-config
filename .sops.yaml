@@ -38,25 +38,25 @@ creation_rules:
       - *ldlat
       pgp:
       - *lukasz
-  - path_regex: hosts/bolek/secrets.ya?ml$
+  - path_regex: hosts/bolek.pve/secrets.ya?ml$
     key_groups:
     - age:
       - *bolek
       pgp:
       - *lukasz
-  - path_regex: hosts/lolek/secrets.ya?ml$
+  - path_regex: hosts/lolek.pve/secrets.ya?ml$
     key_groups:
     - age:
       - *lolek
       pgp:
       - *lukasz
-  - path_regex: hosts/tolek/secrets.ya?ml$
+  - path_regex: hosts/tolek.oracle/secrets.ya?ml$
     key_groups:
     - age:
       - *tolek
       pgp:
       - *lukasz
-  - path_regex: hosts/ola/secrets.ya?ml$
+  - path_regex: hosts/ola.hetzner/secrets.ya?ml$
     key_groups:
     - age:
       - *ola
