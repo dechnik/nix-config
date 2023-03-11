@@ -6,6 +6,7 @@
 
     ./services
     ../../common/global
+    ../../common/optional/nginx.nix
     ../../common/users/lukasz
   ];
 

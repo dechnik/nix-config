@@ -7,6 +7,7 @@
     ../../common/users/lukasz
     ../../common/optional/qemu-vm.nix
     ../../common/optional/postfix.nix
+    ../../common/optional/nginx.nix
   ];
 
   networking = {

@@ -4,7 +4,7 @@
     ./hydra.nix
     ./cgit
     ./git-remote.nix
-    ./nginx.nix
+    ./uwsgi.nix
     ./rss.nix
     ./searx.nix
     ./website.nix
