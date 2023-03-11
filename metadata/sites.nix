@@ -22,6 +22,7 @@ with builtins; let
     in {
       name = "pve";
       nameservers = [ipv4Gateway];
+      consul = ipv4Gateway;
       # openvpn = "10.60.200.0";
       # k3s = {
       #   master = "10.60.0.111";
