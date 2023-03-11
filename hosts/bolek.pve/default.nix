@@ -7,6 +7,7 @@
       ./services
 
       ../../common/optional/qemu-vm.nix
+      ../../common/optional/consul-server.nix
       ../../common/optional/syncthing.nix
       ../../common/optional/postfix.nix
       ../../common/global

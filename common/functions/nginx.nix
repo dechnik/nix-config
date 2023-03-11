@@ -9,7 +9,10 @@
     allowLocal ? true,
     locationExtraConfig ? "",
   }: {
-    security.acme.certs."${domain}".domain = domain;
+    security.acme.certs."${domain}" = {
+      domain = domain;
+      group = "nginx";
+    };
 
     services.nginx.virtualHosts."${domain}" = {
       forceSSL = true;
@@ -37,7 +40,10 @@
     proxyPass,
     proxyWebsockets ? true,
   }: {
-    security.acme.certs."${domain}".domain = domain;
+    security.acme.certs."${domain}" = {
+      domain = domain;
+      group = "nginx";
+    };
 
     services.nginx.virtualHosts."${domain}" = {
       forceSSL = true;
