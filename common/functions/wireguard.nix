@@ -60,7 +60,7 @@
     };
 
     networking.firewall = {
-      allowedUDPPorts = [config.networking.wireguard.interfaces.wg0.listenPort];
+      allowedUDPPorts = lib.mkIf (config.networking.wireguard.interfaces.wg0.listenPort != null) [config.networking.wireguard.interfaces.wg0.listenPort];
       trustedInterfaces = ["wg0"];
     };
 

@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 {
   imports =
@@ -18,6 +18,7 @@
       ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/syncthing.nix
+      ../../common/global/network.nix
       # ../common/optional/postfix.nix
       ../../common/optional/gamemode.nix
       # ../common/optional/zfs.nix
@@ -45,11 +46,38 @@
     };
   };
 
+  my.wan = "eno1";
+
   networking = {
     hostName = "dziad"; # Define your hostname.
     domain = "dechnik.net";
-    useDHCP = true;
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    #
+    nameservers = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
+    usePredictableInterfaceNames = lib.mkForce true;
+    defaultGateway = "10.10.10.1";
+
+    interfaces = {
+      ${config.my.wan} = {
+        ipv4.addresses = [
+          {
+            address = "10.10.10.3";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fe80::1ac0:4dff:fe25:fcb6";
+            prefixLength = 64;
+          }
+        ];
+
+        tempAddress = "disabled";
+      };
+    };
   };
 
   boot = {

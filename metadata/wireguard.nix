@@ -11,5 +11,10 @@
   };
 
   clients = {
+    dziad = {
+      additional_networks = [];
+      addresses = ["10.69.0.1/32" "2a03:94e0:200d:69::1/128"];
+      public_key = "lsOMuYxWnrz5m8sxobCqqLhSMIRbR0AWnqvq6kwXims=";
+    };
   };
 }
