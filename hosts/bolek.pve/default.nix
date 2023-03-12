@@ -11,6 +11,7 @@
       ../../common/optional/syncthing.nix
       ../../common/optional/postfix.nix
       ../../common/optional/nginx.nix
+      ../../common/optional/coredns.nix
       ../../common/global
       ../../common/global/network.nix
       ../../common/users/lukasz
