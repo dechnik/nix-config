@@ -58,7 +58,7 @@
             stun_listen_addr = "0.0.0.0:3478";
           };
         };
-        serverUrl = "https://tailscale.dechnik.net";
+        server_url = "https://tailscale.dechnik.net";
         metrics_listen_addr = "127.0.0.1:8095";
         ip_prefixes = [
           "fd7a:115c:a1e0::/48"
