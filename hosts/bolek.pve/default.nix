@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
   imports =
@@ -80,6 +80,25 @@
         ];
         tempAddress = "disabled";
       };
+    };
+    firewall = {
+      enable = lib.mkForce true;
+      # This is a special override for gateway machines as we
+      # dont want to use "openFirewall" here since it makes
+      # everything world available.
+      allowedTCPPorts = lib.mkForce [
+        22 # SSH
+        80 # HTTP
+        443 # HTTPS
+      ];
+
+      allowedUDPPorts = lib.mkForce [
+        443 # HTTPS
+        config.services.tailscale.port
+        config.networking.wireguard.interfaces.wg0.listenPort
+      ];
+
+      trustedInterfaces = [ config.my.lan ];
     };
   };
 
