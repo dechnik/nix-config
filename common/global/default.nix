@@ -9,7 +9,6 @@
     ./fish.nix
     ./zsh.nix
     ./locale.nix
-    # ./tailscale.nix
     ./nix.nix
     ./openssh.nix
     ./podman.nix
@@ -17,6 +16,7 @@
     ./sops.nix
     ./ssh-serve-store.nix
     ./fonts.nix
+    ./tmp.nix
   ] ++ (builtins.attrValues outputs.nixosModules);
 
   home-manager = {
