@@ -32,6 +32,10 @@ in {
           };
         };
       };
+
+      networking.firewall.allowedTCPPorts = [
+        8500 # HTTP server
+      ];
     }
 
     (nginx.internalVhost {

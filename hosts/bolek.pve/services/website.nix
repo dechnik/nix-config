@@ -4,7 +4,7 @@ let
 in
 {
   security.acme.certs = {
-    "dechnik.net" = {
+    "dev.dechnik.net" = {
       group = "nginx";
     };
   };
@@ -12,10 +12,9 @@ in
     let days = n: toString (n * 60 * 60 * 24);
     in
     {
-      "dechnik.net" = {
-        default = true;
+      "dev.dechnik.net" = {
         forceSSL = true;
-        useACMEHost = "dechnik.net";
+        useACMEHost = "dev.dechnik.net";
         extraConfig = ''
           access_log /var/log/nginx/dechnik.net.access.log;
         '';

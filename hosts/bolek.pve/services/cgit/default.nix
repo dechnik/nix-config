@@ -11,14 +11,14 @@ let
 in
 {
   services = {
-    nginx.virtualHosts."dechnik.net" = {
+    nginx.virtualHosts."dev.dechnik.net" = {
       forceSSL = true;
-      useACMEHost = "dechnik.net";
+      useACMEHost = "dev.dechnik.net";
       locations = {
         "=/git/style.css" = {
           alias = compileSass ./cgit.scss;
         };
-        "=/git".return = "301 https://dechnik.net/git/";
+        "=/git".return = "301 https://dev.dechnik.net/git/";
         "/git/" = {
           root = "${cgit}/cgit";
           extraConfig = ''
