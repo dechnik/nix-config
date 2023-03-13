@@ -8,6 +8,7 @@
     ../../common/optional/qemu-vm.nix
     ../../common/optional/postfix.nix
     ../../common/optional/nginx.nix
+    ../../common/optional/consul.nix
   ];
 
   networking = {

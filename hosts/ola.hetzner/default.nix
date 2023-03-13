@@ -7,6 +7,7 @@
     ./services
     ../../common/global
     ../../common/optional/nginx.nix
+    ../../common/optional/consul.nix
     ../../common/users/lukasz
   ];
 

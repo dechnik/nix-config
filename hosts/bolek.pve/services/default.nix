@@ -8,6 +8,7 @@
     ./rss.nix
     ./searx.nix
     ./website.nix
+    ./monitoring.nix
     ./headscale.nix
     ./tailscale.nix
     ./wireguard.nix
