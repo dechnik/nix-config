@@ -16,5 +16,10 @@
       addresses = ["10.69.0.1/32" "2a03:94e0:200d:69::1/128"];
       public_key = "lsOMuYxWnrz5m8sxobCqqLhSMIRbR0AWnqvq6kwXims=";
     };
+    ldlat = {
+      additional_networks = [];
+      addresses = ["10.69.0.2/32" "2a03:94e0:200d:69::2/128"];
+      public_key = "Km8A6+E1PyFXN/RFLTJEmA7Q4fy9SIbFq99GyUgWmQw=";
+    };
   };
 }

@@ -19,6 +19,7 @@
      ../../common/optional/bluetooth.nix
      ../../common/optional/syncthing.nix
      ../../common/optional/printing.nix
+     ../../common/global/network.nix
      ../../common/optional/vpn.nix
     ];
 
@@ -46,7 +47,14 @@
   networking = {
     hostName = "ldlat"; # Define your hostname.
     domain = "dechnik.net";
-    useDHCP = true;
+    interfaces = {
+      "enp43s0" = {
+        useDHCP = true;
+      };
+      "wlp0s20f3" = {
+        useDHCP = true;
+      };
+    };
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
