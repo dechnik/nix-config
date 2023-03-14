@@ -60,16 +60,16 @@
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
-    # kernelPackages = pkgs.linuxKernel.packages.linux_zen.extend (self: super: {
-    #   evdi = super.evdi.overrideAttrs (o: rec {
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "DisplayLink";
-    #       repo = "evdi";
-    #       rev = "bdc258b25df4d00f222fde0e3c5003bf88ef17b5";
-    #       sha256 = "mt+vEp9FFf7smmE2PzuH/3EYl7h89RBN1zTVvv2qJ/o=";
-    #     };
-    #   });
-    # });
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen.extend (self: super: {
+      evdi = super.evdi.overrideAttrs (o: rec {
+        src = pkgs.fetchFromGitHub {
+          owner = "DisplayLink";
+          repo = "evdi";
+          rev = "bdc258b25df4d00f222fde0e3c5003bf88ef17b5";
+          sha256 = "mt+vEp9FFf7smmE2PzuH/3EYl7h89RBN1zTVvv2qJ/o=";
+        };
+      });
+    });
     binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 

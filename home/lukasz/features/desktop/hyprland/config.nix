@@ -47,8 +47,8 @@
   }
 
   dwindle {
-    col.group_border_active=0xff${colorscheme.colors.base0B}
-    col.group_border=0xff${colorscheme.colors.base04}
+    # col.group_border_active=0xff${colorscheme.colors.base0B}
+    # col.group_border=0xff${colorscheme.colors.base04}
     split_width_multiplier=1.35
   }
 
