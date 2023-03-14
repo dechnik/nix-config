@@ -48,6 +48,8 @@
         22 # SSH
         80 # HTTP
         443 # HTTPS
+        993 # imap
+        587 # smtp
       ];
 
       allowedUDPPorts = lib.mkForce [
