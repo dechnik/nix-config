@@ -90,12 +90,15 @@
         22 # SSH
         80 # HTTP
         443 # HTTPS
+        9418 # git-remote
+        50443 # tailscale
       ];
 
       allowedUDPPorts = lib.mkForce [
         443 # HTTPS
         config.services.tailscale.port
         config.networking.wireguard.interfaces.wg0.listenPort
+        3478 # headscale stun
       ];
 
       trustedInterfaces = [ config.my.lan ];
