@@ -6,7 +6,6 @@
     checkReversePath = lib.mkDefault "loose";
     logRefusedConnections = lib.mkDefault false;
 
-    autoLoadConntrackHelpers = true;
     connectionTrackingModules = [
       "ftp"
       "tftp"
