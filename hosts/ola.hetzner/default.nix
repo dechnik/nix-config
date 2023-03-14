@@ -6,8 +6,8 @@
 
     ./services
     ../../common/global
-    ../../common/optional/nginx-pure.nix
-    # ../../common/optional/consul.nix
+    ../../common/optional/nginx.nix
+    ../../common/optional/consul-server.nix
     ../../common/global/network.nix
     ../../common/users/lukasz
   ];
