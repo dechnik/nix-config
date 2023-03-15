@@ -16,10 +16,6 @@
     hostName = "lolek"; # Define your hostname.
     domain = "pve.dechnik.net";
     useDHCP = true;
-    extraHosts = ''
-      10.30.10.12 cache.dechnik.net
-      10.30.10.12 tailscale.dechnik.net
-    '';
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
