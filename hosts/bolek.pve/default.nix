@@ -33,7 +33,7 @@
   };
 
   my.wan = "ens19";
-  my.lan = "lan0";
+  my.lan = "ens20";
 
   networking = {
     hostName = "bolek"; # Define your hostname.
@@ -43,9 +43,9 @@
       "1.0.0.1"
     ];
     defaultGateway = "195.22.99.254";
-    bridges = {
-      lan0.interfaces = [ ];
-    };
+    # bridges = {
+    #   lan0.interfaces = [ ];
+    # };
 
     interfaces = {
       ens18 = {
