@@ -81,6 +81,31 @@
         tempAddress = "disabled";
       };
     };
+
+    nat = {
+      enable = true;
+      externalInterface = config.my.wan;
+      internalIPs = [ "10.0.0.0/8" ];
+      internalInterfaces = [ config.my.lan ];
+      forwardPorts = [
+        {
+          sourcePort = 64322;
+          destination = "10.60.0.1:22";
+          proto = "tcp";
+        }
+        {
+          sourcePort = 500;
+          destination = "10.60.0.1:51820";
+          proto = "udp";
+        }
+        {
+          sourcePort = 4500;
+          destination = "10.60.0.1:51820";
+          proto = "udp";
+        }
+      ];
+    };
+
     firewall = {
       enable = lib.mkForce true;
       # This is a special override for gateway machines as we
