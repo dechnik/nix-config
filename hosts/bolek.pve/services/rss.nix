@@ -9,7 +9,7 @@ in
     };
   };
   virtualisation.oci-containers = {
-    backend = "podman";
+    backend = "docker";
     containers = {
       full-text-rss = {
         autoStart = true;

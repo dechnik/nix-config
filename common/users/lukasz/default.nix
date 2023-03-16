@@ -16,7 +16,6 @@ in
       "i2c"
       "mysql"
       "docker"
-      "podman"
       "git"
       "libvirtd"
       "deluge"

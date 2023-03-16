@@ -5,7 +5,7 @@
     ./cgit
     ./git-remote.nix
     ./uwsgi.nix
-    ./rss.nix
+    # ./rss.nix
     ./searx.nix
     ./website.nix
     ./monitoring.nix
