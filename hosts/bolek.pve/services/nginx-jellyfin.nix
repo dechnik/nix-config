@@ -11,7 +11,7 @@
         forceSSL = true;
         useACMEHost = "jf.dechnik.net";
         locations."/" = {
-          proxyPass = "http://10.30.10.14:8096";
+          proxyPass = "http://10.60.0.2:8096";
         };
         extraConfig = ''
           access_log /var/log/nginx/jf.dechnik.net.access.log;
