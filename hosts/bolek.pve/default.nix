@@ -10,6 +10,7 @@
       ../../common/optional/consul-server.nix
       ../../common/optional/syncthing.nix
       ../../common/optional/postfix.nix
+      ../../common/optional/promtail.nix
       ../../common/optional/nginx.nix
       ../../common/optional/coredns.nix
       ../../common/global

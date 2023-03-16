@@ -8,6 +8,7 @@
     ../../common/global
     ../../common/optional/nginx.nix
     ../../common/optional/consul-server.nix
+    ../../common/optional/promtail.nix
     ../../common/global/network.nix
     ../../common/users/lukasz
   ];
