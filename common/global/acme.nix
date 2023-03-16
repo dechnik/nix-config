@@ -7,6 +7,7 @@
       # dnsProvider = "route53";
       dnsProvider = "cloudflare";
       credentialsFile = config.sops.secrets.acme-credentials.path;
+      group = "nginx";
     };
     acceptTerms = true;
   };

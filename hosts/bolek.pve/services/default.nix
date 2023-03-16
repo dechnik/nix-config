@@ -9,6 +9,8 @@
     ./searx.nix
     ./website.nix
     ./monitoring.nix
+    ./loki.nix
+    ./grafana.nix
     ./headscale.nix
     ./tailscale.nix
     ./wireguard.nix
