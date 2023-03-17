@@ -26,8 +26,6 @@
     dconf.enable = true;
   };
 
-  services.dbus.packages = [ pkgs.gcr ];
-
   system.stateVersion = "22.05"; # Did you read the comment?
   # Slows down write operations considerably
   nix.settings.auto-optimise-store = false;

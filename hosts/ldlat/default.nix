@@ -79,8 +79,6 @@
 
   services.xserver.videoDrivers = [ "modesetting" "displaylink" ];
 
-  services.dbus.packages = [ pkgs.gcr ];
-
   services.thermald.enable = lib.mkDefault true;
   environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
   # Enable fwupd

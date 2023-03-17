@@ -9,6 +9,9 @@ in {
         term = "xterm-256color";
 
         font = "${config.fontProfiles.monospace.family}:size=10";
+        background_opacity = "0.9";
+
+        include = "${pkgs.foot.themes}/share/foot/themes/gruvbox-dark";
 
         dpi-aware = "yes";
       };
