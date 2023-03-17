@@ -20,6 +20,11 @@
     };
   };
 
+  fileSystems."/storage" = {
+    device = "/dev/disk/by-uuid/35607088-5b5b-4292-b9ab-2cdace0d290d";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" =
     {
       device = "/dev/vda1";

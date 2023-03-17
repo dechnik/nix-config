@@ -36,6 +36,8 @@
     };
   };
 
+  my.users.storage = true;
+
   my.wan = "ens19";
   my.lan = "ens20";
 
