@@ -47,6 +47,11 @@
   };
 
   my.wan = "eno1";
+  services.gvfs.enable = true;
+
+  services.dbus.packages = [
+    pkgs.pcmanfm
+  ];
 
   networking = {
     hostName = "dziad"; # Define your hostname.
