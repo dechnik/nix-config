@@ -12,7 +12,7 @@
       ../../common/optional/postfix.nix
       ../../common/optional/promtail.nix
       ../../common/optional/node-exporter.nix
-      # ../../common/optional/systemd-exporter.nix
+      ../../common/optional/systemd-exporter.nix
       ../../common/optional/nginx.nix
       ../../common/optional/coredns.nix
       ../../common/global
