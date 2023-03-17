@@ -41,9 +41,9 @@ in
           security.admin_password = "$__file{${config.sops.secrets.grafana-admin.path}}";
 
           smtp = {
-            enable = true;
+            enabled = true;
             host = "localhost:25";
-            fromAddress = "grafana@${config.networking.domain}";
+            from_address = "grafana@${config.networking.domain}";
           };
         };
 
@@ -73,13 +73,13 @@ in
         inherit domain;
         proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
 
-        # locationExtraConfig = ''
-        #   proxy_set_header Host $host;
-        #   proxy_set_header X-Real-IP $remote_addr;
-        #   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        #   proxy_set_header X-Forwarded-Proto $scheme;
-        #   proxy_set_header X-Forwarded-Host $host;
-        #   proxy_set_header X-Forwarded-Server $host;
-        # '';
+        locationExtraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_set_header X-Forwarded-Host $host;
+          proxy_set_header X-Forwarded-Server $host;
+        '';
       })
   ]
