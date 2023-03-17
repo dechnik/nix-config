@@ -16,6 +16,8 @@
       ./services
     ];
 
+  services.spice-vdagentd.enable = true;
+
   networking = {
     hostName = "tola"; # Define your hostname.
     domain = "pve.dechnik.net";

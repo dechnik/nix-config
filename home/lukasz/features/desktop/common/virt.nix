@@ -3,10 +3,9 @@ let
   spicemenu = pkgs.writeShellScriptBin "spicemenu" ''
     declare -a options=("ant
     ebi
-    priv
     tola
-    quit
-    ")
+    olek
+    quit")
 
     choice=$(echo -e "$options[@]" | wofi --dmenu -i -p 'Spice to: ')
 
@@ -21,13 +20,13 @@ let
        pass=$(wofiaskpass)
        spiceto -u root@pam -p $pass 107 pve $PVEIP
     fi
-    if [ "$choice" == 'priv' ]; then
-       pass=$(wofiaskpass)
-       spiceto -u root@pam -p $pass 108 pve $PVEIP
-    fi
     if [ "$choice" == 'tola' ]; then
        pass=$(wofiaskpass)
        spiceto -u root@pam -p $pass 101 pve $PVEIP
+    fi
+    if [ "$choice" == 'olek' ]; then
+       pass=$(wofiaskpass)
+       spiceto -u root@pam -p $pass 102 pve $PVEIP
     fi
   '';
   wofiaskpass = pkgs.writeShellScriptBin "wofiaskpass" ''

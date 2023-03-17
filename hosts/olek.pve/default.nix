@@ -15,6 +15,8 @@
       ./services
     ];
 
+  services.spice-vdagentd.enable = true;
+
   networking = {
     hostName = "olek"; # Define your hostname.
     domain = "pve.dechnik.net";

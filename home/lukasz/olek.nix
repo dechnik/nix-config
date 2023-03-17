@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ pkgs, inputs, ... }: {
   imports = [
     ./global
     ./features/cli/tmux.nix
@@ -8,6 +8,10 @@
     ./features/desktop/common/wayland-wm/sway.nix
   ];
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
+
+  home.packages = with pkgs; [
+    google-chrome
+  ];
 
   monitors = [
   ];
