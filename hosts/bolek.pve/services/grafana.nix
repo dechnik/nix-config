@@ -71,6 +71,8 @@ in
     (nginx.internalVhost
       {
         inherit domain;
+
+        tailscaleAuth = false;
         proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
 
         locationExtraConfig = ''

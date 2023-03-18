@@ -6,6 +6,7 @@
     domain,
     proxyPass,
     proxyWebsockets ? true,
+    tailscaleAuth ? true,
     allowLocal ? true,
     locationExtraConfig ? "",
   }: {
@@ -26,12 +27,14 @@
             allow 10.0.0.0/8;
             satisfy any;
           ''
+          + lib.optionalString tailscaleAuth config.services.tailscale-nginx-auth.authConfig
           + locationExtraConfig;
       };
       extraConfig =
         ''
           access_log /var/log/nginx/${domain}.access.log;
-        '';
+        ''
+        + lib.optionalString tailscaleAuth config.services.tailscale-nginx-auth.internalRoute;
     };
   };
 

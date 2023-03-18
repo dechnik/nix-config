@@ -6,6 +6,10 @@
 }: let
   consul = import ../functions/consul.nix {inherit lib;};
 in {
+  imports = [
+    ../../modules/nixos/tailscale-nginx-auth.nix
+  ];
+  services.tailscale-nginx-auth.enable = true;
   services = {
     nginx = {
       enable = true;

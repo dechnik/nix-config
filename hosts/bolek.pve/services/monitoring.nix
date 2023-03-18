@@ -281,11 +281,13 @@ in
 
     (nginx.internalVhost {
       domain = prometheusDomain;
+      tailscaleAuth = false;
       proxyPass = "http://127.0.0.1:${toString config.services.prometheus.port}";
     })
 
     (nginx.internalVhost {
       domain = pushgatewayDomain;
+      tailscaleAuth = false;
       proxyPass = "http://${config.services.prometheus.pushgateway.web.listen-address}";
     })
   ]
