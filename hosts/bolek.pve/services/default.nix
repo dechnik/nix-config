@@ -8,6 +8,7 @@
     # ./rss.nix
     ./searx.nix
     ./website.nix
+    ./restic-server.nix
     ./monitoring.nix
     ./loki.nix
     ./grafana.nix
