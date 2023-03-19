@@ -41,7 +41,7 @@ in {
     (nginx.internalVhost {
       inherit domain;
       proxyPass = "http://127.0.0.1:8500";
-      tailscaleAuth = false;
+      tailscaleAuth = true;
       allowLocal = true;
     })
   ];
