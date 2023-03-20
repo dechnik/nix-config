@@ -14,6 +14,7 @@
     ./grafana.nix
     ./headscale.nix
     ./tailscale.nix
+    ./restic.nix
     ./wireguard.nix
     ./nginx-jellyfin.nix
   ];

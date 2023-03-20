@@ -6,7 +6,7 @@
   consul = import ../../../common/functions/consul.nix {inherit lib;};
   nginx = import ../../../common/functions/nginx.nix {inherit config lib;};
 
-  domain = "restic.core.${config.networking.domain}";
+  domain = "restic.${config.networking.domain}";
   port = 56899;
 in
   lib.mkMerge [
