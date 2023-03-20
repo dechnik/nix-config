@@ -63,7 +63,7 @@ in
             speedFactor = 150;
           }
           {
-            uri = "ssh://nix-ssh@oracle.dechnik.net";
+            uri = "ssh://nix-ssh@tolek.oracle";
             systems = [ "x86_64-linux" "aarch64-linux" ];
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 4;
