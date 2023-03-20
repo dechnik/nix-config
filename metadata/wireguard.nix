@@ -8,6 +8,14 @@
       endpoint_port = 51820;
       public_key = "yeaH7Y6HILS1Rc/KdaSLZltGng1hPGgpSgWZKBHrGRk=";
     };
+    oracle = {
+      additional_networks = ["10.61.0.0/24"];
+      addresses = ["10.69.0.201/32" "2a03:94e0:200d:69::201/128"];
+      dns = "10.61.0.1";
+      endpoint_address = "oracle.dechnik.net";
+      endpoint_port = 51820;
+      public_key = "bX6+fkSSQwEkvlTG1FopF0whOSk28O1zoTyI8+wSBng=";
+    };
     hetzner = {
       additional_networks = ["10.62.0.0/16"];
       addresses = ["10.69.0.202/32" "2a03:94e0:200d:69::202/128"];
