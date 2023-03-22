@@ -1,6 +1,7 @@
 {
   imports = [
     ./binary-cache.nix
+    ./dhcp.nix
     ./hydra.nix
     ./cgit
     ./git-remote.nix
