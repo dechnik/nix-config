@@ -16,7 +16,6 @@
       nix
       home-manager
       git
-      colmena
 
       sops
       gnupg
