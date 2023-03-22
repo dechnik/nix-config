@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   programs.fish = {
     enable = true;
@@ -91,6 +91,19 @@
         set -U fish_pager_color_description   yellow
         set -U fish_pager_color_prefix        'white' '--bold' '--underline'
         set -U fish_pager_color_progress      'brwhite' '--background=cyan'
+        ${lib.optionalString config.programs.foot.enable ''
+        function update_cwd_osc --on-variable PWD --description 'Notify terminals when $PWD changes'
+            if status --is-command-substitution || set -q INSIDE_EMACS
+                return
+            end
+            printf \e\]7\;file://%s%s\e\\ $hostname (string escape --style=url $PWD)
+        end
+
+        update_cwd_osc # Run once since we might have inherited PWD from a parent shell
+        function mark_prompt_start --on-event fish_prompt
+            echo -en "\e]133;A\e\\"
+        end
+        ''}
       '';
   };
 }
