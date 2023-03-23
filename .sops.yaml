@@ -13,6 +13,7 @@ keys:
     - &tolek age10w0y5xpwanuwmgtenvtn8lmdj4dk2ql2z93r8s48jpjxpejtkcpspy2gfd
     - &ola age16wd54jwn3q49yzwuq5c85c925qxzvtddn6l443rq3g7ylh8xvfwq2thh9c
     - &k3sserver1 age1n20tlcsr0nnawwzl7yj2tm400yen73unjwmnth65yj05dtvhevwq6t3quv
+    - &k3sagent1 age13ffzsmk32srsj54j0rygz0xtm035krjjawxvg0qftg2md0nqwv2q50s0q6
 creation_rules:
   - path_regex: common/secrets.ya?ml$
     key_groups:
@@ -26,6 +27,7 @@ creation_rules:
       - *tolek
       - *ola
       - *k3sserver1
+      - *k3sagent1
       pgp:
       - *lukasz
   - path_regex: hosts/dziad/secrets.ya?ml$
