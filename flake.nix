@@ -87,6 +87,10 @@
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/lolek.pve ];
         };
+        "k3sserver1.pve" = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [ ./hosts/k3sserver1.pve ];
+        };
         "tola.pve" = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [ ./hosts/tola.pve ];
@@ -126,6 +130,11 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [ ./home/lukasz/lolek.nix ];
+        };
+        "lukasz@k3sserver1" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [ ./home/lukasz/k3sserver1.nix ];
         };
         "lukasz@tola" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
