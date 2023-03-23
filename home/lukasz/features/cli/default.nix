@@ -36,6 +36,7 @@
     httpie # Better curl
     jq # JSON pretty printer and manipulator
     # trekscii # Cute startrek cli printer
+    kubectl
 
     nil # Nix LSP
     nixfmt # Nix formatter
