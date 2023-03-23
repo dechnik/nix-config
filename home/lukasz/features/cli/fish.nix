@@ -40,6 +40,25 @@
     functions = {
       fish_greeting = "";
       wh = "readlink -f (which $argv)";
+      k3s-fetch-merge-config = ''
+        set host $argv[1]
+        set target $argv[2]
+        echo "Updating target $target with config from $host"
+        set rconfig (ssh $host "cat /etc/rancher/k3s/k3s.yaml | yq -c")
+        set cert_auth_data (echo $rconfig | ${pkgs.jq}/bin/jq -r '.clusters[0].cluster."certificate-authority-data"')
+        set client_cert_data (echo $rconfig | ${pkgs.jq}/bin/jq -r '.users[0].user."client-certificate-data"')
+        set client_key_data (echo $rconfig | ${pkgs.jq}/bin/jq -r '.users[0].user."client-key-data"')
+        set lconfig (cat $HOME/.kube/config | ${pkgs.yq}/bin/yq -c)
+        echo "Moving $HOME/.kube/config to $HOME/.kube/config.bak"
+        mv $HOME/.kube/config $HOME/.kube/config.bak
+        echo "Writing new config to $HOME/.kube/config"
+        echo $lconfig \
+          | ${pkgs.jq}/bin/jq "(.clusters[] | select(.name == \"$target\")).cluster.\"certificate-authority-data\" |= \"$cert_auth_data\"" \
+          | ${pkgs.jq}/bin/jq "(.users[] | select(.name == \"$target-admin\")).user.\"client-certificate-data\" |= \"$client_cert_data\"" \
+          | ${pkgs.jq}/bin/jq "(.users[] | select(.name == \"$target-admin\")).user.\"client-key-data\" |= \"$client_key_data\"" \
+          | ${pkgs.yq}/bin/yq --yaml-output \
+          > $HOME/.kube/config
+      '';
     };
     interactiveShellInit =
       # Open command buffer in vim when alt+e is pressed
