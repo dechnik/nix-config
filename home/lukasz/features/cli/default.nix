@@ -7,6 +7,7 @@
     ./fzf.nix
     ./git.nix
     ./gpg.nix
+    ./k3s.nix
     ./lf.nix
     ./neovim.nix
     ./direnv.nix

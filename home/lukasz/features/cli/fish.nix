@@ -44,7 +44,7 @@
         set host $argv[1]
         set target $argv[2]
         echo "Updating target $target with config from $host"
-        set rconfig (ssh $host "cat /etc/rancher/k3s/k3s.yaml | yq -c")
+        set rconfig (ssh $host "sudo cat /etc/rancher/k3s/k3s.yaml | yq -c")
         set cert_auth_data (echo $rconfig | ${pkgs.jq}/bin/jq -r '.clusters[0].cluster."certificate-authority-data"')
         set client_cert_data (echo $rconfig | ${pkgs.jq}/bin/jq -r '.users[0].user."client-certificate-data"')
         set client_key_data (echo $rconfig | ${pkgs.jq}/bin/jq -r '.users[0].user."client-key-data"')
