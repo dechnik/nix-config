@@ -61,6 +61,7 @@ in
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 12;
             speedFactor = 150;
+            supportedFeatures = [ "kvm" "big-parallel" ];
           }
           {
             uri = "ssh://nix-ssh@tolek.oracle";
@@ -68,6 +69,7 @@ in
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 4;
             speedFactor = 100;
+            supportedFeatures = [ "kvm" ];
           }
           {
             uri = "ssh://nix-ssh@ldlat";
@@ -75,12 +77,14 @@ in
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 6;
             speedFactor = 100;
+            supportedFeatures = [ "kvm" "big-parallel" ];
           }
           {
             uri = "localhost";
             systems = [ "x86_64-linux" "aarch64-linux" ];
             maxJobs = 8;
             speedFactor = 50;
+            supportedFeatures = [ "kvm" "big-parallel" ];
           }
         ])
       ];
