@@ -28,7 +28,7 @@
         else false;
       allowLocalDeployment = true;
       targetUser = "lukasz";
-      # targetHost = value.config.networking.fqdn;
+      targetHost = value.config.networking.fqdn;
     };
     nixpkgs.system = value.config.nixpkgs.hostPlatform.system;
     imports = value._module.args.modules;
