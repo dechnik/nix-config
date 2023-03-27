@@ -23,6 +23,13 @@
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
     sops-nix.url = "github:mic92/sops-nix";
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        stable.follows = "nixpkgs";
+      };
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -64,6 +71,7 @@
 
       overlays = import ./overlays { inherit inputs outputs; };
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+      colmena = import ./colmena.nix { inherit inputs outputs; };
 
       packages = forEachPkgs (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachPkgs (pkgs: import ./shell.nix { inherit pkgs; });
