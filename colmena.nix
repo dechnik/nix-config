@@ -11,9 +11,10 @@
       ];
     };
 
-    specialArgs = {
-      inherit inputs;
-    };
+    specialArgs = { inherit inputs outputs; };
+    # specialArgs = {
+    #   inherit inputs;
+    # };
   };
 }
 // builtins.mapAttrs
@@ -28,6 +29,6 @@
       allowLocalDeployment = true;
     };
     nixpkgs.system = value.config.nixpkgs.hostPlatform.system;
-    # imports = value._module.args.modules;
+    imports = value._module.args.modules;
   })
   outputs.nixosConfigurations

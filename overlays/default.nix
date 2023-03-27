@@ -21,6 +21,12 @@
       doCheck = false;
     });
 
+    hyprland-displaylink = inputs.hyprland.packages.${prev.system}.hyprland.override {
+      wlroots = inputs.hyprland.packages.x86_64-linux.wlroots-hyprland.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or [ ]) ++ [ ./displaylink.patch ];
+      });
+    };
+
     scgit = prev.cgit-pink.overrideAttrs (_: {
       pname = "scgit";
       version = "0.1";
