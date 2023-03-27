@@ -49,10 +49,13 @@
       # everything world available.
       allowedTCPPorts = lib.mkForce [
         22 # SSH
+        25 # SSH
         80 # HTTP
         443 # HTTPS
+        143 # imap
         993 # imap
         587 # smtp
+        465 # smtp
       ];
 
       allowedUDPPorts = lib.mkForce [

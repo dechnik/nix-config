@@ -6,7 +6,7 @@
   mailserver = rec {
     enable = true;
     fqdn = "mail.dechnik.net";
-    sendingFqdn = "ola.dechnik.net";
+    sendingFqdn = "mail.dechnik.net";
     domains = [
       "dechnik.net"
       "pve.dechnik.net"
