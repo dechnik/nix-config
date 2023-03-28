@@ -26,7 +26,7 @@ in
   services = {
     nextcloud = {
       inherit hostName;
-      package = pkgs.nextcloud25;
+      package = pkgs.nextcloud26;
       # extraApps = with pkgs.nextcloud25Packages.apps; {
       #   inherit oidc;
       # };
