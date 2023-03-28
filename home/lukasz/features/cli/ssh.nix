@@ -25,6 +25,12 @@ in
     ];
   };
 
+  home.file = {
+    ".ssh/config.d/dechnik" = {
+      source = ../../../../rc/ssh/dechnik;
+    };
+  };
+
   home.persistence = {
     "/persist/home/lukasz".directories = [ ".ssh" ];
   };
