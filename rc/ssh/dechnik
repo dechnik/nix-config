@@ -1,4 +1,0 @@
-Host k3s*.pve
-    HostName %h.dechnik.net
-    User lukasz
-    Port 22
