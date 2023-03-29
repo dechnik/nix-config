@@ -6,7 +6,7 @@
 }: let
 
   startscript = pkgs.writeShellScript "gamemode-start" ''
-    pkill swayidle
+    ${pkgs.procps}/bin/pkill swayidle
   '';
 
   endscript = pkgs.writeShellScript "gamemode-end" ''
