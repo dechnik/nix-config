@@ -44,6 +44,12 @@
     };
   };
 
+  services.gvfs.enable = true;
+
+  services.dbus.packages = [
+    pkgs.pcmanfm
+  ];
+
   networking = {
     hostName = "ldlat"; # Define your hostname.
     domain = "dechnik.net";
