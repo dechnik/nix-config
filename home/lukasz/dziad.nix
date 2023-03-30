@@ -2,6 +2,7 @@
   imports = [
     ./global
     ./features/emacs
+    ./features/productivity/vdirsyncer.nix
     ./features/trusted
     ./features/trusted/mail
     ./features/trusted/mail/personal.nix

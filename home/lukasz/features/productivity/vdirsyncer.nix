@@ -24,7 +24,7 @@ in
     type = "carddav"
     url = "https://dav.dechnik.net"
     username = "lukasz@dechnik.net"
-    password.fetch = ["command", "${pass}", "mail.dechnik.net/lukasz@dechnik.net"]
+    password.fetch = ["shell", "${pass} mail.dechnik.net/lukasz@dechnik.net | ${pkgs.coreutils}/bin/head -n1"]
 
     [pair calendars]
     a = "calendars_local"
@@ -42,7 +42,7 @@ in
     type = "caldav"
     url = "https://dav.dechnik.net"
     username = "lukasz@dechnik.net"
-    password.fetch = ["command", "${pass}", "mail.dechnik.net/lukasz@dechnik.net"]
+    password.fetch = ["shell", "${pass} mail.dechnik.net/lukasz@dechnik.net | ${pkgs.coreutils}/bin/head -n1"]
   '';
 
   systemd.user.services.vdirsyncer = {
