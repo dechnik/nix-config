@@ -83,5 +83,5 @@ in {
   networking.firewall.allowedTCPPorts = [53 9153];
   networking.firewall.allowedUDPPorts = [53];
 
-  # my.consulServices.coredns_exporter = consul.prometheusExporter "coredns" 9153;
+  my.consulServices.coredns_exporter = consul.prometheusExporter "coredns" 9153;
 }
