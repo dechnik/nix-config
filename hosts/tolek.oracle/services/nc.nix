@@ -23,6 +23,12 @@ in
     sopsFile = ../secrets.yaml;
   };
 
+  environment.persistence = {
+    "/persist".directories = [
+      "/srv/nextcloud"
+    ];
+  };
+
   services = {
     nextcloud = {
       inherit hostName;
