@@ -13,6 +13,7 @@
       ../../common/global
       ../../common/users/lukasz
 
+      ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
       ../../common/optional/greetd.nix
       ../../common/optional/vpn.nix
