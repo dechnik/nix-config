@@ -62,12 +62,12 @@ in {
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  services.prometheus.exporters.nginx = {
-    enable = true;
-    openFirewall = true;
-  };
+  # services.prometheus.exporters.nginx = {
+  #   enable = true;
+  #   openFirewall = true;
+  # };
 
-  my.consulServices.nginx_exporter = consul.prometheusExporter "nginx" config.services.prometheus.exporters.nginx.port;
+  # my.consulServices.nginx_exporter = consul.prometheusExporter "nginx" config.services.prometheus.exporters.nginx.port;
   services.prometheus.exporters.nginxlog = {
     enable = true;
     openFirewall = true;
