@@ -8,6 +8,12 @@ let
   port = "5232";
 in
 {
+  environment.persistence = {
+    "/persist".directories = [
+      "/var/lib/radicale"
+    ];
+  };
+
   security.acme.certs."${domain}".domain = domain;
   sops.secrets.radicale-htpasswd = {
     sopsFile = ../secrets.yaml;
