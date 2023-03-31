@@ -23,7 +23,7 @@
 
     jails.DEFAULT = ''
       blocktype = DROP
-      bantime = 1h
+      bantime = 2h
       findtime = 1h
     '';
   };
