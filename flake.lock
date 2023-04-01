@@ -77,6 +77,23 @@
         "type": "github"
       }
     },
+    "emacs-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677264147,
+        "narHash": "sha256-xgLL6BktW3TJDR/kI08FOMW09/eaQAQFC0NhA8LWKTI=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "dec958258b133b4c21224c594da433919d852800",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "emacs-28",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -561,6 +578,7 @@
       "inputs": {
         "colmena": "colmena",
         "emacs-overlay": "emacs-overlay",
+        "emacs-src": "emacs-src",
         "firefox-addons": "firefox-addons",
         "hardware": "hardware",
         "home-manager": "home-manager",
