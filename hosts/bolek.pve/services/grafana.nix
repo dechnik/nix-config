@@ -9,6 +9,11 @@
 in
   lib.mkMerge [
     {
+      environment.persistence = {
+        "/persist".directories = [
+          "/var/lib/grafana"
+        ];
+      };
       sops.secrets = {
         grafana-admin = {
           sopsFile = ../secrets.yaml;

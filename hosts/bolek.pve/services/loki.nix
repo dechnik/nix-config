@@ -9,6 +9,11 @@ let
   domain = "loki.pve.dechnik.net";
 in
 {
+  environment.persistence = {
+    "/persist".directories = [
+      "/var/lib/loki"
+    ];
+  };
   services.loki = {
     enable = true;
 

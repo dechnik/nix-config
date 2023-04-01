@@ -19,4 +19,9 @@
     ./wireguard.nix
     ./nginx-jellyfin.nix
   ];
+
+  environment.persistence."/persist".directories = [
+    "/var/lib/private"
+  ];
+  
 }

@@ -11,6 +11,11 @@
 in
   lib.mkMerge [
     {
+      environment.persistence = {
+        "/persist".directories = [
+          "/var/lib/prometheus2"
+        ];
+      };
       services.prometheus = {
         enable = true;
 
