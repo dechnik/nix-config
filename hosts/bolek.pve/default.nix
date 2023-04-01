@@ -16,6 +16,7 @@
       ../../common/optional/samba-storage.nix
       ../../common/optional/node-exporter.nix
       ../../common/optional/systemd-exporter.nix
+      ../../common/optional/smokeping-exporter.nix
       ../../common/optional/nginx.nix
       ../../common/optional/coredns.nix
       ../../common/global
