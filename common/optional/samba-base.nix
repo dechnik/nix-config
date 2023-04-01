@@ -1,10 +1,15 @@
 {
-  lib,
   config,
   ...
 }: let
   site = builtins.replaceStrings [".dechnik.net"] [""] config.networking.domain;
 in {
+  environment.persistence = {
+    "/persist".directories = [
+      "/var/lib/samba"
+    ];
+  };
+
   services.samba = {
     # REMIND: `smbpasswd -a`
 
