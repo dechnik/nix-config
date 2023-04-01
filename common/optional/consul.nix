@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -12,6 +11,12 @@
   };
 
   config = {
+    environment.persistence = {
+      "/persist".directories = [
+        "/var/lib/consul"
+      ];
+    };
+
     services.consul = {
       enable = lib.mkDefault true;
       webUi = lib.mkDefault false;
@@ -19,7 +24,7 @@
       extraConfig = {
         node_name = config.networking.hostName;
         server = lib.mkDefault false;
-        log_level = "DEBUG";
+        log_level = "INFO";
         datacenter = builtins.replaceStrings [".dechnik.net"] [""] config.networking.domain;
 
         retry_join = lib.mkIf (config.networking.defaultGateway != null) (lib.mkDefault [config.networking.defaultGateway.address]);
