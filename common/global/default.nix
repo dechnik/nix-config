@@ -39,7 +39,17 @@
 
     # Persist logs, timers, etc
     persistence = {
-      "/persist".directories = [ "/var/lib/systemd" "/var/log" "/srv" ];
+      "/persist" = {
+        files = [
+          "/etc/machine-id"
+        ];
+        directories = [
+          "/var/lib/systemd"
+          "/var/lib/nixos"
+          "/var/log"
+          "/srv"
+        ];
+      };
     };
 
     enableAllTerminfo = true;
