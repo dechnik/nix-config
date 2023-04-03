@@ -129,7 +129,7 @@ in
     package = my_emacs;
     client.enable = true;
   };
-  systemd.user.services.emacs.Service.Environment = "PATH=${pkgs.libnotify}/bin";
+  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
   programs.emacs = {
     enable = true;
     package = my_emacs;
