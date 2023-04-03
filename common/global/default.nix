@@ -40,9 +40,6 @@
     # Persist logs, timers, etc
     persistence = {
       "/persist" = {
-        files = [
-          "/etc/machine-id"
-        ];
         directories = [
           "/var/lib/systemd"
           "/var/lib/nixos"
