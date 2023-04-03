@@ -7,16 +7,16 @@ let
   c = config.xdg.configHome;
   h = config.home.homeDirectory;
   # my_emacs = pkgs.emacs28NativeComp;
-  # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
-  #   name = "emacs-unstable";
-  #   version = "28.3-${inputs.emacs-src.shortRev}";
-  #   src = inputs.emacs-src;
-  # });
   my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
-    name = "emacs29";
-    version = "29.0-${inputs.emacs-src.shortRev}";
+    name = "emacs-unstable";
+    version = "28.3-${inputs.emacs-src.shortRev}";
     src = inputs.emacs-src;
   });
+  # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
+  #   name = "emacs29";
+  #   version = "29.0-${inputs.emacs-src.shortRev}";
+  #   src = inputs.emacs-src;
+  # });
   pythonEnv = pkgs.python3.withPackages (ps: with ps; [
     python-lsp-server
     pyls-isort
