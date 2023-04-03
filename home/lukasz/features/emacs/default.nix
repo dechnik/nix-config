@@ -20,6 +20,8 @@ let
   pythonEnv = pkgs.python3.withPackages (ps: with ps; [
     python-lsp-server
     pyls-isort
+    pytest
+    nose
   ] ++ python-lsp-server.optional-dependencies.all);
 in
 {
@@ -101,6 +103,7 @@ in
     texlive.combined.scheme-medium
     rnix-lsp
     pythonEnv
+    shellcheck
 
     # Node
     nodejs-16_x
