@@ -1,6 +1,9 @@
 { pkgs, ... }:
 let
   spicemenu = pkgs.writeShellScriptBin "spicemenu" ''
+    export HYPRLAND_INSTANCE_SIGNATURE="$(ls /tmp/hypr/ -lt | head -2 | tail -1 | rev | cut -d ' ' -f1 | rev)"
+    export WAYLAND_DISPLAY="wayland-1"
+    source /var/run/secrets/lukasz-pprofile
     declare -a options=("ant
     ebi
     tola
