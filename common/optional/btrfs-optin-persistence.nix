@@ -4,6 +4,12 @@ let
   wipeScript = ''
     mkdir -p /btrfs
     mount -o subvol=/ /dev/disk/by-label/${hostname} /btrfs
+
+    echo "Creating needed directories"
+    mkdir -p /btrfs/persist/var/log
+    mkdir -p /btrfs/persist/var/lib/nixos
+    mkdir -p /btrfs/persist/var/lib/systemd
+
     if [ -e "/btrfs/root/dontwipe" ]; then
       echo "Not wiping root"
     else
@@ -16,7 +22,6 @@ let
       btrfs subvolume snapshot /btrfs/root-blank /btrfs/root
     fi
     umount /btrfs
-    rm /btrfs
   '';
 in
 {

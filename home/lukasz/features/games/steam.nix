@@ -22,7 +22,7 @@ in
     protontricks
   ];
   home.persistence = {
-    "/persist/games/lukasz" = {
+    "/persist/home/lukasz" = {
       allowOther = true;
       directories = [
         ".local/share/Paradox Interactive"

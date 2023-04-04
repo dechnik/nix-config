@@ -28,10 +28,8 @@ chmod 0600 /mnt/swap/swapfile
 mkswap /mnt/swap/swapfile
 
 mkdir -p /mnt/persist/home/lukasz
-mkdir -p /mnt/persist/games/lukasz
 mkdir -p /mnt/persist/mail/lukasz
 chown -R lukasz:users /mnt/persist/home/lukasz
-chown -R lukasz:users /mnt/persist/games/lukasz
 chown -R lukasz:users /mnt/persist/mail/lukasz
 
 #echo 'password' | gpg --allow-secret-key-import --pinentry-mode loopback --passphrase-fd 0 --import key.asc

@@ -9,7 +9,7 @@
   ];
 
   home.persistence = {
-    "/persist/games/lukasz" = {
+    "/persist/home/lukasz" = {
       allowOther = true;
       directories = [ "Games/Lutris" ".config/lutris" ".local/share/lutris" ];
     };
