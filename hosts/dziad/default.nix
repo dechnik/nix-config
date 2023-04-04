@@ -19,7 +19,6 @@
       ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/syncthing.nix
-      ../../common/global/network.nix
       # ../common/optional/postfix.nix
       ../../common/optional/gamemode.nix
       # ../common/optional/zfs.nix

@@ -20,7 +20,6 @@
      ../../common/optional/bluetooth.nix
      ../../common/optional/syncthing.nix
      ../../common/optional/printing.nix
-     ../../common/global/network.nix
      ../../common/optional/vpn.nix
     ];
 

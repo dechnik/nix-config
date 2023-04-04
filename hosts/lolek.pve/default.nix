@@ -14,7 +14,6 @@
       ../../common/optional/systemd-exporter.nix
       ../../common/optional/postfix.nix
       ../../common/global
-      ../../common/global/network.nix
       ../../common/users/lukasz
     ];
 

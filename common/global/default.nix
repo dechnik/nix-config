@@ -10,6 +10,7 @@
     ./locale.nix
     ./nix.nix
     ./openssh.nix
+    ./network.nix
     ./optin-persistence.nix
     ./postgres.nix
     ./sops.nix

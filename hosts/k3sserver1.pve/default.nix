@@ -14,7 +14,6 @@ in {
       ../../common/optional/node-exporter.nix
       ../../common/optional/systemd-exporter.nix
       ../../common/global
-      ../../common/global/network.nix
       ../../common/users/lukasz
     ];
 
