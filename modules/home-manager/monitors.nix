@@ -12,6 +12,10 @@ in
           type = types.str;
           example = "DP-1";
         };
+        noBar = mkOption {
+          type = types.bool;
+          default = false;
+        };
         isPrimary = mkOption {
           type = types.bool;
           default = false;
