@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, ... }:
 
 {
   imports =
@@ -20,7 +20,7 @@
   networking = {
     hostName = "olek"; # Define your hostname.
     domain = "pve.dechnik.net";
-    useDHCP = true;
+    useDHCP = lib.mkDefault true;
     # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
 
