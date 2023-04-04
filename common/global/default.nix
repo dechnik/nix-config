@@ -1,7 +1,6 @@
-{ pkgs, lib, inputs, outputs, ... }:
+{ pkgs, inputs, outputs, ... }:
 {
   imports = [
-    inputs.impermanence.nixosModules.impermanence
     inputs.home-manager.nixosModules.home-manager
     ./acme.nix
     ./fail2ban.nix
@@ -11,6 +10,7 @@
     ./locale.nix
     ./nix.nix
     ./openssh.nix
+    ./optin-persistence.nix
     ./postgres.nix
     ./sops.nix
     ./ssh-serve-store.nix
@@ -37,25 +37,10 @@
       #nextcloud-client
     ];
 
-    # Persist logs, timers, etc
-    persistence = {
-      "/persist" = {
-        directories = [
-          "/var/lib/systemd"
-          "/var/lib/nixos"
-          "/var/log"
-          "/srv"
-        ];
-      };
-    };
-
     enableAllTerminfo = true;
   };
 
   # security.sudo.wheelNeedsPassword = false;
-
-  # Allows users to allow others on their binds
-  programs.fuse.userAllowOther = true;
 
   hardware.enableRedistributableFirmware = true;
 
