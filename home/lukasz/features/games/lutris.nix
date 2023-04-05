@@ -11,7 +11,13 @@
   home.persistence = {
     "/persist/home/lukasz" = {
       allowOther = true;
-      directories = [ "Games/Lutris" ".config/lutris" ".local/share/lutris" ];
+      directories = [
+        "Games/Lutris"
+        "Games/battlenet"
+        "Games/epic-games-store"
+        ".config/lutris"
+        ".local/share/lutris"
+      ];
     };
   };
 }

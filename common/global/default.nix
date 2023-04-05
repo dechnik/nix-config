@@ -7,6 +7,7 @@
     ./firewall.nix
     ./fish.nix
     ./zsh.nix
+    ./systemd-initrd.nix
     ./locale.nix
     ./nix.nix
     ./openssh.nix
