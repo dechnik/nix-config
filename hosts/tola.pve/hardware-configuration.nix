@@ -3,7 +3,7 @@
   imports =
     [
       (modulesPath + "/profiles/qemu-guest.nix")
-      ../../common/optional/btrfs-optin-persistence.nix
+      ../../common/optional/ephemeral-btrfs.nix
     ];
 
   boot = {
