@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ lib, ... }: {
   options = {
     my.wan = lib.mkOption {
       type = lib.types.str;
@@ -12,7 +12,7 @@
 
     my.extraLan = lib.mkOption {
       type = lib.types.list lib.types.str;
-      default = [];
+      default = [ ];
     };
   };
 

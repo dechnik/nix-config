@@ -1,9 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
 
   startscript = pkgs.writeShellScript "gamemode-start" ''
     ${pkgs.procps}/bin/pkill swayidle
@@ -11,7 +11,8 @@
 
   endscript = pkgs.writeShellScript "gamemode-end" ''
   '';
-in {
+in
+{
   programs.gamemode = {
     enable = true;
     settings = {

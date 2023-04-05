@@ -85,8 +85,8 @@
         locations = {
           "/headscale." = {
             extraConfig = ''
-                grpc_pass grpc://${config.services.headscale.settings.grpc_listen_addr};
-                  '';
+              grpc_pass grpc://${config.services.headscale.settings.grpc_listen_addr};
+            '';
             priority = 1;
           };
           "/" = {
@@ -101,7 +101,7 @@
               proxy_read_timeout          900s;
               proxy_send_timeout          600;
               send_timeout                600;
-              '';
+            '';
           };
           "/metrics" = {
             proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
@@ -109,7 +109,7 @@
               allow 10.0.0.0/8;
               allow 100.64.0.0/16;
               deny all;
-              '';
+            '';
             priority = 2;
           };
         };

@@ -1,7 +1,9 @@
-{ lib, config, pkgs, ... }: let
-  network = import ../../common/functions/network.nix {inherit lib pkgs;};
-  s = import ../../metadata/sites.nix {inherit lib config;};
-in {
+{ lib, config, pkgs, ... }:
+let
+  network = import ../../common/functions/network.nix { inherit lib pkgs; };
+  s = import ../../metadata/sites.nix { inherit lib config; };
+in
+{
   imports =
     [
       ./hardware-configuration.nix
@@ -21,12 +23,12 @@ in {
 
   networking =
     network.base
-    {
-      hostName = "k3sagent2";
-      interface = config.my.lan;
-      ipv4 = "10.60.0.122";
-      site = s.sites.pve;
-    };
+      {
+        hostName = "k3sagent2";
+        interface = config.my.lan;
+        ipv4 = "10.60.0.122";
+        site = s.sites.pve;
+      };
 
   system.stateVersion = "22.05"; # Did you read the comment?
 }

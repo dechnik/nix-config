@@ -1,11 +1,13 @@
-{ pkgs,
-  lib,
-  config,
-  ...
-}: let
-  contexts-config = import ./contexts.nix {inherit config lib;};
+{ pkgs
+, lib
+, config
+, ...
+}:
+let
+  contexts-config = import ./contexts.nix { inherit config lib; };
   maildirBase = "${config.xdg.dataHome}/mail";
-in {
+in
+{
   config.home.persistence = {
     "/persist/mail/lukasz" = {
       directories = [
@@ -39,7 +41,7 @@ in {
   };
 
   options.accounts.email.accounts = with lib;
-    mkOption {type = with types; attrsOf (submodule (import ./options.nix));};
+    mkOption { type = with types; attrsOf (submodule (import ./options.nix)); };
 
   config.programs = {
     pandoc.enable = true;
@@ -74,8 +76,9 @@ in {
     text = with lib; let
       mbsyncAccounts =
         filter (a: a.mbsync.enable)
-        (attrValues config.accounts.email.accounts);
-    in ''
+          (attrValues config.accounts.email.accounts);
+    in
+    ''
       #!/bin/sh
       lastrun="${config.xdg.dataHome}/mail/.mailsynclastrun"
       for acc in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
@@ -95,8 +98,9 @@ in {
     text = with lib; let
       mbsyncAccounts =
         filter (a: a.mbsync.enable)
-        (attrValues config.accounts.email.accounts);
-    in ''
+          (attrValues config.accounts.email.accounts);
+    in
+    ''
       #!/bin/sh
       for account in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
         target="${config.xdg.dataHome}/mail/$account/.null"
@@ -108,7 +112,7 @@ in {
   # We use msmtpq to send email, which means if we save the mail offline we
   # can run this queue runner from time to time.
   config.systemd.user.services.msmtp-queue-runner = {
-    Unit = {Description = "msmtp-queue runner";};
+    Unit = { Description = "msmtp-queue runner"; };
     Service = {
       Type = "oneshot";
       ExecStart = "${pkgs.msmtp}/bin/msmtp-queue -r";
@@ -116,11 +120,11 @@ in {
   };
 
   config.systemd.user.timers.msmtp-queue-runner = {
-    Unit = {Description = "msmtp-queue runner";};
+    Unit = { Description = "msmtp-queue runner"; };
     Timer = {
       Unit = "msmtp-queue-runner.service";
       OnCalendar = "*:0/5";
     };
-    Install = {WantedBy = ["timers.target"];};
+    Install = { WantedBy = [ "timers.target" ]; };
   };
 }

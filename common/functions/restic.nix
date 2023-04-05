@@ -1,17 +1,17 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
+{ lib
+, config
+, pkgs
+, ...
 }:
 with lib; let
-  commonJob = {
-    name,
-    repository,
-    secret,
-    paths,
-    owner ? "root",
-  }:
+  commonJob =
+    { name
+    , repository
+    , secret
+    , paths
+    , owner ? "root"
+    ,
+    }:
     mkMerge [
       {
         sops.secrets.${secret} = {
@@ -46,20 +46,22 @@ with lib; let
       # })
     ];
 
-  backupJob = {
-    name ? config.networking.fqdn,
-    site,
-    secret,
-    paths,
-    owner ? "root",
-  }: (commonJob {
-    inherit secret;
-    inherit paths;
-    inherit owner;
-    name = site;
-    repository = "rest:https://restic.${site}.dechnik.net/${name}";
-  });
-in {
+  backupJob =
+    { name ? config.networking.fqdn
+    , site
+    , secret
+    , paths
+    , owner ? "root"
+    ,
+    }: (commonJob {
+      inherit secret;
+      inherit paths;
+      inherit owner;
+      name = site;
+      repository = "rest:https://restic.${site}.dechnik.net/${name}";
+    });
+in
+{
   inherit backupJob;
   inherit commonJob;
 }

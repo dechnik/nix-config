@@ -17,7 +17,7 @@
     # };
   };
 }
-// builtins.mapAttrs
+  // builtins.mapAttrs
   (name: value: {
     deployment = {
       buildOnTarget =

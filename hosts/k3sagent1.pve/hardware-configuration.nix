@@ -2,7 +2,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot = {
@@ -19,7 +20,8 @@
   };
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/k3sagent1";
+    {
+      device = "/dev/disk/by-label/k3sagent1";
       fsType = "ext4";
     };
   boot.cleanTmpDir = true;

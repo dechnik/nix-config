@@ -1,8 +1,8 @@
-{lib, ...}:
+{ lib, ... }:
 with lib; let
   prometheusExporter = name: port: {
     name = "${name}-exporter";
-    tags = ["${name}-exporter" "prometheus"];
+    tags = [ "${name}-exporter" "prometheus" ];
     port = port;
     check = {
       name = "${name} health check";
@@ -11,4 +11,5 @@ with lib; let
       timeout = "1s";
     };
   };
-in {inherit prometheusExporter;}
+in
+{ inherit prometheusExporter; }

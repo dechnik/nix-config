@@ -1,13 +1,14 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
-  folder-config = import ./folder-config.nix {inherit config lib;};
+{ lib
+, config
+, pkgs
+, ...
+}:
+let
+  folder-config = import ./folder-config.nix { inherit config lib; };
   maildirBase = "${config.xdg.dataHome}/mail";
   inherit (config) mailhost;
-in {
+in
+{
   accounts.email.accounts = {
     "dechnik" = {
       address = "lukasz@dechnik.net";

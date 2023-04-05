@@ -1,11 +1,12 @@
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
+  consul = import ../functions/consul.nix { inherit lib; };
+in
 {
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  consul = import ../functions/consul.nix {inherit lib;};
-in {
   imports = [
     ../../modules/nixos/tailscale-nginx-auth.nix
   ];
@@ -76,22 +77,23 @@ in {
     user = "nginx";
 
     settings = {
-      namespaces = let
-        # format = ''
-        #   $remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"
-        # '';
-        mkApp = domain: {
-          name = domain;
-          metrics_override = {prefix = "nginxlog";};
-          source.files = ["/var/log/nginx/${domain}.access.log"];
-          namespace_label = "vhost";
-        };
-      in
+      namespaces =
+        let
+          # format = ''
+          #   $remote_addr - $remote_user [$time_local] "$request" $status $body_bytes_sent "$http_referer" "$http_user_agent"
+          # '';
+          mkApp = domain: {
+            name = domain;
+            metrics_override = { prefix = "nginxlog"; };
+            source.files = [ "/var/log/nginx/${domain}.access.log" ];
+            namespace_label = "vhost";
+          };
+        in
         [
           {
             name = "catch";
-            metrics_override = {prefix = "nginxlog";};
-            source.files = ["/var/log/nginx/access.log"];
+            metrics_override = { prefix = "nginxlog"; };
+            source.files = [ "/var/log/nginx/access.log" ];
             namespace_label = "vhost";
           }
         ]

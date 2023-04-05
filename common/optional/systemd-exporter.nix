@@ -1,10 +1,11 @@
+{ config
+, lib
+, ...
+}:
+let
+  consul = import ../functions/consul.nix { inherit lib; };
+in
 {
-  config,
-  lib,
-  ...
-}: let
-  consul = import ../functions/consul.nix {inherit lib;};
-in {
   services.prometheus.exporters.systemd = {
     enable = true;
     openFirewall = true;

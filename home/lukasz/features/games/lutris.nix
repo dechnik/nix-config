@@ -1,10 +1,10 @@
 { pkgs, lib, ... }: {
   home.packages = with pkgs; [
     (lutris.override {
-       extraPkgs = pkgs: [
-         pkgs.libnghttp2
-         # List package dependencies here
-       ];
+      extraPkgs = pkgs: [
+        pkgs.libnghttp2
+        # List package dependencies here
+      ];
     })
   ];
 

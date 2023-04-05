@@ -1,12 +1,11 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }: {
   options = {
     my.consulServices = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
-      default = {};
+      default = { };
     };
   };
 
@@ -25,9 +24,9 @@
         node_name = config.networking.hostName;
         server = lib.mkDefault false;
         log_level = "INFO";
-        datacenter = builtins.replaceStrings [".dechnik.net"] [""] config.networking.domain;
+        datacenter = builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.domain;
 
-        retry_join = lib.mkIf (config.networking.defaultGateway != null) (lib.mkDefault [config.networking.defaultGateway.address]);
+        retry_join = lib.mkIf (config.networking.defaultGateway != null) (lib.mkDefault [ config.networking.defaultGateway.address ]);
 
         # addresses = {
         #   http = "127.0.0.1";

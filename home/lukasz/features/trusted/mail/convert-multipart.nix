@@ -1,4 +1,5 @@
-pkgs: let
+pkgs:
+let
   programs = with pkgs; [
     gnugrep
     gnused
@@ -60,4 +61,4 @@ pkgs: let
     fi
   '';
 in
-  convert-multipart
+convert-multipart

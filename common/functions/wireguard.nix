@@ -1,52 +1,60 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{ config
+, lib
+, ...
+}:
+let
   # consul = import ./consul.nix {inherit lib;};
 
-  serverPeer = name: let
-    wireguardHosts = import ../../metadata/wireguard.nix;
-    wireguardConfig = wireguardHosts.servers."${name}";
-  in {
-    publicKey = wireguardConfig.public_key;
-    allowedIPs = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
-    endpoint = "${wireguardConfig.endpoint_address}:${toString wireguardConfig.endpoint_port}";
-  };
+  serverPeer = name:
+    let
+      wireguardHosts = import ../../metadata/wireguard.nix;
+      wireguardConfig = wireguardHosts.servers."${name}";
+    in
+    {
+      publicKey = wireguardConfig.public_key;
+      allowedIPs = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
+      endpoint = "${wireguardConfig.endpoint_address}:${toString wireguardConfig.endpoint_port}";
+    };
 
-  clientPeer = name: let
-    wireguardHosts = import ../../metadata/wireguard.nix;
-    wireguardConfig = wireguardHosts.clients."${name}";
-  in {
-    publicKey = wireguardConfig.public_key;
-    allowedIPs = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
-  };
+  clientPeer = name:
+    let
+      wireguardHosts = import ../../metadata/wireguard.nix;
+      wireguardConfig = wireguardHosts.clients."${name}";
+    in
+    {
+      publicKey = wireguardConfig.public_key;
+      allowedIPs = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
+    };
 
-  server = name: privateKeyPath: let
-    wireguardHosts = import ../../metadata/wireguard.nix;
-    wireguardConfig = wireguardHosts.servers."${name}";
+  server = name: privateKeyPath:
+    let
+      wireguardHosts = import ../../metadata/wireguard.nix;
+      wireguardConfig = wireguardHosts.servers."${name}";
 
-    clients = map clientPeer (builtins.attrNames wireguardHosts.clients);
+      clients = map clientPeer (builtins.attrNames wireguardHosts.clients);
 
-    # We need to filter out the current host
-    servers = map serverPeer (builtins.filter (host: host != name) (builtins.attrNames wireguardHosts.servers));
-  in {
-    ips = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
-    listenPort = wireguardConfig.endpoint_port;
-    privateKeyFile = privateKeyPath;
-    peers = servers ++ clients;
-  };
+      # We need to filter out the current host
+      servers = map serverPeer (builtins.filter (host: host != name) (builtins.attrNames wireguardHosts.servers));
+    in
+    {
+      ips = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
+      listenPort = wireguardConfig.endpoint_port;
+      privateKeyFile = privateKeyPath;
+      peers = servers ++ clients;
+    };
 
-  client = name: privateKeyPath: let
-    wireguardHosts = import ../../metadata/wireguard.nix;
-    wireguardConfig = wireguardHosts.clients."${name}";
+  client = name: privateKeyPath:
+    let
+      wireguardHosts = import ../../metadata/wireguard.nix;
+      wireguardConfig = wireguardHosts.clients."${name}";
 
-    servers = map serverPeer (builtins.attrNames wireguardHosts.servers);
-  in {
-    ips = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
-    privateKeyFile = privateKeyPath;
-    peers = servers;
-  };
+      servers = map serverPeer (builtins.attrNames wireguardHosts.servers);
+    in
+    {
+      ips = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
+      privateKeyFile = privateKeyPath;
+      peers = servers;
+    };
 
   service = name: secret: wgConfig: {
     sops.secrets.${secret} = {
@@ -60,8 +68,8 @@
     };
 
     networking.firewall = {
-      allowedUDPPorts = lib.mkIf (config.networking.wireguard.interfaces.wg0.listenPort != null) [config.networking.wireguard.interfaces.wg0.listenPort];
-      trustedInterfaces = ["wg0"];
+      allowedUDPPorts = lib.mkIf (config.networking.wireguard.interfaces.wg0.listenPort != null) [ config.networking.wireguard.interfaces.wg0.listenPort ];
+      trustedInterfaces = [ "wg0" ];
     };
 
     # services.prometheus.exporters.wireguard = {
@@ -78,6 +86,7 @@
 
   serverService = name: secret:
     service name secret (server name config.sops.secrets.${secret}.path);
-in {
+in
+{
   inherit clientService serverService;
 }

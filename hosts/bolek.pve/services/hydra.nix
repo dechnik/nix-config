@@ -77,7 +77,7 @@ in
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 6;
             speedFactor = 100;
-            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark"];
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
           }
           {
             uri = "localhost";
@@ -116,7 +116,7 @@ in
               proxy_set_header        X-Forwarded-Proto $scheme;
               proxy_set_header        X-Forwarded-Host $host;
               proxy_set_header        X-Forwarded-Server $host;
-              '';
+            '';
           };
         };
       };

@@ -1,8 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-}: let
+{ config
+, pkgs
+, lib
+,
+}:
+let
   server = site: {
     sops.secrets."k3s-${site.name}" = {
       sopsFile = ../secrets.yaml;
@@ -85,4 +86,5 @@
       tokenFile = config.sops.secrets."k3s-${site.name}".path;
     };
   };
-in {inherit server agent;}
+in
+{ inherit server agent; }

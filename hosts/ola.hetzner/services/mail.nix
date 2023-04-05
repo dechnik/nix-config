@@ -18,19 +18,19 @@
       "lukasz@dechnik.net" = {
         hashedPasswordFile = config.sops.secrets.lukasz-mail-password.path;
         aliases = [
-            "admin@dechnik.net"
-            "dechnik@dechnik.net"
-            "postmaster@dechnik.net"
+          "admin@dechnik.net"
+          "dechnik@dechnik.net"
+          "postmaster@dechnik.net"
         ];
       };
       "monitoring@dechnik.net" = {
         hashedPasswordFile = config.sops.secrets.monitoring-mail-password.path;
         aliases = [
-            "grafana@dechnik.net"
-            "alertmanager@dechnik.net"
-            "monitoring@pve.dechnik.net"
-            "grafana@pve.dechnik.net"
-            "alertmanager@pve.dechnik.net"
+          "grafana@dechnik.net"
+          "alertmanager@dechnik.net"
+          "monitoring@pve.dechnik.net"
+          "grafana@pve.dechnik.net"
+          "alertmanager@pve.dechnik.net"
         ];
       };
     };

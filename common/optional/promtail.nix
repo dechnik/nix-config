@@ -1,6 +1,8 @@
-{config, ...}: let
-  site = builtins.replaceStrings [".dechnik.net"] [""] config.networking.domain;
-in {
+{ config, ... }:
+let
+  site = builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.domain;
+in
+{
   services.promtail = {
     enable = true;
 
@@ -32,11 +34,11 @@ in {
             #   target_label = "host";
             # }
             {
-              source_labels = ["__journal__systemd_unit"];
+              source_labels = [ "__journal__systemd_unit" ];
               target_label = "systemd_unit";
             }
             {
-              source_labels = ["__journal_syslog_identifier"];
+              source_labels = [ "__journal_syslog_identifier" ];
               target_label = "syslog_identifier";
             }
           ];
@@ -46,9 +48,9 @@ in {
   };
 
   systemd.services.promtail = {
-    wantedBy = ["multi-user.target"];
-    wants = ["network-online.target"];
-    after = ["network-online.target"];
-    requires = ["network-online.target"];
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
+    requires = [ "network-online.target" ];
   };
 }

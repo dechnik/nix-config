@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }:
 with lib; let
   blockDownloader = ''
@@ -76,7 +75,8 @@ with lib; let
     rm -rf "$HOSTS_FILES"
     ${pkgs.systemd}/bin/systemctl reload ${config.services.blocklist-downloader.dnsService}
   '';
-in {
+in
+{
   options = {
     services.blocklist-downloader = {
       enable = mkEnableOption "Enable blocklist downloader";
@@ -96,13 +96,13 @@ in {
       };
       dnsService =
         mkOption
-        {
-          type = types.str;
-          default = "coredns.service";
-          description = ''
-            systemd service unit to reload after success.
-          '';
-        };
+          {
+            type = types.str;
+            default = "coredns.service";
+            description = ''
+              systemd service unit to reload after success.
+            '';
+          };
     };
   };
 
@@ -116,14 +116,14 @@ in {
         PrivateTmp = true;
       };
       script = blockDownloader;
-      wants = ["network-online.target" config.services.blocklist-downloader.dnsService];
-      after = ["network-online.target" config.services.blocklist-downloader.dnsService];
-      wantedBy = ["multi-user.target"];
+      wants = [ "network-online.target" config.services.blocklist-downloader.dnsService ];
+      after = [ "network-online.target" config.services.blocklist-downloader.dnsService ];
+      wantedBy = [ "multi-user.target" ];
     };
 
     systemd.timers.blocklist-download = {
-      wantedBy = ["timers.target"];
-      partOf = ["blocklist-download.service"];
+      wantedBy = [ "timers.target" ];
+      partOf = [ "blocklist-download.service" ];
       timerConfig.OnCalendar = "daily";
     };
   };

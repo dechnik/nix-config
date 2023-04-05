@@ -22,8 +22,8 @@ stdenv.mkDerivation {
     sha256 = "sha256-OlmHuME9idC0fWMzT4kY+YQ43GGch53snDq3w5v/cgk=";
   };
 
-  nativeBuildInputs = [pkg-config automake autoconf libtool];
-  propagatedBuildInputs = [cyrus_sasl];
+  nativeBuildInputs = [ pkg-config automake autoconf libtool ];
+  propagatedBuildInputs = [ cyrus_sasl ];
 
   buildPhase = ''
     ./autogen.sh

@@ -1,14 +1,15 @@
-{
-  lib,
-  config,
-  pkgs,
-  ...
-}: let
-  folder-config = import ./folder-config.nix {inherit config lib;};
+{ lib
+, config
+, pkgs
+, ...
+}:
+let
+  folder-config = import ./folder-config.nix { inherit config lib; };
   maildirBase = "${config.xdg.dataHome}/mail";
 
   inherit (config) mailhost;
-in {
+in
+{
   home.persistence = {
     "/persist/home/lukasz".directories = [ ".config/oauth2ms" ];
   };

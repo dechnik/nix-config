@@ -1,9 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
-  wireguard = import ../../../common/functions/wireguard.nix {inherit config lib;};
+{ config
+, lib
+, pkgs
+, ...
+}:
+let
+  wireguard = import ../../../common/functions/wireguard.nix { inherit config lib; };
 in
-  wireguard.serverService "hetzner" "wireguard-hetzner"
+wireguard.serverService "hetzner" "wireguard-hetzner"

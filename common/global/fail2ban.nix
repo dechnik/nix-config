@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   environment.persistence = {
     "/persist" = {
       directories = [

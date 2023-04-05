@@ -1,17 +1,17 @@
-{
-  config,
-  lib,
-  ...
+{ config
+, lib
+, ...
 }:
 with lib builtins; let
-  nginx = import ../functions/nginx.nix {inherit config lib;};
+  nginx = import ../functions/nginx.nix { inherit config lib; };
 
   domain = "consul.${config.networking.domain}";
 
-  s = import ../../metadata/sites.nix {inherit lib config;};
+  s = import ../../metadata/sites.nix { inherit lib config; };
   peers = s.consulPeers;
-in {
-  imports = [./consul.nix];
+in
+{
+  imports = [ ./consul.nix ];
   config = lib.mkMerge [
     {
       services.consul = {
@@ -24,7 +24,7 @@ in {
 
           bind_addr = ''{{ GetInterfaceIP "${config.my.lan}" }}'';
 
-          retry_join = [];
+          retry_join = [ ];
           retry_join_wan = builtins.attrValues peers;
 
           connect = {

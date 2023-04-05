@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.services.tailscale-nginx-auth;
-in {
+in
+{
   options.services.tailscale-nginx-auth = {
     enable = mkEnableOption "Tailscale NGINX Authentication service";
 
@@ -65,9 +65,9 @@ in {
       script = ''
         ${cfg.package}/bin/nginx-auth -sockpath /run/tailscale-nginx-auth/tailscale.nginx-auth.sock
       '';
-      wantedBy = ["default.target"];
-      after = ["nginx.service"];
-      wants = ["nginx.service"];
+      wantedBy = [ "default.target" ];
+      after = [ "nginx.service" ];
+      wants = [ "nginx.service" ];
 
       serviceConfig = {
         # DynamicUser = true;
@@ -77,7 +77,7 @@ in {
         RuntimeDirectoryMode = "0755";
       };
 
-      path = [cfg.package];
+      path = [ cfg.package ];
     };
 
     # systemd.sockets.tailscale-nginx-auth = {
