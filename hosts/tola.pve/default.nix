@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   imports =
@@ -18,11 +18,36 @@
 
   services.spice-vdagentd.enable = true;
 
+  my.lan = "ens19";
+
   networking = {
     hostName = "tola"; # Define your hostname.
     domain = "pve.dechnik.net";
-    useDHCP = lib.mkDefault true;
-    # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    nameservers = [
+      "10.60.0.1"
+    ];
+    defaultGateway = "10.60.0.1";
+    defaultGateway6 = "";
+    dhcpcd.enable = false;
+    usePredictableInterfaceNames = lib.mkForce true;
+    interfaces."ens18" = {
+      useDHCP = true;
+    };
+    interfaces."${config.my.lan}" = {
+      useDHCP = false;
+      ipv4.addresses = [
+        {
+          address = "10.60.0.3";
+          prefixLength = 24;
+        }
+      ];
+      ipv4.routes = [
+        {
+          address = "10.60.0.1";
+          prefixLength = 32;
+        }
+      ];
+    };
   };
 
   programs = {
