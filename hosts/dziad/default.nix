@@ -4,6 +4,7 @@
   imports =
     [
       inputs.hardware.nixosModules.common-cpu-amd
+      inputs.hardware.nixosModules.common-gpu-nvidia
       inputs.hardware.nixosModules.common-pc-ssd
       ./services
 
@@ -95,8 +96,6 @@
     dconf.enable = true;
   };
 
-  services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
-
   hardware.xpadneo.enable = true;
   hardware.steam-hardware.enable = true;
 
@@ -108,14 +107,17 @@
     wlr.enable = false;
   };
 
-  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia = {
+    prime.offload.enable = false;
+    modesetting.enable = true;
+  };
 
   hardware = {
     opengl = {
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [ libvdpau-va-gl vaapiVdpau ];
+      # extraPackages = with pkgs; [ libvdpau-va-gl vaapiVdpau ];
     };
   };
 
