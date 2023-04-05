@@ -41,7 +41,7 @@ in
       "${domain}" = {
         forceSSL = true;
         useACMEHost = "${domain}";
-        locations."/".proxyPass = "http://localhost:${port}";
+        locations."/".proxyPass = "http://localhost:${port}/";
         extraConfig = ''
           proxy_set_header  X-Script-Name /;
           proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;

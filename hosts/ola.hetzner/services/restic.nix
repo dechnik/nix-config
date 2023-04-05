@@ -8,6 +8,7 @@
 
   paths = [
     "/srv/mail"
+    "/var/lib/radicale"
   ];
 
   cfg = site: {
