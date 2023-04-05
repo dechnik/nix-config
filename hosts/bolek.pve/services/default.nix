@@ -3,6 +3,7 @@
     ./binary-cache.nix
     ./dhcp.nix
     ./hydra.nix
+    ./files.nix
     ./cgit
     ./git-remote.nix
     ./uwsgi.nix
