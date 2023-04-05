@@ -6,6 +6,9 @@ in
 {
   programs.browserpass.enable = true;
   home.packages = with pkgs; [ tridactyl-native ];
+  home.file.".mozilla/native-messaging-hosts/tridactyl.json" = {
+    source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
+  };
   xdg.configFile."tridactyl/tridactylrc".text = ''
     " Clear the config
     sanitise tridactyllocal tridactylsync
