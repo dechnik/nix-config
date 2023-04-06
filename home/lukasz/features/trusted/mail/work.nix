@@ -59,7 +59,6 @@ in
         patterns = [
           "INBOX"
           "Sent Items"
-          "Sent"
           "Archive"
         ];
         enable = true;
