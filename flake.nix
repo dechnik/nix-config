@@ -68,6 +68,14 @@
       inherit (self) outputs;
       forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
+      mkNixos = modules: nixpkgs.lib.nixosSystem {
+        inherit modules;
+        specialArgs = { inherit inputs outputs; };
+      };
+      mkHome = modules: pkgs: home-manager.lib.homeManagerConfiguration {
+        inherit modules pkgs;
+        extraSpecialArgs = { inherit inputs outputs; };
+      };
     in
     {
       nixosModules = import ./modules/nixos;
@@ -82,110 +90,32 @@
       formatter = forEachPkgs (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations = {
-        # Desktop
-        "dziad" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/dziad ];
-        };
-        "ldlat" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/ldlat ];
-        };
-        "bolek.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/bolek.pve ];
-        };
-        "lolek.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/lolek.pve ];
-        };
-        "k3sserver1.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/k3sserver1.pve ];
-        };
-        "k3sagent1.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/k3sagent1.pve ];
-        };
-        "k3sagent2.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/k3sagent2.pve ];
-        };
-        "tola.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/tola.pve ];
-        };
-        "olek.pve" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/olek.pve ];
-        };
-        "tolek.oracle" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/tolek.oracle ];
-        };
-        "ola.hetzner" = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [ ./hosts/ola.hetzner ];
-        };
+        "dziad" = mkNixos [ ./hosts/dziad ];
+        "ldlat" = mkNixos [ ./hosts/ldlat ];
+        "bolek.pve" = mkNixos [ ./hosts/bolek.pve ];
+        "lolek.pve" = mkNixos [ ./hosts/lolek.pve ];
+        "k3sserver1.pve" = mkNixos [ ./hosts/k3sserver1.pve ];
+        "k3sagent1.pve" = mkNixos [ ./hosts/k3sagent1.pve ];
+        "k3sagent2.pve" = mkNixos [ ./hosts/k3sagent2.pve ];
+        "tola.pve" = mkNixos [ ./hosts/tola.pve ];
+        "olek.pve" = mkNixos [ ./hosts/olek.pve ];
+        "tolek.oracle" = mkNixos [ ./hosts/tolek.oracle ];
+        "ola.hetzner" = mkNixos [ ./hosts/ola.hetzner ];
       };
 
       homeConfigurations = {
         # Desktop
-        "lukasz@dziad" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/dziad.nix ];
-        };
-        "lukasz@ldlat" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/ldlat.nix ];
-        };
-        "lukasz@bolek" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/bolek.nix ];
-        };
-        "lukasz@lolek" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/lolek.nix ];
-        };
-        "lukasz@k3sserver1" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/k3sserver1.nix ];
-        };
-        "lukasz@k3sagent1" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/k3sagent1.nix ];
-        };
-        "lukasz@k3sagent2" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/k3sagent2.nix ];
-        };
-        "lukasz@tola" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/tola.nix ];
-        };
-        "lukasz@olek" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/olek.nix ];
-        };
-        "lukasz@tolek" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/tolek.nix ];
-        };
-        "lukasz@ola" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [ ./home/lukasz/ola.nix ];
-        };
+        "lukasz@dziad" = mkHome [ ./home/lukasz/dziad.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@ldlat" = mkHome [ ./home/lukasz/ldlat.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@bolek" = mkHome [ ./home/lukasz/bolek.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@lolek" = mkHome [ ./home/lukasz/lolek.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@k3sserver1" = mkHome [ ./home/lukasz/k3sserver1.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@k3sagent1" = mkHome [ ./home/lukasz/k3sagent1.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@k3sagent2" = mkHome [ ./home/lukasz/k3sagent2.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@tola" = mkHome [ ./home/lukasz/tola.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@olek" = mkHome [ ./home/lukasz/olek.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@tolek" = mkHome [ ./home/lukasz/tolek.nix ] nixpkgs.legacyPackages."aarch64-linux";
+        "lukasz@ola" = mkHome [ ./home/lukasz/ola.nix ] nixpkgs.legacyPackages."x86_64-linux";
       };
 
     };
