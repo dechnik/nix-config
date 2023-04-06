@@ -3,23 +3,41 @@
 { lib, config, ... }:
 let
   hostname = config.networking.hostName;
+  rootfsDevice = "/dev/disk/by-label/${hostname}";
   wipeScript = ''
+    counter=0
+
+    # systemd initrd offers no way to hook in between
+    # 'root device is ready' and 'mount the root device at /sysroot'.
+    # Instead, lets poll for the root device.
+    # https://github.com/systemd/systemd/issues/24904
+
+    echo "wipe: Waiting for ${rootfsDevice}"
+    while [ ! -e ${rootfsDevice} ]; do
+      sleep 0.1
+      counter=$((counter + 1))
+      if [ $counter -ge 300 ]; then
+          echo "wipe: Timed out waiting for ${rootfsDevice}"
+          exit
+      fi
+    done
+    echo "wipe: Found ${rootfsDevice}. Wiping ephemeral."
     mkdir /tmp -p
     MNTPOINT=$(mktemp -d)
     (
-      mount -t btrfs -o subvol=/ /dev/disk/by-label/${hostname} "$MNTPOINT"
+      mount -t btrfs -o subvol=/ ${rootfsDevice} "$MNTPOINT"
       trap 'umount "$MNTPOINT"' EXIT
 
-      echo "Creating needed directories"
+      echo "wipe: Creating needed directories"
       mkdir -p "$MNTPOINT"/persist/var/{log,lib/{nixos,systemd}}
 
-      echo "Cleaning root subvolume"
+      echo "wipe: Cleaning root subvolume"
       btrfs subvolume list -o "$MNTPOINT/root" | cut -f9 -d ' ' |
       while read -r subvolume; do
         btrfs subvolume delete "$MNTPOINT/$subvolume"
       done && btrfs subvolume delete "$MNTPOINT/root"
 
-      echo "Restoring blank subvolume"
+      echo "wipe: Restoring blank subvolume"
       btrfs subvolume snapshot "$MNTPOINT/root-blank" "$MNTPOINT/root"
     )
   '';
