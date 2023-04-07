@@ -6,6 +6,7 @@
     ./files.nix
     # ./cgit
     # ./git-remote.nix
+    ./gitea
     ./uwsgi.nix
     # ./rss.nix
     ./searx.nix
