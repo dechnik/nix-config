@@ -17,6 +17,9 @@
       "biuro" = {
         psk = "@PSK_BIURO@";
       };
+      "NETIASPOT-D504A0" = {
+        psk = "@PSK_LUBSKO@";
+      };
     };
 
     # Imperative
@@ -26,6 +29,7 @@
       group = "network";
     };
     extraConfig = ''
+      ctrl_interface=DIR=/run/wpa_supplicant GROUP=${config.networking.wireless.userControlled.group}
       update_config=1
     '';
   };
