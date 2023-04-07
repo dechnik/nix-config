@@ -1,8 +1,12 @@
 { outputs, inputs }:
 {
-  # Master nixpkgs
-  master = final: prev: {
-    master = inputs.nixpkgs-master.legacyPackages.${final.system};
+  # For every flake input, aliases 'pkgs.inputs.${flake}' to
+  # 'inputs.${flake}.packages.${pkgs.system}' or
+  # 'inputs.${flake}.legacyPackages.${pkgs.system}' or
+  flake-inputs = final: _: {
+    inputs = builtins.mapAttrs
+      (_: flake: (flake.packages or flake.legacyPackages or { }).${final.system} or { })
+      inputs;
   };
 
   additions = final: _prev: import ../pkgs { pkgs = final; };
