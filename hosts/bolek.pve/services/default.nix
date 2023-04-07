@@ -4,8 +4,8 @@
     ./dhcp.nix
     ./hydra.nix
     ./files.nix
-    ./cgit
-    ./git-remote.nix
+    # ./cgit
+    # ./git-remote.nix
     ./uwsgi.nix
     # ./rss.nix
     ./searx.nix
