@@ -1,4 +1,4 @@
-{ config, ... }:
+{ pkgs, inputs, config, ... }:
 let
   hydraUser = config.users.users.hydra.name;
   hydraGroup = config.users.users.hydra.group;
@@ -28,6 +28,7 @@ let
   );
 in
 {
+  imports = [ inputs.hydra.nixosModules.hydra ];
   security.acme.certs = {
     "hydra.dechnik.net" = {
       group = "nginx";
@@ -41,6 +42,7 @@ in
   services = {
     hydra = {
       enable = true;
+      package = pkgs.inputs.hydra.hydra;
       hydraURL = "https://hydra.dechnik.net";
       notificationSender = "hydra@dechnik.net";
       listenHost = "localhost";
@@ -57,7 +59,7 @@ in
         (mkBuildMachinesFile [
           {
             uri = "ssh://nix-ssh@dziad";
-            systems = [ "x86_64-linux" "aarch64-linux" ];
+            systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 12;
             speedFactor = 150;
