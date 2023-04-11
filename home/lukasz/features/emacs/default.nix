@@ -9,7 +9,7 @@ let
   # my_emacs = pkgs.emacs28NativeComp;
   my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
     name = "emacs-unstable";
-    version = "28.3-${inputs.emacs-src.shortRev}";
+    version = "29-${inputs.emacs-src.shortRev}";
     src = inputs.emacs-src;
   });
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
