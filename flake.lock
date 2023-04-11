@@ -80,16 +80,16 @@
     "emacs-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1681209445,
-        "narHash": "sha256-d1jUCNIwKbqkJCRXUMmupNX3eJ4/WG++GIiLqft4jYk=",
+        "lastModified": 1677264147,
+        "narHash": "sha256-xgLL6BktW3TJDR/kI08FOMW09/eaQAQFC0NhA8LWKTI=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "05971c4d9a49d377a17d6ffa4c9fa9616ac12769",
+        "rev": "dec958258b133b4c21224c594da433919d852800",
         "type": "github"
       },
       "original": {
         "owner": "emacs-mirror",
-        "ref": "emacs-29",
+        "ref": "emacs-28",
         "repo": "emacs",
         "type": "github"
       }
