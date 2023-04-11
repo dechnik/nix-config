@@ -112,17 +112,18 @@ in
   # systemd.user.services.emacs = {
   #   Unit = {
   #     Description = "Emacs text editor";
-  #     Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs/";
   #     X-RestartIfChanged = false;
+  #     Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs/";
   #   };
   #   Service = {
-  #     Environment = "PATH=${pkgs.libnotify}/bin";
-  #     Type = "forking";
-  #     ExecStart = "${pkgs.bash}/bin/bash -l -c '${my_emacs}/bin/emacs --daemon && ${my_emacs}/bin/emacsclient -c --display=\"\$DISPLAY\" --eval \"(delete-frame)\"'";
+  #     Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
+  #     Type = "notify";
+  #     ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacs --daemon && ${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
   #     ExecStop = "${my_emacs}/bin/emacsclient --no-wait --eval '(progn (setq kill-emacs-hook nil) (kill-emacs))'";
+  #     SuccessExitStatus = 15;
   #     Restart = "on-failure";
   #   };
-  #   Install.WantedBy = ["graphical-session.target"];
+  #   Install = { WantedBy = [ "default.target" ]; };
   # };
   services.emacs = {
     enable = true;
