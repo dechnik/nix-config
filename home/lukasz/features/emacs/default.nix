@@ -131,6 +131,7 @@ in
     client.enable = true;
   };
   systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
+  # systemd.user.services.emacs.Service.ExecStartPost = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
   programs.emacs = {
     enable = true;
     package = my_emacs;
