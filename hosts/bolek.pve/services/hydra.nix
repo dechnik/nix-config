@@ -59,7 +59,7 @@ in
         (mkBuildMachinesFile [
           {
             uri = "ssh://nix-ssh@dziad";
-            systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
+            systems = [ "x86_64-linux" "i686-linux" ];
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 12;
             speedFactor = 150;
@@ -75,7 +75,7 @@ in
           }
           {
             uri = "ssh://nix-ssh@ldlat";
-            systems = [ "x86_64-linux" "aarch64-linux" ];
+            systems = [ "x86_64-linux" "i686-linux" ];
             sshKey = config.sops.secrets.nix-ssh-key.path;
             maxJobs = 6;
             speedFactor = 100;
@@ -83,7 +83,7 @@ in
           }
           {
             uri = "localhost";
-            systems = [ "x86_64-linux" "aarch64-linux" ];
+            systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
             maxJobs = 8;
             speedFactor = 50;
             supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
