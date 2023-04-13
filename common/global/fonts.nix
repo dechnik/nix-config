@@ -17,6 +17,7 @@
       font-awesome_5
       alegreya
       alegreya-sans
+      JuliaMono-ttf
 
       emacs-all-the-icons-fonts
       # nerdfonts
