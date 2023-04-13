@@ -3,7 +3,8 @@
   imports =
     [
       (modulesPath + "/profiles/qemu-guest.nix")
-      ../../common/optional/ephemeral-btrfs.nix
+      # ../../common/optional/ephemeral-btrfs.nix
+      ../../common/optional/tmpfs-root.nix
     ];
 
   boot = {
