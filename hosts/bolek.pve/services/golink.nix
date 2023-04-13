@@ -9,4 +9,8 @@
     tailscaleAuthKeyFile = config.sops.secrets.golink-tskey.path;
     verbose = true;
   };
+
+  environment.persistence."/persist".directories = [
+    "/var/lib/golink"
+  ];
 }
