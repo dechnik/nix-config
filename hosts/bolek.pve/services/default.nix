@@ -18,7 +18,7 @@
     ./headscale.nix
     ./tailscale.nix
     ./restic.nix
-    ./golink.nix
+    # ./golink.nix
     ./wireguard.nix
     ./nginx-jellyfin.nix
   ];
