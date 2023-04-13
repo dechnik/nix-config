@@ -15,6 +15,8 @@
       roboto
       overpass
       font-awesome_5
+      alegreya
+      alegreya-sans
 
       emacs-all-the-icons-fonts
       # nerdfonts
