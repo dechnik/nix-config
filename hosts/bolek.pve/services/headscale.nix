@@ -61,7 +61,7 @@ in
         environmentFiles = [ "${config.sops.secrets.headscale-webui-env.path}" ];
         volumes = [
           "/var/lib/headscale-webui:/data"
-          "/etc/headscale/:/etc/headscale/:ro"
+          "/etc/static/headscale/:/etc/headscale/:ro"
         ];
       };
     };
@@ -167,7 +167,7 @@ in
   environment.persistence = {
     "/persist".directories = [
       "/var/lib/headscale"
-      "/var/lib/headscale-webui"
+      { directory = "/var/lib/headscale-webui"; user = "1000"; group = "1000"; }
     ];
   };
 }
