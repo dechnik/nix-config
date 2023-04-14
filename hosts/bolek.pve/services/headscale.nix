@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 let
-  webuiport = 5000;
+  webuiport = 5050;
 in
 {
   sops.secrets = {
