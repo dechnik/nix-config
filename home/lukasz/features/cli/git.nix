@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, config, ... }:
 {
   programs.git = {
     enable = true;
@@ -20,6 +20,8 @@
       user.signing.key = "CE738DF1C1B0BCA2F343FFD0D627C2E908C218A4";
       commit.gpgSign = true;
       gpg.program = "${config.programs.gpg.package}/bin/gpg2";
+      diff.lisp.xfuncname = "^(((;;;+ )|\\(|([ \t]+\\(((cl-|el-patch-)?def(un|var|macro|method|custom)|gb/))).*)$";
+      diff.org.xfuncname = "^(\\*+ +.*)$";
     };
     lfs.enable = true;
     ignores = [ ".direnv" "result" ];

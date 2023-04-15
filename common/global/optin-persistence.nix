@@ -14,6 +14,7 @@
         "/var/lib/systemd"
         "/var/lib/nixos"
         "/var/log"
+        "/var/backup"
         "/srv"
       ];
     };

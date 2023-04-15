@@ -5,6 +5,11 @@ in
 {
   home.packages = with pkgs; [ vdirsyncer ];
 
+  home.persistence = {
+    "/persist/home/lukasz".directories =
+      [ ".local/share/vdirsyncer" ];
+  };
+
   xdg.configFile."vdirsyncer/config".text = ''
     [general]
     status_path = "~/.local/share/vdirsyncer/status"

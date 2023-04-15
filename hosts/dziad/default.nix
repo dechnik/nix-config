@@ -89,7 +89,7 @@
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    binfmt.emulatedSystems = [ "aarch64-linux" ];
+    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
 
   programs = {

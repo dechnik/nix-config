@@ -1,1 +1,3 @@
-{ }
+{
+  golink = import ./golink.nix;
+}

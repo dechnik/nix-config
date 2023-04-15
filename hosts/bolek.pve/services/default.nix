@@ -4,8 +4,9 @@
     ./dhcp.nix
     ./hydra.nix
     ./files.nix
-    ./cgit
-    ./git-remote.nix
+    # ./cgit
+    # ./git-remote.nix
+    ./gitea
     ./uwsgi.nix
     # ./rss.nix
     ./searx.nix
@@ -17,6 +18,7 @@
     ./headscale.nix
     ./tailscale.nix
     ./restic.nix
+    # ./golink.nix
     ./wireguard.nix
     ./nginx-jellyfin.nix
   ];

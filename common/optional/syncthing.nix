@@ -22,9 +22,8 @@
         theme = "black";
       };
       options = {
-        globalAnnounceEnabled = false;
-        relaysEnabled = false;
-        natEnabled = false;
+        globalAnnounceEnabled = true;
+        natEnabled = true;
       };
     };
     openDefaultPorts = true;
@@ -50,6 +49,10 @@
           "tcp://bolek:22000"
         ];
       };
+      moto = {
+        id = "OXLWOWF-NEWT75R-EPLET5W-NJUFJPV-WKIRLRK-UKBP442-6Z5H4HP-ZTCE7QO";
+        name = "moto";
+      };
     };
     folders = {
       "/persist/home/lukasz/Downloads" = {
@@ -70,11 +73,11 @@
       };
       "/persist/home/lukasz/Org" = {
         id = "persistent-home-org";
-        devices = [ "dziad" "bolek" "ldlat" ];
+        devices = [ "dziad" "bolek" "ldlat" "moto" ];
       };
       "/persist/home/lukasz/Roam" = {
         id = "persistent-home-roam";
-        devices = [ "dziad" "bolek" "ldlat" ];
+        devices = [ "dziad" "bolek" "ldlat" "moto" ];
       };
     };
   };

@@ -1,4 +1,7 @@
 { pkgs, config, lib, ... }:
+let
+  webuiport = 5050;
+in
 {
   sops.secrets = {
     headscale-private-key = {
@@ -21,6 +24,9 @@
       owner = "headscale";
       mode = "0600";
     };
+    headscale-webui-env = {
+      sopsFile = ../secrets.yaml;
+    };
   };
   security.acme.certs = {
     "tailscale.dechnik.net" = {
@@ -34,6 +40,31 @@
     # HEADSCALE_LOG_LEVEL = "trace";
     # GRPC_GO_LOG_VERBOSITY_LEVEL = "2";
     # GRPC_GO_LOG_SEVERITY_LEVEL = "info";
+  };
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      headscale-webui = {
+        autoStart = true;
+        image = "ghcr.io/ifargle/headscale-webui:latest";
+        ports = [ "${toString webuiport}:5000" ];
+        environment = {
+          "TZ" = "Europe/Warsaw";
+          "OIDC_AUTH_URL" = "https://nextcloud.dechnik.net/.well-known/openid-configuration";
+          "OIDC_CLIENT_ID" = "oshNhpGPlmXuP0DA8Qz37xz3gXEbbbdKSTCjLEWw5vE5G9imq0cYh3HErtBxyVy8";
+          "AUTH_TYPE" = "oidc";
+          "SCRIPT_NAME" = "/admin";
+          "DOMAIN_NAME" = "https://tailscale.dechnik.net";
+          "HS_SERVER" = "https://tailscale.dechnik.net";
+        };
+        environmentFiles = [ "${config.sops.secrets.headscale-webui-env.path}" ];
+        volumes = [
+          "/var/lib/headscale-webui:/data"
+          "/etc/static/headscale/:/etc/headscale/:ro"
+        ];
+      };
+    };
   };
   services = {
     headscale = {
@@ -103,6 +134,17 @@
               send_timeout                600;
             '';
           };
+          "/admin" = {
+            proxyPass = "http://localhost:${toString webuiport}/admin";
+            extraConfig = ''
+              proxy_http_version 1.1;
+              proxy_set_header Host $server_name;
+              proxy_buffering off;
+              proxy_set_header X-Real-IP $remote_addr;
+              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+            '';
+          };
           "/metrics" = {
             proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
             extraConfig = ''
@@ -123,6 +165,9 @@
   environment.systemPackages = [ config.services.headscale.package pkgs.sqlite-interactive pkgs.sqlite-web ];
 
   environment.persistence = {
-    "/persist".directories = [ "/var/lib/headscale" ];
+    "/persist".directories = [
+      "/var/lib/headscale"
+      { directory = "/var/lib/headscale-webui"; user = "1000"; group = "1000"; }
+    ];
   };
 }

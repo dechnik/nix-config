@@ -49,6 +49,7 @@ in
         "browser.disableResetPrompt" = true;
         "browser.download.panel.shown" = true;
         "browser.download.useDownloadDir" = false;
+        "browser.download.always_ask_before_handling_new_types" = true;
         # GPU acceleration
         "media.rdd-ffmpeg.enabled" = true;
         "media.ffmpeg.vaapi.enabled" = true;

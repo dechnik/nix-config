@@ -60,6 +60,11 @@ in
         "bulkupload.enabled" = false;
       };
     };
+    postgresqlBackup = {
+      enable = true;
+
+      databases = [ "nextcloud" ];
+    };
     postgresql = {
       ensureUsers = [
         {

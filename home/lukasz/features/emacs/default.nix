@@ -9,7 +9,7 @@ let
   # my_emacs = pkgs.emacs28NativeComp;
   my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
     name = "emacs-unstable";
-    version = "28.3-${inputs.emacs-src.shortRev}";
+    version = "28-${inputs.emacs-src.shortRev}";
     src = inputs.emacs-src;
   });
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
@@ -112,17 +112,18 @@ in
   # systemd.user.services.emacs = {
   #   Unit = {
   #     Description = "Emacs text editor";
-  #     Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs/";
   #     X-RestartIfChanged = false;
+  #     Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs/";
   #   };
   #   Service = {
-  #     Environment = "PATH=${pkgs.libnotify}/bin";
-  #     Type = "forking";
-  #     ExecStart = "${pkgs.bash}/bin/bash -l -c '${my_emacs}/bin/emacs --daemon && ${my_emacs}/bin/emacsclient -c --display=\"\$DISPLAY\" --eval \"(delete-frame)\"'";
+  #     Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
+  #     Type = "notify";
+  #     ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacs --daemon && ${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
   #     ExecStop = "${my_emacs}/bin/emacsclient --no-wait --eval '(progn (setq kill-emacs-hook nil) (kill-emacs))'";
+  #     SuccessExitStatus = 15;
   #     Restart = "on-failure";
   #   };
-  #   Install.WantedBy = ["graphical-session.target"];
+  #   Install = { WantedBy = [ "default.target" ]; };
   # };
   services.emacs = {
     enable = true;
@@ -130,6 +131,7 @@ in
     client.enable = true;
   };
   systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
+  # systemd.user.services.emacs.Service.ExecStartPost = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
   programs.emacs = {
     enable = true;
     package = my_emacs;
@@ -156,12 +158,12 @@ in
     ];
   };
 
-  # home.activation = {
-  #   installDoomEmacs = ''
-  #     export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
-  #     if [ ! -d "${h}/.emacs.d" ]; then
-  #       git clone https://github.com/doomemacs/doomemacs.git ${h}/.emacs.d
-  #     fi
-  #   '';
-  # };
+  home.activation = {
+    installDoomEmacs = ''
+      export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
+      if [ ! -d "${h}/.emacs.d" ]; then
+        git clone --depth=1 https://github.com/doomemacs/doomemacs.git ${h}/.emacs.d
+      fi
+    '';
+  };
 }

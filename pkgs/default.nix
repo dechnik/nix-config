@@ -10,4 +10,5 @@
   cyrus-sasl-xoauth2 = pkgs.callPackage ./cyrus-sasl-xoauth2 { };
   oauth2ms = pkgs.callPackage ./oauth2ms { };
   tailscale-nginx-auth = pkgs.callPackage ./tailscale-nginx-auth { };
+  golink = pkgs.callPackage ./golink { };
 }

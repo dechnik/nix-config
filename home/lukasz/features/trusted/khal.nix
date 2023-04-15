@@ -15,4 +15,11 @@
     timeformat = %H:%M
     dateformat = %d-%m-%Y
   '';
+  home.persistence = {
+    "/persist/home/lukasz" = {
+      directories = [
+        ".local/share/khal"
+      ];
+    };
+  };
 }
