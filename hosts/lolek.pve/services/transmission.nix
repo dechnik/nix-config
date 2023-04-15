@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
   services = {
     transmission = {
@@ -7,6 +7,7 @@
       openRPCPort = true;
       downloadDirPermissions = "777";
       settings = {
+        umaks = 0;
         rpc-bind-address = "0.0.0.0";
         download-dir = "/media/new";
         incomplete-dir = "/media/incomplete";
