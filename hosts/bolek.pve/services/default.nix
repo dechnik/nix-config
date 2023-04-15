@@ -5,7 +5,7 @@
     ./hydra.nix
     ./files.nix
     # ./cgit
-    # ./git-remote.nix
+    ./psql-backup.nix
     ./gitea
     ./uwsgi.nix
     # ./rss.nix

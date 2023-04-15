@@ -8,6 +8,7 @@ let
 
   paths = [
     "/var/lib/headscale"
+    config.services.postgresqlBackup.location
   ];
 
   cfg = site: {
