@@ -109,29 +109,25 @@ in
     nodejs-16_x
     # emacs-client
   ];
-  # systemd.user.services.emacs = {
-  #   Unit = {
-  #     Description = "Emacs text editor";
-  #     X-RestartIfChanged = false;
-  #     Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs/";
-  #   };
-  #   Service = {
-  #     Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
-  #     Type = "notify";
-  #     ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacs --daemon && ${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
-  #     ExecStop = "${my_emacs}/bin/emacsclient --no-wait --eval '(progn (setq kill-emacs-hook nil) (kill-emacs))'";
-  #     SuccessExitStatus = 15;
-  #     Restart = "on-failure";
-  #   };
-  #   Install = { WantedBy = [ "default.target" ]; };
-  # };
   services.emacs = {
     enable = true;
     package = my_emacs;
     client.enable = true;
   };
+
+  systemd.user.services.emacs-kill-fisrt-frame = {
+    Unit = {
+      Description = "emacsclient kill first framer";
+      After = "emacs.service";
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 6";
+    };
+    Install = { WantedBy = [ "default.target" ]; };
+  };
   systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
-  # systemd.user.services.emacs.Service.ExecStartPost = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
   programs.emacs = {
     enable = true;
     package = my_emacs;
