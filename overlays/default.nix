@@ -1,5 +1,9 @@
 { outputs, inputs }:
-{
+let
+  addPatches = pkg: patches: pkg.overrideAttrs (oldAttrs: {
+    patches = (oldAttrs.patches or [ ]) ++ patches;
+  });
+in {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}' or
@@ -13,9 +17,7 @@
 
   # Modifies existing packages
   modifications = final: prev: {
-    xdg-utils-spawn-terminal = prev.xdg-utils.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or [ ]) ++ [ ./xdg-open-spawn-terminal.diff ];
-    });
+    xdg-utils-spawn-terminal = addPatches prev.xdg-utils [ ./xdg-open-spawn-terminal.diff ];
 
     khal = prev.khal.overridePythonAttrs (_: {
       doCheck = false;
@@ -30,16 +32,5 @@
         patches = (oldAttrs.patches or [ ]) ++ [ ./displaylink.patch ];
       });
     };
-
-    scgit = prev.cgit-pink.overrideAttrs (_: {
-      pname = "scgit";
-      version = "0.1";
-      src = final.fetchFromSourcehut {
-        owner = "~misterio";
-        repo = "scgit";
-        rev = "2cd05c95827fb94740e876733dc6f7fe88340de2";
-        sha256 = "sha256-95mRJ3ZCSkLHqehFQdwM2BY0h+YDhohwpnRiF6/lZtA=";
-      };
-    });
   };
 }
