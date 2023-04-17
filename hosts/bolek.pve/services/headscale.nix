@@ -1,6 +1,9 @@
 { pkgs, config, lib, ... }:
 let
   webuiport = 5050;
+  cfg = config.services.headscale;
+  settingsFormat = pkgs.formats.yaml {};
+  hdConfigFile = settingsFormat.generate "headscale.yaml" cfg.settings;
 in
 {
   sops.secrets = {
@@ -61,7 +64,7 @@ in
         environmentFiles = [ "${config.sops.secrets.headscale-webui-env.path}" ];
         volumes = [
           "/var/lib/headscale-webui:/data"
-          "/etc/static/headscale/:/etc/headscale/:ro"
+          "${hdConfigFile}:/etc/headscale/config.yaml:ro"
         ];
       };
     };
