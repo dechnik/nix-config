@@ -49,12 +49,12 @@ rustPlatform.buildRustPackage rec {
     };
   };
 
-  cargoSha256 = "sha256-pO0kEVzgfOGn4PBzTrUyVfcelS+W6RfkYURTUXpms2k=";
+  # cargoSha256 = "sha256-pO0kEVzgfOGn4PBzTrUyVfcelS+W6RfkYURTUXpms2k=";
   # cargoSha256 = lib.fakeSha256;
 
   nativeBuildInputs = [ pkg-config wasm-bindgen-cli binaryen which wasm-pack nodePackages.rollup ];
   buildInputs = [ openssl ];
-  checkType = "debug";
+  # checkType = "debug";
 
   postPatch = ''
     substituteInPlace server/src/infra/tcp_server.rs \
