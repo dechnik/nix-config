@@ -5,6 +5,8 @@
 , openssl
 , which
 , wasm-pack
+, wasm-bindgen-cli
+, binaryen
 , nodePackages
 }:
 
@@ -50,16 +52,24 @@ rustPlatform.buildRustPackage rec {
   cargoSha256 = "sha256-pO0kEVzgfOGn4PBzTrUyVfcelS+W6RfkYURTUXpms2k=";
   # cargoSha256 = lib.fakeSha256;
 
-  nativeBuildInputs = [ pkg-config which wasm-pack nodePackages.rollup ];
+  nativeBuildInputs = [ pkg-config wasm-bindgen-cli binaryen which wasm-pack nodePackages.rollup ];
   buildInputs = [ openssl ];
   checkType = "debug";
 
-  postBuild = ''
-    # ./app/build.sh
-    mkdir -p $out/app
-    # cp ../${pname}-app/release/x86_64/index.html $out/app
-    # cp ../${pname}-app/release/x86_64/main.js $out/app
-    # cp -r ../${pname}-app/release/x86_64/pkg $out/app
+  postPatch = ''
+    substituteInPlace server/src/infra/tcp_server.rs \
+      --replace "app/index.html"     "$out/share/lldap/index.html" \
+      --replace "./app/pkg"          "$out/share/lldap/pkg" \
+      --replace "./app/static"       "$out/share/lldap/static"
+  '';
+  preBuild = ''
+    wasm-pack build app --target web --release
+    gzip -9 -f app/pkg/lldap_app_bg.wasm
+  '';
+  postInstall = ''
+    install -Dm444 app/index.html       $out/share/lldap/index.html
+    cp -a          app/static           $out/share/lldap/static
+    cp -a          app/pkg              $out/share/lldap/pkg
   '';
 
   meta = with lib; {
