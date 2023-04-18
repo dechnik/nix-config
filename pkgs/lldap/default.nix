@@ -52,8 +52,10 @@ rustPlatform.buildRustPackage rec {
 
   nativeBuildInputs = [ pkg-config which wasm-pack nodePackages.rollup ];
   buildInputs = [ openssl ];
+  checkType = "debug";
 
   postBuild = ''
+    # ./app/build.sh
     mkdir -p $out/app
     # cp ../${pname}-app/release/x86_64/index.html $out/app
     # cp ../${pname}-app/release/x86_64/main.js $out/app
