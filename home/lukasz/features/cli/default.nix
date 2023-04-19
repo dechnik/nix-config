@@ -13,7 +13,7 @@
     ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix
-    ./ranger.nix
+    ./ranger
     # ./screen.nix
     ./shellcolor.nix
     ./ssh.nix
