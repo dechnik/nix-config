@@ -25,6 +25,11 @@ let
   ] ++ python-lsp-server.optional-dependencies.all);
 in
 {
+  home = {
+    sessionVariables = {
+      EDITOR = "emacsclient -create-frame --alternate-editor= --no-wait";
+    };
+  };
   # home.file.".emacs.d" = {
   #   source = pkgs.fetchFromGitHub {
   #       owner = "doomemacs";
