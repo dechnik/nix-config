@@ -39,6 +39,10 @@ in
         path = "/srv/gitea/data/gitea.db";
         createDatabase = true;
       };
+      dump = {
+        enable = true;
+        type = "tar.gz";
+      };
       lfs = {
         enable = true;
         contentDir = "/srv/gitea/lfs";
