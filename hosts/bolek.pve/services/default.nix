@@ -2,7 +2,7 @@
   imports = [
     ./binary-cache.nix
     ./dhcp.nix
-    ./hydra.nix
+    ./hydra
     ./files.nix
     # ./cgit
     ./psql-backup.nix
