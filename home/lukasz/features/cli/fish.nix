@@ -1,10 +1,20 @@
 { config, lib, pkgs, ... }:
+let
+  inherit (lib) mkIf;
+  hasPackage = pname: lib.any (p: p ? pname && p.pname == pname) config.home.packages;
+  hasRipgrep = hasPackage "ripgrep";
+  hasExa = hasPackage "exa";
+  hasNeovim = config.programs.neovim.enable;
+  hasEmacs = config.programs.emacs.enable;
+  hasNeomutt = config.programs.neomutt.enable;
+  hasShellColor = config.programs.shellcolor.enable;
+  hasKitty = config.programs.kitty.enable;
+  shellcolor = "${pkgs.shellcolord}/bin/shellcolor";
+in
 {
   programs.fish = {
     enable = true;
-    shellAbbrs = {
-      ls = "exa";
-
+    shellAbbrs = rec {
       jqless = "jq -C | less -r";
 
       n = "nix";
@@ -22,24 +32,43 @@
       hm = "home-manager --flake .";
       hms = "home-manager --flake . switch";
 
-      e = "emacsclient -t";
-      v = "nvim";
-      vi = "nvim";
-      vim = "nvim";
-      m = "neomutt";
-      mutt = "neomutt";
+      ls = mkIf hasExa "exa";
+
+      e = mkIf hasEmacs "emacsclient -t";
+
+      vrg = mkIf (hasNeomutt && hasRipgrep) "nvimrg";
+      vim = mkIf hasNeovim "nvim";
+      vi = vim;
+      v = vim;
+
+      mutt = mkIf hasNeomutt "neomutt";
+      m = mutt;
+
+      cik = mkIf hasKitty "clone-in-kitty --type os-window";
+      ck = cik;
     };
     shellAliases = {
       # Get ip
       getip = "curl ifconfig.me";
-      # SSH with kitty terminfo
-      kssh = "kitty +kitten ssh";
       # Clear screen and scrollback
       clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
     };
     functions = {
       fish_greeting = "";
       wh = "readlink -f (which $argv)";
+      nvimrg = mkIf (hasNeomutt && hasRipgrep) "nvim -q (rg --vimgrep $argv | psub)";
+      # Integrate ssh with shellcolord
+      ssh = mkIf hasShellColor ''
+        ${shellcolor} disable $fish_pid
+        # Check if kitty is available
+        if type -q -f kitty
+          kitty +kitten ssh $argv
+        else
+          command ssh $argv
+        end
+        ${shellcolor} enable $fish_pid
+        ${shellcolor} apply $fish_pid
+      '';
       k3s-fetch-merge-config = ''
         set host $argv[1]
         set target $argv[2]
