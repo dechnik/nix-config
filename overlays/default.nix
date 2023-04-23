@@ -17,6 +17,11 @@ in {
 
   # Modifies existing packages
   modifications = final: prev: {
+    passExtensions = prev.passExtensions // {
+      # https://github.com/tadfisher/pass-otp/pull/173
+      pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
+    };
+
     xdg-utils-spawn-terminal = addPatches prev.xdg-utils [ ./xdg-open-spawn-terminal.diff ];
 
     khal = prev.khal.overridePythonAttrs (_: {
