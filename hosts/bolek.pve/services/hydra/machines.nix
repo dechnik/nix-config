@@ -81,7 +81,7 @@ in {
               host="local"
           fi
 
-          if timeout 20 nix store ping  --store "$host?$args"; then
+          if timeout 5 nix store ping  --store "$host?$args"; then
               echo "$line" >> $temp_file
           fi
         }
