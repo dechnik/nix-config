@@ -22,6 +22,9 @@ in {
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
     };
 
+    # https://github.com/mdellweg/pass_secret_service/pull/37
+    pass-secret-service = addPatches prev.pass-secret-service [ ./pass-secret-service-native.diff ];
+
     xdg-utils-spawn-terminal = addPatches prev.xdg-utils [ ./xdg-open-spawn-terminal.diff ];
 
     khal = prev.khal.overridePythonAttrs (_: {
