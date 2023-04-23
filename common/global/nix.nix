@@ -1,4 +1,4 @@
-{ pkgs, inputs, lib, ... }:
+{ inputs, lib, ... }:
 {
   nix = {
     settings = {
@@ -23,6 +23,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
+      options = "--delete-older-than 2d";
     };
 
     # Add each flake input as a registry
