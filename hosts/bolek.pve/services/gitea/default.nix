@@ -42,6 +42,7 @@ in
       dump = {
         enable = true;
         type = "tar.gz";
+        backupDir = "/storage/gitea";
       };
       lfs = {
         enable = true;
