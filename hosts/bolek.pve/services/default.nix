@@ -8,7 +8,6 @@
     ./psql-backup.nix
     ./gitea
     ./uwsgi.nix
-    # ./rss.nix
     ./searx.nix
     ./website.nix
     ./restic-server.nix
