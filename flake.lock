@@ -370,11 +370,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1682497612,
-        "narHash": "sha256-wkqu30dY6LePJnD1WMMjBTgEvt/djy045B8JGpoh8sk=",
+        "lastModified": 1682503422,
+        "narHash": "sha256-KEOt/KihsnIFAfZekmXkfL1eAHOPhbqKcI3Pc1PXows=",
         "owner": "dechnik",
         "repo": "lldap",
-        "rev": "dec650057280b348d9439452932911b8bb8d1c98",
+        "rev": "6f183f49c62a714f2fbc1140338c401c745d3427",
         "type": "github"
       },
       "original": {
