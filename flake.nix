@@ -48,6 +48,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lldap.url = "github:dechnik/lldap";
     xdph = {
       url = "github:hyprwm/xdg-desktop-portal-hyprland";
       inputs.nixpkgs.follows = "nixpkgs";

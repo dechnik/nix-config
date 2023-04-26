@@ -4,5 +4,6 @@
     ./tailscale.nix
     ./wireguard.nix
     ./restic.nix
+    ./lldap.nix
   ];
 }
