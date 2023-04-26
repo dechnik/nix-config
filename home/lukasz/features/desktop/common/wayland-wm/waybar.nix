@@ -51,7 +51,17 @@ in
         ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
           "wlr/workspaces"
         ]);
+        modules-right = [
+          "clock"
+        ];
 
+        clock = {
+          format = "{:%d/%m %H:%M}";
+          tooltip-format = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
+          on-click = calendar;
+        };
         "wlr/workspaces" = {
           on-click = "activate";
           format = "{name}";
@@ -89,6 +99,7 @@ in
           "custom/tailscale-ping"
           "battery"
           "tray"
+          "clock"
         ];
 
         "wlr/workspaces" = {
@@ -183,7 +194,7 @@ in
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine} /   $ping_${mailMachine} / B $ping_${homeMachine}";
+              text = "  $ping_${remoteMachine}   $ping_${mailMachine} B $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${replaceStrings ["."] ["_"] host}") hosts);
             };
@@ -346,85 +357,84 @@ in
     # w x y z -> top, right, bottom, left
     style = let inherit (config.colorscheme) colors; in /* css */ ''
       * {
+        transition: none;
+        box-shadow: none;
+      }
+
+      #waybar {
         font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
-        font-size: 12pt;
-        padding: 0 8px;
+        font-size: 1.2em;
+        font-weight: 400;
+        color: #${colors.base04};
+        background: #${colors.base01};
       }
-
-      .modules-right {
-        margin-right: -24px;
-      }
-
-      .modules-left {
-        margin-left: -24px;
-      }
-
-      window#waybar.top {
-        opacity: 0.95;
-        padding: 0;
-        background-color: #${colors.base00};
-        border: 2px solid #${colors.base0C};
-        border-radius: 10px;
-      }
-      window#waybar.bottom {
-        opacity: 0.90;
-        background-color: #${colors.base00};
-        border: 2px solid #${colors.base0C};
-        border-radius: 10px;
-      }
-
-      window#waybar {
-        color: #${colors.base05};
+      #workspaces {
+        margin: 0 4px;
       }
 
       #workspaces button {
-        background-color: #${colors.base01};
+        margin: 4px 0;
+        padding: 0 4px;
         color: #${colors.base05};
-        margin: 4px;
       }
-      #workspaces button.hidden {
-        background-color: #${colors.base00};
-        color: #${colors.base04};
+
+      #workspaces button.visible {
       }
-      #workspaces button.focused,
+
       #workspaces button.active {
-        background-color: #${colors.base0A};
-        color: #${colors.base00};
+        border-radius: 4px;
+        background-color: #${colors.base02};
+      }
+
+      #workspaces button.urgent {
+        color: rgba(238, 46, 36, 1);
+      }
+
+      #tray {
+        margin: 4px 4px 4px 4px;
+        border-radius: 4px;
+        background-color: #${colors.base02};
+      }
+
+      #tray * {
+        padding: 0 6px;
+        border-left: 1px solid #${colors.base00};
+      }
+
+      #tray *:first-child {
+        border-left: none;
+      }
+
+      #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature {
+        margin: 4px 2px;
+        padding: 0 6px;
+        background-color: #${colors.base02};
+        border-radius: 4px;
+        min-width: 20px;
+      }
+
+      #pulseaudio.muted {
+        color: #${colors.base0F};
+      }
+
+      #pulseaudio.bluetooth {
+        color: #${colors.base0C};
       }
 
       #clock {
-        background-color: #${colors.base0C};
-        color: #${colors.base00};
-        padding-left: 15px;
-        padding-right: 15px;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 10px;
+        margin-left: 0px;
+        margin-right: 4px;
+        background-color: transparent;
       }
 
-      #custom-menu {
-        background-color: #${colors.base0C};
-        color: #${colors.base00};
-        padding-left: 15px;
-        padding-right: 22px;
-        margin-left: 0;
-        margin-right: 10px;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 10px;
+      #temperature.critical {
+        color: #${colors.base0F};
       }
-      #custom-hostname {
-        background-color: #${colors.base0C};
-        color: #${colors.base00};
-        padding-left: 15px;
-        padding-right: 18px;
-        margin-right: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-        border-radius: 10px;
-      }
-      #tray {
-        color: #${colors.base05};
+
+      #window {
+        font-size: 0.9em;
+        font-weight: 400;
+        font-family: sans-serif;
       }
     '';
   };
