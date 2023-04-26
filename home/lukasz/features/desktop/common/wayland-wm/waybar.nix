@@ -9,7 +9,6 @@ let
   journalctl = "${pkgs.systemd}/bin/journalctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";
-  neomutt = "${pkgs.neomutt}/bin/neomutt";
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
   btm = "${pkgs.bottom}/bin/btm";
   wofi = "${pkgs.wofi}/bin/wofi";
@@ -68,15 +67,12 @@ in
         position = "top";
         output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
         modules-left = [
-          "custom/menu"
           "custom/currentplayer"
           "custom/player"
         ];
         modules-center = [
           "cpu"
-          "custom/gpu"
           "memory"
-          "clock"
           "pulseaudio"
           "custom/gammastep"
           "custom/gpg-agent"
@@ -88,7 +84,6 @@ in
           "custom/tailscale-ping"
           "battery"
           "tray"
-          "custom/hostname"
         ];
 
         clock = {
