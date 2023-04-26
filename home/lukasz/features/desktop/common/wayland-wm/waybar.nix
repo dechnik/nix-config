@@ -41,11 +41,10 @@ in
       secondary = {
         mode = "dock";
         layer = "top";
-        height = 32;
-        width = 100;
+        height = 34;
         margin = "0";
-        position = "bottom";
-        modules-center = (lib.optionals config.wayland.windowManager.sway.enable [
+        position = "top";
+        modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
           "sway/workspaces"
           "sway/mode"
         ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
@@ -62,11 +61,16 @@ in
       primary = {
         mode = "dock";
         layer = "top";
-        height = 40;
+        height = 34;
         margin = "0";
         position = "top";
         output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
-        modules-left = [
+        modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
+          "sway/workspaces"
+          "sway/mode"
+        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+          "wlr/workspaces"
+        ]) ++ [
           "custom/currentplayer"
           "custom/player"
         ];
@@ -86,6 +90,11 @@ in
           "tray"
         ];
 
+        "wlr/workspaces" = {
+          on-click = "activate";
+          format = "{name}";
+          sort-by-name = true;
+        };
         clock = {
           format = "{:%d/%m %H:%M}";
           tooltip-format = ''
