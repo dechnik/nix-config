@@ -44,6 +44,7 @@ in
         height = 34;
         margin = "0";
         position = "top";
+        output = builtins.map (m: m.name) (builtins.filter (m: !m.isPrimary) config.monitors);
         modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
           "sway/workspaces"
           "sway/mode"
