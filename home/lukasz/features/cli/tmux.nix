@@ -1,11 +1,9 @@
 { config
-, pkgs
-, lib
 , ...
 }: {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.zsh}/bin/zsh";
+    shell = "${config.programs.fish.package}/bin/fish";
     # terminal = "screen-256color";
     clock24 = true;
     secureSocket = true;
