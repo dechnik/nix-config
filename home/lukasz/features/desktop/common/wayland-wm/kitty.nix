@@ -22,7 +22,7 @@ in
       size = 10;
     };
     settings = {
-      shell_integration = "disabled"; # I prefer to do it manually
+      shell_integration = "no-rc"; # I prefer to do it manually
       scrollback_lines = 4000;
       scrollback_pager_history_size = 2048;
       enable_audio_bell = "no";
