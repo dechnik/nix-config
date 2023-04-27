@@ -38,7 +38,7 @@ in
         max_unsupported_time = 30
         <runcommand>
           job = nix-config:main:*
-          command = ${lib.getExe release-host-branch} >> /tmp/hydra/release.log 2>&1
+          command = ${lib.getExe release-host-branch}
         </runcommand>
       '';
       extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
