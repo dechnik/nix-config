@@ -10,6 +10,6 @@ in
     flags = [
       "--refresh"
     ];
-    flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}";
+    flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}#${toplevel}";
   };
 }
