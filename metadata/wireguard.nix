@@ -36,5 +36,10 @@
       addresses = [ "10.69.0.2/32" "2a03:94e0:200d:69::2/128" ];
       public_key = "Km8A6+E1PyFXN/RFLTJEmA7Q4fy9SIbFq99GyUgWmQw=";
     };
+    moto = {
+      additional_networks = [ ];
+      addresses = [ "10.69.0.10/32" ];
+      public_key = "nZ74UF6t++0EugNPZIuu+uc89CVR/DNw2iaY4M4VsRg=";
+    };
   };
 }
