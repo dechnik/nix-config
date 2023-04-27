@@ -9,7 +9,7 @@ in
       ./hardware-configuration.nix
 
       ./services
-      # ../../common/optional/auto-upgrade.nix
+      ../../common/optional/auto-upgrade.nix
       ../../common/optional/qemu-vm.nix
       ../../common/optional/consul.nix
       ../../common/optional/promtail.nix

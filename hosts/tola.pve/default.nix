@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
 
+      ../../common/optional/auto-upgrade.nix
       ../../common/optional/qemu-vm.nix
       # ../../common/optional/greetd.nix
       ../../common/optional/vpn.nix
