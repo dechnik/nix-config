@@ -25,6 +25,7 @@ in
       enable = true;
       jwtSecretFile = config.sops.secrets.lldap-jwt-secret.path;
       userPassFile = config.sops.secrets.lldap-admin-pass.path;
+      dataDir = "/srv/lldap";
       ldapHost = "0.0.0.0";
       ldapPort = 3890;
       httpHost = "127.0.0.1";
