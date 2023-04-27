@@ -27,7 +27,7 @@
       git -C "$repo" fetch origin
     else
       mkdir -p "$repo"
-      git clone --bare git@m7.rs:nix-config "$repo"
+      git clone --bare gitea@git.dechnik.net:lukasz/nix-config.git "$repo"
     fi
 
     git -C "$repo" branch -f "release-$host" "$commit"

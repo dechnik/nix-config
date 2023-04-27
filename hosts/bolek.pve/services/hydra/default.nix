@@ -30,12 +30,16 @@ in
       enable = true;
       package = pkgs.inputs.hydra.hydra;
       hydraURL = "https://hydra.dechnik.net";
-      notificationSender = "hydra@dechnik.net";
+      notificationSender = "monitoring@dechnik.net";
       listenHost = "localhost";
       smtpHost = "localhost";
       useSubstitutes = true;
       extraConfig = /* xml */ ''
         max_unsupported_time = 30
+        <runcommand>
+          job = nix-config:main:*
+          command = ${lib.getExe release-host-branch} >> /tmp/hydra/release.log 2>&1
+        </runcommand>
       '';
       extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
     };
