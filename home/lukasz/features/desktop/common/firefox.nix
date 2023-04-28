@@ -2,6 +2,19 @@
 
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
+  zotero-connector = inputs.firefox-addons.lib.${pkgs.system}.buildFirefoxXpiAddon rec {
+    pname = "zotero-connector";
+    version = "5.0.107";
+    addonId = "zotero@chnm.gmu.edu";
+    url = "https://download.zotero.org/connector/firefox/release/Zotero_Connector-${version}.xpi";
+    sha256 = "RuAhWGvUhkog8SxzKhRwQQwzTQLzBKlHjSsFj9e25e4=";
+    meta = with lib; {
+      homepage = "https://www.zotero.org";
+      description = "Save references to Zotero from your web browser";
+      license = licenses.agpl3;
+      platforms = platforms.all;
+    };
+  };
 in
 {
   programs.browserpass.enable = true;
@@ -48,6 +61,7 @@ in
         # surfingkeys
         tridactyl
         simple-tab-groups
+        zotero-connector
       ];
       bookmarks = { };
       settings = {
@@ -68,7 +82,7 @@ in
         "browser.shell.checkDefaultBrowser" = false;
         "browser.shell.defaultBrowserCheckCount" = 1;
         # "browser.startup.homepage" = "about:home";
-        "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"],"nav-bar":["back-button","forward-button","stop-reload-button","home-button","urlbar-container","downloads-button","library-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action","browserpass_maximbaz_com-browser-action","_15bdb1ce-fa9d-4a00-b859-66c214263ac0_-browser-action","addon_darkreader_org-browser-action","simple-tab-groups_drive4ik-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["save-to-pocket-button","developer-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action","browserpass_maximbaz_com-browser-action","_15bdb1ce-fa9d-4a00-b859-66c214263ac0_-browser-action","addon_darkreader_org-browser-action","simple-tab-groups_drive4ik-browser-action","_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"],"dirtyAreaCache":["nav-bar","PersonalToolbar","toolbar-menubar","TabsToolbar","widget-overflow-fixed-list","unified-extensions-area"],"currentVersion":18,"newElementCount":4}'';
+        "browser.uiCustomization.state" = ''{"placements":{"widget-overflow-fixed-list":[],"unified-extensions-area":["_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"],"nav-bar":["back-button","forward-button","stop-reload-button","home-button","urlbar-container","downloads-button","library-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action","browserpass_maximbaz_com-browser-action","_15bdb1ce-fa9d-4a00-b859-66c214263ac0_-browser-action","addon_darkreader_org-browser-action","simple-tab-groups_drive4ik-browser-action","zotero_chnm_gmu_edu-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"PersonalToolbar":["import-button","personal-bookmarks"]},"seen":["save-to-pocket-button","developer-button","ublock0_raymondhill_net-browser-action","_testpilot-containers-browser-action","browserpass_maximbaz_com-browser-action","_15bdb1ce-fa9d-4a00-b859-66c214263ac0_-browser-action","addon_darkreader_org-browser-action","simple-tab-groups_drive4ik-browser-action","_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action","zotero_chnm_gmu_edu-browser-action"],"dirtyAreaCache":["nav-bar","PersonalToolbar","toolbar-menubar","TabsToolbar","widget-overflow-fixed-list","unified-extensions-area"],"currentVersion":19,"newElementCount":4}'';
         "dom.security.https_only_mode" = true;
         # "identity.fxaccounts.enabled" = false;
         "privacy.trackingprotection.enabled" = true;
