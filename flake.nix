@@ -58,7 +58,7 @@
     website.url = "sourcehut:~lukasz/website/master";
     emacs-overlay.url = "github:nix-community/emacs-overlay/d7d53d728dc68d0fca4601b4e155e746ce274098";
     emacs-src = {
-      url = "github:emacs-mirror/emacs/emacs-28";
+      url = "github:emacs-mirror/emacs/emacs-29";
       flake = false;
     };
     neovim = {
