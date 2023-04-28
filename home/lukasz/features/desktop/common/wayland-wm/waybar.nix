@@ -89,7 +89,6 @@ in
           "cpu"
           "memory"
           "pulseaudio"
-          "custom/gammastep"
           "custom/gpg-agent"
           "custom/unread-mail"
         ];
