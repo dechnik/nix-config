@@ -58,6 +58,11 @@ in
         extraConfig.from = "lukasz@dechnik.net";
         extraConfig.domain = mailhost;
       };
+      neomutt = {
+        enable = true;
+        sendMailCommand = "msmtpq --read-recipients";
+        extraConfig = folder-config config.accounts.email.accounts;
+      };
       display-folders = [
         "Inbox"
         "Sent"
