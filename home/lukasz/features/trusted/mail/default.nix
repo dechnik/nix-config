@@ -47,6 +47,7 @@ in
     pandoc.enable = true;
     mbsync.enable = true;
     msmtp.enable = true;
+    neomutt.enable = true;
     mu.enable = true;
   };
 
