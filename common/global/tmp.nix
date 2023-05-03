@@ -1,4 +1,6 @@
 {
-  boot.cleanTmpDir = true;
-  boot.tmpOnTmpfs = true;
+  boot.tmp = {
+    cleanOnBoot = true;
+    useTmpfs = true;
+  };
 }

@@ -25,7 +25,7 @@ let
       # USB stick, nothing is mistakenly written to persistent storage.
       boot.kernelParams = [ "copytoram" ];
       # Secure defaults
-      boot.cleanTmpDir = true;
+      boot.tmp.cleanOnBoot = true;
 
       services.pcscd.enable = true;
 

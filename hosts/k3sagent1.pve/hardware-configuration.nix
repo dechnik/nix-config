@@ -24,7 +24,6 @@
       device = "/dev/disk/by-label/k3sagent1";
       fsType = "ext4";
     };
-  boot.cleanTmpDir = true;
 
   swapDevices = [{
     device = "/swap/swapfile";

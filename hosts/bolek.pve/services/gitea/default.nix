@@ -50,13 +50,13 @@ in
       };
       appName = "SelfPrivacy git Service";
       repositoryRoot = "/srv/gitea/repositories";
-      domain = "git.dechnik.net";
-      rootUrl = "https://git.dechnik.net/";
-      httpAddress = "0.0.0.0";
-      httpPort = 3333;
       settings = {
         server = {
           SSH_PORT = 22;
+          ROOT_URL = "https://git.dechnik.net/";
+          HTTP_PORT = 3333;
+          HTTP_ADDR = "0.0.0.0";
+          DOMAIN = "git.dechnik.net";
         };
         service = {
           DISABLE_REGISTRATION = true;
