@@ -23,7 +23,7 @@ in
         '';
         locations = {
           "/".proxyPass =
-            "http://localhost:${toString config.services.gitea.httpPort}";
+            "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";
         };
       };
     };
