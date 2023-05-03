@@ -4,6 +4,12 @@ let
 in
   lib.mkMerge [
   {
+    environment.persistence = {
+      "/persist".directories = [
+        "/var/lib/lldap"
+      ];
+    };
+
     sops.secrets = {
       lldap-jwt-secret = {
         owner = "lldap";
