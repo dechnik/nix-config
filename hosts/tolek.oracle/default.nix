@@ -17,6 +17,7 @@
 
   my.wan = "enp0s3";
   my.lan = "enp1s0";
+  disabledModules = [ "services/databases/lldap.nix" ];
 
   networking = {
     hostName = "tolek";
