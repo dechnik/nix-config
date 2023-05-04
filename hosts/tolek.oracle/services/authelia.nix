@@ -109,11 +109,11 @@ in
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = authelia-ldap-backend-pass.path;
     };
   };
-  nginx.virtualHosts = {
+  services.nginx.virtualHosts = {
     "auth.dechnik.net" = {
       forceSSL = true;
       useACMEHost = "auth.dechnik.net";
-      locations."/".proxyPass = "http://localhost:${cfg.server.port}/";
+      locations."/".proxyPass = "http://localhost:${toString cfg.settings.server.port}/";
       extraConfig = ''
         client_body_buffer_size 128k;
 

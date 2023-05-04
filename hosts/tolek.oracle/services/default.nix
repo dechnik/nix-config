@@ -5,5 +5,6 @@
     ./wireguard.nix
     ./restic.nix
     ./lldap.nix
+    ./authelia.nix
   ];
 }
