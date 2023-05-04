@@ -152,12 +152,14 @@ in
   ];
   home.sessionVariables = {
     DOOMDIR = "${c}/doom";
+    SPACEMACSDIR = "${c}/spacemacs";
   };
 
   home.persistence = {
     "/persist/home/lukasz".directories = [
       ".emacs.d"
       ".config/doom"
+      ".config/spacemacs"
     ];
   };
 
