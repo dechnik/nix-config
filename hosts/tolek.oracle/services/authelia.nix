@@ -78,6 +78,7 @@ in
       storage.local = {
         path = "/var/lib/authelia/authelia-${cfg.name}/db.sqlite3";
       };
+      # TODO access control: 'default_policy' option 'deny' is invalid: when no rules are specified it must be 'two_factor' or 'one_factor'
       access_control = {
         default_policy = "deny";
       };
@@ -87,6 +88,7 @@ in
         sender = "monitoring@dechnik.net";
         disable_html_emails = true;
       };
+      # TODO identity_providers: oidc: option 'clients' must have one or more clients configured"
       identity_providers.oidc = {
         cors.allowed_origins_from_client_redirect_uris = true;
         cors.endpoints = [

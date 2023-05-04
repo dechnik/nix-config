@@ -6,6 +6,7 @@ in
     imports = [
       inputs.lldap.nixosModules.default
     ];
+    disabledModules = [ "services/databases/lldap.nix" ];
   }
   // lib.mkMerge [
   {
