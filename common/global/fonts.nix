@@ -21,7 +21,7 @@
 
       emacs-all-the-icons-fonts
       # nerdfonts
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "Iosevka" "Ubuntu"];})
+      # (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "Iosevka" "Ubuntu"];})
     ];
     # enableDefaultFonts = false;
 
