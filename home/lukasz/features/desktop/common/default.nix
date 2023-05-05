@@ -23,6 +23,7 @@
     xdg-utils-spawn-terminal
     lyrics
     pcmanfm
+    obsidian
     meld
     gtk-pipe-viewer
   ];
