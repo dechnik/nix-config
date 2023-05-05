@@ -80,7 +80,7 @@ in
       };
       # TODO access control: 'default_policy' option 'deny' is invalid: when no rules are specified it must be 'two_factor' or 'one_factor'
       access_control = {
-        default_policy = "deny";
+        default_policy = "two_factor";
       };
       notifier.smtp = rec {
         host = "localhost";
@@ -98,6 +98,15 @@ in
           "token"
           "userinfo"
         ];
+        clients = [{
+          id = "headscale";
+          description = "Headscale";
+          public = true;
+          authorization_policy = "two_factor";
+          redirect_uris = [ "https://tailscale.dechnik.net/oidc/callback" ];
+          scopes = [ "openid" "profile" "email" ];
+          userinfo_signing_algorithm = "none";
+        }];
       };
     };
     secrets = with config.sops.secrets; {
