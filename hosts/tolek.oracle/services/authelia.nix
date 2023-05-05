@@ -41,7 +41,7 @@ in
   };
   environment.persistence = {
     "/persist".directories = [
-      "/var/lib/authelia"
+      "/var/lib/authelia-${cfg.name}"
     ];
   };
 
