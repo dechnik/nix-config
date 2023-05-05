@@ -100,15 +100,16 @@ in
         ];
         grpc_listen_addr = "127.0.0.1:50443";
         grpc_allow_insecure = true;
-        oidc = {
-          issuer = "https://nextcloud.dechnik.net";
-          client_id = "00EczQNvd5f3yL8XD4Ff5sI4Qrynmc7nMfX3lSEKE61jbCICbSc4XiWSnA3QCYRe";
-          client_secret_file = config.sops.secrets.headscale-oidc-secret.path;
+        # TODO switch to authelia config
+        # oidc = {
+        #   issuer = "https://nextcloud.dechnik.net";
+        #   client_id = "00EczQNvd5f3yL8XD4Ff5sI4Qrynmc7nMfX3lSEKE61jbCICbSc4XiWSnA3QCYRe";
+        #   client_secret_file = config.sops.secrets.headscale-oidc-secret.path;
 
-          domain_map = {
-            ".*" = "dechnik.net";
-          };
-        };
+        #   domain_map = {
+        #     ".*" = "dechnik.net";
+        #   };
+        # };
       };
     };
 
