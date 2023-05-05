@@ -17,6 +17,7 @@
       home-manager
       git
       colmena
+      ssh-to-age
 
       sops
       gnupg
