@@ -2,19 +2,6 @@
 
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
-  zotero-connector = inputs.firefox-addons.lib.${pkgs.system}.buildFirefoxXpiAddon rec {
-    pname = "zotero-connector";
-    version = "5.0.107";
-    addonId = "zotero@chnm.gmu.edu";
-    url = "https://download.zotero.org/connector/firefox/release/Zotero_Connector-${version}.xpi";
-    sha256 = "RuAhWGvUhkog8SxzKhRwQQwzTQLzBKlHjSsFj9e25e4=";
-    meta = with lib; {
-      homepage = "https://www.zotero.org";
-      description = "Save references to Zotero from your web browser";
-      license = licenses.agpl3;
-      platforms = platforms.all;
-    };
-  };
 in
 {
   programs.browserpass.enable = true;
@@ -61,7 +48,6 @@ in
         # surfingkeys
         tridactyl
         simple-tab-groups
-        zotero-connector
       ];
       bookmarks = { };
       settings = {

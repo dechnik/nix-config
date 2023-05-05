@@ -97,8 +97,6 @@ in
     # pinentry_emacs # in-emacs gnupg prompts
     zstd # for undo-fu-session/undo-tree compression
 
-    zotero
-
     ## Module dependencies
     # :checkers spell
     (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
