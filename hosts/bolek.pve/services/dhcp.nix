@@ -15,4 +15,32 @@
     machines = [
     ];
   };
+  # services.kea.dhcp4 = {
+  #   enable = true;
+  #   settings = {
+  #     interfaces-config = {
+  #       interfaces = [
+  #         config.my.lan
+  #       ];
+  #     };
+  #     lease-database = {
+  #       name = "/var/lib/kea/dhcp4.leases";
+  #       persist = true;
+  #       type = "memfile";
+  #     };
+  #     rebind-timer = 2000;
+  #     renew-timer = 1000;
+  #     subnet4 = [
+  #       {
+  #         pools = [
+  #           {
+  #             pool = "10.60.0.171 - 10.60.0.250";
+  #           }
+  #         ];
+  #         subnet = "10.60.0.0/24";
+  #       }
+  #     ];
+  #     valid-lifetime = 4000;
+  #   };
+  # };
 }
