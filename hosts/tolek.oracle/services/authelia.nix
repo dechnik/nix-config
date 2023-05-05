@@ -76,7 +76,7 @@ in
         user = "uid=authelia,ou=people,dc=dechnik,dc=net";
       };
       storage.local = {
-        path = "/var/lib/authelia/authelia-${cfg.name}/db.sqlite3";
+        path = "/var/lib/authelia-${cfg.name}/db.sqlite3";
       };
       # TODO access control: 'default_policy' option 'deny' is invalid: when no rules are specified it must be 'two_factor' or 'one_factor'
       access_control = {
