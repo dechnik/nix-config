@@ -146,15 +146,33 @@ in
     };
   };
 
-  config.xdg.configFile = {
-    "neomutt/mailcap" = {
-      text = ''
+  config.xdg = {
+    desktopEntries = {
+      neomutt = {
+        name = "Neomutt";
+        genericName = "Email Client";
+        comment = "Read and send emails";
+        exec = "neomutt %U";
+        icon = "mutt";
+        terminal = true;
+        categories = [ "Network" "Email" "ConsoleOnly" ];
+        type = "Application";
+        mimeType = [ "x-scheme-handler/mailto" ];
+      };
+    };
+    mimeApps.defaultApplications = {
+      "x-scheme-handler/mailto" = "neomutt.desktop";
+    };
+    configFile = {
+      "neomutt/mailcap" = {
+        text = ''
         text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
         image/*; imv %s &
         audio/*; mpv %s ;
         video/*; setsid mpv --quiet %s &; copiousoutput
         application/pdf; zathura %s &
       '';
+      };
     };
   };
 
@@ -317,6 +335,7 @@ in
     in
     ''
       #!/bin/sh
+      # ${pkgs.mu}/bin/mu index
       lastrun="${config.xdg.dataHome}/mail/.mailsynclastrun"
       for acc in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
         new=$(${pkgs.findutils}/bin/find ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/new/ ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/cur/ -type f -newer "$lastrun" 2> /dev/null)

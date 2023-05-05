@@ -9,6 +9,7 @@ let
   journalctl = "${pkgs.systemd}/bin/journalctl";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   playerctld = "${pkgs.playerctl}/bin/playerctld";
+  neomutt = "${pkgs.neomutt}/bin/neomutt";
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
   btm = "${pkgs.bottom}/bin/btm";
   wofi = "${pkgs.wofi}/bin/wofi";
@@ -19,6 +20,7 @@ let
 
   calendar = terminal-spawn ikhal;
   systemMonitor = terminal-spawn btm;
+  mail = terminal-spawn neomutt;
 
   # Function to simplify making waybar outputs
   jsonOutput = name: { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? "" }: "${pkgs.writeShellScriptBin "waybar-${name}" ''
@@ -260,6 +262,7 @@ in
             "unread" = "";
             "syncing" = "";
           };
+          on-click = mail;
         };
         "custom/gamemode" = {
           exec-if = "${gamemoded} --status | grep 'is active' -q";
