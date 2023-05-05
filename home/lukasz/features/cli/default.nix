@@ -28,6 +28,7 @@
     cryptsetup
     unzip
     zip
+    magic-wormhole
 
     bc # Calculator
     bottom # System viewer

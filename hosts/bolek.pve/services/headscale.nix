@@ -17,11 +17,6 @@ in
       owner = "headscale";
       mode = "0600";
     };
-    headscale-oidc-secret = {
-      sopsFile = ../secrets.yaml;
-      owner = "headscale";
-      mode = "0600";
-    };
     headscale-acl = {
       sopsFile = ../secrets.yaml;
       owner = "headscale";
@@ -61,7 +56,9 @@ in
           "DOMAIN_NAME" = "https://tailscale.dechnik.net";
           "HS_SERVER" = "https://tailscale.dechnik.net";
         };
-        environmentFiles = [ "${config.sops.secrets.headscale-webui-env.path}" ];
+        environmentFiles = [
+          "${config.sops.secrets.headscale-webui-env.path}"
+        ];
         volumes = [
           "/var/lib/headscale-webui:/data"
           "${hdConfigFile}:/etc/headscale/config.yaml:ro"
