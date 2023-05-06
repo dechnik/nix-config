@@ -2,7 +2,7 @@
 let
   webuiport = 5050;
   cfg = config.services.headscale;
-  settingsFormat = pkgs.formats.yaml {};
+  settingsFormat = pkgs.formats.yaml { };
   hdConfigFile = settingsFormat.generate "headscale.yaml" cfg.settings;
 in
 {
@@ -49,8 +49,8 @@ in
         ports = [ "${toString webuiport}:5000" ];
         environment = {
           "TZ" = "Europe/Warsaw";
-          "OIDC_AUTH_URL" = "https://nextcloud.dechnik.net/.well-known/openid-configuration";
-          "OIDC_CLIENT_ID" = "oshNhpGPlmXuP0DA8Qz37xz3gXEbbbdKSTCjLEWw5vE5G9imq0cYh3HErtBxyVy8";
+          "OIDC_AUTH_URL" = "https://auth.dechnik.net/.well-known/openid-configuration";
+          "OIDC_CLIENT_ID" = "headscale-webui";
           "AUTH_TYPE" = "oidc";
           "SCRIPT_NAME" = "/admin";
           "DOMAIN_NAME" = "https://tailscale.dechnik.net";
