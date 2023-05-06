@@ -38,6 +38,12 @@ in
       group = cfg.group;
       sopsFile = ../secrets.yaml;
     };
+    authelia-identity-providers = {
+      owner = cfg.user;
+      group = cfg.group;
+      sopsFile = ../secrets.yaml;
+    };
+
   };
   environment.persistence = {
     "/persist".directories = [
@@ -47,6 +53,9 @@ in
 
   services.authelia.instances.main = {
     enable = true;
+    settingsFiles = [
+      "${config.sops.secrets.authelia-identity-providers.path}"
+    ];
     settings = {
       theme = "dark";
       log = {
@@ -88,25 +97,6 @@ in
         disable_require_tls = true;
         disable_starttls = false;
         disable_html_emails = true;
-      };
-      identity_providers.oidc = {
-        cors.allowed_origins_from_client_redirect_uris = true;
-        cors.endpoints = [
-          "authorization"
-          "introspection"
-          "revocation"
-          "token"
-          "userinfo"
-        ];
-        clients = [{
-          id = "headscale";
-          description = "Headscale";
-          public = true;
-          authorization_policy = "two_factor";
-          redirect_uris = [ "https://tailscale.dechnik.net/oidc/callback" ];
-          scopes = [ "openid" "profile" "email" ];
-          userinfo_signing_algorithm = "none";
-        }];
       };
     };
     secrets = with config.sops.secrets; {
