@@ -114,11 +114,11 @@ in
     nodejs-16_x
     # emacs-client
   ];
-  services.emacs = {
-    enable = true;
-    package = my_emacs;
-    client.enable = true;
-  };
+  # services.emacs = {
+  #   enable = true;
+  #   package = my_emacs;
+  #   client.enable = true;
+  # };
 
   systemd.user.services.emacs-kill-fisrt-frame = {
     Unit = {
