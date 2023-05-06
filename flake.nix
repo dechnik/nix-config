@@ -62,7 +62,7 @@
       flake = false;
     };
     neovim = {
-      url = "sourcehut:~lukasz/neovim";
+      url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:

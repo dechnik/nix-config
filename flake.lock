@@ -403,17 +403,18 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1682513565,
-        "narHash": "sha256-T9d6/hKXLIvgG1BxLHH/8eOrjnZupPVL4bCxf33rxTY=",
-        "owner": "~lukasz",
-        "repo": "neovim",
-        "rev": "ac038d740207dd910c4fc09fb95ea1f1eb3095c2",
-        "type": "sourcehut"
+        "lastModified": 1683387556,
+        "narHash": "sha256-QqhFGdlGCvfMZ7LouzCju/FrjBHxJO0Wvc8ybe8wwRQ=",
+        "ref": "master",
+        "rev": "46d52bf4f89a96c15421d203ae464b5d6617570c",
+        "revCount": 14,
+        "type": "git",
+        "url": "https://git.dechnik.net/lukasz/neovim.git"
       },
       "original": {
-        "owner": "~lukasz",
-        "repo": "neovim",
-        "type": "sourcehut"
+        "ref": "master",
+        "type": "git",
+        "url": "https://git.dechnik.net/lukasz/neovim.git"
       }
     },
     "nix": {
@@ -672,11 +673,11 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1677587185,
-        "narHash": "sha256-zYT66MAYwctAQqI5VBw3LbBXiSKdB8vuMAqCGG8onbE=",
+        "lastModified": 1683286087,
+        "narHash": "sha256-xseOd7W7xwF5GOF2RW8qhjmVGrKoBz+caBlreaNzoeI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "68196a61c26748d3e53a6803de3d2f8c69f27831",
+        "rev": "3e313808bd2e0a0669430787fb22e43b2f4bf8bf",
         "type": "github"
       },
       "original": {
