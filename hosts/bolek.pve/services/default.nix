@@ -20,7 +20,7 @@
     # ./golink.nix
     ./wireguard.nix
     ./nginx-jellyfin.nix
-    ./wormhole.nix
+    # ./wormhole.nix
   ];
 
   environment.persistence."/persist".directories = [
