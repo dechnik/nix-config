@@ -1,13 +1,13 @@
 { lib, inputs, config, ... }:
-let
-  nginx = import ../../../common/functions/nginx.nix { inherit config lib; };
-in
-  {
-    imports = [
-      inputs.lldap.nixosModules.default
-    ];
-    disabledModules = [ "services/databases/lldap.nix" ];
-  }
+# let
+#   nginx = import ../../../common/functions/nginx.nix { inherit config lib; };
+# in
+{
+  imports = [
+    inputs.lldap.nixosModules.default
+  ];
+  disabledModules = [ "services/databases/lldap.nix" ];
+}
   // lib.mkMerge [
   {
     sops.secrets = {
@@ -39,9 +39,9 @@ in
     };
   }
 
-  (nginx.internalVhost {
-    domain = "ldap.dechnik.net";
-    tailscaleAuth = false;
-    proxyPass = "http://127.0.0.1:${toString config.services.lldap.httpPort}";
-  })
+  # (nginx.internalVhost {
+  #   domain = "ldap.dechnik.net";
+  #   tailscaleAuth = false;
+  #   proxyPass = "http://127.0.0.1:${toString config.services.lldap.httpPort}";
+  # })
 ]
