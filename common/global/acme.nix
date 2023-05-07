@@ -7,14 +7,15 @@
       # dnsProvider = "route53";
       dnsProvider = "cloudflare";
       credentialsFile = config.sops.secrets.acme-credentials.path;
-      group = "nginx";
+      group = "acme";
     };
     acceptTerms = true;
   };
+  users.groups.acme = { };
 
   sops.secrets.acme-credentials = {
     sopsFile = ../secrets.yaml;
-    neededForUsers = true;
+    group = config.security.acme.defaults.group;
   };
 
   environment.persistence = {
