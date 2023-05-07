@@ -89,6 +89,9 @@ in
       };
       access_control = {
         default_policy = "two_factor";
+        rules = [
+          { domain = "tailscale.dechnik.net"; subject = [ "group:admin" ]; policy = "two_factor"; }
+        ];
       };
       notifier.smtp = rec {
         host = "localhost";
