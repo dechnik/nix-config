@@ -113,6 +113,39 @@ in
       AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = authelia-ldap-backend-pass.path;
     };
   };
+
+  services.traefik.dynamicConfigOptions.http = {
+    services.auth = {
+      loadBalancer.servers = [{ url = "http://127.0.0.1:9091"; }];
+    };
+
+    routers.auth = {
+      rule = "Host(`auth.dechnik.net`)";
+      service = "auth";
+      entryPoints = [ "web" ];
+      middlewares = [ "authelia-delete-prompt" ];
+    };
+
+    middlewares.auth = {
+      forwardAuth = {
+        address = "http://127.0.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
+        trustForwardHeader = true;
+        authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
+      };
+    };
+
+    middlewares.authelia-delete-prompt = {
+      modifyQuery = {
+        type = "delete";
+        paramName = "prompt";
+      };
+    };
+
+    experimental.plugins.modifyQuery = {
+      moduleName = "github.com/jpas/traefik-plugin-query-modification";
+      version = "v0.1.0";
+    };
+  };
   # services.nginx.virtualHosts = {
   #   "auth.dechnik.net" = {
   #     forceSSL = true;
