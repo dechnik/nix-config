@@ -66,6 +66,11 @@ with lib; let
           };
         };
 
+        experimental.plugins.modifyQuery = {
+          moduleName = "github.com/jpas/traefik-plugin-query-modification";
+          version = "v0.1.0";
+        };
+
         certificatesResolvers.acme.acme = {
           email = config.security.acme.defaults.email;
           keyType = toUpper config.security.acme.defaults.keyType;

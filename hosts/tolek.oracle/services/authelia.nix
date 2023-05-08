@@ -134,17 +134,13 @@ in
       };
     };
 
-    middlewares.authelia-delete-prompt = {
+    middlewares.authelia-delete-prompt.plugin = {
       modifyQuery = {
         type = "delete";
         paramName = "prompt";
       };
     };
 
-    experimental.plugins.modifyQuery = {
-      moduleName = "github.com/jpas/traefik-plugin-query-modification";
-      version = "v0.1.0";
-    };
   };
   # services.nginx.virtualHosts = {
   #   "auth.dechnik.net" = {
