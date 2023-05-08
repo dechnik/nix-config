@@ -6,5 +6,6 @@
     ./restic.nix
     ./lldap.nix
     ./authelia.nix
+    ./traefik.nix
   ];
 }
