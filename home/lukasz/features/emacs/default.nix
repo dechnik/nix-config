@@ -120,18 +120,18 @@ in
   #   client.enable = true;
   # };
 
-  systemd.user.services.emacs-kill-fisrt-frame = {
-    Unit = {
-      Description = "emacsclient kill first framer";
-      After = "emacs.service";
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 6";
-    };
-    Install = { WantedBy = [ "default.target" ]; };
-  };
+  # systemd.user.services.emacs-kill-fisrt-frame = {
+  #   Unit = {
+  #     Description = "emacsclient kill first framer";
+  #     After = "emacs.service";
+  #   };
+  #   Service = {
+  #     Type = "oneshot";
+  #     ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
+  #     ExecStartPre = "${pkgs.coreutils}/bin/sleep 6";
+  #   };
+  #   Install = { WantedBy = [ "default.target" ]; };
+  # };
   systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
   programs.emacs = {
     enable = true;

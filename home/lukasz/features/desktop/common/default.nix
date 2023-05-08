@@ -15,9 +15,10 @@
   #   enable = true;
   #   components = [ "secrets" ];
   # };
-  # home.persistence = {
-  #   "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
-  # };
+  home.persistence = {
+    # "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
+    "/persist/home/lukasz".directories = [ ".config/obsidian" ];
+  };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal
