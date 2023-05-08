@@ -7,8 +7,13 @@ with lib; let
   traefik =
     { hostname ? ''${builtins.replaceStrings [".dechnik.net"] [""] config.networking.fqdn}''
     , site
+    , persist ? true
     ,
     }: {
+      environment.persistence = lib.mkIf persist {
+        "/persist".directories = [ "/var/lib/traefik" ];
+      };
+
       sops.secrets."traefik-config.json" = {
         sopsFile = ../../hosts/${hostname}/secrets.yaml;
         owner = config.users.users.traefik.name;
