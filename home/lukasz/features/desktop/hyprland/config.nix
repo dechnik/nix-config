@@ -83,6 +83,7 @@
   bind=SUPER,Return,exec,$TERMINAL
   bind=SUPER,m,exec,makoctl dismiss
   bind=SUPER,v,exec,$TERMINAL $SHELL -ic nvim
+  bind=SUPER,e,exec,$TERMINAL $SHELL -ic nvim
   bind=SUPER,f,exec,$TERMINAL $SHELL -ic ranger
   bind=SUPER,w,exec,$BROWSER
 
