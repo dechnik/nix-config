@@ -166,12 +166,12 @@ in
     configFile = {
       "neomutt/mailcap" = {
         text = ''
-        text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
-        image/*; imv %s &
-        audio/*; mpv %s ;
-        video/*; setsid mpv --quiet %s &; copiousoutput
-        application/pdf; zathura %s &
-      '';
+          text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
+          image/*; imv %s &
+          audio/*; mpv %s ;
+          video/*; setsid mpv --quiet %s &; copiousoutput
+          application/pdf; zathura %s &
+        '';
       };
     };
   };
@@ -210,94 +210,94 @@ in
       '';
       binds = [
         {
-          map = ["index" "pager"];
+          map = [ "index" "pager" ];
           key = "g";
           action = "noop";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "j";
           action = "next-entry";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "k";
           action = "previous-entry";
         }
         {
-          map = ["pager"];
+          map = [ "pager" ];
           key = "j";
           action = "next-line";
         }
         {
-          map = ["pager"];
+          map = [ "pager" ];
           key = "k";
           action = "previous-line";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc>,";
           action = "sidebar-prev";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc>.";
           action = "sidebar-next";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc><enter>";
           action = "sidebar-open";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc><return>";
           action = "sidebar-open";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc><space>";
           action = "sidebar-open";
         }
         {
-          map = ["editor"];
+          map = [ "editor" ];
           key = "<Tab>";
           action = "complete-query";
         }
       ];
       macros = [
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc>n";
           action = "<limit>~N<enter>";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "<esc>V";
           action = "<change-folder-readonly>${maildirBase}/mu<enter>";
         }
         {
-          map = ["index"];
+          map = [ "index" ];
           key = "V";
           action = "<change-folder-readonly>${maildirBase}/mu<enter><shell-escape>mu find --format=links --linksdir=${maildirBase}/mu --clearlinks ";
         }
         {
-          map = ["compose"];
+          map = [ "compose" ];
           key = "Y";
           action = "<first-entry><pipe-entry>${convert-multipart}<enter><enter-command>source /tmp/neomutt-commands<enter>";
         }
         {
-          map = ["index" "pager"];
+          map = [ "index" "pager" ];
           key = "a";
           action = "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<return><pipe-message>${pkgs.abook}/bin/abook --config $XDG_CONFIG_HOME/abook/abookrc --datafile $HOME/Documents/abook/addressbook --add-email<return><enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<return>";
         }
         {
-          map = ["index" "pager"];
+          map = [ "index" "pager" ];
           key = "gi";
           action = "<change-folder>=Inbox<enter>";
         }
         {
-          map = ["index" "pager"];
+          map = [ "index" "pager" ];
           key = "gs";
           action = "<change-folder>=Sent<enter>";
         }
@@ -335,7 +335,7 @@ in
     in
     ''
       #!/bin/sh
-      ${pkgs.mu}/bin/mu index
+      # ${pkgs.mu}/bin/mu index
       lastrun="${config.xdg.dataHome}/mail/.mailsynclastrun"
       for acc in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
         new=$(${pkgs.findutils}/bin/find ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/new/ ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/cur/ -type f -newer "$lastrun" 2> /dev/null)
@@ -345,7 +345,7 @@ in
         esac
       done
       ${pkgs.coreutils}/bin/touch "$lastrun"
-      # /etc/profiles/per-user/lukasz/bin/emacsclient -e '(mu4e-update-index)'
+      /etc/profiles/per-user/lukasz/bin/emacsclient -e '(mu4e-update-index)'
     '';
   };
 
