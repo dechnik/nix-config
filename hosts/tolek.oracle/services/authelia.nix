@@ -135,7 +135,7 @@ in
     };
 
     middlewares.authelia-delete-prompt.plugin = {
-      modifyQuery = {
+      traefik-plugin-query-modification = {
         type = "delete";
         paramName = "prompt";
       };

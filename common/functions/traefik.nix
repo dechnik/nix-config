@@ -69,9 +69,9 @@ with lib; let
           };
         };
 
-        experimental.plugins.modifyQuery = {
-          moduleName = "github.com/jpas/traefik-plugin-query-modification";
-          version = "v0.1.0";
+        experimental.plugins.traefik-plugin-query-modification = {
+          moduleName = "github.com/kingjan1999/traefik-plugin-query-modification";
+          version = "v1.0.0";
         };
 
         certificatesResolvers.acme.acme = {
