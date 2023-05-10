@@ -2,6 +2,29 @@
 let
   hydraUser = config.users.users.hydra.name;
   hydraGroup = config.users.users.hydra.group;
+  # Make build machine file field
+  field = x:
+    if (x == null || x == [ ] || x == "") then "-"
+    else if (builtins.isInt x) then (builtins.toString x)
+    else if (builtins.isList x) then (builtins.concatStringsSep "," x)
+    else x;
+  mkBuildMachine =
+    { uri ? null
+    , systems ? null
+    , sshKey ? null
+    , maxJobs ? null
+    , speedFactor ? null
+    , supportedFeatures ? null
+    , mandatoryFeatures ? null
+    , publicHostKey ? null
+    }: ''
+      ${field uri} ${field systems} ${field sshKey} ${field maxJobs} ${field speedFactor} ${field supportedFeatures} ${field mandatoryFeatures} ${field publicHostKey}
+    '';
+  mkBuildMachinesFile = x: builtins.toFile "machines" (
+    builtins.concatStringsSep "\n" (
+      map (mkBuildMachine) x
+    )
+  );
 
   release-host-branch = pkgs.callPackage ./lib/release-host-branch.nix {
     sshKeyFile = config.sops.secrets.nix-ssh-key.path;
@@ -10,7 +33,6 @@ in
 {
   imports = [
     inputs.hydra.nixosModules.hydra
-    ./machines.nix
   ];
   security.acme.certs = {
     "hydra.dechnik.net" = {
@@ -41,6 +63,41 @@ in
           command = ${lib.getExe release-host-branch}
         </runcommand>
       '';
+      buildMachinesFiles = [
+        (mkBuildMachinesFile [
+          {
+            uri = "ssh://nix-ssh@dziad";
+            systems = [ "x86_64-linux" "i686-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 12;
+            speedFactor = 150;
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
+          }
+          {
+            uri = "ssh://nix-ssh@tolek.oracle";
+            systems = [ "x86_64-linux" "aarch64-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 4;
+            speedFactor = 100;
+            supportedFeatures = [ "kvm" "nixos-test" ];
+          }
+          {
+            uri = "ssh://nix-ssh@ldlat";
+            systems = [ "x86_64-linux" "i686-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 6;
+            speedFactor = 100;
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
+          }
+          {
+            uri = "localhost";
+            systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
+            maxJobs = 8;
+            speedFactor = 50;
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
+          }
+        ])
+      ];
       extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
     };
     nginx.virtualHosts = {
