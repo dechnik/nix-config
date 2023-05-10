@@ -110,6 +110,8 @@ in
     pythonEnv
     shellcheck
 
+    zotero
+
     # Node
     nodejs-16_x
     # emacs-client
