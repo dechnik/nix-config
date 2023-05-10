@@ -7,7 +7,7 @@
       ./services
 
       ../../common/optional/qemu-vm.nix
-      ../../common/optional/consul-server.nix
+      ../../common/optional/consul-server-nginx.nix
       ../../common/optional/syncthing.nix
       ../../common/optional/docker.nix
       ../../common/optional/postfix.nix
