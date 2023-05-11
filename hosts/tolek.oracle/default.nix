@@ -10,10 +10,10 @@
     ../../common/optional/postfix.nix
     ../../common/optional/postgres.nix
     # ../../common/optional/nginx.nix
-    # ../../common/optional/consul-server.nix
-    # ../../common/optional/promtail.nix
-    # ../../common/optional/node-exporter.nix
-    # ../../common/optional/systemd-exporter.nix
+    ../../common/optional/consul-server.nix
+    ../../common/optional/promtail.nix
+    ../../common/optional/node-exporter.nix
+    ../../common/optional/systemd-exporter.nix
   ];
 
   my.wan = "enp0s3";
