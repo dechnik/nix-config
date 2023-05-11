@@ -12,6 +12,8 @@
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
+      source-code-pro
+      nanum-gothic-coding
       roboto
       overpass
       font-awesome_5
