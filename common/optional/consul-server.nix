@@ -3,8 +3,6 @@
 , ...
 }:
 with lib builtins; let
-  nginx = import ../functions/nginx.nix { inherit config lib; };
-
   domain = "consul.${config.networking.domain}";
 
   s = import ../../metadata/sites.nix { inherit lib config; };
@@ -36,13 +34,19 @@ in
       networking.firewall.allowedTCPPorts = [
         8500 # HTTP server
       ];
-    }
 
-    (nginx.internalVhost {
-      inherit domain;
-      proxyPass = "http://127.0.0.1:8500";
-      tailscaleAuth = true;
-      allowLocal = true;
-    })
+      services.traefik.dynamicConfigOptions.http = {
+        services.consul = {
+          loadBalancer.servers = [{ url = "http://127.0.0.1:8500"; }];
+        };
+
+        routers.consul = {
+          rule = "Host(`${domain}`)";
+          service = "consul";
+          entryPoints = [ "web" ];
+          middlewares = [ "tailscale-ips" ];
+        };
+      };
+    }
   ];
 }
