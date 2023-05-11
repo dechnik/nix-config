@@ -19,6 +19,7 @@
       ../../common/optional/systemd-exporter.nix
       ../../common/optional/smokeping-exporter.nix
       ../../common/optional/nginx.nix
+      ../../common/optional/postgres.nix
       ../../common/optional/coredns.nix
       ../../common/global
       ../../common/users/lukasz

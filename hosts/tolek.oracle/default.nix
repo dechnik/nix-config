@@ -8,6 +8,7 @@
     ../../common/users/lukasz
     ../../common/optional/qemu-vm.nix
     ../../common/optional/postfix.nix
+    ../../common/optional/postgres.nix
     # ../../common/optional/nginx.nix
     # ../../common/optional/consul-server.nix
     # ../../common/optional/promtail.nix

@@ -13,7 +13,6 @@
     ./openssh.nix
     ./network.nix
     ./optin-persistence.nix
-    ./postgres.nix
     ./sops.nix
     ./ssh-serve-store.nix
     ./fonts.nix
