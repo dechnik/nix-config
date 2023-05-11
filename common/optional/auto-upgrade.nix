@@ -6,7 +6,7 @@ in
 {
   system.autoUpgrade = {
     enable = true;
-    dates = "hourly";
+    dates = "daily";
     flags = [
       "--refresh"
     ];

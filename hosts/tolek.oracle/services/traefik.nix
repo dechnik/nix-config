@@ -19,6 +19,9 @@ lib.mkMerge [
       middlewares.tailscale-ips = {
         ipWhiteList.sourceRange = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
       };
+      middlewares.wireguard-ips = {
+        ipWhiteList.sourceRange = [ "10.60.0.0/24" "10.61.0.0/24" "10.62.0.0/24" ];
+      };
     };
 
     services.authelia.instances.main.settings.access_control.rules = [
