@@ -12,6 +12,47 @@ let
     version = "29-${inputs.emacs-src.shortRev}";
     src = inputs.emacs-src;
   });
+  my_emacs_with_packages = with pkgs; ((emacsPackagesFor my_emacs).emacsWithPackages (epkgs: [
+    epkgs.vterm
+    epkgs.all-the-icons-ivy
+    epkgs.all-the-icons
+    epkgs.doom-themes
+    epkgs.elisp-demos
+    epkgs.helpful
+    epkgs.evil
+    epkgs.evil-collection
+    epkgs.evil-nerd-commenter
+    epkgs.cape
+    epkgs.consult
+    epkgs.corfu
+    epkgs.corfu-terminal
+    epkgs.embark
+    epkgs.embark-consult
+    epkgs.marginalia
+    epkgs.orderless
+    epkgs.vertico
+    epkgs.eglot
+    epkgs.tree-sitter
+    epkgs.tree-sitter-indent
+    epkgs.tree-sitter-ispell
+    epkgs.tree-sitter-langs
+    epkgs.treesit-auto
+    epkgs.editorconfig
+    epkgs.aggressive-indent
+    epkgs.ibuffer-project
+    epkgs.tabspaces
+    epkgs.markdown-mode
+    epkgs.pandoc-mode
+    epkgs.auctex
+    epkgs.auctex-latexmk
+    epkgs.pdf-tools
+    epkgs.denote
+    epkgs.org-appear
+    epkgs.org-roam
+    epkgs.org-super-agenda
+    epkgs.which-key
+    epkgs.magit
+  ]));
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
   #   name = "emacs29";
   #   version = "29.0-${inputs.emacs-src.shortRev}";
@@ -28,26 +69,6 @@ in
   # home = {
   #   sessionVariables = {
   #     EDITOR = "emacsclient -create-frame --alternate-editor= --no-wait";
-  #   };
-  # };
-  # home.file.".emacs.d" = {
-  #   source = pkgs.fetchFromGitHub {
-  #       owner = "doomemacs";
-  #       repo = "doomemacs";
-  #       rev = "3a348944925914b21739b5e9a841d92c1322089b";
-  #       sha256 = "6z/TM+vbBXVRrI1PjsDp7+Fve1LJ5ZMvXYf7iZRKb0U=";
-  #     };
-  # };
-  # xdg.configFile = {
-  #   "doom" = {
-  #     source = ./config;
-  #     # onChange = ''
-  #     #     export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
-  #     #     if [ -d "${h}/.emacs.d" ]; then
-  #     #       ${h}/.emacs.d/bin/doom sync
-  #     #     fi
-  #     #   '';
-  #     recursive = true;
   #   };
   # };
   home.packages = with pkgs; let
@@ -116,36 +137,48 @@ in
     nodejs-16_x
     # emacs-client
   ];
-  services.emacs = {
-    enable = true;
-    package = my_emacs;
-    client.enable = true;
-  };
+  # services.emacs = {
+  #   enable = true;
+  #   package = my_emacs_with_packages;
+  #   client.enable = true;
+  # };
 
-  systemd.user.services.emacs-kill-fisrt-frame = {
-    Unit = {
-      Description = "emacsclient kill first framer";
-      After = "emacs.service";
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 6";
-    };
-    Install = { WantedBy = [ "default.target" ]; };
-  };
-  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
+  # systemd.user.services.emacs-kill-fisrt-frame = {
+  #   Unit = {
+  #     Description = "emacsclient kill first framer";
+  #     After = "emacs.service";
+  #   };
+  #   Service = {
+  #     Type = "oneshot";
+  #     ExecStart = "${pkgs.runtimeShell} -l -c '${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
+  #     ExecStartPre = "${pkgs.coreutils}/bin/sleep 6";
+  #   };
+  #   Install = { WantedBy = [ "default.target" ]; };
+  # };
+  # systemd.user.services.emacs = {
+  #   Unit = {
+  #     Description = "Emacs text editor";
+  #     Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs/";
+  #     X-RestartIfChanged = false;
+  #   };
+  #   Service = {
+  #     Environment = "PATH=${pkgs.libnotify}/bin:PATH=${config.programs.password-store.package}/bin:$PATH";
+  #     Type = "forking";
+  #     ExecStart = "${pkgs.bash}/bin/bash -l -c '${my_emacs}/bin/emacs --fg-daemon && ${my_emacs}/bin/emacsclient -c --eval \"(delete-frame)\"'";
+  #     ExecStop = "${my_emacs}/bin/emacsclient --no-wait --eval (kill-emacs)";
+  #     Restart = "always";
+  #   };
+  #   Install.WantedBy = [ "default.target" ];
+  # };
+  # systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
   programs.emacs = {
     enable = true;
-    package = my_emacs;
-    overrides = final: _prev: {
-      nix-theme = final.callPackage ./theme.nix { inherit config; };
-    };
-    extraPackages = epkgs: (with epkgs; [
-      nix-theme
-      vterm
-      all-the-icons-ivy
-    ]);
+    package = my_emacs_with_packages;
+    # overrides = final: _prev: {
+    #   nix-theme = final.callPackage ./theme.nix { inherit config; };
+    # };
+    # extraPackages = epkgs: (with epkgs; [
+    # ]);
   };
   home.sessionPath = [
     (h + "/.emacs.d/bin")
@@ -162,13 +195,4 @@ in
       ".config/spacemacs"
     ];
   };
-
-  # home.activation = {
-  #   installDoomEmacs = ''
-  #     export DOOMDIR="${config.home.sessionVariables.DOOMDIR}"
-  #     if [ ! -d "${h}/.emacs.d" ]; then
-  #       git clone --depth=1 https://github.com/doomemacs/doomemacs.git ${h}/.emacs.d
-  #     fi
-  #   '';
-  # };
 }

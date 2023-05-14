@@ -122,6 +122,9 @@ in
       allowOther = true;
     };
   };
+  config.home.sessionVariables = {
+    MU4E_PATH = "${pkgs.mu}/share/emacs/site-lisp/mu4e";
+  };
 
   config.home.file = {
     "${maildirBase}/.sig" = {
