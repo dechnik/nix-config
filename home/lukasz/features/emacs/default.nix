@@ -16,42 +16,6 @@ let
     epkgs.vterm
     epkgs.all-the-icons-ivy
     epkgs.all-the-icons
-    epkgs.doom-themes
-    epkgs.elisp-demos
-    epkgs.helpful
-    epkgs.evil
-    epkgs.evil-collection
-    epkgs.evil-nerd-commenter
-    epkgs.cape
-    epkgs.consult
-    epkgs.corfu
-    epkgs.corfu-terminal
-    epkgs.embark
-    epkgs.embark-consult
-    epkgs.marginalia
-    epkgs.orderless
-    epkgs.vertico
-    epkgs.eglot
-    epkgs.tree-sitter
-    epkgs.tree-sitter-indent
-    epkgs.tree-sitter-ispell
-    epkgs.tree-sitter-langs
-    epkgs.treesit-auto
-    epkgs.editorconfig
-    epkgs.aggressive-indent
-    epkgs.ibuffer-project
-    epkgs.tabspaces
-    epkgs.markdown-mode
-    epkgs.pandoc-mode
-    epkgs.auctex
-    epkgs.auctex-latexmk
-    epkgs.pdf-tools
-    epkgs.denote
-    epkgs.org-appear
-    epkgs.org-roam
-    epkgs.org-super-agenda
-    epkgs.which-key
-    epkgs.magit
   ]));
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
   #   name = "emacs29";
