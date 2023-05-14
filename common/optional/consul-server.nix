@@ -44,7 +44,7 @@ in
           rule = "Host(`${domain}`)";
           service = "consul";
           entryPoints = [ "web" ];
-          middlewares = [ "wireguard-ips" "tailscale-ips" ];
+          middlewares = [ "wireguard-ips" ];
         };
       };
     }
