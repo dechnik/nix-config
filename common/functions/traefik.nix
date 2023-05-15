@@ -4,6 +4,8 @@
 ,
 }:
 with lib; let
+  consul = import ./consul.nix {inherit lib;};
+
   traefik =
     { hostname ? ''${builtins.replaceStrings [".dechnik.net"] [""] config.networking.fqdn}''
     , site
@@ -103,6 +105,7 @@ with lib; let
         };
       };
 
+      my.consulServices.traefik_exporter = consul.prometheusExporter "traefik" 8082;
 
       users.users.traefik.extraGroups = [ "acme" ];
     };
