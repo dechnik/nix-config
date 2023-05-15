@@ -69,6 +69,14 @@ with lib; let
           };
         };
 
+        entryPoints.metrics = {
+          address = ":8082";
+        };
+
+        metrics.prometheus = {
+          entryPoint = "metrics";
+        };
+
         experimental.plugins.traefik-plugin-query-modification = {
           moduleName = "github.com/kingjan1999/traefik-plugin-query-modification";
           version = "v1.0.0";
