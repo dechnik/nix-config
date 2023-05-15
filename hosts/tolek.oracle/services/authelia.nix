@@ -128,7 +128,7 @@ in
 
     middlewares.auth = {
       forwardAuth = {
-        address = "https://127.0.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
+        address = "http://127.0.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
         trustForwardHeader = true;
         authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
       };
