@@ -42,13 +42,13 @@
       rule = "Host(`ldap.dechnik.net`)";
       service = "lldap";
       entryPoints = [ "web" ];
-      middlewares = [ "tailscale-ips" ];
+      middlewares = [ "dechnik-ips" ];
     };
   };
 }
 
-  # (nginx.internalVhost {
-  #   domain = "ldap.dechnik.net";
-  #   tailscaleAuth = false;
-  #   proxyPass = "http://127.0.0.1:${toString config.services.lldap.httpPort}";
-  # })
+# (nginx.internalVhost {
+#   domain = "ldap.dechnik.net";
+#   tailscaleAuth = false;
+#   proxyPass = "http://127.0.0.1:${toString config.services.lldap.httpPort}";
+# })

@@ -82,6 +82,39 @@ with lib; let
         };
       };
 
+      services.traefik.dynamicConfigOptions.http = {
+        serversTransports = {
+          insecure-skip-verify.insecureSkipVerify = true;
+        };
+
+        routers.dashboard = {
+          rule = "Host(`traefik.${site}.dechnik.net`) ";
+          service = "api@internal";
+          entryPoints = [ "web" ];
+          middlewares = [ "dechnik-ips" "auth" ];
+        };
+
+        middlewares.auth = {
+          forwardAuth = {
+            address = "http://auth.dechnik.net/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
+            trustForwardHeader = true;
+            authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
+          };
+        };
+
+        middlewares.dechnik-ips = {
+          ipWhiteList.sourceRange = [
+            "100.64.0.0/10"
+            "10.69.0.0/24"
+            "10.60.0.0/24"
+            "10.61.0.0/24"
+            "10.62.0.0/24"
+            "fd7a:115c:a1e0::/48"
+          ];
+        };
+      };
+
+
       users.users.traefik.extraGroups = [ "acme" ];
     };
 in
