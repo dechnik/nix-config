@@ -55,6 +55,7 @@ in
           "SCRIPT_NAME" = "/admin";
           "DOMAIN_NAME" = "https://tailscale.dechnik.net";
           "HS_SERVER" = "https://tailscale.dechnik.net";
+          "LOG_LEVEL" = "Debug";
         };
         environmentFiles = [
           "${config.sops.secrets.headscale-webui-env.path}"
@@ -143,7 +144,7 @@ in
               proxy_buffering off;
               proxy_set_header X-Real-IP $remote_addr;
               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+              proxy_set_header X-Forwarded-Proto https;
             '';
           };
           "/metrics" = {
