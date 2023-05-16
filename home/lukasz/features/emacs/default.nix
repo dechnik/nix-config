@@ -149,14 +149,13 @@ in
   ];
   home.sessionVariables = {
     DOOMDIR = "${c}/doom";
-    MINEMACSDIR = "${c}/minemacs";
+    MINEMACSDIR = "${h}/.emacs.d/minemacs";
   };
 
   home.persistence = {
     "/persist/home/lukasz".directories = [
       ".emacs.d"
       ".config/doom"
-      ".config/minemacs"
     ];
   };
 }
