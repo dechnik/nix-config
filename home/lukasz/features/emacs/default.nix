@@ -16,6 +16,7 @@ let
     epkgs.vterm
     epkgs.all-the-icons-ivy
     epkgs.all-the-icons
+    epkgs.forge
   ]));
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
   #   name = "emacs29";
@@ -101,11 +102,11 @@ in
     nodejs-16_x
     # emacs-client
   ];
-  # services.emacs = {
-  #   enable = true;
-  #   package = my_emacs_with_packages;
-  #   client.enable = true;
-  # };
+  services.emacs = {
+    enable = true;
+    package = my_emacs_with_packages;
+    client.enable = true;
+  };
 
   # systemd.user.services.emacs-kill-fisrt-frame = {
   #   Unit = {
@@ -134,7 +135,7 @@ in
   #   };
   #   Install.WantedBy = [ "default.target" ];
   # };
-  # systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:$PATH";
+  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:${pkgs.sqlite}/bin:$PATH";
   programs.emacs = {
     enable = true;
     package = my_emacs_with_packages;
