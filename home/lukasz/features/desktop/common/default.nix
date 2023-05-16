@@ -17,14 +17,12 @@
   # };
   home.persistence = {
     # "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
-    "/persist/home/lukasz".directories = [ ".config/obsidian" ];
   };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal
     lyrics
     pcmanfm
-    obsidian
     meld
     gtk-pipe-viewer
   ];
