@@ -12,7 +12,6 @@
       "pve.dechnik.net"
     ];
     useFsLayout = true;
-    certificateScheme = 3;
     localDnsResolver = false;
     loginAccounts = {
       "lukasz@dechnik.net" = {
@@ -60,7 +59,19 @@
     mailDirectory = "/srv/mail/vmail";
     sieveDirectory = "/srv/mail/sieve";
     dkimKeyDirectory = "/srv/mail/dkim";
+    certificateScheme = 1;
+    certificateFile = "/var/lib/acme/mail.dechnik.net/fullchain.pem";
+    keyFile = "/var/lib/acme/mail.dechnik.net/key.pem";
   };
+
+  security.acme.certs = {
+    "mail.dechnik.net" = {
+      domain = "mail.dechnik.net";
+    };
+  };
+
+  users.users.dovecot2.extraGroups = [ "acme" ];
+  users.users.postfix.extraGroups = [ "acme" ];
 
   # Prefer ipv4 and use main ipv6 to avoid reverse DNS issues
   # CHANGEME when switching hosts
