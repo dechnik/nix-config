@@ -16,7 +16,6 @@ let
     epkgs.vterm
     epkgs.all-the-icons-ivy
     epkgs.all-the-icons
-    epkgs.forge
   ]));
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
   #   name = "emacs29";
@@ -90,6 +89,7 @@ in
     editorconfig-core-c # per-project style config
     # :tools lookup & :lang org +roam
     sqlite
+    emacsql-sqlite
     # :lang latex & :lang org (latex previews)
     texlive.combined.scheme-medium
     rnix-lsp
@@ -135,7 +135,7 @@ in
   #   };
   #   Install.WantedBy = [ "default.target" ];
   # };
-  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:${pkgs.sqlite}/bin:$PATH";
+  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:${pkgs.emacsql-sqlite}/bin:$PATH";
   programs.emacs = {
     enable = true;
     package = my_emacs_with_packages;

@@ -11,4 +11,5 @@
   oauth2ms = pkgs.callPackage ./oauth2ms { };
   tailscale-nginx-auth = pkgs.callPackage ./tailscale-nginx-auth { };
   golink = pkgs.callPackage ./golink { };
+  emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
 }
