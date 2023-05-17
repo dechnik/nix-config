@@ -78,15 +78,15 @@
   };
 
   # Webmail
-  services.roundcube = rec {
-    enable = true;
-    package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
-    hostName = "mail.dechnik.net";
-    extraConfig = ''
-      $config['smtp_server'] = "tls://${hostName}";
-      $config['smtp_user'] = "%u";
-      $config['smtp_pass'] = "%p";
-      $config['plugins'] = [ "carddav" ];
-    '';
-  };
+  # services.roundcube = rec {
+  #   enable = true;
+  #   package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
+  #   hostName = "mail.dechnik.net";
+  #   extraConfig = ''
+  #     $config['smtp_server'] = "tls://${hostName}";
+  #     $config['smtp_user'] = "%u";
+  #     $config['smtp_pass'] = "%p";
+  #     $config['plugins'] = [ "carddav" ];
+  #   '';
+  # };
 }
