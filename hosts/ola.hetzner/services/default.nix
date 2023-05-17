@@ -5,5 +5,6 @@
     ./restic.nix
     ./tailscale.nix
     ./wireguard.nix
+    ./traefik.nix
   ];
 }

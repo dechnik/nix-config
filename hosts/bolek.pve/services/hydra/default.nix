@@ -98,7 +98,10 @@ in
           }
         ])
       ];
-      extraEnv = { HYDRA_DISALLOW_UNFREE = "0"; };
+      extraEnv = {
+        HYDRA_DISALLOW_UNFREE = "0";
+        EMAIL_SENDER_TRANSPORT_port = "25";
+      };
     };
     nginx.virtualHosts = {
       "hydra.dechnik.net" = {

@@ -37,17 +37,28 @@ in
         };
       };
     };
-    nginx.virtualHosts = {
-      "${domain}" = {
-        forceSSL = true;
-        useACMEHost = "${domain}";
-        locations."/".proxyPass = "http://localhost:${port}/";
-        extraConfig = ''
-          proxy_set_header  X-Script-Name /;
-          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_pass_header Authorization;
-        '';
+    traefik.dynamicConfigOptions.http = {
+      services.dav = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:${port}"; }];
+      };
+
+      routers.dav = {
+        rule = "Host(`${domain}`)";
+        service = "dav";
+        entryPoints = [ "web" ];
       };
     };
+    # nginx.virtualHosts = {
+    #   "${domain}" = {
+    #     forceSSL = true;
+    #     useACMEHost = "${domain}";
+    #     locations."/".proxyPass = "http://localhost:${port}/";
+    #     extraConfig = ''
+    #       proxy_set_header  X-Script-Name /;
+    #       proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+    #       proxy_pass_header Authorization;
+    #     '';
+    #   };
+    # };
   };
 }
