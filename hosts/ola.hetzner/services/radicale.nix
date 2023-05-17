@@ -14,7 +14,7 @@ in
     ];
   };
 
-  security.acme.certs."${domain}".domain = domain;
+  # security.acme.certs."${domain}".domain = domain;
   sops.secrets.radicale-htpasswd = {
     sopsFile = ../secrets.yaml;
     owner = config.users.users.radicale.name;
