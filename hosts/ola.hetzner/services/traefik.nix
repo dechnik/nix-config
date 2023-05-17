@@ -10,7 +10,7 @@ lib.mkMerge [
       };
 
       routers.dashboard = {
-        rule = "Host(`traefik.oracle.dechnik.net`) ";
+        rule = "Host(`traefik.hetzner.dechnik.net`) ";
         service = "api@internal";
         entryPoints = [ "web" ];
         middlewares = [ "dechnik-ips" "ext-auth" ];
