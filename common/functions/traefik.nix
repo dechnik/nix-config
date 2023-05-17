@@ -103,6 +103,13 @@ with lib; let
             "fd7a:115c:a1e0::/48"
           ];
         };
+        middlewares.ext-auth = {
+          forwardAuth = {
+            address = "https://auth.dechnik.net/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
+            trustForwardHeader = true;
+            authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
+          };
+        };
       };
 
       my.consulServices.traefik_exporter = consul.prometheusExporter "traefik" 8082;

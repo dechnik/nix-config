@@ -19,6 +19,7 @@ lib.mkMerge [
 
     services.authelia.instances.main.settings.access_control.rules = [
       { domain = "traefik.oracle.dechnik.net"; subject = [ "group:admin" ]; policy = "one_factor"; }
+      { domain = "traefik.hetzner.dechnik.net"; subject = [ "group:admin" ]; policy = "one_factor"; }
     ];
   }
 
