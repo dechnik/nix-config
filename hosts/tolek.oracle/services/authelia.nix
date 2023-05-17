@@ -63,7 +63,7 @@ in
         format = "text";
       };
       server = {
-        host = "127.0.0.1";
+        host = "10.61.0.1";
         port = 9091;
       };
       session = {
@@ -116,7 +116,7 @@ in
 
   services.traefik.dynamicConfigOptions.http = {
     services.auth = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:9091"; }];
+      loadBalancer.servers = [{ url = "http://10.61.0.1:9091"; }];
     };
 
     routers.auth = {
@@ -128,7 +128,7 @@ in
 
     middlewares.auth = {
       forwardAuth = {
-        address = "http://127.0.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
+        address = "http://10.61.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
         trustForwardHeader = true;
         authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
       };
