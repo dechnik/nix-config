@@ -7,8 +7,8 @@
     # ./cgit
     ./psql-backup.nix
     ./gitea
-    ./uwsgi.nix
-    ./searx.nix
+    # ./uwsgi.nix
+    # ./searx.nix
     ./website.nix
     ./restic-server.nix
     ./monitoring.nix
