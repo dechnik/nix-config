@@ -58,6 +58,7 @@ in
         bitwarden
         darkreader
         browserpass
+        org-capture
         # surfingkeys
         tridactyl
         simple-tab-groups

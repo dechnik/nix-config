@@ -35,6 +35,23 @@ in
   #     EDITOR = "emacsclient -create-frame --alternate-editor= --no-wait";
   #   };
   # };
+
+  xdg = {
+    desktopEntries = {
+      orgProtocolDesktop = {
+        name = "Org-Protocol";
+        genericName = "Org-Protocol";
+        exec = "${my_emacs_with_packages}/bin/emacsclient -create-frame --alternate-editor= --no-wait %u";
+        type = "Application";
+        mimeType = [ "x-scheme-handler/org-protocol" ];
+        icon = "emacs";
+        terminal = false;
+      };
+    };
+    mimeApps.defaultApplications = {
+      "x-scheme-handler/org-protocol" = "orgProtocolDesktop.desktop";
+    };
+  };
   home.packages = with pkgs; let
     emacs-client = makeDesktopItem {
       name = "emacs-client";
