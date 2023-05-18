@@ -13,7 +13,7 @@ lib.mkMerge [
         rule = "Host(`traefik.hetzner.dechnik.net`) ";
         service = "api@internal";
         entryPoints = [ "web" ];
-        middlewares = [ "dechnik-ips" "ext-auth" ];
+        middlewares = [ "dechnik-ips" "auth" ];
       };
     };
   }

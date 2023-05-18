@@ -126,14 +126,6 @@ in
       middlewares = [ "authelia-delete-prompt" ];
     };
 
-    middlewares.auth = {
-      forwardAuth = {
-        address = "http://10.61.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
-        trustForwardHeader = true;
-        authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
-      };
-    };
-
     middlewares.authelia-delete-prompt.plugin = {
       traefik-plugin-query-modification = {
         type = "delete";
