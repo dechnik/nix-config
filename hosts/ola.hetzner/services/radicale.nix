@@ -14,7 +14,6 @@ in
     ];
   };
 
-  # security.acme.certs."${domain}".domain = domain;
   sops.secrets.radicale-htpasswd = {
     sopsFile = ../secrets.yaml;
     owner = config.users.users.radicale.name;
@@ -48,17 +47,5 @@ in
         entryPoints = [ "web" ];
       };
     };
-    # nginx.virtualHosts = {
-    #   "${domain}" = {
-    #     forceSSL = true;
-    #     useACMEHost = "${domain}";
-    #     locations."/".proxyPass = "http://localhost:${port}/";
-    #     extraConfig = ''
-    #       proxy_set_header  X-Script-Name /;
-    #       proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
-    #       proxy_pass_header Authorization;
-    #     '';
-    #   };
-    # };
   };
 }

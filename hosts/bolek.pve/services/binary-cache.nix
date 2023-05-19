@@ -1,10 +1,5 @@
 { pkgs, config, ... }:
 {
-  security.acme.certs = {
-    "cache.dechnik.net" = {
-      group = "nginx";
-    };
-  };
   sops.secrets.cache-sig-key = {
     sopsFile = ../secrets.yaml;
   };
@@ -16,16 +11,16 @@
       # TODO: temporary fix for NixOS/nix#7704
       package = pkgs.nix-serve.override { nix = pkgs.nixVersions.nix_2_12; };
     };
-    nginx.virtualHosts."cache.dechnik.net" = {
-      forceSSL = true;
-      useACMEHost = "cache.dechnik.net";
-      locations."/".extraConfig = ''
-        proxy_pass http://localhost:${toString config.services.nix-serve.port};
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        access_log /var/log/nginx/cache.dechnik.net.access.log;
-      '';
+    traefik.dynamicConfigOptions.http = {
+      services.cache = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.nix-serve.port}"; }];
+      };
+
+      routers.cache = {
+        rule = "Host(`cache.dechnik.net`)";
+        service = "cache";
+        entryPoints = [ "web" ];
+      };
     };
   };
 }

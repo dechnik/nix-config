@@ -7,7 +7,7 @@
       ./services
 
       ../../common/optional/qemu-vm.nix
-      ../../common/optional/consul-server-nginx.nix
+      ../../common/optional/consul-server.nix
       ../../common/optional/syncthing.nix
       ../../common/optional/docker.nix
       ../../common/optional/postfix.nix
@@ -18,7 +18,6 @@
       ../../common/optional/node-exporter.nix
       ../../common/optional/systemd-exporter.nix
       ../../common/optional/smokeping-exporter.nix
-      ../../common/optional/nginx.nix
       ../../common/optional/postgres.nix
       ../../common/optional/coredns.nix
       ../../common/global

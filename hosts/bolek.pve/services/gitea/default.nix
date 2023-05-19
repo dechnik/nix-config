@@ -3,30 +3,22 @@ let
   themeFile = ./theme-gruvbox-dark.css;
 in
 {
-  security.acme.certs = {
-    "git.dechnik.net" = {
-      group = "nginx";
+  services.traefik.dynamicConfigOptions.http = {
+    services.gitea = {
+      loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.gitea.settings.server.HTTP_PORT}"; }];
+    };
+
+    routers.gitea = {
+      rule = "Host(`git.dechnik.net`)";
+      service = "gitea";
+      entryPoints = [ "web" ];
     };
   };
-
   system.activationScripts.gitea-theme = ''
     mkdir -p /srv/gitea/custom/public/css
     ln -sf ${themeFile} /srv/gitea/custom/public/css/theme-gruvbox-dark.css
   '';
   services = {
-    nginx.virtualHosts = {
-      "git.dechnik.net" = {
-        forceSSL = true;
-        useACMEHost = "git.dechnik.net";
-        extraConfig = ''
-          access_log /var/log/nginx/git.dechnik.net.access.log;
-        '';
-        locations = {
-          "/".proxyPass =
-            "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";
-        };
-      };
-    };
     gitea = {
       enable = true;
       stateDir = "/srv/gitea";

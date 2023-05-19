@@ -1,15 +1,16 @@
 {
   imports = [
+    ./traefik.nix
     ./binary-cache.nix
     ./dhcp.nix
     ./hydra
-    ./files.nix
+    # ./files.nix
     # ./cgit
     ./psql-backup.nix
     ./gitea
     # ./uwsgi.nix
     # ./searx.nix
-    ./website.nix
+    # ./website.nix
     ./restic-server.nix
     ./monitoring.nix
     ./loki.nix
@@ -19,7 +20,7 @@
     ./restic.nix
     # ./golink.nix
     ./wireguard.nix
-    ./nginx-jellyfin.nix
+    # ./nginx-jellyfin.nix
     # ./wormhole.nix
   ];
 

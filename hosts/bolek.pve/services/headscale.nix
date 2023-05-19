@@ -26,11 +26,6 @@ in
       sopsFile = ../secrets.yaml;
     };
   };
-  security.acme.certs = {
-    "tailscale.dechnik.net" = {
-      group = "nginx";
-    };
-  };
   networking.firewall.allowedUDPPorts = [ 3478 ];
   networking.firewall.allowedTCPPorts = [ 50443 ];
   systemd.services.headscale.environment = {
@@ -110,58 +105,69 @@ in
         # };
       };
     };
+    traefik.dynamicConfigOptions.http = {
+      services.tailscale = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.headscale.port}"; }];
+      };
 
-    nginx.virtualHosts = {
-      "tailscale.dechnik.net" = {
-        forceSSL = true;
-        useACMEHost = "tailscale.dechnik.net";
-        locations = {
-          "/headscale." = {
-            extraConfig = ''
-              grpc_pass grpc://${config.services.headscale.settings.grpc_listen_addr};
-            '';
-            priority = 1;
-          };
-          "/" = {
-            proxyPass = "http://localhost:${toString config.services.headscale.port}";
-            proxyWebsockets = true;
-            extraConfig = ''
-              keepalive_requests          100000;
-              keepalive_timeout           160s;
-              proxy_buffering             off;
-              proxy_connect_timeout       75;
-              proxy_ignore_client_abort   on;
-              proxy_read_timeout          900s;
-              proxy_send_timeout          600;
-              send_timeout                600;
-            '';
-          };
-          "/admin" = {
-            proxyPass = "http://localhost:${toString webuiport}/admin";
-            extraConfig = ''
-              proxy_http_version 1.1;
-              proxy_set_header Host $server_name;
-              proxy_buffering off;
-              proxy_set_header X-Real-IP $remote_addr;
-              proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto https;
-            '';
-          };
-          "/metrics" = {
-            proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
-            extraConfig = ''
-              allow 10.0.0.0/8;
-              allow 100.64.0.0/16;
-              deny all;
-            '';
-            priority = 2;
-          };
-        };
-        extraConfig = ''
-          access_log /var/log/nginx/tailscale.dechnik.net.access.log;
-        '';
+      routers.tailscale = {
+        rule = "Host(`tailscale.dechnik.net`)";
+        service = "tailscale";
+        entryPoints = [ "web" ];
       };
     };
+
+    # nginx.virtualHosts = {
+    #   "tailscale.dechnik.net" = {
+    #     forceSSL = true;
+    #     useACMEHost = "tailscale.dechnik.net";
+    #     locations = {
+    #       "/headscale." = {
+    #         extraConfig = ''
+    #           grpc_pass grpc://${config.services.headscale.settings.grpc_listen_addr};
+    #         '';
+    #         priority = 1;
+    #       };
+    #       "/" = {
+    #         proxyPass = "http://localhost:${toString config.services.headscale.port}";
+    #         proxyWebsockets = true;
+    #         extraConfig = ''
+    #           keepalive_requests          100000;
+    #           keepalive_timeout           160s;
+    #           proxy_buffering             off;
+    #           proxy_connect_timeout       75;
+    #           proxy_ignore_client_abort   on;
+    #           proxy_read_timeout          900s;
+    #           proxy_send_timeout          600;
+    #           send_timeout                600;
+    #         '';
+    #       };
+    #       "/admin" = {
+    #         proxyPass = "http://localhost:${toString webuiport}/admin";
+    #         extraConfig = ''
+    #           proxy_http_version 1.1;
+    #           proxy_set_header Host $server_name;
+    #           proxy_buffering off;
+    #           proxy_set_header X-Real-IP $remote_addr;
+    #           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #           proxy_set_header X-Forwarded-Proto https;
+    #         '';
+    #       };
+    #       "/metrics" = {
+    #         proxyPass = "http://${config.services.headscale.settings.metrics_listen_addr}/metrics";
+    #         extraConfig = ''
+    #           allow 10.0.0.0/8;
+    #           allow 100.64.0.0/16;
+    #           deny all;
+    #         '';
+    #         priority = 2;
+    #       };
+    #     };
+    #     extraConfig = ''
+    #       access_log /var/log/nginx/tailscale.dechnik.net.access.log;
+    #     '';
+    #   };
+    # };
   };
 
   environment.systemPackages = [ config.services.headscale.package pkgs.sqlite-interactive pkgs.sqlite-web ];

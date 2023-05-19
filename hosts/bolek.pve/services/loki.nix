@@ -96,28 +96,15 @@ in
     };
   };
 
-  security.acme.certs."${domain}".domain = domain;
-
-  services.nginx.virtualHosts."${domain}" = {
-    forceSSL = true;
-    useACMEHost = domain;
-    locations."/" = {
-      proxyWebsockets = true;
-      proxyPass = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
-      extraConfig = ''
-        proxy_read_timeout 1800s;
-        proxy_redirect off;
-        proxy_connect_timeout 1600s;
-        access_log off;
-      '';
+  services.traefik.dynamicConfigOptions.http = {
+    services.loki = {
+      loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}"; }];
     };
-    locations."/ready" = {
-      proxyWebsockets = true;
-      proxyPass = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
-      extraConfig = ''
-        auth_basic off;
-        access_log off;
-      '';
+
+    routers.loki = {
+      rule = "Host(`${domain}`)";
+      service = "loki";
+      entryPoints = [ "dechnik-ips" "web" ];
     };
   };
 }

@@ -34,11 +34,6 @@ in
   imports = [
     inputs.hydra.nixosModules.hydra
   ];
-  security.acme.certs = {
-    "hydra.dechnik.net" = {
-      group = "nginx";
-    };
-  };
 
   # https://github.com/NixOS/nix/issues/5039
   nix.extraOptions = ''
@@ -103,35 +98,15 @@ in
         EMAIL_SENDER_TRANSPORT_port = "25";
       };
     };
-    nginx.virtualHosts = {
-      "hydra.dechnik.net" = {
-        forceSSL = true;
-        useACMEHost = "hydra.dechnik.net";
-        extraConfig = ''
-          access_log /var/log/nginx/hydra.dechnik.net.access.log;
-        '';
-        locations = {
-          "/" = {
-            proxyPass =
-              "http://localhost:${toString config.services.hydra.port}";
-            extraConfig = ''
-              proxy_redirect          off;
-              proxy_connect_timeout   60s;
-              proxy_send_timeout      60s;
-              proxy_read_timeout      60s;
-              proxy_http_version      1.1;
-              # don't let clients close the keep-alive connection to upstream. See the nginx blog for details:
-              # https://www.nginx.com/blog/avoiding-top-10-nginx-configuration-mistakes/#no-keepalives
-              proxy_set_header        "Connection" "";
-              proxy_set_header        Host $host;
-              proxy_set_header        X-Real-IP $remote_addr;
-              proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-              proxy_set_header        X-Forwarded-Proto $scheme;
-              proxy_set_header        X-Forwarded-Host $host;
-              proxy_set_header        X-Forwarded-Server $host;
-            '';
-          };
-        };
+    traefik.dynamicConfigOptions.http = {
+      services.hydra = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.hydra.port}"; }];
+      };
+
+      routers.hydra = {
+        rule = "Host(`hydra.dechnik.net`)";
+        service = "hydra";
+        entryPoints = [ "web" ];
       };
     };
   };

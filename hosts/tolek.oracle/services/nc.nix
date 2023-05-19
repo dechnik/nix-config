@@ -3,15 +3,6 @@ let
   hostName = "nextcloud.dechnik.net";
 in
 {
-  security.acme.certs = {
-    "nc.dechnik.net" = {
-      group = "nginx";
-    };
-    "nextcloud.dechnik.net" = {
-      group = "nginx";
-    };
-  };
-
   systemd.services."nextcloud-setup" = {
     requires = [ "postgresql.service" ];
     after = [ "postgresql.service" ];
