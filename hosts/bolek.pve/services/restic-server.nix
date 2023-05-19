@@ -24,7 +24,8 @@ in
     routers.restic = {
       rule = "Host(`${domain}`)";
       service = "restic";
-      entryPoints = [ "dechnik-ips" "web" ];
+      entryPoints = [ "web" ];
+      middlewares = [ "dechnik-ips" ];
     };
   };
 

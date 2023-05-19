@@ -104,7 +104,8 @@ in
     routers.loki = {
       rule = "Host(`${domain}`)";
       service = "loki";
-      entryPoints = [ "dechnik-ips" "web" ];
+      entryPoints = [ "web" ];
+      middlewares = [ "dechnik-ips" ];
     };
   };
 }

@@ -289,7 +289,8 @@ in
     routers.prometheus = {
       rule = "Host(`${prometheusDomain}`)";
       service = "prometheus";
-      entryPoints = [ "dechnik-ips" "web" ];
+      entryPoints = [ "web" ];
+      middlewares = [ "dechnik-ips" ];
     };
     services.pushgateway = {
       loadBalancer.servers = [{ url = "http://${config.services.prometheus.pushgateway.web.listen-address}"; }];
@@ -298,7 +299,8 @@ in
     routers.pushgateway = {
       rule = "Host(`${pushgatewayDomain}`)";
       service = "pushgateway";
-      entryPoints = [ "dechnik-ips" "web" ];
+      entryPoints = [ "web" ];
+      middlewares = [ "dechnik-ips" ];
     };
   };
 }

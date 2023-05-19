@@ -28,7 +28,8 @@ in
     routers.grafana = {
       rule = "Host(`${domain}`)";
       service = "grafana";
-      entryPoints = [ "dechnik-ips" "web" ];
+      entryPoints = [ "web" ];
+      middlewares = [ "dechnik-ips" ];
     };
   };
 
