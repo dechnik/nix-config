@@ -2,19 +2,26 @@ let
   domain = "files.dechnik.net";
 in
 {
-  security.acme.certs."${domain}".domain = domain;
-
-  services.nginx.virtualHosts."${domain}" = {
-    forceSSL = true;
-    useACMEHost = domain;
-    locations."/" = {
-      root = "/srv/files";
-      extraConfig = ''
-        autoindex on;
-      '';
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      static-files = {
+        autoStart = true;
+        image = "nginx:latest";
+        ports = [ "50000:80" ];
+        volumes = [ "/srv/files:/usr/share/nginx/html:ro" ];
+      };
     };
-    extraConfig = ''
-      access_log /var/log/nginx/${domain}.access.log;
-    '';
+  };
+  services.traefik.dynamicConfigOptions.http = {
+    services.static-files = {
+      loadBalancer.servers = [{ url = "http://127.0.0.1:50000"; }];
+    };
+
+    routers.static-files = {
+      rule = "Host(`${domain}`)";
+      service = "static-files";
+      entryPoints = [ "web" ];
+    };
   };
 }

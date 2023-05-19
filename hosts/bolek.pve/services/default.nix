@@ -4,7 +4,7 @@
     ./binary-cache.nix
     ./dhcp.nix
     ./hydra
-    # ./files.nix
+    ./files.nix
     # ./cgit
     ./psql-backup.nix
     ./gitea
