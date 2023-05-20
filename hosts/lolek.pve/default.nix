@@ -47,6 +47,23 @@
         }
       ];
     };
+    firewall = {
+      enable = lib.mkForce true;
+      # This is a special override for gateway machines as we
+      # dont want to use "openFirewall" here since it makes
+      # everything world available.
+      allowedTCPPorts = lib.mkForce [
+        22
+        80 # HTTP
+      ];
+
+      allowedUDPPorts = lib.mkForce [
+        config.services.tailscale.port
+        config.networking.wireguard.interfaces.wg0.listenPort
+      ];
+
+      trustedInterfaces = [ config.my.lan ];
+    };
   };
 
   system.stateVersion = "22.05"; # Did you read the comment?
