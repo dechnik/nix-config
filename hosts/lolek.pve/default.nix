@@ -59,7 +59,6 @@
 
       allowedUDPPorts = lib.mkForce [
         config.services.tailscale.port
-        config.networking.wireguard.interfaces.wg0.listenPort
       ];
 
       trustedInterfaces = [ config.my.lan ];
