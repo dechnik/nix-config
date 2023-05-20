@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  hostName = "nextcloud.dechnik.net";
+  hostName = "nc.dechnik.net";
 in
 {
   systemd.services."nextcloud-setup" = {
@@ -28,9 +28,9 @@ in
       #   inherit oidc;
       # };
       # Auto-update Nextcloud Apps
-      autoUpdateApps.enable = true;
+      # autoUpdateApps.enable = true;
       # Set what time makes sense for you
-      autoUpdateApps.startAt = "05:00:00";
+      # autoUpdateApps.startAt = "05:00:00";
       extraAppsEnable = true;
       enable = true;
       https = true;
@@ -66,31 +66,6 @@ in
         }
       ];
       ensureDatabases = [ "nextcloud" ];
-    };
-    nginx.virtualHosts."nextcloud.dechnik.net" = {
-      forceSSL = true;
-      useACMEHost = "nextcloud.dechnik.net";
-      locations."/.well-known/openid-configuration" = {
-        priority = 1;
-        extraConfig = ''
-          absolute_redirect off;
-          return 301 /index.php/apps/oidc/openid-configuration;
-        '';
-        # return = "301 /index.php/apps/oidc/openid-configuration";
-      };
-      extraConfig = ''
-        access_log /var/log/nginx/nextcloud.dechnik.net.access.log;
-      '';
-    };
-    nginx.virtualHosts."nc.dechnik.net" = {
-      forceSSL = true;
-      # enableACME = true;
-      useACMEHost = "nc.dechnik.net";
-      locations = {
-        "/" = {
-          return = "302 https://nextcloud.dechnik.net$request_uri";
-        };
-      };
     };
   };
 }
