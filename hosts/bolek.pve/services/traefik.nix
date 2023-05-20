@@ -15,6 +15,15 @@ lib.mkMerge [
         entryPoints = [ "web" ];
         middlewares = [ "dechnik-ips" "auth" ];
       };
+      services.nc = {
+        loadBalancer.servers = [{ url = "http://10.60.0.2:80"; }];
+      };
+
+      routers.nc = {
+        rule = "Host(`nc.dechnik.net`)";
+        service = "nc";
+        entryPoints = [ "web" ];
+      };
     };
   }
 
