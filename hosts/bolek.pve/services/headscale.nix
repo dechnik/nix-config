@@ -122,7 +122,7 @@ in
           entryPoints = [ "web" ];
         };
         tailscale-metrics = {
-          rule = "(Host(`tailscale.dechnik.net`) && Path(`/metrics`))";
+          rule = "(Host(`tailscale.pve.dechnik.net`) && Path(`/metrics`))";
           service = "tailscale";
           entryPoints = [ "web" ];
           middlewares = [ "dechnik-ips" ];
