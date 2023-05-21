@@ -110,9 +110,6 @@ in
         tailscale = {
           loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.headscale.port}"; }];
         };
-        tailscale-metrics = {
-          loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.headscale.port}/metrics"; }];
-        };
         tailscale-web = {
           loadBalancer.servers = [{ url = "http://127.0.0.1:${toString webuiport}/admin"; }];
         };
@@ -125,13 +122,13 @@ in
           entryPoints = [ "web" ];
         };
         tailscale-metrics = {
-          rule = "(Host(`tailscale.pve.dechnik.net`) && Path(`/metrics`))";
-          service = "tailscale-metrics";
+          rule = "(Host(`tailscale.pve.dechnik.net`) && PathPrefix(`/metrics`))";
+          service = "tailscale";
           entryPoints = [ "web" ];
           middlewares = [ "dechnik-ips" ];
         };
         tailscale-web = {
-          rule = "(Host(`tailscale.dechnik.net`) && Path(`/admin`))";
+          rule = "(Host(`tailscale.dechnik.net`) && PathPrefix(`/admin`))";
           service = "tailscale-web";
           entryPoints = [ "web" ];
         };
