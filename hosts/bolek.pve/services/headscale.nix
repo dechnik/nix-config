@@ -114,7 +114,7 @@ in
           loadBalancer.servers = [{ url = "http://${toString config.services.headscale.settings.metrics_listen_addr}"; }];
         };
         tailscale-web = {
-          loadBalancer.servers = [{ url = "http://127.0.0.1:${toString webuiport}/admin"; }];
+          loadBalancer.servers = [{ url = "http://127.0.0.1:${toString webuiport}"; }];
         };
       };
 
@@ -131,7 +131,7 @@ in
           middlewares = [ "dechnik-ips" ];
         };
         tailscale-web = {
-          rule = "(Host(`tailscale.dechnik.net`) && PathPrefix(`/admin`))";
+          rule = "(Host(`tailscale.dechnik.net`) && (PathPrefix(`/admin/`) || PathPrefix(`/admin`)))";
           service = "tailscale-web";
           entryPoints = [ "web" ];
         };
