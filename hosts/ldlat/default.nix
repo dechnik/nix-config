@@ -18,7 +18,6 @@
       ../../common/optional/greetd.nix
       ../../common/optional/wireless.nix
       ../../common/optional/bluetooth.nix
-      ../../common/optional/syncthing.nix
       ../../common/optional/printing.nix
       ../../common/optional/vpn.nix
     ];
