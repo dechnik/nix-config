@@ -10,6 +10,7 @@
     ./features/games
     ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
+    ./features/desktop/optional/nc.nix
     ./features/desktop/hyprland/nvidia.nix
     ./features/desktop/hyprland
     ./features/desktop/optional/bluetooth.nix
