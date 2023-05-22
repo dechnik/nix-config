@@ -20,7 +20,7 @@
     ./restic.nix
     # ./golink.nix
     ./wireguard.nix
-    # ./nginx-jellyfin.nix
+    ./jellyfin.nix
     # ./wormhole.nix
   ];
 
