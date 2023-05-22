@@ -22,6 +22,11 @@ in
       owner = "headscale";
       mode = "0600";
     };
+    headscale-oidc-secret = {
+      sopsFile = ../secrets.yaml;
+      owner = "headscale";
+      mode = "0600";
+    };
     headscale-webui-env = {
       sopsFile = ../secrets.yaml;
     };
@@ -93,16 +98,12 @@ in
         ];
         grpc_listen_addr = "127.0.0.1:50443";
         grpc_allow_insecure = true;
-        # TODO switch to authelia config
-        # oidc = {
-        #   issuer = "https://nextcloud.dechnik.net";
-        #   client_id = "00EczQNvd5f3yL8XD4Ff5sI4Qrynmc7nMfX3lSEKE61jbCICbSc4XiWSnA3QCYRe";
-        #   client_secret_file = config.sops.secrets.headscale-oidc-secret.path;
-
-        #   domain_map = {
-        #     ".*" = "dechnik.net";
-        #   };
-        # };
+        oidc = {
+          issuer = "https://auth.dechnik.net";
+          client_id = "headscale";
+          client_secret_file = config.sops.secrets.headscale-oidc-secret.path;
+          strip_email_domain = true;
+        };
       };
     };
     traefik.dynamicConfigOptions.http = {
@@ -120,7 +121,7 @@ in
 
       routers = {
         tailscale = {
-          rule = "Host(`tailscale.dechnik.net`)";
+          rule = "(Host(`tailscale.dechnik.net`) && !PathPrefix(`/admin`))";
           service = "tailscale";
           entryPoints = [ "web" ];
         };
@@ -131,7 +132,7 @@ in
           middlewares = [ "dechnik-ips" ];
         };
         tailscale-web = {
-          rule = "(Host(`tailscale.dechnik.net`) && (PathPrefix(`/admin/`) || PathPrefix(`/admin`)))";
+          rule = "(Host(`tailscale.dechnik.net`) && PathPrefix(`/admin`))";
           service = "tailscale-web";
           entryPoints = [ "web" ];
         };
