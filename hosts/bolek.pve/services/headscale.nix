@@ -51,7 +51,6 @@ in
           "TZ" = "Europe/Warsaw";
           "OIDC_AUTH_URL" = "https://auth.dechnik.net/.well-known/openid-configuration";
           "OIDC_CLIENT_ID" = "headscale-webui";
-          "AUTH_TYPE" = "oidc";
           "SCRIPT_NAME" = "/admin";
           "DOMAIN_NAME" = "https://tailscale.dechnik.net";
           "HS_SERVER" = "https://tailscale.dechnik.net";
@@ -135,6 +134,7 @@ in
           rule = "(Host(`tailscale.dechnik.net`) && PathPrefix(`/admin`))";
           service = "tailscale-web";
           entryPoints = [ "web" ];
+          middlewares = [ "auth" ];
         };
       };
     };
