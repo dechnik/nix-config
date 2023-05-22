@@ -8,6 +8,7 @@
     ./features/trusted/mail
     ./features/trusted/mail/personal.nix
     ./features/trusted/mail/work.nix
+    ./features/desktop/optional/nc.nix
     ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
     ./features/desktop/wireless
