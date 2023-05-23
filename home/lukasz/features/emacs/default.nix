@@ -116,7 +116,7 @@ in
     zotero
 
     # Node
-    nodejs-16_x
+    nodejs-18_x
     # emacs-client
   ];
   services.emacs = {

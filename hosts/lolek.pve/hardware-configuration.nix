@@ -4,6 +4,7 @@
     [
       (modulesPath + "/profiles/qemu-guest.nix")
       ../../common/optional/btrfs-optin-persistence.nix
+      ../../common/optional/postgres.nix
     ];
 
   boot = {
@@ -14,7 +15,6 @@
     loader = {
       grub = {
         enable = true;
-        version = 2;
         device = "/dev/sda";
       };
     };
