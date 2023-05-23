@@ -2,8 +2,8 @@
 # cli utilities
 {
   home.packages = with pkgs; [
-    # awscli
-    # aws-sam-cli
+    awscli
+    aws-sam-cli
     azure-cli
     terraform
   ];
