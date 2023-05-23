@@ -74,6 +74,7 @@
   exec-once=mako
   # exec-once=blueman-applet
   exec-once=swayidle -w
+  exec-once=zotero --headless
 
   # Mouse binding
   bindm=SUPER,mouse:272,movewindow
