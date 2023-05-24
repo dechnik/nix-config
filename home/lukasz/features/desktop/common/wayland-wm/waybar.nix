@@ -116,7 +116,7 @@ in
           on-click = calendar;
         };
         cpu = {
-          format = "   {usage}%";
+          format = "   {usage}%";
           on-click = systemMonitor;
         };
         "custom/gpu" = {
@@ -126,11 +126,11 @@ in
             text = "$(cat /sys/class/drm/card0/device/gpu_busy_percent)";
             tooltip = "GPU Usage";
           };
-          format = "力  {}%";
+          format = "力 {}%";
           on-click = systemMonitor;
         };
         memory = {
-          format = "  {}%";
+          format = "  {}%";
           interval = 5;
           on-click = systemMonitor;
         };
@@ -139,7 +139,7 @@ in
           format-muted = "   0%";
           format-icons = {
             headphone = "";
-            headset = "";
+            headset = "";
             portable = "";
             default = [ "" "" "" ];
           };
@@ -166,7 +166,7 @@ in
         network = {
           interval = 3;
           format-wifi = "  {essid}";
-          format-ethernet = " Connected";
+          format-ethernet = " Connected";
           format-disconnected = "";
           tooltip-format = ''
             {ifname}
@@ -195,7 +195,7 @@ in
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine}   $ping_${mailMachine} B $ping_${homeMachine}";
+              text = "  $ping_${remoteMachine}   $ping_${mailMachine} B $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${replaceStrings ["."] ["_"] host}") hosts);
             };
@@ -258,9 +258,9 @@ in
           };
           format = "{icon}  {}";
           format-icons = {
-            "read" = "";
-            "unread" = "";
-            "syncing" = "";
+            "read" = "";
+            "unread" = "";
+            "syncing" = "";
           };
           on-click = mail;
         };
@@ -324,11 +324,11 @@ in
           format-icons = {
             "No player active" = " ";
             "Celluloid" = " ";
-            "spotify" = " 阮";
+            "spotify" = " ";
             "ncspot" = " 阮";
-            "qutebrowser" = "爵";
+            "qutebrowser" = "";
             "firefox" = " ";
-            "discord" = " ﭮ ";
+            "discord" = "  ";
             "sublimemusic" = " ";
             "kdeconnect" = " ";
           };
@@ -343,9 +343,9 @@ in
           max-length = 30;
           format = "{icon} {}";
           format-icons = {
-            "Playing" = "契";
-            "Paused" = " ";
-            "Stopped" = "栗";
+            "Playing" = "";
+            "Paused" = " ";
+            "Stopped" = "";
           };
           on-click = "${playerctl} play-pause";
         };
