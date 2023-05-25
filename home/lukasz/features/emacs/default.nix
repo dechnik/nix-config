@@ -108,7 +108,7 @@ in
     sqlite
     emacsql-sqlite
     # :lang latex & :lang org (latex previews)
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
     rnix-lsp
     pythonEnv
     shellcheck
