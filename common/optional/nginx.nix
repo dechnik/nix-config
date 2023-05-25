@@ -7,17 +7,11 @@ let
   consul = import ../functions/consul.nix { inherit lib; };
 in
 {
-  imports = [
-    ../../modules/nixos/tailscale-nginx-auth.nix
-  ];
-  services.tailscale-nginx-auth.enable = true;
-  users.users.nginx.extraGroups = [ "acme" ];
   services = {
     nginx = {
       enable = true;
 
       statusPage = true;
-      recommendedTlsSettings = true;
       recommendedProxySettings = false;
       # proxy_redirect          off;
       # proxy_connect_timeout   60s;
@@ -37,7 +31,6 @@ in
       recommendedOptimisation = true;
       clientMaxBodySize = "300m";
       # Only allow PFS-enabled ciphers with AES256
-      sslCiphers = "AES256+EECDH:AES256+EDH:!aNULL";
 
       commonHttpConfig = ''
         # Add HSTS header with preloading to HTTPS requests.
