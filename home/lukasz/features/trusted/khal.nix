@@ -7,6 +7,10 @@
     path = ~/Documents/Calendars/Personal
     color = dark green
 
+    [[dechnik]]
+    path = ~/Documents/Calendars/Dechnik
+    color = dark red
+
     [[work]]
     path = ~/Documents/Calendars/Work
     color = dark blue
