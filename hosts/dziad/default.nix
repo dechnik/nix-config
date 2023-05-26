@@ -32,6 +32,12 @@
       mode = "0400";
       path = "/run/oauth2ms";
     };
+    vdirsyncer-config = {
+      sopsFile = ../../common/secrets.yaml;
+      owner = "lukasz";
+      mode = "0400";
+      path = "/run/vdir-config";
+    };
   };
 
   my.wan = "eno1";
