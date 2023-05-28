@@ -125,6 +125,18 @@ in
     client.enable = true;
   };
 
+  systemd.user.services.zotero = {
+    Unit = {
+      Description = "Zotero headless";
+      After = "emacs.service";
+    };
+    Service = {
+      Type = "exec";
+      ExecStart = "${pkgs.runtimeShell} -l -c '${pkgs.zotero}/bin/zotero --headless'";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 60";
+    };
+    Install = { WantedBy = [ "default.target" ]; };
+  };
   # systemd.user.services.emacs-kill-fisrt-frame = {
   #   Unit = {
   #     Description = "emacsclient kill first framer";
