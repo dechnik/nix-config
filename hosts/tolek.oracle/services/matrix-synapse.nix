@@ -14,15 +14,13 @@
     };
   };
   services.postgresql = {
-    ensureUsers = [
-      {
-        name = "matrix-synapse";
-        ensurePermissions = {
-          "DATABASE matric-synapse" = "ALL PRIVILEGES";
-        };
-      }
-    ];
-    ensureDatabases = [ "matrix-synapse" ];
+    ensureDatabases = [ config.services.matrix-synapse.settings.database.args.database ];
+    ensureUsers = [ {
+      name = config.services.matrix-synapse.settings.database.args.user;
+      ensurePermissions = {
+        "DATABASE \"${config.services.matrix-synapse.settings.database.args.database}\"" = "ALL PRIVILEGES";
+      };
+    } ];
   };
   environment.systemPackages = [ pkgs.matrix-synapse ];
   services.matrix-synapse = {
