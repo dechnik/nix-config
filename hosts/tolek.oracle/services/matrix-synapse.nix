@@ -13,6 +13,17 @@
       sopsFile = ../secrets.yaml;
     };
   };
+  services.postgresql = {
+    ensureUsers = [
+      {
+        name = "matrix-synapse";
+        ensurePermissions = {
+          "DATABASE matric-synapse" = "ALL PRIVILEGES";
+        };
+      }
+    ];
+    ensureDatabases = [ "matrix-synapse" ];
+  };
   environment.systemPackages = [ pkgs.matrix-synapse ];
   services.matrix-synapse = {
     enable = true;
