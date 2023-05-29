@@ -7,5 +7,6 @@
     ./lldap.nix
     ./authelia.nix
     ./traefik.nix
+    ./matrix-synapse.nix
   ];
 }
