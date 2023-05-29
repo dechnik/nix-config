@@ -163,9 +163,9 @@ in
         mimeType = [ "x-scheme-handler/mailto" ];
       };
     };
-    mimeApps.defaultApplications = {
-      "x-scheme-handler/mailto" = "neomutt.desktop";
-    };
+    # mimeApps.defaultApplications = {
+    #   "x-scheme-handler/mailto" = "neomutt.desktop";
+    # };
     configFile = {
       "neomutt/mailcap" = {
         text = ''

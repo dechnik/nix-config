@@ -6,6 +6,9 @@
 let
   c = config.xdg.configHome;
   h = config.home.homeDirectory;
+  emacsmail = pkgs.writeShellScriptBin "emacsmail" ''
+    emacsclient -create-frame --alternate-editor= --no-wait --eval "(progn (x-focus-frame nil) (mu4e-compose-from-mailto \"$1\" t))"
+  '';
   # my_emacs = pkgs.emacs28NativeComp;
   my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
     name = "emacs-unstable";
@@ -47,9 +50,21 @@ in
         icon = "emacs";
         terminal = false;
       };
+      mu4e = {
+        name = "Mu4e";
+        genericName = "Compose a new message with Mu4e in Emacs";
+        comment = "Open mu4e compose window";
+        exec = "emacsmail %U";
+        icon = "emacs";
+        terminal = false;
+        categories = [ "Network" "Email" ];
+        type = "Application";
+        mimeType = [ "x-scheme-handler/mailto" ];
+      };
     };
     mimeApps.defaultApplications = {
       "x-scheme-handler/org-protocol" = "orgProtocolDesktop.desktop";
+      "x-scheme-handler/mailto" = "mu4e.desktop";
     };
   };
   home.packages = with pkgs; let
@@ -117,6 +132,7 @@ in
 
     # Node
     nodejs-18_x
+    emacsmail
     # emacs-client
   ];
   services.emacs = {
