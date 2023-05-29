@@ -14,19 +14,12 @@
     };
   };
   services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
+    CREATE ROLE "${config.services.matrix-synapse.settings.database.args.user}";
     CREATE DATABASE "${config.services.matrix-synapse.settings.database.args.database}" WITH OWNER "${config.services.matrix-synapse.settings.database.args.user}"
       TEMPLATE template0
       LC_COLLATE = "C"
       LC_CTYPE = "C";
   '';
-  services.postgresql = {
-    ensureUsers = [ {
-      name = config.services.matrix-synapse.settings.database.args.user;
-      ensurePermissions = {
-        "DATABASE \"${config.services.matrix-synapse.settings.database.args.database}\"" = "ALL PRIVILEGES";
-      };
-    } ];
-  };
   environment.systemPackages = [ pkgs.matrix-synapse ];
   services.matrix-synapse = {
     enable = true;
