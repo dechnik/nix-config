@@ -13,8 +13,13 @@
       sopsFile = ../secrets.yaml;
     };
   };
+  services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
+    CREATE DATABASE "${config.services.matrix-synapse.settings.database.args.database}" WITH OWNER "${config.services.matrix-synapse.settings.database.args.user}"
+      TEMPLATE template0
+      LC_COLLATE = "C"
+      LC_CTYPE = "C";
+  '';
   services.postgresql = {
-    ensureDatabases = [ config.services.matrix-synapse.settings.database.args.database ];
     ensureUsers = [ {
       name = config.services.matrix-synapse.settings.database.args.user;
       ensurePermissions = {
