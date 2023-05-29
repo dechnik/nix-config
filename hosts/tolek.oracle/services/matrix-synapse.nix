@@ -20,6 +20,9 @@
     extraConfigFiles = [
       config.sops.secrets.matrix-synapse.path
     ];
+    plugins = with config.services.matrix-synapse.package.plugins; [
+      matrix-synapse-ldap3
+    ];
     settings = {
       server_name = "dechnik.net";
       public_baseurl = "https://matrix.dechnik.net";
