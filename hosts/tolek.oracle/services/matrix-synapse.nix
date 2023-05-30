@@ -1,6 +1,7 @@
 { lib, config, pkgs, ... }:
 let
   consul = import ../../../common/functions/consul.nix { inherit lib; };
+  serverName = "dechnik.net";
 in
 {
   environment.persistence = {
@@ -35,7 +36,7 @@ in
       matrix-synapse-ldap3
     ];
     settings = {
-      server_name = "dechnik.net";
+      server_name = serverName;
       public_baseurl = "https://matrix.dechnik.net";
       enable_metrics = true;
       enable_registration = false;
@@ -69,14 +70,44 @@ in
   # my.consulServices.matrix-synapse = consul.prometheusExporter "matrix-synapse" 9191;
 
   services.traefik.dynamicConfigOptions.http = {
-    services.matrix = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:8008"; }];
+    services = {
+      matrix = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:8008"; }];
+      };
+      element = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+      };
     };
 
-    routers.matrix = {
-      rule = "Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`))";
-      service = "matrix";
-      entryPoints = [ "web" ];
+    routers = {
+      matrix = {
+        rule = "Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`))";
+        service = "matrix";
+        entryPoints = [ "web" ];
+      };
+      element = {
+        rule = "Host(`chat.dechnik.net`)";
+        service = "element";
+        entryPoints = [ "web" ];
+      };
+    };
+  };
+  services.nginx = {
+    enable = true;
+    defaultHTTPListenPort = 8080;
+    virtualHosts = {
+      "chat.${serverName}" = {
+        root = pkgs.element-web.override {
+          conf = {
+            default_server_config = {
+              "m.homeserver" = {
+                base_url = "https://matrix.${serverName}";
+                server_name = serverName;
+              };
+            };
+          };
+        };
+      };
     };
   };
 }
