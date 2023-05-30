@@ -1,4 +1,7 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
+let
+  consul = import ../../../common/functions/consul.nix { inherit lib; };
+in
 {
   environment.persistence = {
     "/persist".directories = [
@@ -13,18 +16,17 @@
       sopsFile = ../secrets.yaml;
     };
   };
-  services.postgresql = {
-    ensureDatabases = [ config.services.matrix-synapse.settings.database.args.database ];
-    ensureUsers = [ {
-      name = config.services.matrix-synapse.settings.database.args.user;
-      ensurePermissions = {
-        "DATABASE \"${config.services.matrix-synapse.settings.database.args.database}\"" = "ALL PRIVILEGES";
-      };
-    } ];
-  };
+  services.postgresql.initialScript = pkgs.writeText "synapse-init.sql" ''
+    CREATE ROLE "matrix-synapse" WITH LOGIN PASSWORD 'synapse';
+    CREATE DATABASE "matrix-synapse" WITH OWNER "matrix-synapse"
+      TEMPLATE template0
+      LC_COLLATE = "C"
+      LC_CTYPE = "C";
+  '';
   environment.systemPackages = [ pkgs.matrix-synapse ];
   services.matrix-synapse = {
     enable = true;
+    withJemalloc = true;
 
     extraConfigFiles = [
       config.sops.secrets.matrix-synapse.path
@@ -37,6 +39,8 @@
       public_baseurl = "https://matrix.dechnik.net";
       enable_metrics = true;
       enable_registration = false;
+      # trust the default key server matrix.org
+      suppress_key_server_warning = true;
 
       max_upload_size = "100M";
 
@@ -44,22 +48,15 @@
         # Federation
         {
           bind_addresses = [ "127.0.0.1" ];
-          port = 11338;
+          port = 8008;
           tls = false;
           x_forwarded = true;
-          resources = [ { names = [ "federation" ]; compress = false; } ];
+          type = "http";
+          resources = [ { names = [ "client" "federation" ]; compress = false; } ];
         }
 
-        # Client
         {
           bind_addresses = [ "127.0.0.1" ];
-          port = 11339;
-          tls = false;
-          x_forwarded = true;
-          resources = [ { names = [ "client" ]; compress = false; } ];
-        }
-        {
-          bind_addresses = [ "10.61.0.1" ];
           port = 9191;
           type = "metrics";
           tls = false;
@@ -69,16 +66,17 @@
     };
   };
 
-  # services.traefik.dynamicConfigOptions.http = {
-  #   services.lldap = {
-  #     loadBalancer.servers = [{ url = "http://127.0.0.1:17170"; }];
-  #   };
+  # my.consulServices.matrix-synapse = consul.prometheusExporter "matrix-synapse" 9191;
 
-  #   routers.lldap = {
-  #     rule = "Host(`ldap.dechnik.net`)";
-  #     service = "lldap";
-  #     entryPoints = [ "web" ];
-  #     middlewares = [ "dechnik-ips" ];
-  #   };
-  # };
+  services.traefik.dynamicConfigOptions.http = {
+    services.matrix = {
+      loadBalancer.servers = [{ url = "http://127.0.0.1:8008"; }];
+    };
+
+    routers.matrix = {
+      rule = "Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`))";
+      service = "matrix";
+      entryPoints = [ "web" ];
+    };
+  };
 }
