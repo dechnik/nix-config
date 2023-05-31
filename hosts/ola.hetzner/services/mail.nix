@@ -1,4 +1,7 @@
-{ config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, ... }:
+let
+  consul = import ../../../common/functions/consul.nix { inherit lib; };
+in
 {
   imports = [
     inputs.nixos-mailserver.nixosModules.mailserver
@@ -87,6 +90,27 @@
       sopsFile = ../secrets.yaml;
     };
   };
+
+  services.prometheus.exporters.postfix = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  my.consulServices.postfix_exporter = consul.prometheusExporter "postfix" config.services.prometheus.exporters.postfix.port;
+
+  services.prometheus.exporters.dovecot = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  my.consulServices.dovecot_exporter = consul.prometheusExporter "dovecot" config.services.prometheus.exporters.dovecot.port;
+
+  services.prometheus.exporters.rspamd = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  my.consulServices.rspamd_exporter = consul.prometheusExporter "rspamd" config.services.prometheus.exporters.rspamd.port;
 
   # Webmail
   # services.roundcube = rec {
