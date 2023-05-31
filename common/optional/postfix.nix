@@ -2,7 +2,11 @@
 , lib
 , config
 , ...
-}: {
+}:
+let
+  consul = import ../functions/consul.nix {inherit lib;};
+in
+{
   sops.secrets = {
     sasl-password = {
       sopsFile = ../secrets.yaml;
@@ -25,4 +29,11 @@
     '';
   };
   systemd.services.postfix.preStart = "${pkgs.postfix}/sbin/postmap /etc/postfix.local/sasl_passwd";
+
+  services.prometheus.exporters.postfix = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  my.consulServices.postfix_exporter = consul.prometheusExporter "postfix" config.services.prometheus.exporters.postfix.port;
 }
