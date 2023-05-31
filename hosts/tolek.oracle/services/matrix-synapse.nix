@@ -2,6 +2,16 @@
 let
   consul = import ../../../common/functions/consul.nix { inherit lib; };
   serverName = "dechnik.net";
+  clientConfig = {
+    "m.homeserver".base_url = "https://matrix.${serverName}";
+    "m.identity_server" = { };
+  };
+  serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
+  mkWellKnown = data: ''
+    add_header Content-Type application/json;
+    add_header Access-Control-Allow-Origin *;
+    return 200 '${builtins.toJSON data}';
+  '';
 in
 {
   environment.persistence = {
@@ -108,12 +118,21 @@ in
         service = "element";
         entryPoints = [ "web" ];
       };
+      matrix-wellknown = {
+        rule = "(Host(`dechnik.net`) && PathPrefix(`/.well-known/matrix`))";
+        service = "element";
+        entryPoints = [ "web" ];
+      };
     };
   };
   services.nginx = {
     enable = true;
     defaultHTTPListenPort = 8080;
     virtualHosts = {
+      "${serverName}" = {
+        locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
+        locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
+      };
       "chat.${serverName}" = {
         root = pkgs.element-web.override {
           conf = {
