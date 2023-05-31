@@ -42,6 +42,15 @@ in
       enable_registration = false;
       # trust the default key server matrix.org
       suppress_key_server_warning = true;
+      email = {
+        smtp_host = "localhost";
+        smtp_port = 25;
+        enable_tls = false;
+        notif_from = "matrix <monitoring@dechnik.net>";
+        client_base_url = "https://chat.dechnik.net/";
+        app_name = "matrix";
+        enable_notifs = true;
+      };
 
       max_upload_size = "100M";
 
