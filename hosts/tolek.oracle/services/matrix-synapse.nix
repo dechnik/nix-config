@@ -103,7 +103,7 @@ in
 
     routers = {
       matrix = {
-        rule = "Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`))";
+        rule = "(Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`))) || (Host(`dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`)))";
         service = "matrix";
         entryPoints = [ "web" ];
       };
