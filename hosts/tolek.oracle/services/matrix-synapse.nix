@@ -83,6 +83,9 @@ in
       matrix = {
         loadBalancer.servers = [{ url = "http://127.0.0.1:8008"; }];
       };
+      matrix-admin = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+      };
       element = {
         loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
       };
@@ -93,6 +96,12 @@ in
         rule = "Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix`) || PathPrefix(`/_synapse`))";
         service = "matrix";
         entryPoints = [ "web" ];
+      };
+      matrix-admin = {
+        rule = "Host(`admin.chat.dechnik.net`)";
+        service = "matrix-admin";
+        entryPoints = [ "web" ];
+        middlewares = [ "dechnik-ips" ];
       };
       element = {
         rule = "Host(`chat.dechnik.net`)";
@@ -115,6 +124,11 @@ in
               };
             };
           };
+        };
+      };
+      "admin.chat.${serverName}" = {
+        locations."/" = {
+          root = pkgs.synapse-admin;
         };
       };
     };
