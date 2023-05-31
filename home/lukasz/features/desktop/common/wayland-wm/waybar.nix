@@ -92,6 +92,7 @@ in
           "memory"
           "pulseaudio"
           "custom/gpg-agent"
+          "custom/zotero"
           "custom/unread-mail"
         ];
         modules-right = [
@@ -229,6 +230,24 @@ in
           format-icons = {
             "locked" = "";
             "unlocked" = "";
+          };
+          on-click = "";
+        };
+        "custom/zotero" = {
+          interval = 2;
+          return-type = "json";
+          exec =
+            let zotero = import ../../../emacs/zotero.nix { inherit pkgs; };
+            in
+            jsonOutput "zotero" {
+              pre = ''status=$(${zotero.isRunning} && echo "running" || echo "not running")'';
+              alt = "$status";
+              tooltip = "Zotero is $status";
+            };
+          format = "{icon}";
+          format-icons = {
+            "running" = "";
+            "not running" = "";
           };
           on-click = "";
         };
