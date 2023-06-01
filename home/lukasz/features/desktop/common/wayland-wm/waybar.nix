@@ -156,7 +156,7 @@ in
         battery = {
           bat = "BAT0";
           interval = 10;
-          format-icons = [ " " " " " " " " " " " " " " " " " " " " ];
+          format-icons = [ "  " "  " "  " "  " "  " "  " "  " "  " "  " "  " ];
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
           onclick = "";
@@ -426,7 +426,7 @@ in
         border-left: none;
       }
 
-      #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature {
+      #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature, #custom-zotero {
         margin: 4px 2px;
         padding: 0 6px;
         background-color: #${colors.base02};

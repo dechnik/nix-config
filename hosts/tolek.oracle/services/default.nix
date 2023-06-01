@@ -9,5 +9,6 @@
     ./traefik.nix
     ./matrix-synapse.nix
     ./psql-backup.nix
+    ./matterbridge.nix
   ];
 }
