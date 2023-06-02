@@ -1,4 +1,8 @@
-{ config, ... }: {
+{ lib, config, ... }:
+let
+  consul = import ../../../common/functions/consul.nix { inherit lib; };
+in
+{
   # services.dhcpd4 = {
   #   enable = true;
   #   interfaces = [ config.my.lan ];
@@ -23,6 +27,10 @@
           config.my.lan
         ];
       };
+      control-socket = {
+        socket-type = "unix";
+        socket-name = "/run/kea/kea-dhcp4.socket";
+      };
       lease-database = {
         name = "/var/lib/kea/dhcp4.leases";
         persist = true;
@@ -43,4 +51,15 @@
       valid-lifetime = 4000;
     };
   };
+
+  services.prometheus.exporters.kea = {
+    enable = true;
+    openFirewall = true;
+    controlSocketPaths = [
+      "/run/kea/kea-dhcp4.socket"
+    ];
+  };
+
+  my.consulServices.kea_exporter = consul.prometheusExporter "kea" config.services.prometheus.exporters.kea.port;
+
 }
