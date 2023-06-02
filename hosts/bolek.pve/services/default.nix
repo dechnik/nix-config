@@ -21,6 +21,7 @@
     # ./golink.nix
     ./wireguard.nix
     ./jellyfin.nix
+    ./grafana-matrix-forwarder.nix
     # ./wormhole.nix
   ];
 
