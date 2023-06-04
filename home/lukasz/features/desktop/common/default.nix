@@ -22,6 +22,7 @@
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal
     lyrics
+    brave
     pcmanfm
     meld
     gtk-pipe-viewer
