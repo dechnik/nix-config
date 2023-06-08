@@ -64,6 +64,9 @@
     grafana-matrix-forwarder = {
       url = "git+https://git.dechnik.net/lukasz/grafana-matrix-forwarder.git?ref=main";
     };
+    maubot = {
+      url = "git+https://git.dechnik.net/lukasz/maubot.git?ref=master";
+    };
     neovim = {
       url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     };

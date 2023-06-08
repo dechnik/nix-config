@@ -10,5 +10,6 @@
     ./matrix-synapse.nix
     ./psql-backup.nix
     ./matterbridge.nix
+    ./maubot.nix
   ];
 }
