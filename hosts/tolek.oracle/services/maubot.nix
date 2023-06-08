@@ -12,6 +12,12 @@
     };
   };
 
+  environment.persistence = {
+    "/persist".directories = [
+      "/var/lib/maubot"
+    ];
+  };
+
   services.maubot = {
     enable = true;
     serverHostname = "127.0.0.1";
