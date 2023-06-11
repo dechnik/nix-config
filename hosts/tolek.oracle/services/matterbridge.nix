@@ -4,13 +4,13 @@
   config,
   ...
 }: {
-  sops.secrets = {
-    matterbridge-config = {
-      owner = "matterbridge";
-      group = "matterbridge";
-      sopsFile = ../secrets.yaml;
-    };
-  };
+  # sops.secrets = {
+  #   matterbridge-config = {
+  #     owner = "matterbridge";
+  #     group = "matterbridge";
+  #     sopsFile = ../secrets.yaml;
+  #   };
+  # };
   # services.matterbridge = {
   #   enable = true;
   #   configPath = config.sops.secrets.matterbridge-config.path;

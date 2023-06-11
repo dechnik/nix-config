@@ -6,8 +6,8 @@
 
   sops.secrets = {
     maubot-config = {
-      owner = config.systemd.services.maubot.serviceConfig.User;
-      group = config.systemd.services.maubot.serviceConfig.Group;
+      owner = "maubot";
+      group = "maubot";
       sopsFile = ../secrets.yaml;
     };
   };
