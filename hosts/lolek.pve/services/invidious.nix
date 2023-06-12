@@ -10,6 +10,7 @@ in {
     database.createLocally = true;
     settings = {
       use_quic = true;
+      admins = ["lukasz"];
       channel_threads = 2;
       use_pubsub_feeds = true;
       https_only = false;
