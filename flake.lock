@@ -422,11 +422,11 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1686217642,
-        "narHash": "sha256-aGLS/iXzp08I+/+O8GSAk94zgVRiHBFLl8hrSlirpP0=",
+        "lastModified": 1686512764,
+        "narHash": "sha256-DwnylOcJWrtkOadlsaNZu2Cngj2xd95PrFPw72cRLa4=",
         "ref": "master",
-        "rev": "dea8bf79cb7b8c084904b97e05a97d5e2cdf0078",
-        "revCount": 607,
+        "rev": "99ef18bec2816696a68e412aceaa3a744a7609e5",
+        "revCount": 608,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/maubot.git"
       },
