@@ -78,6 +78,15 @@ in
             name = "Loki";
             type = "loki";
           }
+          {
+            name = "Alertmanager";
+            type = "alertmanager";
+            url = "http://127.0.0.1:9093";
+            # jsonData = {
+            #   implementation = "prometheus";
+            #   handleGrafanaManagedAlerts = config.services.prometheus.enable;
+            # };
+          }
         ];
       };
     };
