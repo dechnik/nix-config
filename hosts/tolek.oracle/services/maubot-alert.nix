@@ -24,8 +24,19 @@
     serverPort = 8820;
     userName = "@alert:dechnik.net";
     homeServer = "https://matrix.dechnik.net";
-    publicUrl = "https://matrix.dechnik.net";
+    publicUrl = "https://maubot-alert.dechnik.net";
     dataDir = "/var/lib/maubot-alert";
     secretYAML = config.sops.secrets.maubot-alert-config.path;
+  };
+  services.traefik.dynamicConfigOptions.http = {
+    services.maubot-alert = {
+      loadBalancer.servers = [{ url = "http://127.0.0.1:8820"; }];
+    };
+
+    routers.maubot-alert = {
+      rule = "(Host(`maubot-alert.dechnik.net`))";
+      service = "maubot-alert";
+      entryPoints = [ "web" ];
+    };
   };
 }
