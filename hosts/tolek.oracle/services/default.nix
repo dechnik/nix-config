@@ -11,5 +11,6 @@
     ./psql-backup.nix
     ./matterbridge.nix
     ./maubot.nix
+    ./maubot-alert.nix
   ];
 }
