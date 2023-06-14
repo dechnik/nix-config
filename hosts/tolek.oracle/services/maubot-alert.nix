@@ -26,6 +26,6 @@
     homeServer = "https://matrix.dechnik.net";
     publicUrl = "https://matrix.dechnik.net";
     dataDir = "/var/lib/maubot-alert";
-    secretYAML = config.sops.secrets.maubot-config.path;
+    secretYAML = config.sops.secrets.maubot-alert-config.path;
   };
 }
