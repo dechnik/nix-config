@@ -267,7 +267,7 @@ in
             ];
             webhook_configs = [
               {
-                url = "http://127.0.0.1:6000/api/v0/forward?roomId=!iUdwGsCXFvoaZtCafq:dechnik.net";
+                url = "https://maubot-alert.dechnik.net/webhook/!iUdwGsCXFvoaZtCafq:dechnik.net";
                 send_resolved = true;
               }
             ];
