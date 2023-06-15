@@ -34,7 +34,7 @@
     routers.maubot = {
       rule = "(Host(`matrix.dechnik.net`) && (PathPrefix(`/_matrix/maubot`)))";
       service = "maubot";
-      priority = 999;
+      priority = 990;
       entryPoints = [ "web" ];
     };
   };

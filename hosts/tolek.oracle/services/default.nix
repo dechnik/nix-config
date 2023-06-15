@@ -12,5 +12,6 @@
     ./matterbridge.nix
     ./maubot.nix
     ./maubot-alert.nix
+    ./maubot-github.nix
   ];
 }
