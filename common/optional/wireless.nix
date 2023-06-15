@@ -36,6 +36,8 @@
   # Ensure group exists
   users.groups.network = { };
 
+  systemd.services.wpa_supplicant.preStart = "touch /etc/wpa_supplicant.conf";
+
   # Persist imperative config
   # environment.persistence = {
   #   "/persist".files = [
