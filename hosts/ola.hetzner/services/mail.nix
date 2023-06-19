@@ -62,7 +62,7 @@ in
     mailDirectory = "/srv/mail/vmail";
     sieveDirectory = "/srv/mail/sieve";
     dkimKeyDirectory = "/srv/mail/dkim";
-    certificateScheme = 1;
+    certificateScheme = "manual";
     certificateFile = "/var/lib/acme/mail.dechnik.net/fullchain.pem";
     keyFile = "/var/lib/acme/mail.dechnik.net/key.pem";
   };

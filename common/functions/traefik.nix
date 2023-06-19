@@ -23,12 +23,15 @@ with lib; let
 
       systemd.services.traefik = {
         serviceConfig = {
-          EnvironmentFile = config.security.acme.defaults.credentialsFile;
+          # EnvironmentFile = config.security.acme.defaults.credentialsFile;
           WorkingDirectory = "/var/lib/traefik";
         };
       };
 
       services.traefik.enable = true;
+      services.traefik.environmentFiles = [
+        config.security.acme.defaults.credentialsFile
+      ];
 
       networking.firewall.allowedTCPPorts = [ 80 443 ];
 
