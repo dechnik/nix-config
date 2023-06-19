@@ -160,7 +160,10 @@ in
                   alert = "InstanceLowDiskPrediction12Hours";
                   expr = ''predict_linear(node_filesystem_free_bytes{fstype!~"(tmpfs|ramfs)"}[3h],12 * 3600) < 0'';
                   for = "2h";
-                  labels.severity = "critical";
+                  labels = {
+                    severity = "critical";
+                    frequency = "5m";
+                  };
                   annotations = {
                     description = ''Disk {{ $labels.mountpoint }} ({{ $labels.device }}) will be full in less than 12 hours'';
                     summary = ''Instance {{ $labels.instance }}: Disk {{ $labels.mountpoint }} ({{ $labels.device}}) will be full in less than 12 hours'';
