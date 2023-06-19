@@ -31,9 +31,9 @@ let
   };
 in
 {
-  imports = [
-    inputs.hydra.nixosModules.hydra
-  ];
+  # imports = [
+  #   inputs.hydra.nixosModules.hydra
+  # ];
 
   # https://github.com/NixOS/nix/issues/5039
   nix.extraOptions = ''
@@ -45,7 +45,7 @@ in
   services = {
     hydra = {
       enable = true;
-      package = pkgs.inputs.hydra.hydra;
+      # package = pkgs.inputs.hydra.hydra;
       hydraURL = "https://hydra.dechnik.net";
       notificationSender = "monitoring@dechnik.net";
       listenHost = "localhost";
