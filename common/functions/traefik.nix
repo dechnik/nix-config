@@ -16,10 +16,10 @@ with lib; let
         "/persist".directories = [ "/var/lib/traefik" ];
       };
 
-      sops.secrets."traefik-config.json" = {
-        sopsFile = ../../hosts/${hostname}/secrets.yaml;
-        owner = config.users.users.traefik.name;
-      };
+      # sops.secrets."traefik-config.json" = {
+      #   sopsFile = ../../hosts/${hostname}/secrets.yaml;
+      #   owner = config.users.users.traefik.name;
+      # };
 
       systemd.services.traefik = {
         serviceConfig = {
@@ -35,18 +35,18 @@ with lib; let
 
       networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-      services.traefik.staticConfigFile = "/var/lib/traefik/config.yml";
+      # services.traefik.staticConfigFile = "/var/lib/traefik/config.yml";
 
-      systemd.services.traefik.preStart = ''
-        ${pkgs.jq}/bin/jq --slurp '.[0] * .[1]' \
-          ${pkgs.writeText "config.json" (builtins.toJSON config.services.traefik.staticConfigOptions)} \
-          ${config.sops.secrets."traefik-config.json".path} \
-          > ${config.services.traefik.staticConfigFile}
-      '';
+      # systemd.services.traefik.preStart = ''
+      #   ${pkgs.jq}/bin/jq --slurp '.[0] * .[1]' \
+      #     ${pkgs.writeText "config.json" (builtins.toJSON config.services.traefik.staticConfigOptions)} \
+      #     ${config.sops.secrets."traefik-config.json".path} \
+      #     > ${config.services.traefik.staticConfigFile}
+      # '';
 
       services.traefik.staticConfigOptions = {
-        providers.file.filename =
-          pkgs.writeText "config.yml" (builtins.toJSON config.services.traefik.dynamicConfigOptions);
+        # providers.file.filename =
+        #   pkgs.writeText "config.yml" (builtins.toJSON config.services.traefik.dynamicConfigOptions);
 
         api.dashboard = true;
         accessLog = { };
