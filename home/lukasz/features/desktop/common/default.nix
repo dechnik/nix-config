@@ -23,6 +23,7 @@
     xdg-utils-spawn-terminal
     lyrics
     brave
+    tor-browser-bundle-bin
     pcmanfm
     meld
     gtk-pipe-viewer
