@@ -24,6 +24,11 @@ lib.mkMerge [
         service = "nc";
         entryPoints = [ "web" ];
       };
+      routers.dechnik = {
+        rule = "Host(`dechnik.net`)";
+        service = "nc";
+        entryPoints = [ "web" ];
+      };
     };
   }
 
