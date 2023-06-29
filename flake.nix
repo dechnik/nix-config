@@ -63,7 +63,10 @@
       inputs.hyprland-protocols.follows = "hyprland-protocols";
     };
 
-    website.url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
+    website = {
+      url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay.url = "github:nix-community/emacs-overlay/d7d53d728dc68d0fca4601b4e155e746ce274098";
     emacs-src = {
       url = "github:emacs-mirror/emacs/emacs-29";
@@ -74,6 +77,7 @@
     };
     maubot = {
       url = "git+https://git.dechnik.net/lukasz/maubot.git?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
       url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
