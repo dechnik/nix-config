@@ -80,11 +80,11 @@
     "emacs-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1688032821,
-        "narHash": "sha256-c+Pqmw1AleSFhm+Ksmf8FMlg7IcjJmsI9A3FSUd/LlA=",
+        "lastModified": 1688109233,
+        "narHash": "sha256-/HhethIym8XL7VIW88UNrWF2adPb8Wc0UhVHUMg7LTk=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "ddbb11f56572025d90497291de1dcaf2ece45500",
+        "rev": "16e9bdff4f47534d62ac9ebec9c6c49fe5a0e180",
         "type": "github"
       },
       "original": {
@@ -212,25 +212,6 @@
         "type": "github"
       }
     },
-    "grafana-matrix-forwarder": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1685801026,
-        "narHash": "sha256-eEdBvIHXyP/2wuoZB7lVZq5oe6QnxBFgD1AmcEC8I5Q=",
-        "ref": "main",
-        "rev": "849d81f858fca9a3acd80e7841008784b5f8ac5e",
-        "revCount": 205,
-        "type": "git",
-        "url": "https://git.dechnik.net/lukasz/grafana-matrix-forwarder.git"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://git.dechnik.net/lukasz/grafana-matrix-forwarder.git"
-      }
-    },
     "hardware": {
       "locked": {
         "lastModified": 1686838567,
@@ -276,11 +257,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1687945216,
-        "narHash": "sha256-Bp9GOhYUaOeqWlDLjscAaZ93rL/2DpLLvEpw1xcGsFs=",
+        "lastModified": 1688109219,
+        "narHash": "sha256-0jYE+tPuzLvl00JMtIDjZYMyjt8n9K4+0vqtmDHY3r8=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "990ad854bd1b17117e00e0b2dc26aefff5e30ed2",
+        "rev": "64fc19cc811434b81ab9bc6b8c64edbcbfd0cfd4",
         "type": "github"
       },
       "original": {
@@ -367,7 +348,7 @@
     },
     "lldap": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
@@ -407,7 +388,7 @@
     },
     "neovim": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1687202309,
@@ -455,11 +436,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1687462267,
-        "narHash": "sha256-rNSputjn/0HEHHnsKfQ8mQVEPVchcBw7DsbND7Wg8dk=",
+        "lastModified": 1688064897,
+        "narHash": "sha256-Q3CZc6ZfC4KpjGWVPsrofFgxor+UjqhbFBSi7YmHVvI=",
         "owner": "simple-nixos-mailserver",
         "repo": "nixos-mailserver",
-        "rev": "24128c3052090311688b09a400aa408ba61c6ee5",
+        "rev": "0c1801b48995ec6909e040abedaa56a64f0db430",
         "type": "gitlab"
       },
       "original": {
@@ -531,11 +512,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1688060254,
-        "narHash": "sha256-2v8hulOS+pJiPPtemmaZfTdZqxncGZNVNh5k2HrTG3Q=",
+        "lastModified": 1688113115,
+        "narHash": "sha256-V4KkkcW08cRj6lWs7kx59Cc9bNfeE5IJszoYtSkdHcs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "46ffa3b1694b718159246dbc464b5cdb841eca6d",
+        "rev": "bfcb28f1548852cf110879729d6dff31b426d51d",
         "type": "github"
       },
       "original": {
@@ -563,22 +544,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1685564631,
-        "narHash": "sha256-8ywr3AkblY4++3lIVxmrWZFzac7+f32ZEhH/A8pNscI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4f53efe34b3a8877ac923b9350c874e3dcd5dc0a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1682303062,
         "narHash": "sha256-x+KAADp27lbxeoPXLUMxKcRsUUHDlg+qVjt5PjgBw9A=",
         "owner": "NixOS",
@@ -593,7 +558,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1687017257,
         "narHash": "sha256-jbk0Szj1DPe9KwySeMr3KzYqW1JaUKJ6lYwSLMvc1n0=",
@@ -609,13 +574,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_4": {
       "locked": {
-        "lastModified": 1687898314,
-        "narHash": "sha256-B4BHon3uMXQw8ZdbwxRK1BmxVOGBV4viipKpGaIlGwk=",
+        "lastModified": 1688049487,
+        "narHash": "sha256-100g4iaKC9MalDjUW9iN6Jl/OocTDtXdeAj7pEGIRh4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e18dc963075ed115afb3e312b64643bf8fd4b474",
+        "rev": "4bc72cae107788bf3f24f30db2e2f685c9298dc9",
         "type": "github"
       },
       "original": {
@@ -625,7 +590,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1686979235,
         "narHash": "sha256-gBlBtk+KrezFkfMrZw6uwTuA7YWtbFciiS14mEoTCo0=",
@@ -647,7 +612,6 @@
         "emacs-overlay": "emacs-overlay",
         "emacs-src": "emacs-src",
         "firefox-addons": "firefox-addons",
-        "grafana-matrix-forwarder": "grafana-matrix-forwarder",
         "hardware": "hardware",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
@@ -659,7 +623,7 @@
         "neovim": "neovim",
         "nix-colors": "nix-colors",
         "nixos-mailserver": "nixos-mailserver",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
         "sops-nix": "sops-nix",
         "website": "website",
@@ -690,7 +654,7 @@
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {

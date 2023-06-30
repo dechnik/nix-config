@@ -72,9 +72,6 @@
       url = "github:emacs-mirror/emacs/emacs-29";
       flake = false;
     };
-    grafana-matrix-forwarder = {
-      url = "git+https://git.dechnik.net/lukasz/grafana-matrix-forwarder.git?ref=main";
-    };
     maubot = {
       url = "git+https://git.dechnik.net/lukasz/maubot.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
