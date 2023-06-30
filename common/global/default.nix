@@ -12,6 +12,7 @@
     ./nix.nix
     ./openssh.nix
     ./network.nix
+    ./podman.nix
     ./optin-persistence.nix
     ./sops.nix
     ./ssh-serve-store.nix
