@@ -20,6 +20,9 @@
       "NETIASPOT-D504A0" = {
         psk = "@PSK_LUBSKO@";
       };
+      "edge30_3887" = {
+        psk = "@PSK_MOTO@";
+      };
     };
 
     # Imperative
