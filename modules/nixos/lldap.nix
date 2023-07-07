@@ -100,7 +100,7 @@ in
           key_file = lib.mkOption {
             type = lib.types.path;
             description = "File path containing lldap jwt secret";
-            default = "/var/lib/private-key";
+            default = "/var/lib/lldap/private-key";
           };
 
           database_url = mkOption {
@@ -137,5 +137,12 @@ in
       };
       inherit (cfg) environment;
     };
+    users.users.lldap = {
+      group = "lldap";
+      home = "/var/lib/lldap";
+      createHome = true;
+      isSystemUser = true;
+    };
+    users.groups.lldap = { };
   };
 }
