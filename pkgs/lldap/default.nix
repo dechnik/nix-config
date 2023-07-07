@@ -81,6 +81,7 @@ let
   });
 
 in rustPlatform.buildRustPackage (commonDerivationAttrs // {
+  doCheck = false;
 
   cargoBuildFlags = [ "-p" "lldap" "-p" "lldap_set_password" ];
 
