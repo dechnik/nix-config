@@ -5,6 +5,7 @@ let
   format = pkgs.formats.toml { };
 in
 {
+  disabledModules = [ "services/databases/lldap.nix" ];
   options.services.lldap = with lib; {
     enable = mkEnableOption (mdDoc "lldap");
 
@@ -29,6 +30,12 @@ in
       description = lib.mdDoc ''
         Environment file as defined in {manpage}`systemd.exec(5)` passed to the service.
       '';
+    };
+
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether to open port in the firewall for the server.";
     };
 
     settings = mkOption {
@@ -90,6 +97,12 @@ in
             default = "admin@example.com";
           };
 
+          key_file = lib.mkOption {
+            type = lib.types.path;
+            description = "File path containing lldap jwt secret";
+            default = "/var/lib/private-key";
+          };
+
           database_url = mkOption {
             type = types.str;
             description = mdDoc "Database URL.";
@@ -102,6 +115,13 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    networking.firewall =
+      lib.mkIf cfg.openFirewall {
+        allowedTCPPorts = [
+          cfg.settings.ldap_port
+          cfg.settings.http_port
+        ];
+      };
     systemd.services.lldap = {
       description = "Lightweight LDAP server (lldap)";
       after = [ "network-online.target" ];
