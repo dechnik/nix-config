@@ -100,7 +100,7 @@ in
 
   home = {
     sessionVariables = {
-      BROWSER = "brave";
+      BROWSER = "firefox";
     };
     persistence = {
       "/persist/home/lukasz".directories = [ ".mozilla/firefox" ];
