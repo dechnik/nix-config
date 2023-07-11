@@ -347,6 +347,7 @@ in
             "ncspot" = " 阮";
             "qutebrowser" = "";
             "firefox" = " ";
+            "brave" = " ";
             "discord" = "  ";
             "sublimemusic" = " ";
             "kdeconnect" = " ";
