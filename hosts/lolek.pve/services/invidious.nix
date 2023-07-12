@@ -9,6 +9,22 @@ in {
     neededForUsers = true;
     mode = "0444";
   };
+  security.acme.certs."${domain}" = {
+    domain = domain;
+    group = "nginx";
+  };
+  services.nginx.virtualHosts = {
+    "${domain}" = {
+      forceSSL = true;
+      useACMEHost = "${domain}";
+      locations."/" = {
+        proxyPass = "http://localhost:${toString port}";
+      };
+      extraConfig = ''
+        access_log /var/log/nginx/${domain}.access.log;
+      '';
+    };
+  };
 
   services.invidious = {
     enable = true;
