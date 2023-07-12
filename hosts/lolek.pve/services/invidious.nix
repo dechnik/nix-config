@@ -12,7 +12,7 @@ in {
 
   services.invidious = {
     enable = true;
-    nginx.enable = true;
+    # nginx.enable = true;
     inherit port domain;
     database.createLocally = true;
     settings = {
@@ -20,7 +20,7 @@ in {
       admins = ["lukasz"];
       channel_threads = 2;
       use_pubsub_feeds = true;
-      https_only = true;
+      https_only = false;
       popular_enabled = false;
       quality = "dash";
       quality_dash = "best";
