@@ -4,6 +4,12 @@ let
   domain = "yt.pve.dechnik.net";
   port = 3000;
 in {
+  sops.secrets.invidious-config = {
+    sopsFile = ../secrets.yaml;
+    neededForUsers = true;
+    mode = "0444";
+  };
+
   services.invidious = {
     enable = true;
     inherit port domain;
@@ -18,6 +24,7 @@ in {
       quality = "dash";
       quality_dash = "best";
     };
+    extraSettingsFile = config.sops.secrets.invidious-config.path;
   };
 
   # Fix for random crashes dur to 'Invalid memory access'.
