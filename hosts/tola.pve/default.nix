@@ -11,6 +11,7 @@
       ../../common/optional/vpn.nix
       ../../common/optional/xserver.nix
       ../../common/optional/gnome.nix
+      ../../common/optional/nix-gc.nix
       ../../common/global
       ../../common/users/lukasz
       ./services

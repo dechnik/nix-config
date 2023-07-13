@@ -11,6 +11,7 @@
     ../../common/optional/promtail.nix
     ../../common/optional/node-exporter.nix
     ../../common/optional/systemd-exporter.nix
+      ../../common/optional/nix-gc.nix
     ../../common/users/lukasz
   ];
 
