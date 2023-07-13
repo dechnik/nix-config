@@ -30,6 +30,10 @@
         stable.follows = "nixpkgs";
       };
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -79,13 +83,17 @@
       url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     };
   };
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
       inherit (self) outputs;
       forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
       mkNixos = modules: nixpkgs.lib.nixosSystem {
         inherit modules;
+        extraModules = [
+          inputs.colmena.nixosModules.deploymentOptions
+          inputs.disko.nixosModules.disko
+        ];
         specialArgs = { inherit inputs outputs; };
       };
       mkHome = modules: pkgs: home-manager.lib.homeManagerConfiguration {

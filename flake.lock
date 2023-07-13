@@ -57,6 +57,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1689239870,
+        "narHash": "sha256-G19sYUrNeIOa8I+WXQ6dKS9Tvuavz8AyzyXNwTqLE94=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "68eb09b1833301d729ae6e89583173b6ceaade1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "emacs-overlay": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -556,6 +576,7 @@
     "root": {
       "inputs": {
         "colmena": "colmena",
+        "disko": "disko",
         "emacs-overlay": "emacs-overlay",
         "emacs-src": "emacs-src",
         "firefox-addons": "firefox-addons",
