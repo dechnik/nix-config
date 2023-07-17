@@ -121,6 +121,7 @@
         "k3sserver1.pve" = mkNixos [ ./hosts/k3sserver1.pve ];
         "k3sagent1.pve" = mkNixos [ ./hosts/k3sagent1.pve ];
         "k3sagent2.pve" = mkNixos [ ./hosts/k3sagent2.pve ];
+        "sandbox.pve" = mkNixos [ ./hosts/sandbox.pve ];
         "tola.pve" = mkNixos [ ./hosts/tola.pve ];
         "olek.pve" = mkNixos [ ./hosts/olek.pve ];
         "tolek.oracle" = mkNixos [ ./hosts/tolek.oracle ];
@@ -136,6 +137,7 @@
         "lukasz@k3sserver1" = mkHome [ ./home/lukasz/k3sserver1.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@k3sagent1" = mkHome [ ./home/lukasz/k3sagent1.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@k3sagent2" = mkHome [ ./home/lukasz/k3sagent2.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "lukasz@sandbox" = mkHome [ ./home/lukasz/sandbox.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@tola" = mkHome [ ./home/lukasz/tola.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@olek" = mkHome [ ./home/lukasz/olek.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@tolek" = mkHome [ ./home/lukasz/tolek.nix ] nixpkgs.legacyPackages."aarch64-linux";

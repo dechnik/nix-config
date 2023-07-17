@@ -15,6 +15,7 @@ keys:
     - &k3sserver1 age1n20tlcsr0nnawwzl7yj2tm400yen73unjwmnth65yj05dtvhevwq6t3quv
     - &k3sagent1 age13ffzsmk32srsj54j0rygz0xtm035krjjawxvg0qftg2md0nqwv2q50s0q6
     - &k3sagent2 age1r2uduulrxmjczvccx62xhkasv96l9a3awf0ylkxwmn9ypmt7l4ys8k3j28
+    - &sandbox age1qjcte6n07hqs5u3fntvnrrg8cdlxyap0cqad52pdxu85q0te5uaq4uk5yp
 creation_rules:
   - path_regex: common/secrets.ya?ml$
     key_groups:
@@ -30,6 +31,7 @@ creation_rules:
       - *k3sserver1
       - *k3sagent1
       - *k3sagent2
+      - *sandbox
       pgp:
       - *lukasz
   - path_regex: hosts/dziad/secrets.ya?ml$
@@ -54,6 +56,12 @@ creation_rules:
     key_groups:
     - age:
       - *lolek
+      pgp:
+      - *lukasz
+  - path_regex: hosts/sandbox.pve/secrets.ya?ml$
+    key_groups:
+    - age:
+      - *sandbox
       pgp:
       - *lukasz
   - path_regex: hosts/tolek.oracle/secrets.ya?ml$
