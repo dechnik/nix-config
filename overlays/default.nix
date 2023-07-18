@@ -17,6 +17,41 @@ in {
 
   # Modifies existing packages
   modifications = final: prev: {
+    vscode-with-extensions = prev.vscode-with-extensions.override {
+      vscodeExtensions = prev.vscode-utils.extensionsFromVscodeMarketplace [
+        ] ++ (with prev.vscode-extensions; [
+        bbenoist.nix # Nix syntax
+
+        ms-vscode-remote.remote-ssh
+
+        matangover.mypy
+        jebbs.plantuml
+
+        # Languages
+        bungcip.better-toml
+        tamasfe.even-better-toml
+        ms-python.vscode-pylance
+
+        # Nix
+        brettm12345.nixfmt-vscode
+        b4dm4n.vscode-nixpkgs-fmt
+
+        skyapps.fish-vscode
+        redhat.vscode-yaml
+        ms-vscode.makefile-tools
+        ms-vscode.cmake-tools
+        mechatroner.rainbow-csv
+        jnoortheen.nix-ide
+        github.vscode-pull-request-github
+        esbenp.prettier-vscode
+        mkhl.direnv
+      ]) ++ final.lib.optionals (! (final.stdenv.isAarch64 && final.stdenv.isLinux)) (with prev.vscode-extensions; [
+        ms-vscode.cpptools
+        ms-python.python
+        ms-azuretools.vscode-docker
+      ]);
+    };
+
     passExtensions = prev.passExtensions // {
       # https://github.com/tadfisher/pass-otp/pull/173
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
