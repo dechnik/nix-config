@@ -22,6 +22,7 @@ in {
         # Generated from: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
         ] ++ (with prev.vscode-extensions; [
         bbenoist.nix # Nix syntax
+        jdinhlife.gruvbox
 
         ms-vscode-remote.remote-ssh
 
