@@ -23,6 +23,7 @@ in {
         ] ++ (with prev.vscode-extensions; [
         bbenoist.nix # Nix syntax
         jdinhlife.gruvbox
+        vscodevim.vim
 
         ms-vscode-remote.remote-ssh
 
