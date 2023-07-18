@@ -19,6 +19,7 @@ in {
   modifications = final: prev: {
     vscode-with-extensions = prev.vscode-with-extensions.override {
       vscodeExtensions = prev.vscode-utils.extensionsFromVscodeMarketplace [
+        # Generated from: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
         ] ++ (with prev.vscode-extensions; [
         bbenoist.nix # Nix syntax
 
