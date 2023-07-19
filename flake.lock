@@ -374,11 +374,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1687202309,
-        "narHash": "sha256-+N4RA7TSISYCJC0rqouSyT5l/JobvqVzkOdS5KMnwBU=",
+        "lastModified": 1689711053,
+        "narHash": "sha256-7AIhBeHL2LH5O86HkoFvIGFslluKG8lLsRVd3nIMrRc=",
         "ref": "master",
-        "rev": "9a81734afc13a5062b3182a34aafe459e367708e",
-        "revCount": 22,
+        "rev": "c81ba3228ff1a521e726e376905bf407cda23636",
+        "revCount": 23,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/neovim.git"
       },

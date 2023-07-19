@@ -24,9 +24,9 @@ in
     nextcloud = {
       inherit hostName;
       package = pkgs.nextcloud27;
-      # extraApps = with pkgs.nextcloud25Packages.apps; {
-      #   inherit oidc;
-      # };
+      extraApps = with pkgs.nextcloud27Packages.apps; {
+        inherit mail;
+      };
       # Auto-update Nextcloud Apps
       # autoUpdateApps.enable = true;
       # Set what time makes sense for you
