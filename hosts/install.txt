@@ -33,3 +33,4 @@ chown -R lukasz:users /mnt/persist/home/lukasz
 chown -R lukasz:users /mnt/persist/mail/lukasz
 
 #echo 'password' | gpg --allow-secret-key-import --pinentry-mode loopback --passphrase-fd 0 --import key.asc
+#nix run path:/home/lukasz/Projects/nixos-anywhere -- --flake .#sandbox.pve --copy-ssh /home/lukasz/Projects/nix-config/hosts/sandbox.pve/ssh_host_ed25519_key --no-reboot root@10.30.10.148

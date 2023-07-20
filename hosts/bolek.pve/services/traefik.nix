@@ -18,11 +18,20 @@ lib.mkMerge [
       services.nc = {
         loadBalancer.servers = [{ url = "http://10.60.0.2:80"; }];
       };
+      services.yt = {
+        loadBalancer.servers = [{ url = "http://10.60.0.2:3000"; }];
+      };
 
       routers.nc = {
         rule = "Host(`nc.dechnik.net`)";
         service = "nc";
         entryPoints = [ "web" ];
+      };
+      routers.yt = {
+        rule = "Host(`yt.pve.dechnik.net`)";
+        service = "yt";
+        entryPoints = [ "web" ];
+        middlewares = [ "dechnik-ips" ];
       };
       routers.dechnik = {
         rule = "Host(`dechnik.net`)";

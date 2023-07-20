@@ -18,6 +18,19 @@
   home.persistence = {
     # "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
   };
+
+  home = {
+    sessionVariables = {
+      BROWSER = "brave";
+    };
+  };
+  programs.browserpass.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "brave.desktop" ];
+    "text/xml" = [ "brave.desktop" ];
+    "x-scheme-handler/http" = [ "brave.desktop" ];
+    "x-scheme-handler/https" = [ "brave.desktop" ];
+  };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal

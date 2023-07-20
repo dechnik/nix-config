@@ -17,7 +17,6 @@ let
   };
 in
 {
-  programs.browserpass.enable = true;
   home.packages = with pkgs; [ tridactyl-native ];
   home.file.".mozilla/native-messaging-hosts/tridactyl.json" = {
     source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
@@ -99,17 +98,8 @@ in
   };
 
   home = {
-    sessionVariables = {
-      BROWSER = "firefox";
-    };
     persistence = {
       "/persist/home/lukasz".directories = [ ".mozilla/firefox" ];
     };
-  };
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "firefox.desktop" ];
-    "text/xml" = [ "firefox.desktop" ];
-    "x-scheme-handler/http" = [ "firefox.desktop" ];
-    "x-scheme-handler/https" = [ "firefox.desktop" ];
   };
 }
