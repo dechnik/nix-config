@@ -41,7 +41,8 @@ in {
       admins = ["lukasz"];
       channel_threads = 2;
       use_pubsub_feeds = true;
-      https_only = false;
+      https_only = true;
+      external_port = 443;
       popular_enabled = false;
       quality = "dash";
       quality_dash = "best";
