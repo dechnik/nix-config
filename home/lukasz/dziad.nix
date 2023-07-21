@@ -8,11 +8,11 @@
     ./features/trusted/mail/personal.nix
     ./features/trusted/mail/work.nix
     ./features/games
-    ./features/desktop/optional/nvidia.nix
+    # ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
     ./features/desktop/optional/nc.nix
     ./features/desktop/optional/vscode.nix
-    ./features/desktop/hyprland/nvidia.nix
+    # ./features/desktop/hyprland/nvidia.nix
     ./features/desktop/hyprland
     ./features/desktop/optional/bluetooth.nix
   ];

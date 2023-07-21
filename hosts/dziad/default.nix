@@ -4,7 +4,8 @@
   imports =
     [
       inputs.hardware.nixosModules.common-cpu-amd
-      inputs.hardware.nixosModules.common-gpu-nvidia
+      # inputs.hardware.nixosModules.common-gpu-nvidia
+      inputs.hardware.nixosModules.common-gpu-amd
       inputs.hardware.nixosModules.common-pc-ssd
       ./services
 
@@ -81,7 +82,8 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   };
@@ -101,10 +103,10 @@
     wlr.enable = false;
   };
 
-  hardware.nvidia = {
-    prime.offload.enable = false;
-    modesetting.enable = true;
-  };
+  # hardware.nvidia = {
+  #   prime.offload.enable = false;
+  #   modesetting.enable = true;
+  # };
 
   hardware = {
     opengl = {
