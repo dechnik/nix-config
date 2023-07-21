@@ -58,6 +58,11 @@
     vfr=true
   }
 
+  # use this instead of hidpi patches
+  xwayland {
+    force_zero_scaling = true
+  }
+
   input {
     kb_layout=pl
     repeat_rate = 60
@@ -66,6 +71,35 @@
       disable_while_typing=false
     }
   }
+
+  # only allow shadows for floating windows
+  windowrulev2 = noshadow, floating:0
+
+  # telegram media viewer
+  windowrulev2 = float, title:^(Media viewer)$
+
+  # make Firefox PiP window floating and sticky
+  windowrulev2 = float, title:^(Picture-in-Picture)$
+  windowrulev2 = pin, title:^(Picture-in-Picture)$
+
+  # throw sharing indicators away
+  windowrulev2 = workspace special silent, title:^(Firefox — Sharing Indicator)$
+  windowrulev2 = workspace special silent, title:^(.*is sharing (your screen|a window)\.)$
+
+  # idle inhibit while watching videos
+  windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
+  windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
+  windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+
+  windowrulev2 = dimaround, class:^(gcr-prompter)$
+
+  # fix xwayland apps
+  windowrulev2 = rounding 0, xwayland:1, floating:1
+  windowrulev2 = center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$
+  windowrulev2 = size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$
+
+  layerrule = blur, ^(gtk-layer-shell|anyrun)$
+  layerrule = ignorezero, ^(gtk-layer-shell|anyrun)$
 
   # Startup
   exec-once=gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
