@@ -5,6 +5,10 @@
       sopsFile = ../../secrets.yaml;
       owner = "gitea-runner";
     };
+    gitea-runner2 = {
+      sopsFile = ../../secrets.yaml;
+      owner = "gitea-runner";
+    };
   };
   services.gitea-actions-runner.instances = {
     pve = {
@@ -14,6 +18,15 @@
       name = "pve";
       labels = [
         "native:host"
+      ];
+    };
+    pve2 = {
+      enable = true;
+      url = "https://git.dechnik.net";
+      tokenFile = config.sops.secrets.gitea-runner2.path;
+      name = "pve";
+      labels = [
+        "ubuntu-latest:docker://ubuntu:latest"
       ];
     };
   };
