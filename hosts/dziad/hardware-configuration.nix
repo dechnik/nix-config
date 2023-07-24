@@ -10,6 +10,7 @@
       systemd-boot = {
         enable = true;
         consoleMode = "max";
+        configurationLimit = 20;
       };
       efi = {
         canTouchEfiVariables = true;
@@ -23,20 +24,20 @@
     neededForBoot = true;
   };
 
-  fileSystems = {
-    "/old" = {
-      device = "/dev/disk/by-label/dziad";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" ];
-    };
+  # fileSystems = {
+  #   "/old" = {
+  #     device = "/dev/disk/by-label/dziad";
+  #     fsType = "btrfs";
+  #     options = [ "subvol=root" "compress=zstd" ];
+  #   };
 
-    "/old/persist" = {
-      device = "/dev/disk/by-label/dziad";
-      fsType = "btrfs";
-      options = [ "subvol=persist" "compress=zstd" ];
-    };
+  #   "/old/persist" = {
+  #     device = "/dev/disk/by-label/dziad";
+  #     fsType = "btrfs";
+  #     options = [ "subvol=persist" "compress=zstd" ];
+  #   };
 
-  };
+  # };
 
   # fileSystems."/boot" = {
   #   device = "/dev/disk/by-uuid/be1c825f-1e04-4e02-a4d9-bf6676806b76";

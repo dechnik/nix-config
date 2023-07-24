@@ -7,6 +7,7 @@
       # inputs.hardware.nixosModules.common-gpu-nvidia
       inputs.hardware.nixosModules.common-gpu-amd
       inputs.hardware.nixosModules.common-pc-ssd
+      inputs.disko.nixosModules.disko
       ./services
 
       ./hardware-configuration.nix

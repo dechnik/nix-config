@@ -56,6 +56,9 @@ in
         log = {
           LEVEL = "Warn";
         };
+        actions = {
+          ENABLED = true;
+        };
         session = {
           COOKIE_SECURE = true;
         };

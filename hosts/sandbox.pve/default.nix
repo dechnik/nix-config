@@ -9,6 +9,7 @@
       ../../common/optional/nix-gc.nix
       ../../common/global
       ../../common/users/lukasz
+      inputs.disko.nixosModules.disko
     ];
   services.spice-vdagentd.enable = true;
   boot = {

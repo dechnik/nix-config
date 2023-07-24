@@ -92,7 +92,7 @@
         inherit modules;
         extraModules = [
           inputs.colmena.nixosModules.deploymentOptions
-          inputs.disko.nixosModules.disko
+          # inputs.disko.nixosModules.disko
         ];
         specialArgs = { inherit inputs outputs; };
       };
