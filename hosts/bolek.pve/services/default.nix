@@ -8,6 +8,7 @@
     # ./cgit
     ./psql-backup.nix
     ./gitea
+    ./gitea/runner.nix
     # ./uwsgi.nix
     # ./searx.nix
     # ./website.nix
