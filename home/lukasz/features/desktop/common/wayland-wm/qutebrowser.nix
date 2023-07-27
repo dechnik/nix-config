@@ -43,11 +43,12 @@ in
       tabs = {
         show = "multiple";
         position = "left";
+        width = "10%";
         tree_tabs = true;
       };
       fonts = {
         default_family = config.fontProfiles.regular.family;
-        default_size = "12pt";
+        default_size = "10pt";
       };
       colors = {
         webpage = {
