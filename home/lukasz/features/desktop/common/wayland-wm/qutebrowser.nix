@@ -31,7 +31,15 @@ in
     enable = true;
     package = pkgs.qutebrowser-qt6;
     loadAutoconfig = true;
+    searchEngines = {
+      DEFAULT = "https://search.brave.com/search?q={}";
+    };
+    keyBindings.normal = {
+      # try to fill username / password
+      ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
+    };
     settings = {
+      auto_save.session = true;
       tabs = {
         show = "multiple";
         position = "left";

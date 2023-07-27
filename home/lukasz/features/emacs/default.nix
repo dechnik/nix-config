@@ -30,6 +30,7 @@ let
     pyls-isort
     pytest
     nose
+    tldextract # required by qute-pass
   ] ++ python-lsp-server.optional-dependencies.all);
 in
 {
