@@ -30,6 +30,7 @@
     defaultGateway6 = "";
     dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkForce true;
+    useDHCP = true;
     interfaces."ens18" = {
       useDHCP = true;
     };
