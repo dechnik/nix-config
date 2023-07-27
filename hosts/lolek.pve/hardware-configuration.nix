@@ -9,7 +9,7 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_scsi" "sd_mod" ];
+      availableKernelModules = [ "ehci_pci" "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_scsi" "sd_mod" ];
     };
     kernelModules = [ "kvm-intel" ];
     loader = {
