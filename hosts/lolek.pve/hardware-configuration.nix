@@ -7,6 +7,13 @@
       ../../common/optional/postgres.nix
     ];
 
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  services.xserver.videoDrivers = ["nvidia"];
+
   boot = {
     initrd = {
       availableKernelModules = [ "ehci_pci" "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_scsi" "sd_mod" ];
