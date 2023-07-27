@@ -55,6 +55,17 @@ in {
       ]);
     };
 
+    qutebrowser-qt6 = prev.qutebrowser-qt6.overrideAttrs (oldAttrs: {
+      version = "unstable-2023-07-25";
+      src = final.fetchFromGitHub {
+        owner = "qutebrowser";
+        repo = "qutebrowser";
+        rev = "6d84462d68ec1ce4cde459297e0c52ad3c2bf29f";
+        hash = "sha256-oAjhzTeZ7TNBR6lxBpNdDGJHnTdnWU16lZtlrvZhfE0=";
+      };
+      patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
+    });
+
     passExtensions = prev.passExtensions // {
       # https://github.com/tadfisher/pass-otp/pull/173
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
