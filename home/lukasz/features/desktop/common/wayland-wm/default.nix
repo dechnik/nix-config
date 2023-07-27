@@ -10,6 +10,7 @@
     ./swaylock.nix
     ./wofi.nix
     ./zathura.nix
+    ./qutebrowser.nix
     ./waybar.nix
   ];
   home.packages = with pkgs; [
