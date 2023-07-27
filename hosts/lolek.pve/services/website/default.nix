@@ -7,7 +7,7 @@ in
     let days = n: toString (n * 60 * 60 * 24);
     in
     {
-      "dechnik.net" = {
+      "dev.dechnik.net" = {
         extraConfig = ''
           access_log /var/log/nginx/dechnik.net.access.log;
         '';

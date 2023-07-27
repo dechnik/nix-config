@@ -34,7 +34,7 @@ lib.mkMerge [
         middlewares = [ "dechnik-ips" ];
       };
       routers.dechnik = {
-        rule = "Host(`dechnik.net`)";
+        rule = "Host(`dev.dechnik.net`)";
         service = "nc";
         entryPoints = [ "web" ];
       };
