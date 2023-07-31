@@ -39,8 +39,8 @@ let
     src = fetchFromGitHub {
       owner = "lldap";
       repo = "lldap";
-      rev = "1acc8cd78cc7c7dcd0513bc27311a75a8dfc4485";
-      hash = "sha256-XhkLks27gh0jnKYFTwQp1oJD3lONMgOy49Wq/Fx7Iw8=";
+      rev = "d9f4adcb0e4d9ee52645b393328841dbba9fb1ef";
+      hash = "sha256-2zT7euSP1ArdlRnjBN0S6gpOcfsr6lPCTBoqKCxJNk8=";
     };
 
     postPatch = ''
