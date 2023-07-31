@@ -25,7 +25,7 @@
     settings = {
       ldap_host = "0.0.0.0";
       ldap_port = 3890;
-      http_host = "127.0.0.1";
+      http_host = "10.61.0.1";
       http_port = 17170;
       http_url = "https://ldap.dechnik.net";
       ldap_base_dn = "dc=dechnik,dc=net";
@@ -54,7 +54,7 @@
 
   services.traefik.dynamicConfigOptions.http = {
     services.lldap = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:17170"; }];
+      loadBalancer.servers = [{ url = "http://10.61.0.1:17170"; }];
     };
 
     routers.lldap = {
