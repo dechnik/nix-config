@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ lib, config, ... }: {
   environment.persistence = {
     "/persist" = {
       directories = [
@@ -21,7 +21,7 @@
       factor = "4";
     };
 
-    jails.DEFAULT = ''
+    jails.DEFAULT = lib.mkDefault ''
       blocktype = DROP
       bantime = 2h
       findtime = 1h

@@ -3,7 +3,7 @@
 }:
 {
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       # icon fonts
       material-icons
       material-design-icons
@@ -38,4 +38,3 @@
     # };
   };
 }
-
