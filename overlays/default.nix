@@ -31,7 +31,6 @@ in {
         jebbs.plantuml
 
         # Languages
-        bungcip.better-toml
         tamasfe.even-better-toml
         ms-python.vscode-pylance
 
