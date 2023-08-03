@@ -65,6 +65,17 @@ in {
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
     });
 
+    # TODO downgraded for mu4e
+    mu = prev.mu.overrideAttrs (oldAttrs: {
+      version = "1.10.4";
+      src = final.fetchFromGitHub {
+        owner = "djcb";
+        repo = "mu";
+        rev = "v1.10.4";
+        hash = "sha256-vwStqrw/fPYUpBhBsLX0MPXtBtP5LwU0AYmUbP+Ywgo=";
+      };
+    });
+
     passExtensions = prev.passExtensions // {
       # https://github.com/tadfisher/pass-otp/pull/173
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
