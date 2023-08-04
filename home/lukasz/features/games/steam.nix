@@ -29,7 +29,7 @@ in
     desktopEntries = {
       steam-ses = {
         name = "Steam Session";
-        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} -O ${monitor.name} -e -- steam";
+        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} -O ${monitor.name} -e -- steam -gamepadui";
         type = "Application";
       };
     };
