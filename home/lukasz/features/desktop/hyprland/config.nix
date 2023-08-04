@@ -103,7 +103,7 @@
 
   # Startup
   exec-once=gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
-  exec-once=waybar
+  # exec-once=waybar
   exec=swaybg -i ${wallpaper} --mode fill
   exec-once=mako
   # exec-once=blueman-applet

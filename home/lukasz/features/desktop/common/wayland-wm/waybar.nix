@@ -2,6 +2,19 @@
 
 let
   # Dependencies
+  cat = "${pkgs.coreutils}/bin/cat";
+  cut = "${pkgs.coreutils}/bin/cut";
+  find = "${pkgs.findutils}/bin/find";
+  grep = "${pkgs.gnugrep}/bin/grep";
+  perl = "${pkgs.perl}/bin/perl";
+  pgrep = "${pkgs.procps}/bin/pgrep";
+  sed = "${pkgs.gnused}/bin/sed";
+  tail = "${pkgs.coreutils}/bin/tail";
+  wc = "${pkgs.coreutils}/bin/wc";
+  xargs = "${pkgs.findutils}/bin/xargs";
+  timeout = "${pkgs.coreutils}/bin/timeout";
+  ping = "${pkgs.iputils}/bin/ping";
+
   jq = "${pkgs.jq}/bin/jq";
   xml = "${pkgs.xmlstarlet}/bin/xml";
   systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -38,6 +51,7 @@ in
 {
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     settings = {
 
       secondary = {
@@ -124,14 +138,13 @@ in
           interval = 5;
           return-type = "json";
           exec = jsonOutput "gpu" {
-            text = "$(cat /sys/class/drm/card0/device/gpu_busy_percent)";
+            text = "$(${cat} /sys/class/drm/card0/device/gpu_busy_percent)";
             tooltip = "GPU Usage";
           };
-          format = "力 {}%";
-          on-click = systemMonitor;
+          format = "󰒋  {}%";
         };
         memory = {
-          format = "  {}%";
+          format = "󰍛  {}%";
           interval = 5;
           on-click = systemMonitor;
         };
@@ -139,8 +152,8 @@ in
           format = "{icon}  {volume}%";
           format-muted = "   0%";
           format-icons = {
-            headphone = "";
-            headset = "";
+            headphone = "󰋋";
+            headset = "󰋎";
             portable = "";
             default = [ "" "" "" ];
           };
@@ -149,16 +162,16 @@ in
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
-            activated = "零";
-            deactivated = "鈴";
+            activated = "󰒳";
+            deactivated = "󰒲";
           };
         };
         battery = {
           bat = "BAT0";
           interval = 10;
-          format-icons = [ "  " "  " "  " "  " "  " "  " "  " "  " "  " "  " ];
+          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
           format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
+          format-charging = "󰂄 {capacity}%";
           onclick = "";
         };
         "sway/window" = {
@@ -166,8 +179,8 @@ in
         };
         network = {
           interval = 3;
-          format-wifi = "  {essid}";
-          format-ethernet = " Connected";
+          format-wifi = "   {essid}";
+          format-ethernet = "󰈁 Connected";
           format-disconnected = "";
           tooltip-format = ''
             {ifname}
@@ -192,11 +205,11 @@ in
               pre = ''
                 set -o pipefail
                 ${concatStringsSep "\n" (map (host: ''
-                  ping_${replaceStrings ["."] ["_"] host}="$(timeout 2 ping -c 1 -q ${host} 2>/dev/null | tail -1 | cut -d '/' -f5 | cut -d '.' -f1)ms" || ping_${replaceStrings ["."] ["_"] host}="Dc"
+                  ping_${replaceStrings ["."] ["_"] host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${replaceStrings ["."] ["_"] host}="Dc"
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine}   $ping_${mailMachine} B $ping_${homeMachine}";
+              text = "  $ping_${remoteMachine}   $ping_${mailMachine}  $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${replaceStrings ["."] ["_"] host}") hosts);
             };
@@ -207,7 +220,7 @@ in
           return-type = "json";
           exec = jsonOutput "menu" {
             text = "";
-            tooltip = ''$(cat /etc/os-release | grep PRETTY_NAME | cut -d '"' -f2)'';
+            tooltip = ''$(${cat} /etc/os-release | ${grep} PRETTY_NAME | ${cut} -d '"' -f2)'';
           };
           on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
         };
@@ -256,18 +269,18 @@ in
           return-type = "json";
           exec = jsonOutput "unread-mail" {
             pre = ''
-              count=$(find ~/.local/share/mail/*/Inbox/new -type f | wc -l)
+              count=$(${find} ~/.local/share/mail/*/Inbox/new -type f | ${wc} -l)
               if [ "$count" == "0" ]; then
                 subjects="No new mail"
                 status="read"
               else
                 subjects=$(\
-                  grep -h "Subject: " -r ~/.local/share/mail/*/Inbox/new | cut -d ':' -f2- | \
-                  perl -CS -MEncode -ne 'print decode("MIME-Header", $_)' | ${xml} esc | sed -e 's/^/\-/'\
+                  ${grep} -h "Subject: " -r ~/.local/share/mail/*/Inbox/new | ${cut} -d ':' -f2- | \
+                  ${perl} -CS -MEncode -ne 'print decode("MIME-Header", $_)' | ${xml} esc | ${sed} -e 's/^/\-/'\
                 )
                 status="unread"
               fi
-              if pgrep mbsync &>/dev/null; then
+              if ${pgrep} mbsync &>/dev/null; then
                 status="syncing"
               fi
             '';
@@ -277,14 +290,14 @@ in
           };
           format = "{icon}  {}";
           format-icons = {
-            "read" = "";
-            "unread" = "";
-            "syncing" = "";
+            "read" = "󰇯";
+            "unread" = "󰇮";
+            "syncing" = "󰁪";
           };
           on-click = mail;
         };
         "custom/gamemode" = {
-          exec-if = "${gamemoded} --status | grep 'is active' -q";
+          exec-if = "${gamemoded} --status | ${grep} 'is active' -q";
           interval = 2;
           return-type = "json";
           exec = jsonOutput "gamemode" {
@@ -298,7 +311,7 @@ in
           exec = jsonOutput "gammastep" {
             pre = ''
               if unit_status="$(${systemctl} --user is-active gammastep)"; then
-                status="$unit_status ($(${journalctl} --user -u gammastep.service -g 'Period: ' | tail -1 | cut -d ':' -f6 | xargs))"
+                status="$unit_status ($(${journalctl} --user -u gammastep.service -g 'Period: ' | ${tail} -1 | ${cut} -d ':' -f6 | ${xargs}))"
               else
                 status="$unit_status"
               fi
@@ -308,8 +321,8 @@ in
           };
           format = "{icon}";
           format-icons = {
-            "activating" = " ";
-            "deactivating" = " ";
+            "activating" = "󰁪 ";
+            "deactivating" = "󰁪 ";
             "inactive" = "? ";
             "active (Night)" = " ";
             "active (Nighttime)" = " ";
@@ -327,8 +340,8 @@ in
           return-type = "json";
           exec = jsonOutput "currentplayer" {
             pre = ''
-              player="$(${playerctl} status -f "{{playerName}}" 2>/dev/null || echo "No player active" | cut -d '.' -f1)"
-              count="$(${playerctl} -l | wc -l)"
+              player="$(${playerctl} status -f "{{playerName}}" 2>/dev/null || echo "No player active" | ${cut} -d '.' -f1)"
+              count="$(${playerctl} -l | ${wc} -l)"
               if ((count > 1)); then
                 more=" +$((count - 1))"
               else
@@ -342,15 +355,15 @@ in
           format = "{icon}{}";
           format-icons = {
             "No player active" = " ";
-            "Celluloid" = " ";
-            "spotify" = " ";
-            "ncspot" = " 阮";
-            "qutebrowser" = "";
+            "Celluloid" = "󰎁 ";
+            "spotify" = " 󰓇";
+            "ncspot" = " 󰓇";
+            "qutebrowser" = "󰖟";
             "firefox" = " ";
             "brave" = " ";
             "discord" = "  ";
             "sublimemusic" = " ";
-            "kdeconnect" = " ";
+            "kdeconnect" = "󰄡 ";
           };
           on-click = "${playerctld} shift";
           on-click-right = "${playerctld} unshift";
@@ -363,9 +376,9 @@ in
           max-length = 30;
           format = "{icon} {}";
           format-icons = {
-            "Playing" = "";
-            "Paused" = " ";
-            "Stopped" = "";
+            "Playing" = "󰐊";
+            "Paused" = "󰏤 ";
+            "Stopped" = "󰓛";
           };
           on-click = "${playerctl} play-pause";
         };

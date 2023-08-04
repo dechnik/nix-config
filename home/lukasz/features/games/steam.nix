@@ -25,6 +25,15 @@ let
   '';
 in
 {
+  xdg = {
+    desktopEntries = {
+      steam-ses = {
+        name = "Steam Session";
+        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} -O ${monitor.name} -e -- steam";
+        type = "Application";
+      };
+    };
+  };
   home.packages = with pkgs; [
     steam-with-pkgs
     gamescope
