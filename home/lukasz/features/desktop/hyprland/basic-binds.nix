@@ -16,7 +16,7 @@ in {
     ];
 
     bind = [
-      "SUPERSHIFT,q,killactive"
+      "SUPER,q,killactive"
       "SUPERSHIFT,e,exit"
 
       "SUPER,s,togglesplit"

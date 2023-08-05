@@ -113,7 +113,7 @@ in
           "custom/unread-mail"
         ];
         modules-right = [
-          "custom/gamemode"
+          # "custom/gamemode"
           "network"
           "custom/tailscale-ping"
           "battery"
@@ -212,7 +212,7 @@ in
                 '') hosts)}
               '';
               # Access a remote machine's and a home machine's ping
-              text = "  $ping_${remoteMachine}   $ping_${mailMachine}  $ping_${homeMachine}";
+              text = "  $ping_${remoteMachine}   $ping_${mailMachine}   $ping_${homeMachine}";
               # Show pings from all machines
               tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${replaceStrings ["."] ["_"] host}") hosts);
             };
