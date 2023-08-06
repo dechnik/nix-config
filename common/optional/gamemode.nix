@@ -1,17 +1,3 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
-let
-
-  startscript = pkgs.writeShellScript "gamemode-start" ''
-    ${pkgs.procps}/bin/pkill swayidle
-  '';
-
-  endscript = pkgs.writeShellScript "gamemode-end" ''
-  '';
-in
 {
   programs.gamemode = {
     enable = true;
@@ -20,9 +6,10 @@ in
         softrealtime = "on";
         inhibit_screensaver = 1;
       };
-      custom = {
-        start = startscript.outPath;
-        end = endscript.outPath;
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+        amd_performance_level = "high";
       };
     };
   };
