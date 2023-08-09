@@ -107,7 +107,7 @@
         # Lock screen
         "SUPER,Escape,exec,wlogout -p layer-shell"
 
-        "SUPER,F3,exec,spicemenu"
+        "SUPER,s,exec,spicemenu"
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"
