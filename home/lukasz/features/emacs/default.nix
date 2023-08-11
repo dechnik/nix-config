@@ -134,6 +134,7 @@ in
 
     # Node
     nodejs-18_x
+    nodePackages.typescript-language-server
     emacsmail
     # emacs-client
   ];
