@@ -29,6 +29,7 @@ let
     python-lsp-server
     pyls-isort
     pytest
+    black
     nose
     mypy
     tldextract # required by qute-pass

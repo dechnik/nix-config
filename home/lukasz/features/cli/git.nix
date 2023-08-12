@@ -24,6 +24,6 @@
       diff.org.xfuncname = "^(\\*+ +.*)$";
     };
     lfs.enable = true;
-    ignores = [ ".direnv" "result" ];
+    ignores = [ ".idea" ".direnv" "result" ];
   };
 }
