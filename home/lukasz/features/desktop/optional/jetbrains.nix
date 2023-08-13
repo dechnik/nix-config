@@ -1,4 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.jetbrains.pycharm-community ];
+  home.packages = [ pkgs.jetbrains.pycharm-professional ];
 }
