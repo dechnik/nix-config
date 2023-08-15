@@ -79,9 +79,13 @@
       url = "git+https://git.dechnik.net/lukasz/maubot.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    # neovim = {
+    #   url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
+    # };
   };
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
