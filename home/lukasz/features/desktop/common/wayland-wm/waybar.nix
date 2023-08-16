@@ -101,8 +101,8 @@ in
         ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
           "wlr/workspaces"
         ]) ++ [
-          "custom/currentplayer"
-          "custom/player"
+          # "custom/currentplayer"
+          # "custom/player"
         ];
         modules-center = [
           "cpu"

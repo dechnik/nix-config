@@ -6,16 +6,24 @@
     ./which-key.nix
     ./neogit.nix
     ./treesitter.nix
+    ./harpoon.nix
+    ./nvim-tree.nix
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {
     enable = true;
 
     colorschemes.gruvbox.enable = true;
+    luaLoader.enable = true;
     viAlias = true;
     vimAlias = true;
 
-    globals.mapleader = " ";
+    globals = {
+      mapleader = " ";
+      maplocalleader = " ";
+      loaded_netrw = 1;
+      loaded_netrwPlugin = 1;
+    };
 
     options = {
       # Mouse support

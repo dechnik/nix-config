@@ -14,10 +14,10 @@
     ];
 
     maps.normal = {
-      "<leader>ff" = "<cmd>Telescope find_files<cr>";
-      "<leader>fg" = "<cmd>Telescope live_grep<cr>";
-      "<leader>fb" = "<cmd>Telescope buffers<cr>";
-      "<leader>fh" = "<cmd>Telescope help_tags<cr>";
+      "<leader>pf" = "<cmd>Telescope find_files<cr>";
+      "<leader>ss" = "<cmd>Telescope live_grep<cr>";
+      "<leader>pb" = "<cmd>Telescope buffers<cr>";
+      "<leader>ph" = "<cmd>Telescope help_tags<cr>";
 
       "<c-p>" = "<cmd>Telescope find_files<cr>";
       "<c-s-p>" = "<cmd>Telescope commands<cr>";
