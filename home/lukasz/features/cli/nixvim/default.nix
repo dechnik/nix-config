@@ -11,6 +11,7 @@
     ./nvim-cmp.nix
     ./bufferline.nix
     ./trouble.nix
+    ./gitsigns.nix
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {
