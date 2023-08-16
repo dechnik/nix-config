@@ -8,6 +8,8 @@
     ./treesitter.nix
     ./harpoon.nix
     ./nvim-tree.nix
+    ./nvim-cmp.nix
+    ./bufferline.nix
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {
