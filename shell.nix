@@ -17,6 +17,7 @@
       home-manager
       git
       colmena
+      just
       ssh-to-age
 
       sops

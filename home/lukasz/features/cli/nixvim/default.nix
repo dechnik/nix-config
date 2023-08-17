@@ -12,6 +12,7 @@
     ./bufferline.nix
     ./trouble.nix
     ./gitsigns.nix
+    ./session-manager.nix
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {

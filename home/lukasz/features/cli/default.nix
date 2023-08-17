@@ -29,6 +29,7 @@
     cryptsetup
     unzip
     zip
+    just
     magic-wormhole
 
     bc # Calculator

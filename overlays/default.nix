@@ -3,7 +3,7 @@ let
   addPatches = pkg: patches: pkg.overrideAttrs (oldAttrs: {
     patches = (oldAttrs.patches or [ ]) ++ patches;
   });
-in {
+in rec {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}' or
@@ -13,7 +13,15 @@ in {
       inputs;
   };
 
-  additions = final: _prev: import ../pkgs { pkgs = final; };
+  # additions = final: _prev: import ../pkgs { pkgs = final; };
+  additions = final: prev: import ../pkgs { pkgs = final; } // {
+    # vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins { };
+    vimPlugins = prev.vimPlugins // import ../pkgs/vim-plugins {
+      inherit (final) fetchFromGitHub;
+      inherit (prev.vimUtils) buildVimPlugin;
+      inherit (final) sources;
+    };
+  };
 
   # Modifies existing packages
   modifications = final: prev: {

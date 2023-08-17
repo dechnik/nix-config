@@ -1,0 +1,9 @@
+# nvfetcher.toml
+
+### Neovim Plugins {{{ ###
+
+[nvim-session-manager]
+src.git = "https://github.com/Shatur/neovim-session-manager"
+fetch.git = "https://github.com/Shatur/neovim-session-manager"
+
+### }}} ###

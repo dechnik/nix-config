@@ -1,0 +1,21 @@
+{
+    "nvim-session-manager": {
+        "cargoLocks": null,
+        "date": "2023-07-22",
+        "extract": null,
+        "name": "nvim-session-manager",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "4883372b1ef2bdcf4cbdac44c98d68c216914462",
+            "sha256": "sha256-04GL+0JdtD2hEOSrRJUh3Wdpoy2igjHt95Nf3WioFU4=",
+            "type": "git",
+            "url": "https://github.com/Shatur/neovim-session-manager"
+        },
+        "version": "4883372b1ef2bdcf4cbdac44c98d68c216914462"
+    }
+}

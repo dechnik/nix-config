@@ -15,7 +15,7 @@
 
     maps.normal = {
       "<leader>pf" = "<cmd>Telescope find_files<cr>";
-      "<leader>ss" = "<cmd>Telescope live_grep<cr>";
+      "<leader>ps" = "<cmd>Telescope live_grep<cr>";
       "<leader>pb" = "<cmd>Telescope buffers<cr>";
       "<leader>ph" = "<cmd>Telescope help_tags<cr>";
 
