@@ -13,6 +13,7 @@
     ./trouble.nix
     ./gitsigns.nix
     ./session-manager.nix
+    ./dashboard.nix
     inputs.nixvim.homeManagerModules.nixvim
   ];
   programs.nixvim = {

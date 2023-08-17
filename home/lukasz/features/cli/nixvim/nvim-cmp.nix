@@ -8,6 +8,7 @@
         { name = "nvim_lsp"; }
         { name = "luasnip"; }
         { name = "path"; }
+        { name = "dictionary"; }
         { name = "buffer"; }
         { name = "nvim_lsp_signature_help"; }
         { name = "nvim_lua"; }
