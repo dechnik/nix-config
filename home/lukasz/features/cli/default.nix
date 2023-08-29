@@ -45,5 +45,6 @@
 
     nil # Nix LSP
     nixfmt # Nix formatter
+    inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
   ];
 }

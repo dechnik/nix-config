@@ -9,7 +9,12 @@ in rec {
   # 'inputs.${flake}.legacyPackages.${pkgs.system}' or
   flake-inputs = final: _: {
     inputs = builtins.mapAttrs
-      (_: flake: (flake.packages or flake.legacyPackages or { }).${final.system} or { })
+      (_: flake: let
+        legacyPackages = ((flake.legacyPackages or {}).${final.system} or {});
+        packages = ((flake.packages or {}).${final.system} or {});
+      in
+        if legacyPackages != {} then legacyPackages else packages
+      )
       inputs;
   };
 
