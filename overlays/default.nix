@@ -26,6 +26,7 @@ in rec {
       inherit (prev.vimUtils) buildVimPlugin;
       inherit (final) sources;
     };
+    sources = prev.callPackage (import ../pkgs/_sources/generated.nix) {};
   };
 
   # Modifies existing packages

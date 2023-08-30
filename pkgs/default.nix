@@ -1,5 +1,4 @@
 { pkgs ? null }: rec {
-  sources = pkgs.callPackage (import ./_sources/generated.nix) {};
   shellcolord = pkgs.callPackage ./shellcolord { };
   lyrics = pkgs.callPackage ./lyrics { };
   pass-wofi = pkgs.callPackage ./pass-wofi { };

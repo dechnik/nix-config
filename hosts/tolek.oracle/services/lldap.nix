@@ -1,6 +1,6 @@
 { inputs, config, ... }:
 {
-  disabledModules = [ "services/databases/lldap.nix" ];
+  # disabledModules = [ "services/databases/lldap.nix" ];
 
   sops.secrets = {
     lldap-jwt-secret = {
