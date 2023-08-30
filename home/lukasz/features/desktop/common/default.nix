@@ -39,6 +39,5 @@
     tor-browser-bundle-bin
     pcmanfm
     meld
-    gtk-pipe-viewer
   ];
 }
