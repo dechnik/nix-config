@@ -77,6 +77,11 @@ in rec {
       };
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
     });
+    wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
+      version = "0.2.84";
+      hash = "sha256-0rK+Yx4/Jy44Fw5VwJ3tG243ZsyOIBBehYU54XP/JGk=";
+      cargoHash = "sha256-vcpxcRlW1OKoD64owFF6mkxSqmNrvY+y3Ckn5UwEQ50=";
+    };
 
     # TODO downgraded for mu4e
     mu = prev.mu.overrideAttrs (oldAttrs: {
