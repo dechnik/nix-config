@@ -29,7 +29,7 @@ in
 
   programs.qutebrowser = {
     enable = true;
-    package = pkgs.qutebrowser-qt6;
+    package = pkgs.qutebrowser;
     loadAutoconfig = true;
     searchEngines = {
       DEFAULT = "https://search.brave.com/search?q={}";

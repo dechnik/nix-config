@@ -43,7 +43,8 @@ in
           lib.concatMapStrings (host: ''
             ${host.ipAddress} ${host.hostName}.${currentSite}
           '')
-          config.services.dhcpd4.machines
+            # config.services.dhcpd4.machines
+            [ ]
         }
           }
         }

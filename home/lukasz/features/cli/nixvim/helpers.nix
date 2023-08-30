@@ -13,7 +13,7 @@ let
     ;
 
   inherit (lib.strings)
-    isCoercibleToString
+    isStringLike
     lowerChars
     replaceStrings
     upperChars
@@ -57,7 +57,7 @@ rec {
       value =
         if isString value
         then value
-        else if isCoercibleToString value
+        else if isStringLike value
         then toString value
         else throw "mkLua: expected a string, got ${value}";
     };
@@ -135,7 +135,7 @@ rec {
           if v == []
           then "{}"
           else "{ ${concatMapStringsSep ", " (toLua'' spaces) v} }"
-        else if isCoercibleToString v
+        else if isStringLike v
         then escapeLuaString (toString v)
         else if isAttrs v
         then
@@ -165,7 +165,7 @@ rec {
   #   toLuaObject' { multiline = false; } { foo = null; bar = []; baz = {}; qux = [ 1 2 3 ]; }
   #   => ''{ ["qux"] = { 1, 2, 3 } }''
   toLuaObject' = opts: x:
-    if isAttrs x && !isLua x && !isCoercibleToString x
+    if isAttrs x && !isLua x && !isStringLike x
     then toLua' opts (filterEmptyAttrs x)
     else toLua' opts x;
 
