@@ -37,9 +37,6 @@ in
     username = lib.mkDefault "lukasz";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = lib.mkDefault "22.05";
-    sessionVariables = {
-      FLAKE = "$HOME/Projects/nix-config";
-    };
 
     persistence = {
       "/persist/home/lukasz" = {
