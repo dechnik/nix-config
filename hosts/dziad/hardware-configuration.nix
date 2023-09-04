@@ -17,6 +17,7 @@
       };
     };
   };
+  boot.kernelParams = [ "nohibernate" ];
 
   disko.devices = import ./disks.nix { };
 
