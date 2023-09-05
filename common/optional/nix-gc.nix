@@ -4,7 +4,8 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 2d";
+      # Keep the last 3 generations
+      options = "--delete-older-than +3";
     };
   };
 }

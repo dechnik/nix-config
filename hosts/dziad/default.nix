@@ -23,6 +23,7 @@
       ../../common/optional/bluetooth.nix
       ../../common/optional/pantalaimon.nix
       ../../common/optional/zram.nix
+      ../../common/optional/nix-gc.nix
       # ../common/optional/postfix.nix
       # ../../common/optional/gamemode.nix
       # ../common/optional/zfs.nix
