@@ -1,6 +1,5 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
-  networking.hostId = lib.mkForce "00000000";
   boot = {
     initrd = {
       availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
@@ -20,10 +19,6 @@
   boot.kernelParams = [ "nohibernate" ];
 
   disko.devices = import ./disks.nix { };
-
-  fileSystems."/persist" = {
-    neededForBoot = true;
-  };
 
   # fileSystems = {
   #   "/old" = {
