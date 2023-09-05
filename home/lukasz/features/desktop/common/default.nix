@@ -30,6 +30,7 @@
     "text/xml" = [ "firefox.desktop" ];
     "x-scheme-handler/http" = [ "firefox.desktop" ];
     "x-scheme-handler/https" = [ "firefox.desktop" ];
+    "applications/x-www-browser" = [ "firefox.desktop" ];
   };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
