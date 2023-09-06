@@ -112,16 +112,26 @@ in
 
   my.consulServices.rspamd_exporter = consul.prometheusExporter "rspamd" config.services.prometheus.exporters.rspamd.port;
 
+  services.nginx = {
+    enable = true;
+    defaultHTTPListenPort = 8080;
+    virtualHosts = {
+      "mail.dechnik.net" = {
+        forceSSL = lib.mkForce false;
+        enableACME = lib.mkForce false;
+      };
+    };
+  };
   # Webmail
-  # services.roundcube = rec {
-  #   enable = true;
-  #   package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
-  #   hostName = "mail.dechnik.net";
-  #   extraConfig = ''
-  #     $config['smtp_server'] = "tls://${hostName}";
-  #     $config['smtp_user'] = "%u";
-  #     $config['smtp_pass'] = "%p";
-  #     $config['plugins'] = [ "carddav" ];
-  #   '';
-  # };
+  services.roundcube = rec {
+    enable = true;
+    package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
+    hostName = "mail.dechnik.net";
+    extraConfig = ''
+      $config['smtp_server'] = "tls://${hostName}";
+      $config['smtp_user'] = "%u";
+      $config['smtp_pass'] = "%p";
+      $config['plugins'] = [ "carddav" ];
+    '';
+  };
 }
