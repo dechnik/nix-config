@@ -430,6 +430,11 @@ in
         margin-right: 4px;
         background-color: transparent;
       }
+      #custom-hostname {
+        margin-left: 0px;
+        margin-right: 4px;
+        background-color: transparent;
+      }
 
       #temperature.critical {
         color: #${colors.base0F};
