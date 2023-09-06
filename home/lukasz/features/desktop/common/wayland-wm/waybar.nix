@@ -56,58 +56,26 @@ in
     });
     systemd.enable = true;
     settings = {
-
-      secondary = {
-        mode = "dock";
-        layer = "top";
-        height = 34;
-        margin = "0";
-        position = "top";
-        output = builtins.map (m: m.name) (builtins.filter (m: !m.isPrimary) config.monitors);
-        modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
-          "sway/workspaces"
-          "sway/mode"
-        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
-          "wlr/workspaces"
-        ]);
-        modules-right = [
-          "clock"
-        ];
-
-        clock = {
-          format = "{:%d/%m %H:%M}";
-          tooltip-format = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-          on-click = calendar;
-        };
-        "wlr/workspaces" = {
-          on-click = "activate";
-          format = "{name}";
-          sort-by-name = true;
-        };
-      };
-
       primary = {
         mode = "dock";
         layer = "top";
         height = 34;
         margin = "0";
         position = "top";
-        output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
         modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
           "sway/workspaces"
           "sway/mode"
         ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
-          "wlr/workspaces"
+          "hyprland/workspaces"
+          "hyprland/submap"
         ]) ++ [
           # "custom/currentplayer"
           # "custom/player"
         ];
         modules-center = [
-          "cpu"
-          "memory"
           "pulseaudio"
+          "battery"
+          "clock"
           "custom/gpg-agent"
           "custom/zotero"
           "custom/unread-mail"
@@ -116,9 +84,8 @@ in
           # "custom/gamemode"
           "network"
           "custom/tailscale-ping"
-          "battery"
           "tray"
-          "clock"
+          "custom/hostname"
         ];
 
         "wlr/workspaces" = {
@@ -228,8 +195,7 @@ in
           on-click = "${wofi} -S drun -x 10 -y 10 -W 25% -H 60%";
         };
         "custom/hostname" = {
-          exec = "echo $USER@$(hostname)";
-          on-click = terminal;
+          exec = "echo $USER@$HOSTNAME";
         };
         "custom/gpg-agent" = {
           interval = 2;
