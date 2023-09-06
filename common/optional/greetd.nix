@@ -1,39 +1,43 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 let
-  user = "lukasz";
-  greetd = "${pkgs.greetd.greetd}/bin/greetd";
-  gtkgreet = "${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+  homeCfgs = config.home-manager.users;
+  homePaths = lib.mapAttrsToList (n: v: "${v.home.path}/share") homeCfgs;
+  extraDataPaths = lib.concatStringsSep ":" homePaths;
+  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${extraDataPaths}"'';
 
-  sway-kiosk = command: "${pkgs.sway}/bin/sway --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
+  sway-kiosk = command: "${pkgs.sway}/bin/sway --config ${pkgs.writeText "kiosk.config" ''
     output * bg #000000 solid_color
-    exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-    exec "${command}; ${pkgs.sway}/bin/swaymsg exit"
+    exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK"
+    xwayland disable
+    input "type:touchpad" {
+      tap enabled
+    }
+    exec '${vars} ${command} -l debug; ${pkgs.sway}/bin/swaymsg exit'
   ''}";
+
+  lukaszCfg = homeCfgs.lukasz;
 in
 {
-  environment.systemPackages = with pkgs; [
-    bibata-cursors
+  users.extraUsers.greeter.packages = [
+    lukaszCfg.gtk.theme.package
+    lukaszCfg.gtk.iconTheme.package
   ];
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
-  services.greetd = {
+
+  programs.regreet = {
     enable = true;
     settings = {
-      default_session = {
-        command = sway-kiosk "${gtkgreet} -l -c '$SHELL -l'";
-        inherit user;
+      GTK = {
+        icon_theme_name = "ePapirus";
+        theme_name = lukaszCfg.gtk.theme.name;
       };
-      initial_session = {
-        command = "$SHELL -l";
-        inherit user;
+      background = {
+        path = lukaszCfg.wallpaper;
+        fit = "Cover";
       };
     };
   };
-  security = {
-    # unlock GPG keyring on login
-    pam.services.greetd.gnupg.enable = true;
-    # pam.services = {
-    #   greetd.enableGnomeKeyring = true;
-    # };
-    polkit.enable = true;
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = sway-kiosk (lib.getExe config.programs.regreet.package);
   };
 }
