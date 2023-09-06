@@ -2,6 +2,8 @@
 let
   toplevel = builtins.replaceStrings [".dechnik.net"] [""] config.networking.fqdn;
   hostname = builtins.replaceStrings ["."] ["_"] toplevel;
+  upgrade_flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}#${toplevel}";
+  check_flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}";
   # Only enable auto upgrade if current config came from a clean tree
   # This avoids accidental auto-upgrades when working locally.
   isClean = inputs.self ? rev;
@@ -13,7 +15,7 @@ in
     flags = [
       "--refresh"
     ];
-    flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}#${toplevel}";
+    flake = upgrade_flake;
   };
   # Only run if current config (self) is older than the new one.
   systemd.services.nixos-upgrade = lib.mkIf config.system.autoUpgrade.enable {
@@ -22,7 +24,7 @@ in
         lastModified() {
           nix flake metadata "$1" --refresh --json | ${lib.getExe pkgs.jq} '.lastModified'
         }
-        test "$(lastModified "${config.system.autoUpgrade.flake}")"  -gt "$(lastModified "self")"
+        test "$(lastModified "${check_flake}")"  -gt "$(lastModified "self")"
       ''
     );
   };
