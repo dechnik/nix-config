@@ -116,7 +116,7 @@ in
     enable = true;
     defaultHTTPListenPort = 8080;
     virtualHosts = {
-      "mail.dechnik.net" = {
+      "roundcube.dechnik.net" = {
         forceSSL = lib.mkForce false;
         enableACME = lib.mkForce false;
       };
@@ -126,9 +126,9 @@ in
   services.roundcube = rec {
     enable = true;
     package = pkgs.roundcube.withPlugins (p: [ p.carddav ]);
-    hostName = "mail.dechnik.net";
+    hostName = "roundcube.dechnik.net";
     extraConfig = ''
-      $config['smtp_server'] = "tls://${hostName}";
+      $config['smtp_server'] = "tls://mail.dechnik.net";
       $config['smtp_user'] = "%u";
       $config['smtp_pass'] = "%p";
       $config['plugins'] = [ "carddav" ];
