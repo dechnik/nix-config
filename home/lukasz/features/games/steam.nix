@@ -32,6 +32,11 @@ in
         exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} -O ${monitor.name} -e -- steam -gamepadui";
         type = "Application";
       };
+      steam-ses-tv = {
+        name = "Steam Session TV";
+        exec = "${pkgs.gamescope}/bin/gamescope -W 3840 -H 2160 -O HDMI-A-1 -e -- steam -gamepadui";
+        type = "Application";
+      };
     };
   };
   home.packages = with pkgs; [
