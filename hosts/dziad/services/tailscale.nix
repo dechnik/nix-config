@@ -4,9 +4,9 @@
 , ...
 }: (import ../../../common/functions/tailscale.nix { inherit config pkgs lib; }).tailscale
 {
-  preAuthKey = "7502c12583d639a03c53cd4d439cd2bbaf5f69c9ff46fa05"; # onetime key
+  preAuthKey = "203af9bcd7293576d57b4550127880fcaad93aff1cd2a0ab"; # onetime key
   loginServer = "https://tailscale.dechnik.net";
-  reauth = false;
+  reauth = true;
   exitNode = false;
   advertiseRoutes = [ ];
   tags = [ "tag:home" "tag:work" "tag:desktop" ];
