@@ -9,6 +9,11 @@ let
   inherit (config) mailhost;
 in
 {
+  home = {
+    persistence = {
+      "/persist/home/lukasz".directories = [ ".thunderbird" ];
+    };
+  };
   programs.thunderbird = {
     enable = true;
     profiles = {
