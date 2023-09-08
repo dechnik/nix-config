@@ -114,10 +114,19 @@ let
   '';
 in
 {
+  config.programs.thunderbird = {
+    enable = true;
+    profiles = {
+      lukasz = {
+        isDefault = true;
+      };
+    };
+  };
   config.home.persistence = {
     "/persist/mail/lukasz" = {
       directories = [
         ".local/share/mail"
+        ".thunderbird"
       ];
       allowOther = true;
     };

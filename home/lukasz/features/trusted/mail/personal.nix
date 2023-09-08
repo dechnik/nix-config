@@ -9,19 +9,6 @@ let
   inherit (config) mailhost;
 in
 {
-  home = {
-    persistence = {
-      "/persist/home/lukasz".directories = [ ".thunderbird" ];
-    };
-  };
-  programs.thunderbird = {
-    enable = true;
-    profiles = {
-      lukasz = {
-        isDefault = true;
-      };
-    };
-  };
   accounts.email.accounts = {
     "dechnik" = {
       address = "lukasz@dechnik.net";
