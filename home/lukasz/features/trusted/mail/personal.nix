@@ -9,6 +9,14 @@ let
   inherit (config) mailhost;
 in
 {
+  programs.thunderbird = {
+    enable = true;
+    profiles = {
+      lukasz = {
+        isDefault = true;
+      };
+    };
+  };
   accounts.email.accounts = {
     "dechnik" = {
       address = "lukasz@dechnik.net";
@@ -16,6 +24,10 @@ in
         "admin@dechnik.net"
         "dechnik@dechnik.net"
       ];
+      thunderbird = {
+        enable = true;
+        profiles = [ "lukasz" ];
+      };
       realName = "Lukasz Dechnik";
       primary = true;
       userName = "lukasz@dechnik.net";
