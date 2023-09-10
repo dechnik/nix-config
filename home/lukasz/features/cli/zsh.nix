@@ -62,8 +62,8 @@
     shellAliases = {
       grep = "grep --color";
       ip = "ip --color";
-      l = "exa -l";
-      la = "exa -la";
+      l = "eza -l";
+      la = "eza -la";
       md = "mkdir -p";
       abook = "abook --config $XDG_CONFIG_HOME/abook/abookrc --datafile $HOME/Documents/abook/addressbook";
 
@@ -86,6 +86,6 @@
       us = "systemctl --user";
       rs = "sudo systemctl";
     };
-    shellGlobalAliases = { exa = "exa --icons --git"; };
+    shellGlobalAliases = { eza = "eza --icons --git"; };
   };
 }
