@@ -69,12 +69,12 @@ in rec {
     };
 
     qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
-      version = "unstable-2023-08-29";
+      version = "unstable-2023-09-10";
       src = final.fetchFromGitHub {
         owner = "qutebrowser";
         repo = "qutebrowser";
-        rev = "a1842e0226613d67ae8ebe8dd288277be3ad300b";
-        hash = "sha256-oAjhzTeZ7TNBR6lxBpNdDGJHnTdnWU16lZtlrvZhfE0=";
+        rev = "6e184c44cecfc579fd987d582f61c448ade6b0f5";
+        hash = "sha256-jgpJnWhfTPSHbGiKA9vSKhcJZxfeeSZxvIehfFUxUSE=";
       };
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
     });
