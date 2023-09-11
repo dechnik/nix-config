@@ -351,7 +351,7 @@ in
     in
     ''
       #!/bin/sh
-      # ${pkgs.mu}/bin/mu index
+      ${pkgs.mu}/bin/mu index
       lastrun="${config.xdg.dataHome}/mail/.mailsynclastrun"
       for acc in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
         new=$(${pkgs.findutils}/bin/find ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/new/ ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/cur/ -type f -newer "$lastrun" 2> /dev/null)
@@ -361,7 +361,7 @@ in
         esac
       done
       ${pkgs.coreutils}/bin/touch "$lastrun"
-      ${config.programs.emacs.package}/bin/emacsclient -e '(mu4e-update-index)'
+      # ${config.programs.emacs.package}/bin/emacsclient -e '(mu4e-update-index)'
     '';
   };
 
