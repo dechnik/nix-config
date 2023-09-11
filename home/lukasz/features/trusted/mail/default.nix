@@ -119,6 +119,10 @@ in
     profiles = {
       lukasz = {
         isDefault = true;
+        withExternalGnupg = true;
+        # settings = {
+        #   "mail.openpgp.allow_external_gnupg" = true;
+        # };
       };
     };
   };
@@ -131,9 +135,9 @@ in
       allowOther = true;
     };
   };
-  config.home.sessionVariables = {
-    MU4E_PATH = "${pkgs.mu}/share/emacs/site-lisp/mu4e";
-  };
+  # config.home.sessionVariables = {
+  #   MU4E_PATH = "${pkgs.mu}/share/emacs/site-lisp/mu4e";
+  # };
 
   config.home.file = {
     "${maildirBase}/.sig" = {
