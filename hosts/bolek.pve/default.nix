@@ -96,6 +96,16 @@
           destination = "10.60.0.1:51820";
           proto = "udp";
         }
+        {
+          sourcePort = 6880;
+          destination = "10.60.0.2:6880";
+          proto = "tcp";
+        }
+        {
+          sourcePort = 6880;
+          destination = "10.60.0.2:6880";
+          proto = "udp";
+        }
       ];
     };
 
@@ -108,6 +118,7 @@
         22 # SSH
         80 # HTTP
         443 # HTTPS
+        6880
         9418 # git-remote
         50443 # tailscale
       ];
@@ -117,6 +128,7 @@
         config.services.tailscale.port
         config.networking.wireguard.interfaces.wg0.listenPort
         3478 # headscale stun
+        6880
       ];
 
       trustedInterfaces = [ config.my.lan ];
