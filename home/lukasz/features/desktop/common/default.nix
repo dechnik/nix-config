@@ -36,6 +36,7 @@
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal
     lyrics
+    deluge
     brave
     tor-browser-bundle-bin
     pcmanfm
