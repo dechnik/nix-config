@@ -8,7 +8,7 @@ let
 
   paths = [
     config.services.postgresqlBackup.location
-    "/srv/lldap"
+    "/var/lib/lldap"
   ];
 
   cfg = site: {

@@ -31,8 +31,6 @@
       ldap_base_dn = "dc=dechnik,dc=net";
       ldap_user_dn = "admin";
       ldap_user_email = "admin@dechnik.net";
-      database_url = "sqlite:///srv/lldap/users.db?mode=rwc";
-      key_file = "/srv/lldap/private-key";
     };
   };
 
