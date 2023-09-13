@@ -10,7 +10,7 @@
     ./k3s.nix
     ./lf.nix
     #./neovim.nix
-    ./nixvim
+    ./nixvim/neovim.nix
     ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix
