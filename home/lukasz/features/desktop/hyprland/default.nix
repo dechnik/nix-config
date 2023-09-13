@@ -167,6 +167,24 @@
       ) (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
     extraConfig = ''
+      # make Firefox PiP window floating and sticky
+      windowrulev2 = float, title:^(Picture-in-Picture)$
+      windowrulev2 = pin, title:^(Picture-in-Picture)$
+
+      # throw sharing indicators away
+      windowrulev2 = workspace special silent, title:^(Firefox — Sharing Indicator)$
+      windowrulev2 = workspace special silent, title:^(.*is sharing (your screen|a window)\.)$
+      # start spotify tiled in ws9
+      windowrulev2 = tile, class:^(thunderbird)$
+      windowrulev2 = workspace 7 silent, class:^(thunderbird)$
+      # idle inhibit while watching videos
+      windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
+      windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
+      windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+      # fix xwayland apps
+      windowrulev2 = rounding 0, xwayland:1, floating:1
+      windowrulev2 = center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$
+      windowrulev2 = size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$
     '';
   };
 }
