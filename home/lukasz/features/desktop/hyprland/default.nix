@@ -12,6 +12,8 @@
     inputs.hyprwm-contrib.packages.${system}.grimblast
     swaybg
     swayidle
+    nwg-displays
+    wlr-randr
   ];
 
   wayland.windowManager.hyprland = {
