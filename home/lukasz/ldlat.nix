@@ -62,46 +62,6 @@
       workspace = "9";
     }
   ];
-  services = {
-    kanshi = {
-      enable = true;
-      systemdTarget = "graphical-session.target";
-      profiles = {
-        undocked = {
-          outputs = [
-            {
-              criteria = "eDP-1";
-              position = "0,0";
-            }
-          ];
-        };
-        docked-all = {
-          outputs = [
-            {
-              criteria = "eDP-1";
-              position = "1920,1080";
-              mode = "1920x1080@60Hz";
-            }
-            {
-              criteria = "HDMI-A-1";
-              position = "0,1080";
-              mode = "1920x1080@60Hz";
-            }
-            {
-              criteria = "DVI-I-2";
-              position = "0,0";
-              mode = "1920x1080@60Hz";
-            }
-            {
-              criteria = "DVI-I-1";
-              position = "1920,0";
-              mode = "1920x1080@60Hz";
-            }
-          ];
-        };
-      };
-    };
-  };
 
   wallpaper = builtins.fetchurl rec {
     name = "wallpaper-${sha256}.png";
