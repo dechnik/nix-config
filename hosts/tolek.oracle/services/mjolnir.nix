@@ -31,8 +31,8 @@
       "matrix-synapse.target"
     ];
   };
-  # services.pantalaimon-headless.instances.mjolnir = {
-  #   listenAddress = "127.0.0.1";
-  #   listenPort = 8100;
-  # };
+  services.pantalaimon-headless.instances.mjolnir = {
+    listenAddress = "127.0.0.1";
+    listenPort = 8100;
+  };
 }
