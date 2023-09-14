@@ -9,7 +9,8 @@
     ./traefik.nix
     ./matrix-synapse.nix
     ./psql-backup.nix
-    ./matterbridge.nix
+    # ./matterbridge.nix
+    ./mjolnir.nix
     ./maubot.nix
     ./maubot-alert.nix
     ./maubot-github.nix
