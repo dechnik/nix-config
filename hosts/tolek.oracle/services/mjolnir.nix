@@ -14,13 +14,13 @@
       enable = true;
       options = {
         listenAddress = "127.0.0.1";
-        listenPort = 8100;
-        homeserver = "https://matrix.dechnik.net";
+      #   listenPort = 8100;
       };
       username = "mjolnir";
       passwordFile = config.sops.secrets.mjolnir-password.path;
     };
-    managementRoom = "#moderators:dechnik.net";
+    homeserverUrl = "https://matrix.dechnik.net";
+    managementRoom = "!MAtniYIojErvlOBVAo:dechnik.net";
 
     settings = {
       protectAllJoinedRooms = true;
@@ -31,8 +31,8 @@
       "matrix-synapse.target"
     ];
   };
-  services.pantalaimon-headless.instances.mjolnir = {
-    listenAddress = "127.0.0.1";
-    listenPort = 8100;
-  };
+  # services.pantalaimon-headless.instances.mjolnir = {
+  #   listenAddress = "127.0.0.1";
+  #   listenPort = 8100;
+  # };
 }
