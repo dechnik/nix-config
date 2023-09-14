@@ -1,4 +1,4 @@
-{}:
+{ lib, ... }:
 {
   services.mjolnir = {
     pantalaimon = {
@@ -7,7 +7,9 @@
         listenAddress = "127.0.0.1";
         listenPort = 8100;
       };
+      homeserverUrl = "https://matrix.dechnik.net";
     };
+    managementRoom = "#moderators:dechnik.net";
 
     settings = {
       protectAllJoinedRooms = true;
@@ -23,6 +25,7 @@
   };
   services.pantalaimon-headless.instances.mjolnir = {
     listenAddress = "127.0.0.1";
+    homeserver = "https://matrix.dechnik.net";
     listenPort = 8100;
   };
 }
