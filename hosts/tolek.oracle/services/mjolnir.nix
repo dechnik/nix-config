@@ -1,13 +1,24 @@
-{ lib, ... }:
+{ config, ... }:
 {
+  sops.secrets = {
+    mjolnir-password = {
+      owner = "mjolnir";
+      group = "mjolnir";
+      sopsFile = ../secrets.yaml;
+    };
+  };
+
   services.mjolnir = {
+    enable = true;
     pantalaimon = {
       enable = true;
       options = {
         listenAddress = "127.0.0.1";
         listenPort = 8100;
+        homeserver = "https://matrix.dechnik.net";
       };
-      homeserverUrl = "https://matrix.dechnik.net";
+      username = "mjolnir";
+      passwordFile = config.sops.secrets.mjolnir-password.path;
     };
     managementRoom = "#moderators:dechnik.net";
 
@@ -16,16 +27,12 @@
     };
   };
   systemd.services.mjolnir = {
-    serviceConfig = {
-      SupplementaryGroups = [ "keys" ];
-      Restart = lib.mkForce "always";
-      RestartSec = 3;
-    };
-    unitConfig.StartLimitIntervalSec = 0;
+    after = [
+      "matrix-synapse.target"
+    ];
   };
-  services.pantalaimon-headless.instances.mjolnir = {
-    listenAddress = "127.0.0.1";
-    homeserver = "https://matrix.dechnik.net";
-    listenPort = 8100;
-  };
+  # services.pantalaimon-headless.instances.mjolnir = {
+  #   listenAddress = "127.0.0.1";
+  #   listenPort = 8100;
+  # };
 }
