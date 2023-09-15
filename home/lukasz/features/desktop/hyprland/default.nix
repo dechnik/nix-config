@@ -176,9 +176,6 @@
       # throw sharing indicators away
       windowrulev2 = workspace special silent, title:^(Firefox — Sharing Indicator)$
       windowrulev2 = workspace special silent, title:^(.*is sharing (your screen|a window)\.)$
-      # start spotify tiled in ws9
-      windowrulev2 = tile, class:^(thunderbird)$
-      windowrulev2 = workspace 7 silent, class:^(thunderbird)$
       # idle inhibit while watching videos
       windowrulev2 = idleinhibit focus, class:^(mpv|.+exe)$
       windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
