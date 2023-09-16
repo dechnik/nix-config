@@ -12,8 +12,8 @@
     ./features/desktop/optional/work.nix
     ./features/desktop/optional/nc.nix
     ./features/desktop/optional/vscode.nix
-    ./features/desktop/optional/jetbrains.nix
-    # ./features/desktop/optional/videoedit.nix
+    # ./features/desktop/optional/jetbrains.nix
+    ./features/desktop/optional/videoedit.nix
     # ./features/desktop/hyprland/nvidia.nix
     ./features/desktop/hyprland
     ./features/desktop/optional/bluetooth.nix
