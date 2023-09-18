@@ -33,6 +33,13 @@ in rec {
   modifications = final: prev: {
     vscode-with-extensions = prev.vscode-with-extensions.override {
       vscodeExtensions = prev.vscode-utils.extensionsFromVscodeMarketplace [
+                     {
+                        name = "cody-ai";
+                        publisher = "sourcegraph";
+                        version = "0.11.1695049718";
+                        # keep this sha for the first run, nix will tell you the correct one to change it to
+                        sha256 = "sha256-SQaqvsY0/QZhPPDyrPbWOmJtWRNTuavuKPeZIhUPhto=";
+                      }
         # Generated from: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
         ] ++ (with prev.vscode-extensions; [
         bbenoist.nix # Nix syntax
