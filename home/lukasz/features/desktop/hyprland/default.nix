@@ -181,8 +181,8 @@
       windowrulev2 = idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$
       windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
       # fix xwayland apps
-      windowrulev2 = center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$
-      windowrulev2 = size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$
+      # windowrulev2 = center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$
+      # windowrulev2 = size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$
     '';
   };
 }
