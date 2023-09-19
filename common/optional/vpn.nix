@@ -21,64 +21,68 @@ in
 {
   environment.systemPackages = [
     swanctl
+    pkgs.strongswan
   ];
   networking.firewall = {
     checkReversePath = "loose";
     allowedTCPPorts = [ 1701 ];
     allowedUDPPorts = [ 1701 500 4500 ];
-    extraInputRules = ''
-      ip protocol { ah, esp } accept
-      meta ipsec exists meta l4proto { tcp, udp } th dport 53 accept
-    '';
-    extraForwardRules = ''
-      meta ipsec exists accept
-      rt ipsec exists accept
-    '';
+    # extraInputRules = ''
+    #   ip protocol { ah, esp } accept
+    #   meta ipsec exists meta l4proto { tcp, udp } th dport 53 accept
+    # '';
+    # extraForwardRules = ''
+    #   meta ipsec exists accept
+    #   rt ipsec exists accept
+    # '';
   };
   services.xl2tpd = {
     enable = true;
   };
-  systemd.services.xl2tpd.serviceConfig.ExecStart = lib.mkForce "${xl2tpd-ppp-wrapped}/bin/xl2tpd -D -c /etc/xl2tpd/xl2tpd.conf -s /etc/xl2tpd/l2tp-secrets -p /run/xl2tpd/pid -C /run/xl2tpd/control";
-  services.strongswan-swanctl.enable = true;
-  services.strongswan-swanctl.strongswan.extraConfig = ''
-    charon {
-      install_routes = no
-    }
-  '';
-  environment.etc."swanctl/swanctl.conf".enable = false;
-  system.activationScripts.strongswan-swanctl-secret-conf = lib.stringAfter [ "etc" ] ''
-    mkdir -p /etc/swanctl
-    ln -sf ${config.sops.secrets.swanctl.path} /etc/swanctl/swanctl.conf
-  '';
-  # services.strongswan = {
-  #   enable = true;
-  #   secrets = [
-  #     "/etc/ipsec.d/*.secrets"
-  #   ];
-  # };
-  # systemd.services.strongswan.environment.STRONGSWAN_CONF = lib.mkForce "/run/secrets/strongswan-config";
+  systemd.services.xl2tpd.serviceConfig.ExecStart = lib.mkForce "${xl2tpd-ppp-wrapped}/bin/xl2tpd -D -c /etc/xl2tpd/xl2tpd.conf -p /run/xl2tpd/pid -C /run/xl2tpd/control";
+  # services.strongswan-swanctl.enable = true;
+  # services.strongswan-swanctl.strongswan.extraConfig = ''
+  #   charon {
+  #     install_routes = no
+  #   }
+  # '';
+  # environment.etc."swanctl/swanctl.conf".enable = false;
+  # system.activationScripts.strongswan-swanctl-secret-conf = lib.stringAfter [ "etc" ] ''
+  #   mkdir -p /etc/swanctl
+  #   ln -sf ${config.sops.secrets.swanctl.path} /etc/swanctl/swanctl.conf
+  # '';
+  services.strongswan = {
+    enable = true;
+    secrets = [
+      "/etc/ipsec.d/*.secrets"
+    ];
+  };
+  systemd.services.strongswan.environment.STRONGSWAN_CONF = lib.mkForce "/run/secrets/strongswan-config";
   sops.secrets = {
     l2tp-config = {
       sopsFile = ../secrets.yaml;
       path = "/etc/xl2tpd/xl2tpd.conf";
     };
-    l2tp-ebi-options = {
-      sopsFile = ../secrets.yaml;
-      path = "/etc/ppp/options.l2tpd.ebi";
-    };
-    swanctl = {
+    l2tp-ant-options = {
       sopsFile = ../secrets.yaml;
     };
-    # ipsec-secrets = {
+    # l2tp-ebi-options = {
     #   sopsFile = ../secrets.yaml;
-    #   path = "/etc/ipsec.d/my.secrets";
+    #   path = "/etc/ppp/options.l2tpd.ebi";
     # };
-    # ipsec-config = {
-    #   sopsFile = ../secrets.yaml;
-    #   path = "/etc/ipsec.conf";
-    # };
-    # strongswan-config = {
+    # swanctl = {
     #   sopsFile = ../secrets.yaml;
     # };
+    ipsec-secrets = {
+      sopsFile = ../secrets.yaml;
+      path = "/etc/ipsec.d/my.secrets";
+    };
+    ipsec-config = {
+      sopsFile = ../secrets.yaml;
+      path = "/etc/ipsec.conf";
+    };
+    strongswan-config = {
+      sopsFile = ../secrets.yaml;
+    };
   };
 }
