@@ -32,6 +32,10 @@ in
       realName = "Lukasz Dechnik";
       userName = "lukasz@ebimedia.pl";
       passwordCommand = "${pkgs.oauth2ms}/bin/oauth2ms";
+      thunderbird = {
+        enable = true;
+        profiles = [ "lukasz" ];
+      };
       imap = {
         host = "outlook.office365.com";
         port = 993;
