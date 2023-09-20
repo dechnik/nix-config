@@ -5,7 +5,6 @@
     [
       inputs.hardware.nixosModules.common-cpu-amd
       # inputs.hardware.nixosModules.common-gpu-nvidia
-      inputs.hardware.nixosModules.common-gpu-amd
       inputs.hardware.nixosModules.common-pc-ssd
       inputs.disko.nixosModules.disko
       ./services
@@ -29,6 +28,9 @@
       # ../common/optional/zfs.nix
       # ../common/optional/quietboot.nix
     ];
+
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   sops.secrets = {
     oauth2ms = {

@@ -12,5 +12,4 @@
   golink = pkgs.callPackage ./golink { };
   lldap = pkgs.callPackage ./lldap { };
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
-  qt6gtk2 = pkgs.qt6Packages.callPackage ./qt6gtk2 { };
 }
