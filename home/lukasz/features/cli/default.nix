@@ -15,6 +15,7 @@
     ./nix-index.nix
     # ./pfetch.nix
     ./ranger
+    ./lyrics.nix
     # ./screen.nix
     ./shellcolor.nix
     ./ssh.nix

@@ -1,6 +1,6 @@
 { pkgs ? null }: rec {
   shellcolord = pkgs.callPackage ./shellcolord { };
-  lyrics = pkgs.callPackage ./lyrics { };
+  lyrics = pkgs.python3Packages.callPackage ./lyrics { };
   pass-wofi = pkgs.callPackage ./pass-wofi { };
   primary-xwayland = pkgs.callPackage ./primary-xwayland { };
   wl-mirror-pick = pkgs.callPackage ./wl-mirror-pick { };

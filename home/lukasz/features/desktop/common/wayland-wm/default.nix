@@ -18,7 +18,6 @@
     gsettings-desktop-schemas
     grim
     imv
-    lyrics
     mimeo
     primary-xwayland
     pulseaudio
