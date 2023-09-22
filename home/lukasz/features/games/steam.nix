@@ -34,7 +34,7 @@ in
       };
       steam-ses-keyboard = {
         name = "Steam Session Keyboard";
-        exec = "${pkgs.gamescope}/bin/gamescope -g --force-grab-cursor -W ${toString monitor.width} -H ${toString monitor.height} -O ${monitor.name} -e -- steam -gamepadui";
+        exec = "${pkgs.gamescope}/bin/gamescope -g --force-grab-cursor -W ${toString monitor.width} -H ${toString monitor.height} -O ${monitor.name} -e -- steam";
         type = "Application";
       };
       steam-ses-tv = {
@@ -44,7 +44,7 @@ in
       };
       steam-ses-tv-keyboard = {
         name = "Steam Session TV Keyboard";
-        exec = "${pkgs.gamescope}/bin/gamescope -g --force-grab-cursor -W 3840 -H 2160 -O HDMI-A-1 -e -- steam -gamepadui";
+        exec = "${pkgs.gamescope}/bin/gamescope -g --force-grab-cursor -W 3840 -H 2160 -O HDMI-A-1 -e -- steam";
         type = "Application";
       };
     };
