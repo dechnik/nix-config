@@ -38,7 +38,7 @@ in
             "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJTolFQ0TSBlDO+ubW8+mfAwMeNb5VbvxcRDgsQvdm1LmT7PPvnKlGW/ibIplfP19rfXu7PlyBR8KrVky4iKzvY="
           ];
 
-          passwordFile = config.sops.secrets.lukasz-password.path;
+          hashedPasswordFile = config.sops.secrets.lukasz-password.path;
           packages = [ pkgs.home-manager ];
         };
         storage = lib.mkIf config.my.users.storage {

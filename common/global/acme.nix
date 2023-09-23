@@ -6,7 +6,7 @@
       email = "lukasz@dechnik.net";
       # dnsProvider = "route53";
       dnsProvider = "cloudflare";
-      credentialsFile = config.sops.secrets.acme-credentials.path;
+      environmentFile = config.sops.secrets.acme-credentials.path;
       group = "acme";
     };
     acceptTerms = true;

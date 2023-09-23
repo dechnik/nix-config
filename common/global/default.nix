@@ -44,7 +44,8 @@
       #nextcloud-client
     ];
 
-    enableAllTerminfo = true;
+    #TODO check if contour is not broken
+    enableAllTerminfo = false;
   };
 
   # security.sudo.wheelNeedsPassword = false;

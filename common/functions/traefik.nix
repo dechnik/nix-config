@@ -30,7 +30,7 @@ with lib; let
 
       services.traefik.enable = true;
       services.traefik.environmentFiles = [
-        config.security.acme.defaults.credentialsFile
+        config.security.acme.defaults.environmentFile
       ];
 
       networking.firewall.allowedTCPPorts = [ 80 443 ];
