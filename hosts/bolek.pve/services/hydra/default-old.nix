@@ -34,9 +34,6 @@ in
   # imports = [
   #   inputs.hydra.nixosModules.hydra
   # ];
-  imports = [
-    ./machines.nix
-  ];
 
   # https://github.com/NixOS/nix/issues/5039
   nix.extraOptions = ''
@@ -61,6 +58,41 @@ in
           command = ${lib.getExe release-host-branch}
         </runcommand>
       '';
+      buildMachinesFiles = [
+        (mkBuildMachinesFile [
+          {
+            uri = "ssh://nix-ssh@dziad";
+            systems = [ "x86_64-linux" "i686-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 12;
+            speedFactor = 150;
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
+          }
+          {
+            uri = "ssh://nix-ssh@tolek.oracle";
+            systems = [ "x86_64-linux" "aarch64-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 4;
+            speedFactor = 100;
+            supportedFeatures = [ "kvm" "nixos-test" ];
+          }
+          {
+            uri = "ssh://nix-ssh@ldlat";
+            systems = [ "x86_64-linux" "i686-linux" ];
+            sshKey = config.sops.secrets.nix-ssh-key.path;
+            maxJobs = 6;
+            speedFactor = 100;
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
+          }
+          {
+            uri = "localhost";
+            systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
+            maxJobs = 8;
+            speedFactor = 50;
+            supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
+          }
+        ])
+      ];
       extraEnv = {
         HYDRA_DISALLOW_UNFREE = "0";
         EMAIL_SENDER_TRANSPORT_port = "25";
