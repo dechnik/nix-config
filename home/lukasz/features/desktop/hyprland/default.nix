@@ -102,7 +102,7 @@
         editor = defaultApp "text/plain";
       in [
         # Program bindings
-        "SUPER,f,exec,$TERMINAL $SHELL -ic ranger"
+        "SUPERSHIFT,f,exec,$TERMINAL $SHELL -ic ranger"
         "SUPER,Return,exec,${terminal}"
         "SUPER,e,exec,${editor}"
         "SUPER,v,exec,${editor}"
@@ -111,7 +111,7 @@
         # Lock screen
         "SUPER,Escape,exec,wlogout -p layer-shell"
 
-        "SUPER,s,exec,spicemenu"
+        "SUPERSHIFT,s,exec,spicemenu"
         # Brightness control (only works if the system has lightd)
         ",XF86MonBrightnessUp,exec,light -A 10"
         ",XF86MonBrightnessDown,exec,light -U 10"
