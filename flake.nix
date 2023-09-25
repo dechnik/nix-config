@@ -94,8 +94,15 @@
   outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
       inherit (self) outputs;
-      forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
-      forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
+      lib = nixpkgs.lib // home-manager.lib;
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
+      # forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
+      # forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
       mkNixos = modules: nixpkgs.lib.nixosSystem {
         inherit modules;
         extraModules = [
@@ -117,9 +124,12 @@
       hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       colmena = import ./colmena.nix { inherit inputs outputs; };
 
-      packages = forEachPkgs (pkgs: import ./pkgs { inherit pkgs; });
-      devShells = forEachPkgs (pkgs: import ./shell.nix { inherit pkgs; });
-      formatter = forEachPkgs (pkgs: pkgs.nixpkgs-fmt);
+      # packages = forEachPkgs (pkgs: import ./pkgs { inherit pkgs; });
+      # devShells = forEachPkgs (pkgs: import ./shell.nix { inherit pkgs; });
+      # formatter = forEachPkgs (pkgs: pkgs.nixpkgs-fmt);
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
+      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       nixosConfigurations = {
         "dziad" = mkNixos [ ./hosts/dziad ];
