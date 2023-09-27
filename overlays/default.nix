@@ -36,11 +36,11 @@ in rec {
                      {
                         name = "cody-ai";
                         publisher = "sourcegraph";
-                        version = "0.11.1695049718";
+                        version = "0.13.1695740835";
                         # keep this sha for the first run, nix will tell you the correct one to change it to
-                        sha256 = "sha256-SQaqvsY0/QZhPPDyrPbWOmJtWRNTuavuKPeZIhUPhto=";
+                        sha256 = "sha256-ziVrxQ456BZd9ZHyOc/kGXjlUQvcBnU/NHSO1aebpsE=";
                       }
-        # Generated from: https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
+        # Generated from: https://github.com/nixos/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
         ] ++ (with prev.vscode-extensions; [
         bbenoist.nix # Nix syntax
         jdinhlife.gruvbox
