@@ -17,7 +17,7 @@
 
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
-      ../../common/optional/greetd.nix
+      ../../common/optional/greetd2.nix
       ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/pantalaimon.nix
