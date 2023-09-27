@@ -24,7 +24,7 @@
       ../../common/optional/zram.nix
       ../../common/optional/nix-gc.nix
       # ../common/optional/postfix.nix
-      ../../common/optional/gamemode.nix
+      # ../../common/optional/gamemode.nix
       # ../common/optional/zfs.nix
       # ../common/optional/quietboot.nix
     ];
