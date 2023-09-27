@@ -38,6 +38,7 @@
     lyrics
     deluge
     brave
+    obsidian
     tor-browser-bundle-bin
     pcmanfm
     meld
