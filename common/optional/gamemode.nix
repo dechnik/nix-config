@@ -4,7 +4,7 @@
     settings = {
       general = {
         softrealtime = "on";
-        inhibit_screensaver = 1;
+        inhibit_screensaver = 0;
       };
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
