@@ -157,18 +157,19 @@
         "SUPER,semicolon,exec,pass-wofi"
       ]));
 
-      monitor = map (m: let
-        resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-        position = "${toString m.x}x${toString m.y}";
-      in
-        "${m.name},${if m.enabled then "${resolution},${position},1" else "disable"}"
-      ) (config.monitors);
+      # monitor = map (m: let
+      #   resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+      #   position = "${toString m.x}x${toString m.y}";
+      # in
+      #   "${m.name},${if m.enabled then "${resolution},${position},1" else "disable"}"
+      # ) (config.monitors);
 
-      workspace = map (m:
-        "${m.name},${m.workspace}"
-      ) (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
+      # workspace = map (m:
+      #   "${m.name},${m.workspace}"
+      # ) (lib.filter (m: m.enabled && m.workspace != null) config.monitors);
     };
     extraConfig = ''
+      source = ~/.config/hypr/monitors.conf
       # make Firefox PiP window floating and sticky
       windowrulev2 = float, title:^(Picture-in-Picture)$
       windowrulev2 = pin, title:^(Picture-in-Picture)$
