@@ -13,6 +13,7 @@
       ../../common/users/lukasz
       ./services
 
+      ../../common/optional/fping.nix
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
       ../../common/optional/greetd2.nix
