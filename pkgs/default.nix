@@ -12,5 +12,5 @@
   golink = pkgs.callPackage ./golink { };
   lldap = pkgs.callPackage ./lldap { };
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
-  cody = pkgs.callPackage ./cody { };
+  # cody = pkgs.callPackage ./cody { };
 }
