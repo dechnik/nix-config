@@ -16,6 +16,11 @@
     ./dashboard.nix
     inputs.nixvim.homeManagerModules.nixvim
   ];
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
   programs.nixvim = {
     enable = true;
 
