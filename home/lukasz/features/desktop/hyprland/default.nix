@@ -170,6 +170,7 @@
     };
     extraConfig = ''
       source = ~/.config/hypr/monitors.conf
+      source = ~/.config/hypr/workspaces.conf
       # make Firefox PiP window floating and sticky
       windowrulev2 = float, title:^(Picture-in-Picture)$
       windowrulev2 = pin, title:^(Picture-in-Picture)$
