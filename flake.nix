@@ -87,6 +87,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-dechnik = {
+      url = "github:dechnik/nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # neovim = {
     #   url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     # };

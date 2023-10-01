@@ -31,6 +31,7 @@ in rec {
 
   # Modifies existing packages
   modifications = final: prev: {
+    neovim = inputs.neovim-dechnik.packages."${prev.system}".neovim-dechnik;
     vscode-with-extensions = prev.vscode-with-extensions.override {
       vscodeExtensions = prev.vscode-utils.extensionsFromVscodeMarketplace [
                      {

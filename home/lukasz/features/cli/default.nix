@@ -9,8 +9,8 @@
     ./gpg.nix
     ./k3s.nix
     ./lf.nix
-    #./neovim.nix
-    ./nixvim/neovim.nix
+    ./neovim.nix
+    # ./nixvim/neovim.nix
     ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix
