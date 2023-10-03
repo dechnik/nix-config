@@ -1,7 +1,7 @@
 { inputs, ... }: {
   imports = [
     ./global
-    ./features/emacs
+    # ./features/emacs
     ./features/productivity/vdirsyncer.nix
     ./features/trusted
     ./features/trusted/mail

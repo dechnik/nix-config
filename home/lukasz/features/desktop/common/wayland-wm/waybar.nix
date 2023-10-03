@@ -77,7 +77,6 @@ in
           "battery"
           "clock"
           "custom/gpg-agent"
-          "custom/zotero"
           "custom/unread-mail"
         ];
         modules-right = [
@@ -215,24 +214,6 @@ in
           format-icons = {
             "locked" = "";
             "unlocked" = "";
-          };
-          on-click = "";
-        };
-        "custom/zotero" = {
-          interval = 2;
-          return-type = "json";
-          exec =
-            let zotero = import ../../../emacs/zotero.nix { inherit pkgs; };
-            in
-            jsonOutput "zotero" {
-              pre = ''status=$(${zotero.isRunning} && echo "running" || echo "not running")'';
-              alt = "$status";
-              tooltip = "Zotero is $status";
-            };
-          format = "{icon}";
-          format-icons = {
-            "running" = "";
-            "not running" = "";
           };
           on-click = "";
         };
@@ -412,7 +393,7 @@ in
         border-left: none;
       }
 
-      #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature, #custom-zotero {
+      #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature  {
         margin: 4px 2px;
         padding: 0 6px;
         background-color: #${colors.base02};

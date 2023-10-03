@@ -21,7 +21,7 @@
       alegreya-sans
       julia-mono
 
-      emacs-all-the-icons-fonts
+      #remacs-all-the-icons-fonts
       # nerdfonts
       # (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "Iosevka" "Ubuntu"];})
     ];

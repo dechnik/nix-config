@@ -1,7 +1,7 @@
 { inputs, ... }: {
   imports = [
     ./global
-    ./features/emacs
+    # ./features/emacs
     ./features/desktop/optional/software-render.nix
     ./features/trusted
     ./features/desktop/hyprland
