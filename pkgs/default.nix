@@ -10,7 +10,6 @@
   cyrus-sasl-xoauth2 = pkgs.callPackage ./cyrus-sasl-xoauth2 { };
   oauth2ms = pkgs.callPackage ./oauth2ms { };
   golink = pkgs.callPackage ./golink { };
-  lldap = pkgs.callPackage ./lldap { };
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
   # cody = pkgs.callPackage ./cody { };
 }
