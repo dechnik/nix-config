@@ -1,4 +1,7 @@
 { pkgs, lib, outputs, ... }:
+let
+  browser = [ "brave.desktop" ];
+in
 {
   imports = [
     ./firefox.nix
@@ -21,16 +24,16 @@
 
   home = {
     sessionVariables = {
-      BROWSER = "firefox";
+      BROWSER = "brave";
     };
   };
   programs.browserpass.enable = true;
   xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "firefox.desktop" ];
-    "text/xml" = [ "firefox.desktop" ];
-    "x-scheme-handler/http" = [ "firefox.desktop" ];
-    "x-scheme-handler/https" = [ "firefox.desktop" ];
-    "applications/x-www-browser" = [ "firefox.desktop" ];
+    "text/html" = browser;
+    "text/xml" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
+    "applications/x-www-browser" = browser;
   };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
