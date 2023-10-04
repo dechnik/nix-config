@@ -54,8 +54,12 @@ in
     editorconfig-core-c # per-project style config
     sqlite
     rnix-lsp
+    nixd
+    alejandra
     pythonEnv
     shellcheck
+    shellharden
+    shfmt
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
