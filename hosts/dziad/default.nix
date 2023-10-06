@@ -104,7 +104,7 @@
   xdg.portal = {
     enable = true;
     extraPortals = [
-      inputs.xdph.packages.${pkgs.system}.default
+      pkgs.xdg-desktop-portal-hyprland
     ];
     wlr.enable = false;
   };

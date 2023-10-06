@@ -77,13 +77,13 @@ in rec {
     };
 
     qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
-      version = "unstable-2023-09-10";
-      src = final.fetchFromGitHub {
-        owner = "qutebrowser";
-        repo = "qutebrowser";
-        rev = "6e184c44cecfc579fd987d582f61c448ade6b0f5";
-        hash = "sha256-jgpJnWhfTPSHbGiKA9vSKhcJZxfeeSZxvIehfFUxUSE=";
-      };
+      # version = "unstable-2023-09-10";
+      # src = final.fetchFromGitHub {
+      #   owner = "qutebrowser";
+      #   repo = "qutebrowser";
+      #   rev = "6e184c44cecfc579fd987d582f61c448ade6b0f5";
+      #   hash = "sha256-jgpJnWhfTPSHbGiKA9vSKhcJZxfeeSZxvIehfFUxUSE=";
+      # };
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
     });
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {

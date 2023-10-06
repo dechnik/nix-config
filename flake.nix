@@ -64,12 +64,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    xdph = {
-      url = "github:hyprwm/xdg-desktop-portal-hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprland-protocols.follows = "hyprland-protocols";
-    };
-
     website = {
       url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
