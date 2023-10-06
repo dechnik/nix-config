@@ -77,15 +77,9 @@ in rec {
     };
 
     qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
-      # version = "unstable-2023-09-10";
-      # src = final.fetchFromGitHub {
-      #   owner = "qutebrowser";
-      #   repo = "qutebrowser";
-      #   rev = "6e184c44cecfc579fd987d582f61c448ade6b0f5";
-      #   hash = "sha256-jgpJnWhfTPSHbGiKA9vSKhcJZxfeeSZxvIehfFUxUSE=";
-      # };
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
     });
+
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
       version = "0.2.84";
       hash = "sha256-0rK+Yx4/Jy44Fw5VwJ3tG243ZsyOIBBehYU54XP/JGk=";
