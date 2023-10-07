@@ -491,6 +491,7 @@
         "vim:cmp-vsnip": "vim:cmp-vsnip",
         "vim:gitsigns.nvim": "vim:gitsigns.nvim",
         "vim:gruvbox.nvim": "vim:gruvbox.nvim",
+        "vim:harpoon": "vim:harpoon",
         "vim:lsp-status.nvim": "vim:lsp-status.nvim",
         "vim:lspkind-nvim": "vim:lspkind-nvim",
         "vim:lspsaga.nvim": "vim:lspsaga.nvim",
@@ -527,11 +528,11 @@
         "vim:vim-vsnip": "vim:vim-vsnip"
       },
       "locked": {
-        "lastModified": 1696363539,
-        "narHash": "sha256-hxT3clpXFdAsar7hq1ZCDOuAbR/MvoIbJkjWcvYNYy8=",
+        "lastModified": 1696685543,
+        "narHash": "sha256-EloDUndxoNiY8ZOl7UioCAuv84q2T34HBcz6TTYS7LM=",
         "owner": "dechnik",
         "repo": "nvim",
-        "rev": "36d976a2180b2259763000c1ee37f7ba31c5bb83",
+        "rev": "e1712bd2d579b492a4ab3407d1909d757d4feb86",
         "type": "github"
       },
       "original": {
@@ -1175,6 +1176,22 @@
       "original": {
         "owner": "ellisonleao",
         "repo": "gruvbox.nvim",
+        "type": "github"
+      }
+    },
+    "vim:harpoon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1685314900,
+        "narHash": "sha256-yMxs/MjDpBWeE2w9V5gumBadX2+poa059soNS7Q2KA4=",
+        "owner": "ThePrimeagen",
+        "repo": "harpoon",
+        "rev": "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ThePrimeagen",
+        "repo": "harpoon",
         "type": "github"
       }
     },
