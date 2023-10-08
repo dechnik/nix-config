@@ -21,11 +21,11 @@ in rec {
   # additions = final: _prev: import ../pkgs { pkgs = final; };
   additions = final: prev: import ../pkgs { pkgs = final; } // {
     # vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins { };
-    vimPlugins = prev.vimPlugins // import ../pkgs/vim-plugins {
-      inherit (final) fetchFromGitHub;
-      inherit (prev.vimUtils) buildVimPlugin;
-      inherit (final) sources;
-    };
+    # vimPlugins = prev.vimPlugins // import ../pkgs/vim-plugins {
+    #   inherit (final) fetchFromGitHub;
+    #   inherit (prev.vimUtils) buildVimPlugin;
+    #   inherit (final) sources;
+    # };
     sources = prev.callPackage (import ../pkgs/_sources/generated.nix) {};
   };
 
@@ -37,9 +37,9 @@ in rec {
                      {
                         name = "cody-ai";
                         publisher = "sourcegraph";
-                        version = "0.13.1695740835";
+                        version = "0.15.1696691345";
                         # keep this sha for the first run, nix will tell you the correct one to change it to
-                        sha256 = "sha256-ziVrxQ456BZd9ZHyOc/kGXjlUQvcBnU/NHSO1aebpsE=";
+                        sha256 = "sha256-IHh7BaZy/z/5LXB+LzKilUS0pZzd3QgkrIgqB7sqHuA=";
                       }
         # Generated from: https://github.com/nixos/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
         ] ++ (with prev.vscode-extensions; [
