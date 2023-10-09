@@ -17,9 +17,6 @@ in
     useFsLayout = true;
     localDnsResolver = false;
     extraVirtualAliases = {
-      "admin@dechnik.net" = "lukasz@dechnik.net";
-      "dechnik@dechnik.net" = "lukasz@dechnik.net";
-      "postmaster@dechnik.net" = "lukasz@dechnik.net";
       "abuse@dechnik.net" = "lukasz@dechnik.net";
     };
     loginAccounts = {
