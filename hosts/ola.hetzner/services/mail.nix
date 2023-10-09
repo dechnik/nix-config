@@ -21,7 +21,7 @@ in
       "dechnik@dechnik.net" = "lukasz@dechnik.net";
       "postmaster@dechnik.net" = "lukasz@dechnik.net";
       "abuse@dechnik.net" = "lukasz@dechnik.net";
-    }
+    };
     loginAccounts = {
       "lukasz@dechnik.net" = {
         hashedPasswordFile = config.sops.secrets.lukasz-mail-password.path;
