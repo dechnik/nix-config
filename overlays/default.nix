@@ -31,7 +31,7 @@ in rec {
 
   # Modifies existing packages
   modifications = final: prev: {
-    neovim = inputs.neovim-dechnik.packages."${prev.system}".neovim-dechnik;
+    neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
 
     qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
