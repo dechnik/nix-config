@@ -32,49 +32,6 @@ in rec {
   # Modifies existing packages
   modifications = final: prev: {
     neovim = inputs.neovim-dechnik.packages."${prev.system}".neovim-dechnik;
-    vscode-with-extensions = prev.vscode-with-extensions.override {
-      vscodeExtensions = prev.vscode-utils.extensionsFromVscodeMarketplace [
-                     {
-                        name = "cody-ai";
-                        publisher = "sourcegraph";
-                        version = "0.15.1696691345";
-                        # keep this sha for the first run, nix will tell you the correct one to change it to
-                        sha256 = "sha256-IHh7BaZy/z/5LXB+LzKilUS0pZzd3QgkrIgqB7sqHuA=";
-                      }
-        # Generated from: https://github.com/nixos/nixpkgs/blob/master/pkgs/applications/editors/vscode/extensions/update_installed_exts.sh
-        ] ++ (with prev.vscode-extensions; [
-        bbenoist.nix # Nix syntax
-        jdinhlife.gruvbox
-        vscodevim.vim
-
-        ms-vscode-remote.remote-ssh
-
-        matangover.mypy
-        jebbs.plantuml
-
-        # Languages
-        tamasfe.even-better-toml
-        ms-python.vscode-pylance
-
-        # Nix
-        brettm12345.nixfmt-vscode
-        b4dm4n.vscode-nixpkgs-fmt
-
-        skyapps.fish-vscode
-        redhat.vscode-yaml
-        ms-vscode.makefile-tools
-        ms-vscode.cmake-tools
-        mechatroner.rainbow-csv
-        jnoortheen.nix-ide
-        github.vscode-pull-request-github
-        esbenp.prettier-vscode
-        mkhl.direnv
-      ]) ++ final.lib.optionals (! (final.stdenv.isAarch64 && final.stdenv.isLinux)) (with prev.vscode-extensions; [
-        ms-vscode.cpptools
-        ms-python.python
-        ms-azuretools.vscode-docker
-      ]);
-    };
 
     qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
       patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];

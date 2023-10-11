@@ -23,6 +23,15 @@
       ../../common/users/lukasz
     ];
 
+  nix = {
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      # Keep the last 3 generations
+      options = "--delete-older-than 30d";
+    };
+  };
+
   my.users.storage = true;
 
   my.wan = "ens19";
