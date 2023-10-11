@@ -2257,11 +2257,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1697015881,
-        "narHash": "sha256-fXd+CAEl1Wq8hQ8G+TMW+yAlg/eXUcZaQsA+yrAzNU0=",
+        "lastModified": 1697017246,
+        "narHash": "sha256-w36y2UyQ9NFqt7a1GZtpkLXXWDm8S7KUv82ibfJQ82Q=",
         "ref": "master",
-        "rev": "f46ad727dc4550aeb69dc1e994ce2b38accf4867",
-        "revCount": 6,
+        "rev": "4633dc4ae1f8224a6375591047bb47adf8437317",
+        "revCount": 7,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
