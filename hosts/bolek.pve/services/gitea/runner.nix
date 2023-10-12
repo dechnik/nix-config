@@ -1,5 +1,8 @@
-{config, ...}:
+{pkgs, config, ...}:
 {
+  environment.systemPackages = [
+    pkgs.nodejs-18_x
+  ];
   sops.secrets = {
     gitea-runner = {
       sopsFile = ../../secrets.yaml;
