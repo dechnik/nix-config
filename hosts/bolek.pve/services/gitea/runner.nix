@@ -1,8 +1,5 @@
 {pkgs, config, ...}:
 {
-  environment.systemPackages = [
-    pkgs.nodejs-18_x
-  ];
   sops.secrets = {
     gitea-runner = {
       sopsFile = ../../secrets.yaml;
@@ -22,6 +19,16 @@
       labels = [
         "native:host"
       ];
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        gnused
+        nodejs-18_x
+        wget
+      ];
     };
     pve2 = {
       enable = true;
@@ -30,6 +37,16 @@
       name = "pve";
       labels = [
         "ubuntu-latest:docker://ubuntu:latest"
+      ];
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        curl
+        gawk
+        gitMinimal
+        gnused
+        nodejs-18_x
+        wget
       ];
     };
   };
