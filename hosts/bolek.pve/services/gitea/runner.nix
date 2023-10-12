@@ -36,17 +36,7 @@
       tokenFile = config.sops.secrets.gitea-runner2.path;
       name = "pve";
       labels = [
-        "ubuntu-latest:docker://ubuntu:latest"
-      ];
-      hostPackages = with pkgs; [
-        bash
-        coreutils
-        curl
-        gawk
-        gitMinimal
-        gnused
-        nodejs-18_x
-        wget
+        "ubuntu-latest:docker://node:18-bullseye"
       ];
     };
   };
