@@ -38,6 +38,9 @@
       labels = [
         "ubuntu-latest:docker://node:18-bullseye"
       ];
+      settings = {
+        container.network = "host";
+      };
     };
   };
   users.users.gitea-runner = {
