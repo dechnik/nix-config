@@ -18,6 +18,8 @@ jobs:
 
     steps:
       - uses: https://github.com/actions/checkout@v3
+      - name: Install xmllint
+        run: apt-get install -y sudo
       - uses: https://github.com/cachix/install-nix-action@v20
         with:
           install_url: https://nixos.org/nix/install
