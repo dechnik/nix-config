@@ -68,6 +68,10 @@
       url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gitness = {
+      url = "github:dechnik/gitness";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # emacs-overlay.url = "github:nix-community/emacs-overlay/d7d53d728dc68d0fca4601b4e155e746ce274098";
     # emacs-src = {
     #   url = "github:emacs-mirror/emacs/emacs-29";
