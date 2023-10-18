@@ -96,6 +96,22 @@
         "type": "github"
       }
     },
+    "cmp-path": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664784283,
+        "narHash": "sha256-thppiiV3wjIaZnAXmsh7j3DUc6ceSCvGzviwFUnoPaI=",
+        "owner": "hrsh7th",
+        "repo": "cmp-path",
+        "rev": "91ff86cd9c29299a64f968ebb45846c485725f23",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hrsh7th",
+        "repo": "cmp-path",
+        "type": "github"
+      }
+    },
     "codeium-nvim": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -2224,6 +2240,7 @@
         "cmp-buffer": "cmp-buffer",
         "cmp-dap-src": "cmp-dap-src",
         "cmp-nvim-lsp": "cmp-nvim-lsp",
+        "cmp-path": "cmp-path",
         "codeium-nvim": "codeium-nvim",
         "colorizer-src": "colorizer-src",
         "comment-nvim-src": "comment-nvim-src",
@@ -2278,11 +2295,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1697614724,
-        "narHash": "sha256-CndNEE0zPbBegybVTVefNvCV80/fY38KBacbg4a6UKc=",
+        "lastModified": 1697625835,
+        "narHash": "sha256-hSLZ/xUIHZIFuSpr8M4d6RKZ3B7loKcIwtX+9sRoiVs=",
         "ref": "master",
-        "rev": "a134e6514f2e2c73f4bc6a80dd84b5053763ef66",
-        "revCount": 11,
+        "rev": "cfc8ee7dca1e5ba70727c1a2b353e25f2cfae8ba",
+        "revCount": 12,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
