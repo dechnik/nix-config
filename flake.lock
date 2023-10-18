@@ -1881,11 +1881,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1696969053,
-        "narHash": "sha256-64Uo6CcvqMHll2uoG7d10yKyS6PqwCXY+iHc9a70Qms=",
+        "lastModified": 1697548943,
+        "narHash": "sha256-08rF2bOziT6VgZoJ2/3XuD1TY46DT5tKl5zlZ18W6v8=",
         "owner": "sourcegraph",
         "repo": "sg.nvim",
-        "rev": "acdc88fb410762828797e8816fa790b96b71bb97",
+        "rev": "7956fd3cf13485c0af59264f74787ecf8b47cb37",
         "type": "github"
       },
       "original": {
@@ -2278,11 +2278,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1697097628,
-        "narHash": "sha256-w36y2UyQ9NFqt7a1GZtpkLXXWDm8S7KUv82ibfJQ82Q=",
+        "lastModified": 1697614724,
+        "narHash": "sha256-CndNEE0zPbBegybVTVefNvCV80/fY38KBacbg4a6UKc=",
         "ref": "master",
-        "rev": "1d87ac8b50ae500038bd8dc8a80cb44ae71ef939",
-        "revCount": 9,
+        "rev": "a134e6514f2e2c73f4bc6a80dd84b5053763ef66",
+        "revCount": 11,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
