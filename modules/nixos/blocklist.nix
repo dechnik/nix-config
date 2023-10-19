@@ -37,7 +37,7 @@ with lib; let
     download "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
     ## malicious domains
     download "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
-    download "https://mirror1.malwaredomains.com/files/justdomains"
+    ## download "https://mirror1.malwaredomains.com/files/justdomains"
     download "https://hosts-file.net/exp.txt"
     download "https://hosts-file.net/emd.txt"
     download "https://hosts-file.net/psh.txt"
@@ -50,7 +50,6 @@ with lib; let
     download "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
     download "https://v.firebog.net/hosts/Shalla-mal.txt"
     download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Risk/hosts"
-    # kradalby's pihole migration
     download https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
     download https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
     download https://www.github.developerdan.com/hosts/lists/amp-hosts-extended.txt
