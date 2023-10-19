@@ -50,7 +50,6 @@ with lib; let
     download "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt"
     download "https://v.firebog.net/hosts/Shalla-mal.txt"
     download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Risk/hosts"
-    # kradalby's pihole migration
     download https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
     download https://raw.githubusercontent.com/kboghdady/youTube_ads_4_pi-hole/master/youtubelist.txt
     download https://www.github.developerdan.com/hosts/lists/amp-hosts-extended.txt
