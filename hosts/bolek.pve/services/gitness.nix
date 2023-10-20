@@ -15,6 +15,15 @@
       sopsFile = ../secrets.yaml;
     };
   };
+  users = {
+    users = {
+      gitness = {
+        extraGroups = [
+          "docker"
+        ];
+      };
+    };
+  };
   services = {
     gitness = {
       enable = true;
@@ -34,6 +43,7 @@
         GITNESS_URL_BASE = "https://gitness.dechnik.net";
         GITNESS_URL_GIT = "https://gitness.dechnik.net/git";
         GITNESS_URL_UI = "https://gitness.dechnik.net";
+        GITNESS_URL_CONTAINER = "http://127.0.0.1:3088";
         GITNESS_USER_SIGNUP_ENABLED = "false";
       };
     };
