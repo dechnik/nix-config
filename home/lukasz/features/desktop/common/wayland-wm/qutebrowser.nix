@@ -9,7 +9,6 @@ in
     # };
     persistence = {
       "/persist/home/lukasz".directories = [
-        ".config/qutebrowser/bookmarks"
         ".config/qutebrowser/greasemonkey"
         ".local/share/qutebrowser"
       ];
@@ -17,6 +16,18 @@ in
   };
 
 
+  home.activation = {
+    qutebrowser-marks = ''
+      if [[ -f $HOME/Documents/qutebrowser/quickmarks ]]; then
+        rm -rf "$HOME/.config/qutebrowser/quickmarks"
+        ln -sf "$HOME/Documents/qutebrowser/quickmarks" "$HOME/.config/qutebrowser/quickmarks"
+      fi
+      if [[ -d $HOME/Documents/qutebrowser/bookmarks ]]; then
+        rm -rf "$HOME/.config/qutebrowser/bookmarks"
+        ln -sf "$HOME/Documents/qutebrowser/bookmarks" "$HOME/.config/qutebrowser/bookmarks"
+      fi
+    '';
+  };
 
   # xdg.mimeApps.defaultApplications = {
   #   "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
