@@ -8,13 +8,10 @@ keys:
     - &ldlat age1xhv0vxwgn0fzup499sc0dae6az6la923w2vjlx698zld9dgrmpaskmnksr
     - &bolek age1gn9jn003lasz9spqfkhvgkzfhhnqth3anj652lmppz8ljhp23uks97tacc
     - &lolek age1we0m4g25wp59jgn3nw5sn4lhtgkesp35r777ry7rn4zr4s038ufq2s2kyp
-    - &tola age1lwsmxcqngugcx3rrgekw8leytq2q2zjwjnnp7f8h2q338yhkqeqs7e05wt
+    - &tola age18gd7utkuzgc0j0mta0llmseqch84l64f4s2gemlkkj7ts477ddvshdnfsw
     - &olek age1z58dyxqayvre9zanktn9gtn2p704cas874vjqd97zu5juuv975gq6jfkq2
     - &tolek age10w0y5xpwanuwmgtenvtn8lmdj4dk2ql2z93r8s48jpjxpejtkcpspy2gfd
     - &ola age16wd54jwn3q49yzwuq5c85c925qxzvtddn6l443rq3g7ylh8xvfwq2thh9c
-    - &k3sserver1 age1n20tlcsr0nnawwzl7yj2tm400yen73unjwmnth65yj05dtvhevwq6t3quv
-    - &k3sagent1 age13ffzsmk32srsj54j0rygz0xtm035krjjawxvg0qftg2md0nqwv2q50s0q6
-    - &k3sagent2 age1r2uduulrxmjczvccx62xhkasv96l9a3awf0ylkxwmn9ypmt7l4ys8k3j28
     - &sandbox age1qjcte6n07hqs5u3fntvnrrg8cdlxyap0cqad52pdxu85q0te5uaq4uk5yp
 creation_rules:
   - path_regex: common/secrets.ya?ml$
@@ -28,9 +25,6 @@ creation_rules:
       - *olek
       - *tolek
       - *ola
-      - *k3sserver1
-      - *k3sagent1
-      - *k3sagent2
       - *sandbox
       pgp:
       - *lukasz
