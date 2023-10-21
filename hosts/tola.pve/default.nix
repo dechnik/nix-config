@@ -26,6 +26,12 @@
   networking = {
     hostName = "tola"; # Define your hostname.
     domain = "pve.dechnik.net";
+    nameservers = [
+      "10.60.0.1"
+    ];
+    defaultGateway = "10.60.0.1";
+    defaultGateway6 = "";
+    dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkForce true;
     interfaces."ens18" = {
       useDHCP = true;
