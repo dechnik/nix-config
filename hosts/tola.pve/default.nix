@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./services
 
       ../../common/optional/qemu-vm.nix
       ../../common/optional/nix-gc.nix
