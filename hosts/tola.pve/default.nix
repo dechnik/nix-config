@@ -31,7 +31,6 @@
     ];
     defaultGateway = "10.60.0.1";
     defaultGateway6 = "";
-    dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkForce true;
     interfaces."ens18" = {
       useDHCP = true;
