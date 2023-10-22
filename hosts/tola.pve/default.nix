@@ -9,6 +9,7 @@
       ../../common/optional/qemu-vm.nix
       ../../common/optional/nix-gc.nix
       ../../common/optional/consul.nix
+      ../../common/optional/docker.nix
       ../../common/optional/promtail.nix
       ../../common/optional/node-exporter.nix
       ../../common/optional/systemd-exporter.nix
