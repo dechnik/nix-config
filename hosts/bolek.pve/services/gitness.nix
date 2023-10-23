@@ -45,6 +45,7 @@
         GITNESS_URL_UI = "https://gitness.dechnik.net";
         GITNESS_URL_CONTAINER = "https://gitness.dechnik.net";
         GITNESS_USER_SIGNUP_ENABLED = "false";
+        DOCKER_HOST = "100.64.0.6:4153";
       };
     };
     traefik.dynamicConfigOptions.http = {

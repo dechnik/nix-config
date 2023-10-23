@@ -7,7 +7,7 @@
       ./services
 
       ../../common/optional/qemu-vm.nix
-      ../../common/optional/nix-gc.nix
+      ../../common/optional/nix-gc2.nix
       ../../common/optional/consul.nix
       ../../common/optional/docker.nix
       ../../common/optional/promtail.nix
