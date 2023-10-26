@@ -8,6 +8,8 @@ in
   services.kubernetes = {
     roles = ["master" "node"];
     addons.dns.enable = true;
+    # Allow privileged pods
+    apiserver.allowPrivileged = true;
     kubelet.extraOpts = "--fail-swap-on=false";
     masterAddress = kubeHostname;
     apiserverAddress = "https://${kubeHostname}:${toString kubeApiPort}";
