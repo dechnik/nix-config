@@ -51,21 +51,11 @@
       services.gitness = {
         loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.gitness.httpPort}"; }];
       };
-      services.drone = {
-        loadBalancer.servers = [{ url = "http://10.60.0.3:32000"; }];
-      };
-
 
       routers.gitness = {
         rule = "Host(`gitness.dechnik.net`)";
         service = "gitness";
         entryPoints = [ "web" ];
-      };
-      routers.drone = {
-        rule = "Host(`drone.dechnik.net`)";
-        service = "drone";
-        entryPoints = [ "web" ];
-        middlewares = [ "dechnik-ips" ];
       };
     };
   };
