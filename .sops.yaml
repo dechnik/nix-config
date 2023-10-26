@@ -60,8 +60,14 @@ creation_rules:
       - *lukasz
   - path_regex: hosts/tolek.oracle/secrets.ya?ml$
     key_groups:
+      - age:
+          - *tolek
+        pgp:
+          - *lukasz
+  - path_regex: hosts/tola.pve/secrets.ya?ml$
+    key_groups:
     - age:
-      - *tolek
+      - *tola
       pgp:
       - *lukasz
   - path_regex: hosts/ola.hetzner/secrets.ya?ml$
