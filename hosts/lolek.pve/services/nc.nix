@@ -34,7 +34,7 @@ in
       extraAppsEnable = true;
       enable = true;
       https = true;
-      enableBrokenCiphersForSSE = false;
+      # enableBrokenCiphersForSSE = false;
       home = "/srv/nextcloud";
       maxUploadSize = "10G";
       config = {
