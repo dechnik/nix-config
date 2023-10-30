@@ -1,5 +1,6 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [ khal ];
+  # TODO enable when https://github.com/NixOS/nixpkgs/issues/263504 resolved
+  # home.packages = with pkgs; [ khal ];
   xdg.configFile."khal/config".text = ''
     [calendars]
 

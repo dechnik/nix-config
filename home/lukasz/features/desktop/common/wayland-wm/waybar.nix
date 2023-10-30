@@ -26,12 +26,13 @@ let
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
   btm = "${pkgs.bottom}/bin/btm";
   wofi = "${pkgs.wofi}/bin/wofi";
-  ikhal = "${pkgs.khal}/bin/ikhal";
+  # TODO enable when https://github.com/NixOS/nixpkgs/issues/263504 resolved
+  # ikhal = "${pkgs.khal}/bin/ikhal";
 
   terminal = "${pkgs.kitty}/bin/kitty";
   terminal-spawn = cmd: "${terminal} $SHELL -i -c ${cmd}";
 
-  calendar = terminal-spawn ikhal;
+  # calendar = terminal-spawn ikhal;
   systemMonitor = terminal-spawn btm;
   mail = terminal-spawn neomutt;
 
@@ -100,7 +101,7 @@ in
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-          on-click = calendar;
+          # on-click = calendar;
         };
         cpu = {
           format = "   {usage}%";
