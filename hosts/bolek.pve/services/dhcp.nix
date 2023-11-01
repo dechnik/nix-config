@@ -29,7 +29,7 @@ in
       };
       control-socket = {
         socket-type = "unix";
-        socket-name = "/run/kea/kea-dhcp4.socket";
+        socket-name = "/run/kea-dhcp4/kea-dhcp4.socket";
       };
       lease-database = {
         name = "/var/lib/kea/dhcp4.leases";
@@ -56,7 +56,7 @@ in
     enable = true;
     openFirewall = true;
     controlSocketPaths = [
-      "/run/kea/kea-dhcp4.socket"
+      "/run/kea-dhcp4/kea-dhcp4.socket"
     ];
   };
 
