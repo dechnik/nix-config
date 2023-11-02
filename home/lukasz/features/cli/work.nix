@@ -4,7 +4,7 @@
   home.packages = with pkgs; [
     awscli
     aws-sam-cli
-    azure-cli
+    # azure-cli
     terraform
   ];
   home.sessionVariables = {
