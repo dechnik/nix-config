@@ -991,11 +991,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1690978132,
-        "narHash": "sha256-5UaspJf/OmstnBcAd45HQUQs7520AOGXivHxJRrmB5A=",
+        "lastModified": 1699000280,
+        "narHash": "sha256-EDwaFwp24Jjk/NgaLKmEiOVy+U4ackXl4VQGHCokJ/k=",
         "ref": "master",
-        "rev": "be9ac459b2c4ff5879b6f060cf413509bf684d82",
-        "revCount": 616,
+        "rev": "8817536391b156c0aae69cbfcf19700d13ee59dd",
+        "revCount": 631,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/maubot.git"
       },
