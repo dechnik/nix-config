@@ -13,7 +13,7 @@
     ./mjolnir.nix
     ./maubot.nix
     ./maubot-alert.nix
-    ./maubot-github.nix
+    # ./maubot-github.nix
     ./maubot-rss.nix
   ];
 }
