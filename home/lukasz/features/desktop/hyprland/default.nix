@@ -104,7 +104,7 @@
         editor = defaultApp "text/plain";
       in [
         # Program bindings
-        "SUPERSHIFT,f,exec,$TERMINAL $SHELL -ic ranger"
+        "SUPER,r,exec,$TERMINAL $SHELL -ic ranger"
         "SUPER,Return,exec,${terminal}"
         "SUPER,e,exec,${editor}"
         "SUPER,v,exec,${editor}"
