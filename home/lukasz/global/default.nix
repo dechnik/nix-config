@@ -46,7 +46,6 @@ in
           "Music"
           "Pictures"
           "Videos"
-          "Projects"
           "Org"
           "Roam"
         ];

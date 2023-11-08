@@ -14,6 +14,9 @@
         mypy
         pylama
         flake8
+        jupyter
+        numpy
+        pandas
         tldextract # required by qute-pass
       ]
       ++ python-lsp-server.optional-dependencies.all);
