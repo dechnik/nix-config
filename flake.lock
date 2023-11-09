@@ -719,11 +719,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1698652087,
-        "narHash": "sha256-mPdXPXE779iBCSmV/SSUVdQsLXjjNkT26TE/FNe5BPk=",
+        "lastModified": 1699530237,
+        "narHash": "sha256-qIlJoLxmXxlvNETA2fbOZTikSos6vambl5hiI1CTy7c=",
         "owner": "dechnik",
         "repo": "gitness",
-        "rev": "c8d258277abc6be0703a4543a91b4d5bef2e1607",
+        "rev": "d98355d44d171040a7fa5cf530418d03a7b80ad8",
         "type": "github"
       },
       "original": {
