@@ -8,6 +8,6 @@
     logLevel = "debug";
     listenAddress = "127.0.0.1";
     listenPort = 20662;
-    homeserver = "https://matrix.dechnik.net";
+    homeserver = "https://dechnik.net";
   };
 }
