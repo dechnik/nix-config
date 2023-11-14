@@ -2316,11 +2316,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1690964263,
-        "narHash": "sha256-PHtJBc0L0V137LK1ryeOZV38nnQoM0NfzANOsZWZ2UY=",
+        "lastModified": 1699958458,
+        "narHash": "sha256-lDsILbL8WrmaHLvh5OIkRcR8F3m0x0elbzCy0dB5N38=",
         "ref": "master",
-        "rev": "b7005eda93158622054ed1d8e8ee9f8b65e6f9fd",
-        "revCount": 13,
+        "rev": "370d6279ed2c189f2bf161ce399caf22641e49d6",
+        "revCount": 14,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/website.git"
       },
