@@ -93,9 +93,6 @@ in
           format = "{name}";
           sort-by-name = true;
         };
-        "hyprland/workspaces" = {
-          sort-by = "id";
-        };
         clock = {
           format = "{:%d/%m %H:%M}";
           tooltip-format = ''
