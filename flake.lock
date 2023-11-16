@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "alpha-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694714586,
+        "narHash": "sha256-rXCibNJlNcF+p9PF7EoQM4/pnA1C+KGf7RrIyCY3OJY=",
+        "owner": "goolord",
+        "repo": "alpha-nvim",
+        "rev": "234822140b265ec4ba3203e3e0be0e0bb826dff5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "goolord",
+        "repo": "alpha-nvim",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -2236,6 +2252,7 @@
     },
     "vimconfig": {
       "inputs": {
+        "alpha-nvim": "alpha-nvim",
         "blamer-nvim-src": "blamer-nvim-src",
         "cmp-buffer": "cmp-buffer",
         "cmp-dap-src": "cmp-dap-src",
@@ -2295,11 +2312,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1699945053,
-        "narHash": "sha256-6siktgxZvOV0vPyA6bvVCiERrmcW2bRHwGk0rR7312c=",
+        "lastModified": 1700047570,
+        "narHash": "sha256-41XBBVIgymahwS5tiMkCFGcnMW2FjZOnbMUby1HA+u0=",
         "ref": "master",
-        "rev": "be2b1e13029e9aa5bcbfd69104ad674a8d998403",
-        "revCount": 20,
+        "rev": "8535db8d93c442ae105eb4c1db2756dcdad2c1ad",
+        "revCount": 21,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
