@@ -5,9 +5,6 @@
 # ];
   programs.vscode = {
     enable = true;
-    mutableExtensionsDir = true;
-    enableUpdateCheck = false;
-    enableExtensionUpdateCheck = true;
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix # Nix syntax
       jdinhlife.gruvbox
