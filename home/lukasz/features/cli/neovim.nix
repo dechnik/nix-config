@@ -18,6 +18,8 @@
         numpy
         pandas
         tldextract # required by qute-pass
+        notebook
+        ipykernel
       ]
       ++ python-lsp-server.optional-dependencies.all);
 in {
