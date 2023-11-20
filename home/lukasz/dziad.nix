@@ -11,6 +11,7 @@
     # ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
     ./features/desktop/optional/nc.nix
+    ./features/desktop/optional/vscode.nix
     ./features/desktop/optional/jetbrains.nix
     # ./features/desktop/optional/videoedit.nix
     # ./features/desktop/hyprland/nvidia.nix
