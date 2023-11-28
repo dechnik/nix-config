@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    ./firefox.nix
+    # ./firefox.nix
     ./chromium.nix
     ./font.nix
     ./mpv.nix
