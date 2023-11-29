@@ -1,19 +1,127 @@
-{ lib
-, stdenv
-, dpkg
-, fetchurl
+{
+  lib,
+  stdenv,
+  fetchurl,
+  autoPatchelfHook,
+  dpkg,
+  wrapGAppsHook,
+  alsa-lib,
+  at-spi2-atk,
+  at-spi2-core,
+  cairo,
+  cups,
+  curl,
+  dbus,
+  expat,
+  ffmpeg,
+  fontconfig,
+  freetype,
+  glib,
+  glibc,
+  gtk3,
+  gtk4,
+  libcanberra,
+  liberation_ttf,
+  libexif,
+  libglvnd,
+  libkrb5,
+  libnotify,
+  libpulseaudio,
+  libu2f-host,
+  libva,
+  libxkbcommon,
+  mesa,
+  nspr,
+  nss,
+  pango,
+  pciutils,
+  pipewire,
+  qt6,
+  speechd,
+  udev,
+  _7zz,
+  vaapiVdpau,
+  vulkan-loader,
+  wayland,
+  wget,
+  xdg-utils,
+  xfce,
+  xorg,
 }:
 stdenv.mkDerivation rec {
   pname = "splashtop-business";
   version = "3.5.2.0";
   src = fetchurl {
-    url = "https://download.splashtop.com/linuxclient/splashtop-business_Ubuntu_v3.5.2.0_amd64.tar.gz";
-    hash = "sha256-WI5lhLysOp74kGo+wfkotE3q7E8JkF5IypG+Bh8rrSg=";
+    url = "https://download.splashtop.com/linuxclient/splashtop-business_Ubuntu_v3.6.0.0_amd64.tar.gz";
+    hash = "sha256-pKAWrDQJMX3Bznd9RBje3TazPvml0jLfGDjg55dQgco=";
   };
 
   dontBuild = true;
   dontConfigure = true;
   dontWrapGApps = true;
+  dontWrapQtApps = true;
+
+  nativeBuildInputs = [
+    dpkg
+    wrapGAppsHook
+  ];
+
+    buildInputs = [
+    stdenv.cc.cc.lib
+    alsa-lib
+    at-spi2-atk
+    at-spi2-core
+    cairo
+    cups
+    curl
+    dbus
+    expat
+    ffmpeg
+    fontconfig
+    freetype
+    glib
+    glibc
+    gtk3
+    gtk4
+    libcanberra
+    liberation_ttf
+    libexif
+    libglvnd
+    libkrb5
+    libnotify
+    libpulseaudio
+    libu2f-host
+    libva
+    libxkbcommon
+    mesa
+    nspr
+    nss
+    qt6.qtbase
+    pango
+    pciutils
+    pipewire
+    speechd
+    udev
+    _7zz
+    vaapiVdpau
+    vulkan-loader
+    wayland
+    wget
+    xdg-utils
+    xfce.exo
+    xorg.libxcb
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXcomposite
+    xorg.libXdamage
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXi
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libXtst
+    xorg.libXxf86vm
+  ];
 
   unpackPhase = ''
     tar zxf $src
@@ -22,10 +130,18 @@ stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    mkdir $out
-    cp -R usr opt "$out"
+    runHook preInstall
+    mkdir -p $out
+    cp -vr opt $out
+    cp -vr usr/* $out
     mkdir $out/bin
-    ln -s $out/opt/splashtop-business/splashtop-business $out/bin/
+    ln -s $out/opt/splashtop-business/splashtop-business $out/bin/splashtop-business
+    substituteInPlace $out/share/applications/splashtop-business.desktop \
+      --replace /usr/bin $out/bin \
+      --replace Icon=/usr/share/pixmaps/logo_about_biz.png Icon=$out/share/pixmaps/logo_about_biz.png
+    makeWrapper "$out/opt/splashtop-business/splashtop-business" "$out/bin/splashtop-business" \
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}"
+    runHook postInstall
   '';
 
   meta = with lib; {
