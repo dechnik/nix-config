@@ -13,7 +13,7 @@
       ms-vscode-remote.remote-ssh
 
       # matangover.mypy
-      ms-pyright.pyright
+      # ms-pyright.pyright
       jebbs.plantuml
 
       # Languages
