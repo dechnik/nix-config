@@ -7,4 +7,5 @@
   mail = import ./mail.nix;
   wallpaper = import ./wallpaper.nix;
   xpo = import ./xpo.nix;
+  xdg-portal = import ./xdg-portal.nix;
 }

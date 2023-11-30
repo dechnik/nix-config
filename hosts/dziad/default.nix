@@ -101,15 +101,6 @@
   hardware.xpadneo.enable = true;
   hardware.steam-hardware.enable = true;
 
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-    wlr.enable = false;
-  };
-
   # hardware.nvidia = {
   #   prime.offload.enable = false;
   #   modesetting.enable = true;

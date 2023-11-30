@@ -87,15 +87,6 @@
   # Enable fwupd
   services.fwupd.enable = lib.mkDefault true;
 
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    extraPortals = [
-      pkgs.xdg-desktop-portal-hyprland
-    ];
-    wlr.enable = false;
-  };
-
   hardware = {
     opengl = {
       enable = true;

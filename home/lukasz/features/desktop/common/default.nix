@@ -14,6 +14,7 @@ in
     ./qt.nix
     ./virt.nix
   ];
+  xdg.portal.enable = true;
   # services.gnome-keyring = {
   #   enable = true;
   #   components = [ "secrets" ];
