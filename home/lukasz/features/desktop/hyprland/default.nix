@@ -3,9 +3,9 @@
   imports = [
     ../common
     ../common/wayland-wm
-    ./tty-init.nix
+    # ./tty-init.nix
     ./basic-binds.nix
-    ./systemd-fixes.nix
+    # ./systemd-fixes.nix
   ];
 
   xdg.portal = {
@@ -23,14 +23,14 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # systemd = {
-    #   enable = true;
-    #   # Same as default, but stop graphical-session too
-    #   extraCommands = lib.mkBefore [
-    #     "systemctl --user stop graphical-session.target"
-    #     "systemctl --user start hyprland-session.target"
-    #   ];
-    # };
+    systemd = {
+      enable = true;
+      # Same as default, but stop graphical-session too
+      extraCommands = lib.mkBefore [
+        "systemctl --user stop graphical-session.target"
+        "systemctl --user start hyprland-session.target"
+      ];
+    };
     settings = {
       general = {
         gaps_in = 2;
