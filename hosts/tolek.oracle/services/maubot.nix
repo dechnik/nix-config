@@ -1,5 +1,6 @@
 { inputs, config, ... }:
 {
+  disabledModules = [ "services/matrix/maubot.nix" ];
   imports = [
     inputs.maubot.nixosModules.default
   ];
