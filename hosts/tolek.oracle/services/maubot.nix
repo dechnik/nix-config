@@ -1,9 +1,9 @@
-{ inputs, config, ... }:
+{ lib, inputs, config, ... }:
 {
-  disabledModules = [ "services/matrix/maubot.nix" ];
-  imports = [
-    inputs.maubot.nixosModules.default
-  ];
+  # disabledModules = [ "services/matrix/maubot.nix" ];
+  # imports = [
+  #   inputs.maubot.nixosModules.default
+  # ];
 
   sops.secrets = {
     maubot-config = {
@@ -21,12 +21,30 @@
 
   services.maubot = {
     enable = true;
-    serverHostname = "127.0.0.1";
-    serverPort = 29316;
-    publicUrl = "https://matrix.dechnik.net";
+    extraConfigFile = config.sops.secrets.maubot-config.path;
     dataDir = "/var/lib/maubot";
-    secretYAML = config.sops.secrets.maubot-config.path;
+    settings = {
+      server.port = 29316;
+      server.hostname = "127.0.0.1";
+      server.public_url = "https://matrix.dechnik.net";
+      server.ui_base_path = "/_matrix/maubot";
+      database = "sqlite:${config.services.maubot.dataDir}/maubot.db";
+      plugin_databases.sqlite = "${config.services.maubot.dataDir}/plugins";
+      plugin_databases.postgres = null;
+    };
+    plugins = with config.services.maubot.package.plugins; [
+      rss
+    ];
   };
+
+  # services.maubot = {
+  #   enable = true;
+  #   serverHostname = "127.0.0.1";
+  #   serverPort = 29316;
+  #   publicUrl = "https://matrix.dechnik.net";
+  #   dataDir = "/var/lib/maubot";
+  #   secretYAML = config.sops.secrets.maubot-config.path;
+  # };
   services.traefik.dynamicConfigOptions.http = {
     services.maubot = {
       loadBalancer.servers = [{ url = "http://127.0.0.1:29316"; }];

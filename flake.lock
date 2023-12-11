@@ -982,27 +982,6 @@
         "type": "github"
       }
     },
-    "maubot": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1700661237,
-        "narHash": "sha256-XQeXykFd8xlHApmjdyEx5UcKqVmjXdg61NaAwrRYqbQ=",
-        "ref": "master",
-        "rev": "ae52a269a968ddde65330b3a491256f9d17e42d4",
-        "revCount": 634,
-        "type": "git",
-        "url": "https://git.dechnik.net/lukasz/maubot.git"
-      },
-      "original": {
-        "ref": "master",
-        "type": "git",
-        "url": "https://git.dechnik.net/lukasz/maubot.git"
-      }
-    },
     "mk-naked-shell": {
       "flake": false,
       "locked": {
@@ -1789,7 +1768,6 @@
         "hyprland-protocols": "hyprland-protocols_2",
         "hyprwm-contrib": "hyprwm-contrib",
         "impermanence": "impermanence",
-        "maubot": "maubot",
         "nh": "nh",
         "nix-colors": "nix-colors",
         "nixos-mailserver": "nixos-mailserver",
