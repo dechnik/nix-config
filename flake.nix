@@ -77,10 +77,6 @@
     #   url = "github:emacs-mirror/emacs/emacs-29";
     #   flake = false;
     # };
-    maubot = {
-      url = "git+https://git.dechnik.net/lukasz/maubot.git?ref=master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vimconfig = {
       url = "git+https://git.dechnik.net/lukasz/vimconfig.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";

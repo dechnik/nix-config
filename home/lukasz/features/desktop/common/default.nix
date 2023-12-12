@@ -42,7 +42,7 @@ in
     lyrics
     deluge
     brave
-    obsidian
+    # obsidian
     tor-browser-bundle-bin
     pcmanfm
     meld
