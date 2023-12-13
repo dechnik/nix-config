@@ -1067,11 +1067,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1702419470,
-        "narHash": "sha256-R5Ce+MY0VIM8ZU1Zswy7Ir+QWvCj9nI8zckw2f/s3mU=",
+        "lastModified": 1702488665,
+        "narHash": "sha256-lOYoLWrHVID4Zw+mBPh0TPDwHFKGRczeQ9Tvdx3+y6M=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "d65c6a0bafada059e87a11a4bcd129afc16d2e5d",
+        "rev": "7908dc0d1552e715cc4cc077e6b87d53d0e323c2",
         "type": "github"
       },
       "original": {
@@ -1282,11 +1282,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1702493316,
-        "narHash": "sha256-rQ5F3FOvK4pcVmhEZOJG1ubJBEwAmkP3VWdH19/zSGg=",
+        "lastModified": 1702495922,
+        "narHash": "sha256-XyNBq8IPiMQM8f9jU1N8mw/IqvP+3xpWG4bhnSckfiI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9d97cf879ca8f98460526929d1acb0a3c65b262c",
+        "rev": "aef29dd45e4f16151889d7a0c5a66a77cf1bfc08",
         "type": "github"
       },
       "original": {
@@ -1838,11 +1838,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1700062448,
-        "narHash": "sha256-25YsWGz/fdsvRrn8rbxdJeVTVWHY6DsMRW0gitY/kDc=",
+        "lastModified": 1702484914,
+        "narHash": "sha256-62vD3bGz8Dwv0JLmAm565qVk1dOdvUFC6ezXvI+/uyA=",
         "owner": "sourcegraph",
         "repo": "sg.nvim",
-        "rev": "41378567217097a3d78b624c9f11d29436381e99",
+        "rev": "9eeb00c758a394cccd2828720b0eaadce6f1ad51",
         "type": "github"
       },
       "original": {
@@ -2058,11 +2058,11 @@
     "terraform-ls-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1702375200,
-        "narHash": "sha256-kCQH8gGFR6cRbuMplDdFixNKGQEZTKxN0nJ3s8b1B6s=",
+        "lastModified": 1702483205,
+        "narHash": "sha256-4AP96YwjbJVt/GK13e5fxOGOU9X4JvmoRdvCvQhhJdE=",
         "owner": "hashicorp",
         "repo": "terraform-ls",
-        "rev": "c70af35e9e0f0271ee22fb1a961e7fcd59eaaba7",
+        "rev": "d3a53f7aec6350052825ba30da9b0a65481e4fbb",
         "type": "github"
       },
       "original": {
@@ -2237,11 +2237,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1702457816,
-        "narHash": "sha256-dmb1N9IkZiFClXWvpkcbeOWjWMlnCB1feorN5W1MSOc=",
+        "lastModified": 1702495588,
+        "narHash": "sha256-4rylfM+2TgBLmkIG+zYW3JUA41Ip446gePNS7yqsnrY=",
         "ref": "master",
-        "rev": "607bd998295a3615c1fe3e3d8c13b790b7d64fda",
-        "revCount": 28,
+        "rev": "a5c27494e26856e9ba3d380827d0ca2733b204db",
+        "revCount": 29,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
