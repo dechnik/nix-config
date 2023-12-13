@@ -3,7 +3,7 @@
   imports = [
     ../common
     ../common/wayland-wm
-    ./tty-init.nix
+    # ./tty-init.nix
     ./basic-binds.nix
     # ./systemd-fixes.nix
   ];
