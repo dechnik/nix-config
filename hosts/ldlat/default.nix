@@ -16,7 +16,7 @@
       ../../common/optional/fping.nix
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
-      ../../common/optional/greetd.nix
+      ../../common/optional/greetd2.nix
       ../../common/optional/wireless.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/printing.nix
