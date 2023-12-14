@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 # let
 #   hyprland-displaylink = inputs.hyprland.packages.${pkgs.system}.hyprland.override {
 #      wlroots = inputs.hyprland.packages.x86_64-linux.wlroots-hyprland.overrideAttrs (_: {
@@ -8,6 +8,6 @@
 # in
 {
   wayland.windowManager.hyprland = {
-    package = pkgs.hyprland-displaylink;
+    package = lib.mkForce pkgs.hyprland-displaylink;
   };
 }
