@@ -156,8 +156,8 @@
       ]) ++
       # Screen lock
       (lib.optionals config.programs.swaylock.enable [
-        ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper}"
-        "SUPERSHIFT,Escape,exec,${swaylock} -i ${config.wallpaper}"
+        ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper} --grace 2"
+        "SUPERSHIFT,Escape,exec,${swaylock} -i ${config.wallpaper} --grace 2"
       ]) ++
       # Notification manager
       (lib.optionals config.services.mako.enable [

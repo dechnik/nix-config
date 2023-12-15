@@ -46,6 +46,8 @@
 
     nil # Nix LSP
     nixfmt # Nix formatter
-    inputs.nh.default # nixos-rebuild and home-manager CLI wrapper
+    nvd # Differ
+    nix-output-monitor
+    nh # Nice wrapper for NixOS and HM
   ];
 }
