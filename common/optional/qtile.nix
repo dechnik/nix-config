@@ -4,7 +4,9 @@
     enable = true;
     backend = "wayland";
     extraPackages = python3Packages: with python3Packages; [
-      qtile-extras
+      (qtile-extras.overridePythonAttrs (old: {
+        doCheck = false;
+      }))
     ];
   };
   environment.systemPackages = [ pkgs.qtile ];
