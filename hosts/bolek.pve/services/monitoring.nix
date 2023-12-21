@@ -270,7 +270,7 @@ in
             ];
             webhook_configs = [
               {
-                url = "https://maubot-alert.dechnik.net/webhook/!iUdwGsCXFvoaZtCafq:dechnik.net";
+                url = "https://matrix.dechnik.net/_matrix/maubot/plugin/alertbot/webhook/!iUdwGsCXFvoaZtCafq:dechnik.net";
                 send_resolved = true;
               }
             ];
