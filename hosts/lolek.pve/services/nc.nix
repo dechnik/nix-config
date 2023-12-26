@@ -23,7 +23,7 @@ in
   services = {
     nextcloud = {
       inherit hostName;
-      package = pkgs.nextcloud27;
+      package = pkgs.nextcloud28;
       extraApps = with pkgs.nextcloud27Packages.apps; {
         inherit mail;
       };

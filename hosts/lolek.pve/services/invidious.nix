@@ -35,7 +35,9 @@ in {
     enable = true;
     # nginx.enable = true;
     inherit port domain;
-    database.createLocally = true;
+    database = {
+        createLocally = true;
+    };
     settings = {
       use_quic = true;
       admins = ["lukasz"];
