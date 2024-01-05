@@ -12,6 +12,23 @@ let
       rev = "95076c9333eba541b9bf038513ff61e906184ef3";
       sha256 = "sha256-OXk+umuwSBXSbedFNe7nUdZcREHojEHDamyUObs1wKs=";
     };
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+
+    postPatch = ''
+      substituteInPlace sessionx.tmux \
+        --replace "\$CURRENT_DIR/scripts/sessionx.sh" "$out/share/tmux-plugins/sessionx/scripts/sessionx.sh"
+      substituteInPlace scripts/sessionx.sh \
+        --replace "/tmux-sessionx/scripts/preview.sh" "$out/share/tmux-plugins/sessionx/scripts/preview.sh"
+    '';
+
+    postInstall = ''
+      chmod +x $target/scripts/sessionx.sh
+      wrapProgram $target/scripts/sessionx.sh \
+        --prefix PATH : ${with pkgs; lib.makeBinPath [ tmuxPlugins.tmux-fzf gnugrep gnused coreutils ]}
+      chmod +x $target/scripts/preview.sh
+      wrapProgram $target/scripts/preview.sh \
+        --prefix PATH : ${with pkgs; lib.makeBinPath [ coreutils gnugrep gnused ]}
+    '';
   };
 in
 {
@@ -20,19 +37,16 @@ in
     shell = "${config.programs.fish.package}/bin/fish";
     # terminal = "screen-256color";
     clock24 = true;
+    baseIndex = 1;
+    escapeTime = 0;
     secureSocket = true;
     historyLimit = 30000;
 
-    sensibleOnTop = true;
+    sensibleOnTop = false;
 
     tmuxinator.enable = true;
     plugins = with pkgs; [
-      # {
-      #   plugin = sessionx;
-      #   extraConfig = ''
-      #     set -g @sessionx-bind 'o'
-      #   '';
-      # }
+      sessionx
       tmuxPlugins.tmux-fzf
       tmuxPlugins.yank
       tmuxPlugins.resurrect
@@ -40,10 +54,6 @@ in
     ];
 
     extraConfig = ''
-      set -g base-index 1              # start indexing windows at 1 instead of 0
-      set -g escape-time 0             # zero-out escape time delay
-      set -g renumber-windows on       # renumber all windows when any window is closed
-      set -g set-clipboard on          # use system clipboard
       color_status_text="colour245"
       color_window_off_status_bg="colour238"
       color_light="white" #colour015
@@ -119,6 +129,9 @@ in
       set-option -g visual-silence off
       set-window-option -g monitor-activity off
       set-option -g bell-action any
+      set -g renumber-windows on       # renumber all windows when any window is closed
+      set -g set-clipboard on          # use system clipboard
+      set -g @sessionx-bind 'o'
     '';
   };
 }
