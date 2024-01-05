@@ -1,6 +1,20 @@
 { config
+, pkgs
 , ...
-}: {
+}:
+let
+  sessionx = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "sessionx";
+    version = "unstable-2024-01-03";
+    src = pkgs.fetchFromGitHub {
+      owner = "omerxx";
+      repo = "tmux-sessionx";
+      rev = "95076c9333eba541b9bf038513ff61e906184ef3";
+      sha256 = "sha256-OXk+umuwSBXSbedFNe7nUdZcREHojEHDamyUObs1wKs=";
+    };
+  };
+in
+{
   programs.tmux = {
     enable = true;
     shell = "${config.programs.fish.package}/bin/fish";
@@ -12,8 +26,24 @@
     sensibleOnTop = true;
 
     tmuxinator.enable = true;
+    plugins = with pkgs; [
+      # {
+      #   plugin = sessionx;
+      #   extraConfig = ''
+      #     set -g @sessionx-bind 'o'
+      #   '';
+      # }
+      tmuxPlugins.tmux-fzf
+      tmuxPlugins.yank
+      tmuxPlugins.resurrect
+      tmuxPlugins.continuum
+    ];
 
     extraConfig = ''
+      set -g base-index 1              # start indexing windows at 1 instead of 0
+      set -g escape-time 0             # zero-out escape time delay
+      set -g renumber-windows on       # renumber all windows when any window is closed
+      set -g set-clipboard on          # use system clipboard
       color_status_text="colour245"
       color_window_off_status_bg="colour238"
       color_light="white" #colour015
