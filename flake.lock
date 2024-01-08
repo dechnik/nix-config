@@ -1665,6 +1665,22 @@
         "type": "github"
       }
     },
+    "nvim-obsidian-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1704670546,
+        "narHash": "sha256-OUqv0tEzmIWL0vd7ejXXxmMm4PEA/XLBCdOsa/3MmN0=",
+        "owner": "epwalsh",
+        "repo": "obsidian.nvim",
+        "rev": "a11a7545022567069b8ca015de9c5bb54002e540",
+        "type": "github"
+      },
+      "original": {
+        "owner": "epwalsh",
+        "repo": "obsidian.nvim",
+        "type": "github"
+      }
+    },
     "nvim-trailblazer-src": {
       "flake": false,
       "locked": {
@@ -2251,6 +2267,7 @@
         "nvim-dap-virtual-text-src": "nvim-dap-virtual-text-src",
         "nvim-github-linker-src": "nvim-github-linker-src",
         "nvim-matchup-src": "nvim-matchup-src",
+        "nvim-obsidian-src": "nvim-obsidian-src",
         "nvim-trailblazer-src": "nvim-trailblazer-src",
         "nvim-treesitter-src": "nvim-treesitter-src",
         "nvim-ufo-src": "nvim-ufo-src",
@@ -2271,11 +2288,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1704710779,
-        "narHash": "sha256-xLlStGaPqdPq3W3XLDlVN3KFfMi1cSHPSTTdzyKoe+Q=",
+        "lastModified": 1704719006,
+        "narHash": "sha256-oIq9T2/BHvrjgP8sKRqXcMWDmEWumD+xu754IMmiJ4g=",
         "ref": "master",
-        "rev": "61f99172b63dd35c97e95910a13d7aebda6c2b60",
-        "revCount": 33,
+        "rev": "5e500e810779a8403a058737fcac2b589dbbe77c",
+        "revCount": 34,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
