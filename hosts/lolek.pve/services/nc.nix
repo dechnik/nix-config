@@ -40,14 +40,14 @@ in
       config = {
         adminuser = "root";
         adminpassFile = config.sops.secrets.nextcloud-password.path;
-        overwriteProtocol = "https";
         dbtype = "pgsql";
         dbhost = "/run/postgresql";
         dbname = "nextcloud";
         dbuser = "nextcloud";
-        defaultPhoneRegion = "PL";
       };
       extraOptions = {
+        overwriteprotocol = "https";
+        default_phone_region = "PL";
         "bulkupload.enabled" = false;
       };
     };

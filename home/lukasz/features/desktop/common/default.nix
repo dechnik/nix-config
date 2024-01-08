@@ -43,7 +43,7 @@ in
     deluge
     brave
     # obsidian
-    tor-browser-bundle-bin
+    # tor-browser-bundle-bin
     pcmanfm
     meld
   ];
