@@ -11,7 +11,7 @@
     ./features/trusted/mail/work.nix
     ./features/desktop/optional/nc.nix
     ./features/desktop/optional/vscode.nix
-    ./features/desktop/optional/jetbrains.nix
+    # ./features/desktop/optional/jetbrains.nix
     ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
     ./features/desktop/wireless
