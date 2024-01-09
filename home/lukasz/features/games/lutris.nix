@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    wine
+    winetricks
     (lutris.override {
       extraPkgs = pkgs: [
         pkgs.libnghttp2
