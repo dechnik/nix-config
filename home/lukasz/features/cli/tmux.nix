@@ -9,8 +9,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "omerxx";
       repo = "tmux-sessionx";
-      rev = "95076c9333eba541b9bf038513ff61e906184ef3";
-      sha256 = "sha256-OXk+umuwSBXSbedFNe7nUdZcREHojEHDamyUObs1wKs=";
+      rev = "a87122c8f4bd2eb19c3ae556e2aad2973e2ca37c";
+      sha256 = "sha256-/VZyEIxqIn0ISgZ6u5TcYcXWRE+6SDK5JK1W34lKIKk=";
     };
     nativeBuildInputs = [ pkgs.makeWrapper ];
 
@@ -131,7 +131,7 @@ in
       set-option -g bell-action any
       set -g renumber-windows on       # renumber all windows when any window is closed
       set -g set-clipboard on          # use system clipboard
-      set -g @sessionx-bind 'o'
+      set -g @sessionx-bind o
     '';
   };
 }
