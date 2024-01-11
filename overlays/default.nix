@@ -34,10 +34,6 @@ in rec {
   modifications = final: prev: {
     neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
 
-    qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or [ ]) ++ [ ./qutebrowser-tree-tabs.diff ];
-    });
-
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
       version = "0.2.84";
       hash = "sha256-0rK+Yx4/Jy44Fw5VwJ3tG243ZsyOIBBehYU54XP/JGk=";

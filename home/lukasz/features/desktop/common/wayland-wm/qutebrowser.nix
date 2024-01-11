@@ -55,7 +55,6 @@ in
         show = "multiple";
         position = "left";
         width = "10%";
-        tree_tabs = true;
       };
       fonts = {
         default_family = config.fontProfiles.regular.family;
