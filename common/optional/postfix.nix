@@ -24,11 +24,11 @@ in
       smtp_use_tls=yes
       smtp_sasl_auth_enable=yes
       smtp_tls_CAfile=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
-      smtp_sasl_password_maps=hash:/etc/postfix.local/sasl_passwd
+      smtp_sasl_password_maps=texthash:/etc/postfix.local/sasl_passwd
       smtp_sasl_security_options=noanonymous
     '';
   };
-  systemd.services.postfix.preStart = "${pkgs.postfix}/sbin/postmap /etc/postfix.local/sasl_passwd";
+  # systemd.services.postfix.preStart = "${pkgs.postfix}/sbin/postmap /etc/postfix.local/sasl_passwd";
 
   services.prometheus.exporters.postfix = {
     enable = true;
