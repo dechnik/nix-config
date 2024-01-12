@@ -1668,11 +1668,11 @@
     "nvim-obsidian-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1704670546,
-        "narHash": "sha256-OUqv0tEzmIWL0vd7ejXXxmMm4PEA/XLBCdOsa/3MmN0=",
+        "lastModified": 1704820866,
+        "narHash": "sha256-+w3XYoobuH17oinPfQxhrizbmQB5IbbulUK69674/Wg=",
         "owner": "epwalsh",
         "repo": "obsidian.nvim",
-        "rev": "a11a7545022567069b8ca015de9c5bb54002e540",
+        "rev": "bc2561cd4d8049a5c91415f15bfb5c3e68b79c48",
         "type": "github"
       },
       "original": {
@@ -1888,11 +1888,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1704482238,
-        "narHash": "sha256-R/9b7IQolWWiMWD5KfQm6pdPQb+yZSC/PmD2VRtMt2Q=",
+        "lastModified": 1705085092,
+        "narHash": "sha256-maseTcgKISXRmM88t6RAf9pCpjT/+lo29eLzCLciAMg=",
         "owner": "sourcegraph",
         "repo": "sg.nvim",
-        "rev": "fe5b4b24f607e7691f269294f525bcc8588efe4d",
+        "rev": "2e8f39bc17aee7574a1dae09dc26e3d340c2bd4b",
         "type": "github"
       },
       "original": {
@@ -2288,11 +2288,11 @@
         "wilder-nvim-src": "wilder-nvim-src"
       },
       "locked": {
-        "lastModified": 1704719006,
-        "narHash": "sha256-oIq9T2/BHvrjgP8sKRqXcMWDmEWumD+xu754IMmiJ4g=",
+        "lastModified": 1705089172,
+        "narHash": "sha256-1bE/lzYkKo6Jwm2bLo6Hmx6KdMFo8KnHiXHcxezwz8I=",
         "ref": "master",
-        "rev": "5e500e810779a8403a058737fcac2b589dbbe77c",
-        "revCount": 34,
+        "rev": "35c2beba34ad6afd776fa7f7540a373011e9dd59",
+        "revCount": 36,
         "type": "git",
         "url": "https://git.dechnik.net/lukasz/vimconfig.git"
       },
