@@ -43,6 +43,7 @@ in
     deluge
     brave
     obsidian
+    floorp
     # tor-browser-bundle-bin
     pcmanfm
     meld
