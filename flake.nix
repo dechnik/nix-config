@@ -81,6 +81,10 @@
       url = "git+https://git.dechnik.net/lukasz/vimconfig.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcats = {
+      url = "github:dechnik/nixCats-nvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nixvim = {
     #   url = "github:nix-community/nixvim";
     #   inputs.nixpkgs.follows = "nixpkgs";
