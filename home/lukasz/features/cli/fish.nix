@@ -5,6 +5,7 @@ let
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
   hasEza = hasPackage "eza";
+  hasZoxide = hasPackage "zoxide";
   hasNeovim = config.programs.neovim.enable;
   hasEmacs = config.programs.emacs.enable;
   hasNeomutt = config.programs.neomutt.enable;
@@ -47,6 +48,9 @@ in
 
       cik = mkIf hasKitty "clone-in-kitty --type os-window";
       ck = cik;
+
+      z = mkIf hasZoxide "zoxide";
+      za = mkIf hasZoxide "zoxide add .";
     };
     shellAliases = {
       # Get ip
