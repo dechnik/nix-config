@@ -34,6 +34,13 @@ in rec {
   modifications = final: prev: {
     neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
 
+    obsidian = prev.obsidian.override {
+      electron = prev.electron_25.overrideAttrs (_: {
+        preFixup = "patchelf --add-needed ${prev.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+        meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
+      });
+    };
+
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
       version = "0.2.84";
       hash = "sha256-0rK+Yx4/Jy44Fw5VwJ3tG243ZsyOIBBehYU54XP/JGk=";
