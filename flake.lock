@@ -1461,11 +1461,11 @@
         "sg-nvim": "sg-nvim"
       },
       "locked": {
-        "lastModified": 1705661155,
-        "narHash": "sha256-JINp/veum3sBG4WkY4tcj3PJkY0GNYn6vW/1+jPX9FI=",
+        "lastModified": 1705672792,
+        "narHash": "sha256-ajGxunWkV3Y4bBVPbcBt/iskGNU0t9EOFb2CV7CSYeA=",
         "owner": "dechnik",
         "repo": "nixCats-nvim",
-        "rev": "ad66d6d5d007f1317712fec58f66937b75fcbc22",
+        "rev": "a9ae5e4a29e0c4b886cce63a524a108e5e356379",
         "type": "github"
       },
       "original": {
