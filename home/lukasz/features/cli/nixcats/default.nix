@@ -1,4 +1,24 @@
-{ config, pkgs, self, inputs, ...  }:
+{ config, pkgs, self, inputs, ... }: let
+  pythonEnv = pkgs.python3.withPackages (ps:
+    with ps;
+      [
+        python-lsp-server
+        pyls-isort
+        pytest
+        black
+        nose
+        mypy
+        pylama
+        flake8
+        jupyter
+        numpy
+        pandas
+        tldextract # required by qute-pass
+        notebook
+        ipykernel
+      ]
+      ++ python-lsp-server.optional-dependencies.all);
+in
 {
   imports = [
     inputs.nixcats.homeModule."x86_64-linux"
@@ -12,5 +32,14 @@
     # will be pulled from the flake instead.
     enable = true;
     packageName = "nixCats";
+  };
+  home.packages = with pkgs; [
+    pythonEnv
+  ];
+  home = {
+    sessionVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
 }
