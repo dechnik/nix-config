@@ -53,6 +53,14 @@
       };
       dwindle.split_width_multiplier = 1.35;
       misc.vfr = true;
+      windowrulev2 = [
+        "stayfocused, title:^()$,class:^(steam)$"
+        "minsize 1 1, title:^()$,class:^(steam)$"
+      ];
+      layerrule = [
+        "blur,waybar"
+        "ignorezero,waybar"
+      ];
       decoration = {
         # active_opacity = 0.94;
         # inactive_opacity = 0.84;
