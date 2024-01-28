@@ -6,6 +6,7 @@ let
   hasRipgrep = hasPackage "ripgrep";
   hasEza = hasPackage "eza";
   hasZoxide = hasPackage "zoxide";
+  hasTmuxSessionizer = hasPackage "tmux-sessionizer";
   hasNeovim = config.programs.neovim.enable;
   hasEmacs = config.programs.emacs.enable;
   hasNeomutt = config.programs.neomutt.enable;
@@ -49,6 +50,7 @@ in
       cik = mkIf hasKitty "clone-in-kitty --type os-window";
       ck = cik;
 
+      ts = mkIf hasTmuxSessionizer "tmux-sessionizer";
       z = mkIf hasZoxide "zoxide";
       za = mkIf hasZoxide "zoxide add .";
     };
