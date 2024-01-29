@@ -45,7 +45,7 @@ in
         dbname = "nextcloud";
         dbuser = "nextcloud";
       };
-      extraOptions = {
+      settings = {
         overwriteprotocol = "https";
         default_phone_region = "PL";
         "bulkupload.enabled" = false;
