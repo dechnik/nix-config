@@ -168,6 +168,7 @@ in
       set-option -g bell-action any
       set -g renumber-windows on       # renumber all windows when any window is closed
       set -g set-clipboard on          # use system clipboard
+      set -g @continuum-restore 'on'
       set -g @sessionx-bind o
     '';
   };
