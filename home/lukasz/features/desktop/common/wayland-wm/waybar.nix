@@ -369,7 +369,7 @@ in
       }
 
       #workspaces button.active {
-        border-radius: 4px;
+        border-radius: 0px;
         background-color: #${colors.base02};
       }
 
@@ -379,7 +379,7 @@ in
 
       #tray {
         margin: 4px 4px 4px 4px;
-        border-radius: 4px;
+        border-radius: 0px;
         background-color: #${colors.base02};
       }
 
@@ -396,7 +396,7 @@ in
         margin: 4px 2px;
         padding: 0 6px;
         background-color: #${colors.base02};
-        border-radius: 4px;
+        border-radius: 0px;
         min-width: 20px;
       }
 
