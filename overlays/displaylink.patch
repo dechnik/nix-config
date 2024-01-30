@@ -1,11 +1,11 @@
 --- a/backend/backend.c
 +++ b/backend/backend.c
-@@ -223,7 +223,7 @@
+@@ -258,7 +258,7 @@
+
  	struct wlr_backend *primary_drm = NULL;
  	for (size_t i = 0; i < (size_t)num_gpus; ++i) {
- 		struct wlr_backend *drm = wlr_drm_backend_create(display, session,
--			gpus[i], primary_drm);
-+			gpus[i], NULL);
+-		struct wlr_backend *drm = wlr_drm_backend_create(session, gpus[i], primary_drm);
++		struct wlr_backend *drm = wlr_drm_backend_create(session, gpus[i], NULL);
  		if (!drm) {
  			wlr_log(WLR_ERROR, "Failed to create DRM backend");
  			continue;
