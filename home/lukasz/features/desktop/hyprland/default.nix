@@ -34,9 +34,9 @@
     };
     settings = {
       general = {
-        gaps_in = 2;
-        gaps_out = 1;
-        border_size = 2;
+        gaps_in = 0;
+        gaps_out = 0;
+        border_size = 1;
         cursor_inactive_timeout = 4;
         "col.active_border" = "0xff${config.colorscheme.colors.base0C}";
         "col.inactive_border" = "0xff${config.colorscheme.colors.base02}";
@@ -65,7 +65,7 @@
         # active_opacity = 0.94;
         # inactive_opacity = 0.84;
         # fullscreen_opacity = 1.0;
-        rounding = 5;
+        rounding = 0;
         blur = {
           enabled = true;
           size = 5;
