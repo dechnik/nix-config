@@ -2,7 +2,7 @@
 let
   wofi = "${pkgs.wofi}/bin/wofi";
   kitty = "${config.programs.kitty.package}/bin/kitty";
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
   modifier = "Mod1";
   terminal = kitty;
 in
@@ -31,32 +31,32 @@ in
 
       colors = {
         focused = {
-          border = "${colors.base0C}";
-          background = "${colors.base00}";
-          text = "${colors.base05}";
-          indicator = "${colors.base09}";
-          childBorder = "${colors.base0C}";
+          border = "${palette.base0C}";
+          background = "${palette.base00}";
+          text = "${palette.base05}";
+          indicator = "${palette.base09}";
+          childBorder = "${palette.base0C}";
         };
         focusedInactive = {
-          border = "${colors.base03}";
-          background = "${colors.base00}";
-          text = "${colors.base04}";
-          indicator = "${colors.base03}";
-          childBorder = "${colors.base03}";
+          border = "${palette.base03}";
+          background = "${palette.base00}";
+          text = "${palette.base04}";
+          indicator = "${palette.base03}";
+          childBorder = "${palette.base03}";
         };
         unfocused = {
-          border = "${colors.base02}";
-          background = "${colors.base00}";
-          text = "${colors.base03}";
-          indicator = "${colors.base02}";
-          childBorder = "${colors.base02}";
+          border = "${palette.base02}";
+          background = "${palette.base00}";
+          text = "${palette.base03}";
+          indicator = "${palette.base02}";
+          childBorder = "${palette.base02}";
         };
         urgent = {
-          border = "${colors.base09}";
-          background = "${colors.base00}";
-          text = "${colors.base03}";
-          indicator = "${colors.base09}";
-          childBorder = "${colors.base09}";
+          border = "${palette.base09}";
+          background = "${palette.base00}";
+          text = "${palette.base03}";
+          indicator = "${palette.base09}";
+          childBorder = "${palette.base09}";
         };
       };
     };

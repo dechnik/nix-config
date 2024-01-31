@@ -2,7 +2,7 @@
   imports = [
     ./global
     # ./features/emacs
-    ./features/games
+    # ./features/games
     ./features/productivity/vdirsyncer.nix
     ./features/cli/work.nix
     ./features/trusted

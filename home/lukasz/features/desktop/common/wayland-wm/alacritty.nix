@@ -6,7 +6,7 @@
 }:
 # terminals
 let
-  inherit (config.colorscheme) colors;
+  inherit (config.colorscheme) palette;
 in
 {
   programs.alacritty = {
@@ -34,27 +34,27 @@ in
         size = 10;
       };
 
-      draw_bold_text_with_bright_colors = true;
+      draw_bold_text_with_bright_colors= true;
       colors = rec {
         primary = {
-          background = "#${colors.base00}";
-          foreground = "#${colors.base05}";
+          background = "#${palette.base00}";
+          foreground = "#${palette.base05}";
         };
         normal = {
-          black = "#${colors.base02}";
-          red = "#${colors.base08}";
-          green = "#${colors.base0B}";
-          yellow = "#${colors.base0A}";
-          blue = "#${colors.base0D}";
-          magenta = "#${colors.base0E}";
-          cyan = "#${colors.base0C}";
-          white = "#${colors.base05}";
+          black = "#${palette.base02}";
+          red = "#${palette.base08}";
+          green = "#${palette.base0B}";
+          yellow = "#${palette.base0A}";
+          blue = "#${palette.base0D}";
+          magenta = "#${palette.base0E}";
+          cyan = "#${palette.base0C}";
+          white = "#${palette.base05}";
         };
         bright =
           normal
           // {
-            black = "#${colors.base03}";
-            white = "#${colors.base06}";
+            black = "#${palette.base03}";
+            white = "#${palette.base06}";
           };
       };
     };

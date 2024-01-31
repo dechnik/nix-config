@@ -1,5 +1,5 @@
 { pkgs, config, ... }:
-let inherit (config.colorscheme) colors kind;
+let inherit (config.colorscheme) palette variant;
 in {
   programs.foot = {
     enable = true;

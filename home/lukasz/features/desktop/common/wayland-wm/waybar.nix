@@ -57,6 +57,39 @@ in
     });
     systemd.enable = true;
     settings = {
+      secondary = {
+        mode = "dock";
+        layer = "top";
+        height = 34;
+        margin = "0";
+        position = "top";
+        output = builtins.map (m: m.name) (builtins.filter (m: !m.isPrimary) config.monitors);
+        modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
+          "sway/workspaces"
+          "sway/mode"
+        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+          "hyprland/workspaces"
+          "hyprland/submap"
+        ]) ++ [
+          # "custom/currentplayer"
+          # "custom/player"
+        ];
+        modules-right = [
+          "clock"
+        ];
+
+        clock = {
+          format = "{:%d/%m %H:%M}";
+          tooltip-format = ''
+            <big>{:%Y %B}</big>
+            <tt><small>{calendar}</small></tt>'';
+        };
+        "wlr/workspaces" = {
+          on-click = "activate";
+          format = "{name}";
+          sort-by-name = true;
+        };
+      };
       primary = {
         mode = "dock";
         layer = "top";
@@ -342,7 +375,7 @@ in
     # x y -> vertical, horizontal
     # x y z -> top, horizontal, bottom
     # w x y z -> top, right, bottom, left
-    style = let inherit (config.colorscheme) colors; in /* css */ ''
+    style = let inherit (config.colorscheme) palette; in /* css */ ''
       * {
         transition: none;
         box-shadow: none;
@@ -352,8 +385,8 @@ in
         font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
         font-size: 1.2em;
         font-weight: 400;
-        color: #${colors.base04};
-        background: #${colors.base01};
+        color: #${palette.base04};
+        background: #${palette.base01};
       }
       #workspaces {
         margin: 0 4px;
@@ -362,7 +395,7 @@ in
       #workspaces button {
         margin: 4px 0;
         padding: 0 4px;
-        color: #${colors.base05};
+        color: #${palette.base05};
       }
 
       #workspaces button.visible {
@@ -370,7 +403,7 @@ in
 
       #workspaces button.active {
         border-radius: 0px;
-        background-color: #${colors.base02};
+        background-color: #${palette.base02};
       }
 
       #workspaces button.urgent {
@@ -380,12 +413,12 @@ in
       #tray {
         margin: 4px 4px 4px 4px;
         border-radius: 0px;
-        background-color: #${colors.base02};
+        background-color: #${palette.base02};
       }
 
       #tray * {
         padding: 0 6px;
-        border-left: 1px solid #${colors.base00};
+        border-left: 1px solid #${palette.base00};
       }
 
       #tray *:first-child {
@@ -395,17 +428,17 @@ in
       #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature  {
         margin: 4px 2px;
         padding: 0 6px;
-        background-color: #${colors.base02};
+        background-color: #${palette.base02};
         border-radius: 0px;
         min-width: 20px;
       }
 
       #pulseaudio.muted {
-        color: #${colors.base0F};
+        color: #${palette.base0F};
       }
 
       #pulseaudio.bluetooth {
-        color: #${colors.base0C};
+        color: #${palette.base0C};
       }
 
       #clock {
@@ -420,7 +453,7 @@ in
       }
 
       #temperature.critical {
-        color: #${colors.base0F};
+        color: #${palette.base0F};
       }
 
       #window {

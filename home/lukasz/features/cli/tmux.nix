@@ -78,16 +78,29 @@ in
     escapeTime = 0;
     secureSocket = true;
     historyLimit = 30000;
+    keyMode = "vi";
 
     sensibleOnTop = false;
 
     tmuxinator.enable = true;
     plugins = with pkgs; [
-      sessionx
+      {
+        plugin = sessionx;
+        extraConfig = "set -g @sessionx-bind o";
+      }
       tmuxPlugins.tmux-fzf
       tmuxPlugins.yank
-      tmuxPlugins.resurrect
-      tmuxPlugins.continuum
+      {
+        plugin = tmuxPlugins.resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+      }
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '10' # minutes
+        '';
+      }
     ];
 
     extraConfig = ''
@@ -166,10 +179,10 @@ in
       set-option -g visual-silence off
       set-window-option -g monitor-activity off
       set-option -g bell-action any
+      set -g detach-on-destroy off     # don't exit from tmux when closing a session
       set -g renumber-windows on       # renumber all windows when any window is closed
       set -g set-clipboard on          # use system clipboard
-      set -g @continuum-restore 'on'
-      set -g @sessionx-bind o
+      bind-key -r f run-shell "tmux neww tmux-sessionizer"
     '';
   };
 }
