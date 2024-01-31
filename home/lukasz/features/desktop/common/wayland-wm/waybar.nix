@@ -74,7 +74,7 @@ in
           # "custom/currentplayer"
           # "custom/player"
         ];
-        modules-right = [
+        modules-center = [
           "clock"
         ];
 
