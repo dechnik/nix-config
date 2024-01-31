@@ -144,21 +144,21 @@ in
       bind l select-pane -R
       #window mode
       setw -g mode-style bg=colour6,fg=colour0
-      bind -T root F12  \
-        set prefix None \;\
-        set key-table off \;\
-        set status-style "fg=$color_status_text,bg=$color_window_off_status_bg" \;\
-        set window-status-current-format "#[fg=$color_window_off_status_bg,bg=$color_window_off_status_current_bg]$separator_powerline_right#[default] #I:#W# #[fg=$color_window_off_status_current_bg,bg=$color_window_off_status_bg]$separator_powerline_right#[default]" \;\
-        set window-status-current-style "fg=$color_dark,bold,bg=$color_window_off_status_current_bg" \;\
-        if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
-        refresh-client -S \;\
-      bind -T off F12 \
-        set -u prefix \;\
-        set -u key-table \;\
-        set -u status-style \;\
-        set -u window-status-current-style \;\
-        set -u window-status-current-format \;\
-        refresh-client -S
+      # bind -T root F12  \
+      #   set prefix None \;\
+      #   set key-table off \;\
+      #   set status-style "fg=$color_status_text,bg=$color_window_off_status_bg" \;\
+      #   set window-status-current-format "#[fg=$color_window_off_status_bg,bg=$color_window_off_status_current_bg]$separator_powerline_right#[default] #I:#W# #[fg=$color_window_off_status_current_bg,bg=$color_window_off_status_bg]$separator_powerline_right#[default]" \;\
+      #   set window-status-current-style "fg=$color_dark,bold,bg=$color_window_off_status_current_bg" \;\
+      #   if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+      #   refresh-client -S \;\
+      # bind -T off F12 \
+      #   set -u prefix \;\
+      #   set -u key-table \;\
+      #   set -u status-style \;\
+      #   set -u window-status-current-style \;\
+      #   set -u window-status-current-format \;\
+      #   refresh-client -S
       # The statusbar {
       set -g status-position bottom
       set -g status-style bg=colour234,fg=colour137,dim
