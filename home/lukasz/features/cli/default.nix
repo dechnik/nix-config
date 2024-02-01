@@ -25,6 +25,7 @@
     ./xpo.nix
     ./tmux.nix
     ./zoxide.nix
+    ./yazi.nix
   ];
   home.packages = with pkgs; [
     comma # Install and run programs by sticking a , before them

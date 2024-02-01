@@ -126,7 +126,7 @@
         editor = defaultApp "text/plain";
       in [
         # Program bindings
-        "SUPER,r,exec,$TERMINAL $SHELL -ic ranger"
+        "SUPER,r,exec,$TERMINAL $SHELL -ic yazi"
         "SUPER,Return,exec,${terminal}"
         "SUPERSHIFT,Return,exec,${terminal} -e tmux new tmux-sessionizer"
         "SUPER,e,exec,${editor}"
