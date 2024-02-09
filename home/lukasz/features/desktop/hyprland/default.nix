@@ -52,7 +52,10 @@
         touchpad.disable_while_typing = false;
       };
       dwindle.split_width_multiplier = 1.35;
-      misc.vfr = true;
+      misc = {
+        vfr = true;
+        force_default_wallpaper = 0;
+      };
       windowrulev2 = [
         "stayfocused, title:^()$,class:^(steam)$"
         "minsize 1 1, title:^()$,class:^(steam)$"
