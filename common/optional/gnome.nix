@@ -13,7 +13,6 @@
         enable = true;
       };
     };
-    geoclue2.enable = true;
     gnome.games.enable = false;
   };
   # Fix broken stuff
