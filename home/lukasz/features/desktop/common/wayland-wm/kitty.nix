@@ -11,8 +11,13 @@ in
     packages = [ kitty-xterm ];
   };
 
-  home.sessionVariables = {
-    TERMINAL = "kitty -1";
+  home = {
+    sessionVariables = {
+      TERMINAL = "kitty -1";
+    };
+    shellAliases = {
+      sshk = "kitty +kitten ssh";
+    };
   };
 
   programs.kitty = {
