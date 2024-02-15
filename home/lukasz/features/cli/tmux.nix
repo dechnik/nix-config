@@ -34,12 +34,12 @@ let
   };
   sessionx = pkgs.tmuxPlugins.mkTmuxPlugin {
     pluginName = "sessionx";
-    version = "20240119";
+    version = "20240215";
     src = pkgs.fetchFromGitHub {
       owner = "omerxx";
       repo = "tmux-sessionx";
-      rev = "52b837b09f84bc39c84c018f049f801b44b5ed40";
-      hash = "sha256-7JglXguOnCrt6OwnlPQ6xaNAvOhGFIFtgRRF+MD55Cs=";
+      rev = "e602ad10ae139d37d697a39dda6b07e414d2e708";
+      hash = "sha256-y/RUnDwfF5pQekMr7uZmlJqjRmZEZWfk5vcwEekmzjc=";
     };
     nativeBuildInputs = [ pkgs.makeWrapper ];
 
