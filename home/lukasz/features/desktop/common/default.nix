@@ -44,6 +44,8 @@ in
     brave
     obsidian
     floorp
+    vivaldi
+    chromium-codecs-ffmpeg-extra
     # tor-browser-bundle-bin
     pcmanfm
     meld
