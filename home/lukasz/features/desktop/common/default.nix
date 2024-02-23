@@ -45,7 +45,7 @@ in
     obsidian
     floorp
     vivaldi
-    chromium-codecs-ffmpeg-extra
+    vivaldi-ffmpeg-codecs
     # tor-browser-bundle-bin
     pcmanfm
     meld
