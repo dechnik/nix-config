@@ -3,7 +3,7 @@
 {
   home.packages = with pkgs; [
     awscli
-    aws-sam-cli
+    # aws-sam-cli
     # azure-cli
     terraform
   ];

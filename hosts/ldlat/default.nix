@@ -62,8 +62,8 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
-    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_6_5;
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = pkgs.linuxKernel.packages.linux_zen.extend (self: super: {
     #   evdi = super.evdi.overrideAttrs (o: rec {
     #     src = pkgs.fetchFromGitHub {

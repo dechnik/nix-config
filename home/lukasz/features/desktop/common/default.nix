@@ -44,8 +44,10 @@ in
     brave
     obsidian
     floorp
-    vivaldi
-    vivaldi-ffmpeg-codecs
+    (vivaldi.override {
+      proprietaryCodecs = true;
+      enableWidevine = false;
+    })
     # tor-browser-bundle-bin
     pcmanfm
     meld
