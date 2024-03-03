@@ -35,6 +35,8 @@ in
   };
   home.packages = with pkgs; [
     pythonEnv
+    rnix-lsp
+    nixd
   ];
   home = {
     sessionVariables = {
