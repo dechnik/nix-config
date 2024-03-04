@@ -104,8 +104,8 @@ in
           "hyprland/workspaces"
           "hyprland/submap"
         ]) ++ [
-          # "custom/currentplayer"
-          # "custom/player"
+          "custom/currentplayer"
+          "custom/player"
         ];
         modules-center = [
           "pulseaudio"
@@ -341,14 +341,14 @@ in
           format-icons = {
             "No player active" = " ";
             "Celluloid" = "󰎁 ";
-            "spotify" = " 󰓇";
-            "ncspot" = " 󰓇";
-            "qutebrowser" = "󰖟";
+            "spotify" = "󰓇 ";
+            "ncspot" = "󰓇 ";
+            "qutebrowser" = "󰖟 ";
             "firefox" = " ";
-            "brave" = " ";
-            "discord" = "  ";
+            "discord" = " 󰙯 ";
             "sublimemusic" = " ";
             "kdeconnect" = "󰄡 ";
+            "chromium" = " ";
           };
           on-click = "${playerctld} shift";
           on-click-right = "${playerctld} unshift";
