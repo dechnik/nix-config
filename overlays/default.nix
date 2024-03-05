@@ -32,7 +32,7 @@ in rec {
 
   # Modifies existing packages
   modifications = final: prev: {
-    neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
+    # neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
 
     obsidian = prev.obsidian.override {
       electron = prev.electron_25.overrideAttrs (_: {

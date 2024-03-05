@@ -63,6 +63,7 @@
       url = "github:hyprwm/hyprland-protocols";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sg-nvim.url = "github:sourcegraph/sg.nvim";
 
     website = {
       url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
@@ -77,10 +78,10 @@
     #   url = "github:emacs-mirror/emacs/emacs-29";
     #   flake = false;
     # };
-    vimconfig = {
-      url = "git+https://git.dechnik.net/lukasz/vimconfig.git?ref=master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # vimconfig = {
+    #   url = "git+https://git.dechnik.net/lukasz/vimconfig.git?ref=master";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nixcats = {
       url = "github:dechnik/nixCats-nvim";
       inputs.nixpkgs.follows = "nixpkgs";
