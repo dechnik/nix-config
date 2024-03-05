@@ -33,12 +33,10 @@ in
     enable = true;
     packageName = "nixCats";
   };
-  home.packages = with pkgs; [
-    pythonEnv
-    rnix-lsp
-    nixd
-  ];
   home = {
+    packages = [
+      pythonEnv
+    ];
     sessionVariables = {
       EDITOR = "nvim";
       VISUAL = "nvim";
