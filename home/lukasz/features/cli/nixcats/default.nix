@@ -21,7 +21,7 @@
 in
 {
   imports = [
-    inputs.nixcats.homeModule."x86_64-linux"
+    inputs.nixcats.homeModule
   ];
   # this value, nixCats is the defaultPackageName you pass to mkNixosModules
   # it will be the namespace for your options.
@@ -31,7 +31,9 @@ in
     # you do not need to use every option here, anything you do not define
     # will be pulled from the flake instead.
     enable = true;
-    packageName = "nixCats";
+    packageNames = [
+      "nixCats"
+    ];
   };
   home = {
     packages = [
