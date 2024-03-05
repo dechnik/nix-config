@@ -806,11 +806,11 @@
         "sg-nvim": "sg-nvim"
       },
       "locked": {
-        "lastModified": 1709666583,
-        "narHash": "sha256-Fl093RxN//JD8IuQrjj6qKZGDkEVjusTKPtOUZ+GbP0=",
+        "lastModified": 1709666741,
+        "narHash": "sha256-Z3WwRma0ljAOKhgu9h72JNAHN4NkjwRXntiNaqI6nN8=",
         "owner": "dechnik",
         "repo": "nixCats-nvim",
-        "rev": "1c9716c29dd324ad10a8f318ebb73b359e97c4f1",
+        "rev": "0f9ed017abd2a31821eac674b0133efa2f044b15",
         "type": "github"
       },
       "original": {
