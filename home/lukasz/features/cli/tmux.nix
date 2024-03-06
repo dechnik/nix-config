@@ -142,8 +142,6 @@ in
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
-      set-option -g automatic-rename on
-      set-option -g automatic-rename-format '#{b:pane_current_path}'
       #window mode
       setw -g mode-style bg=colour6,fg=colour0
       # bind -T root F12  \
