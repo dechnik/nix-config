@@ -4,7 +4,6 @@ let
     patches = (oldAttrs.patches or [ ]) ++ patches;
   });
 in rec {
-  nh = inputs.nh.overlays.default;
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}' or

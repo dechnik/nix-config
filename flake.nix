@@ -6,11 +6,13 @@
       "https://cache.dechnik.net"
       "https://hyprland.cachix.org"
       "https://nix-community.cachix.org"
+      "https://cosmic.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
   };
 
@@ -34,13 +36,13 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nh = {
-      url = "github:viperml/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-mailserver = {
@@ -98,7 +100,7 @@
     #   url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     # };
   };
-  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixos-cosmic, disko, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
