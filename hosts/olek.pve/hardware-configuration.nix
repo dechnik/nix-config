@@ -3,8 +3,6 @@
   imports =
     [
       (modulesPath + "/profiles/qemu-guest.nix")
-      ../../common/optional/btrfs-optin-persistence.nix
-      ../../common/optional/encrypted-root.nix
     ];
 
   boot = {
@@ -19,11 +17,30 @@
       };
       efi.canTouchEfiVariables = true;
     };
+    supportedFilesystems = [ "zfs" ];
+    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   };
+
+  networking.hostId = "92e65e5c";
+
+  fileSystems."/" =
+    { device = "zroot/root";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    { device = "zroot/root/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home" =
+    { device = "zroot/root/home";
+      fsType = "zfs";
+    };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-label/ESP";
+      device = "/dev/disk/by-uuid/EEF2-3692";
       fsType = "vfat";
     };
 

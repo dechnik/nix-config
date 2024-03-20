@@ -1,8 +1,9 @@
-{ config, lib, ... }:
+{ inputs, config, lib, ... }:
 
 {
   imports =
     [
+      inputs.nixos-cosmic.nixosModules.default
       ./hardware-configuration.nix
 
       ../../common/optional/auto-upgrade.nix
@@ -16,6 +17,11 @@
       ../../common/users/lukasz
       ./services
     ];
+
+    # Cosmic Test
+  services.xserver.displayManager.sddm.enable = lib.mkForce false;
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
 
   services.spice-vdagentd.enable = true;
 

@@ -100,7 +100,7 @@
     #   url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     # };
   };
-  outputs = { self, nixpkgs, home-manager, nixos-cosmic, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, disko, ... }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
