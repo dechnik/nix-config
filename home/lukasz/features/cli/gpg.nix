@@ -2,19 +2,8 @@
 let
   fetchKey = { url, sha256 ? lib.fakeSha256 }:
     builtins.fetchurl { inherit sha256 url; };
-
-  pinentry =
-    if config.gtk.enable then {
-      packages = [ pkgs.pinentry-gnome pkgs.gcr ];
-      name = "gnome3";
-    } else {
-      packages = [ pkgs.pinentry-curses ];
-      name = "curses";
-    };
 in
 {
-  home.packages = pinentry.packages;
-
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
@@ -22,9 +11,11 @@ in
       "EE6FCD5EF119342E3A679BBA23A2A6BD2AC7ACC6"
       "05095B28F0B05E3C2EA1820655692ED47A6EA731"
     ];
-    pinentryFlavor = pinentry.name;
+    pinentryPackage = if config.gtk.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
     enableExtraSocket = true;
   };
+
+  home.packages = lib.optional config.gtk.enable pkgs.gcr;
 
   programs =
     let

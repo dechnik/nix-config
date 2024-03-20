@@ -8,8 +8,8 @@
       ../../common/optional/auto-upgrade.nix
       ../../common/optional/qemu-vm.nix
       # ../common/optional/greetd.nix
-      ../../common/optional/xserver.nix
-      ../../common/optional/gnome.nix
+      # ../../common/optional/xserver.nix
+      # ../../common/optional/gnome.nix
       # ../../common/optional/plasma6.nix
       ../../common/optional/nix-gc.nix
       ../../common/global
