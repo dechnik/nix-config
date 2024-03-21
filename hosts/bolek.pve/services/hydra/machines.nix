@@ -11,7 +11,7 @@ let
     }
     {
       uri = "ssh://nix-ssh@tolek.oracle";
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [ "aarch64-linux" ];
       sshKey = config.sops.secrets.nix-ssh-key.path;
       maxJobs = 4;
       speedFactor = 100;
