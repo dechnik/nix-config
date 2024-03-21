@@ -16,6 +16,7 @@
       ../../common/global
       ../../common/users/lukasz
       ./services
+      inputs.disko.nixosModules.disko
     ];
 
     # Cosmic Test
