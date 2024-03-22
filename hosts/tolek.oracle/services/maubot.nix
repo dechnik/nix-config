@@ -32,9 +32,9 @@
       plugin_databases.sqlite = "${config.services.maubot.dataDir}/plugins";
       plugin_databases.postgres = null;
     };
-    plugins = with config.services.maubot.package.plugins; [
-      rss
-    ];
+    # plugins = with config.services.maubot.package.plugins; [
+    #   rss
+    # ];
   };
 
   # services.maubot = {

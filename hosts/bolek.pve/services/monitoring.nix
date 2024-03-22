@@ -145,13 +145,13 @@ in
                 )
                 {
                   alert = "InstanceLowDiskPerc";
-                  expr = "100 * (node_filesystem_free_bytes / node_filesystem_size_bytes) < 10";
+                  expr = "100 * (node_filesystem_free_bytes / node_filesystem_size_bytes) < 5";
                   for = "1m";
                   labels = {
                     severity = "critical";
                   };
                   annotations = {
-                    description = "Less than 10% of free disk space left on a device";
+                    description = "Less than 5% of free disk space left on a device";
                     summary = "Instance {{ $labels.instance }}: {{ $value }}% free disk space on {{ $labels.device}}";
                     value = "{{ $value }}";
                   };
@@ -268,12 +268,13 @@ in
             email_configs = [
               { to = "lukasz@dechnik.net"; }
             ];
-            webhook_configs = [
-              {
-                url = "https://matrix.dechnik.net/_matrix/maubot/plugin/alertbot/webhook/!iUdwGsCXFvoaZtCafq:dechnik.net";
-                send_resolved = true;
-              }
-            ];
+            # TODO matrix notifications research
+            # webhook_configs = [
+            #   {
+            #     url = "https://matrix.dechnik.net/_matrix/maubot/plugin/alertbot/webhook/!iUdwGsCXFvoaZtCafq:dechnik.net";
+            #     send_resolved = true;
+            #   }
+            # ];
           }
         ];
       };
