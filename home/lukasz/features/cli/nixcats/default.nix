@@ -40,8 +40,8 @@ in
       pythonEnv
     ];
     sessionVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
+      EDITOR = "vim";
+      VISUAL = "vim";
     };
   };
 }
