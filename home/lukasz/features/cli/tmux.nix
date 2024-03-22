@@ -32,38 +32,6 @@ let
       tmux switch-client -t "$selected_name"
     '';
   };
-  sessionx = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "sessionx";
-    version = "20240215";
-    src = pkgs.fetchFromGitHub {
-      owner = "omerxx";
-      repo = "tmux-sessionx";
-      rev = "e602ad10ae139d37d697a39dda6b07e414d2e708";
-      hash = "sha256-y/RUnDwfF5pQekMr7uZmlJqjRmZEZWfk5vcwEekmzjc=";
-    };
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-
-    postPatch = ''
-      substituteInPlace sessionx.tmux \
-        --replace "\$CURRENT_DIR/scripts/sessionx.sh" "$out/share/tmux-plugins/sessionx/scripts/sessionx.sh"
-      substituteInPlace scripts/sessionx.sh \
-        --replace "/tmux-sessionx/scripts/preview.sh" "$out/share/tmux-plugins/sessionx/scripts/preview.sh"
-      substituteInPlace scripts/sessionx.sh \
-        --replace "/tmux-sessionx/scripts/reload_sessions.sh" "$out/share/tmux-plugins/sessionx/scripts/reload_sessions.sh"
-    '';
-
-    postInstall = ''
-      chmod +x $target/scripts/sessionx.sh
-      wrapProgram $target/scripts/sessionx.sh \
-        --prefix PATH : ${with pkgs; lib.makeBinPath [ zoxide fzf gnugrep gnused coreutils ]}
-      chmod +x $target/scripts/preview.sh
-      wrapProgram $target/scripts/preview.sh \
-        --prefix PATH : ${with pkgs; lib.makeBinPath [ coreutils gnugrep gnused ]}
-      chmod +x $target/scripts/reload_sessions.sh
-      wrapProgram $target/scripts/reload_sessions.sh \
-        --prefix PATH : ${with pkgs; lib.makeBinPath [ coreutils gnugrep gnused ]}
-    '';
-  };
 in
 {
   home.packages = [
