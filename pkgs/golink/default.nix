@@ -1,9 +1,9 @@
 { lib
-, buildGo120Module
+, buildGo121Module
 , fetchFromGitHub
 ,
 }:
-buildGo120Module rec {
+buildGo121Module rec {
   pname = "golink";
   version = "b9fdc2dcab237acd07ec628435a7864201b7e839";
 
