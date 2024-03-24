@@ -22,7 +22,7 @@
       ../../common/optional/qtile.nix
       ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
-      ../../common/optional/pantalaimon.nix
+      # ../../common/optional/pantalaimon.nix
       ../../common/optional/zram.nix
       ../../common/optional/nix-gc.nix
       # ../common/optional/postfix.nix
