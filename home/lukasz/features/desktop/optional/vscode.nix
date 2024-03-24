@@ -34,7 +34,8 @@
       esbenp.prettier-vscode
       mkhl.direnv
       ms-vscode.cpptools
-      ms-python.python
+      # TODO https://github.com/NixOS/nixpkgs/issues/298110
+      # ms-python.python
       ms-azuretools.vscode-docker
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {

@@ -11,7 +11,7 @@
     ./psql-backup.nix
     # ./matterbridge.nix
     ./mjolnir.nix
-    ./maubot.nix
+    # ./maubot.nix
     # ./maubot-alert.nix
     # ./maubot-github.nix
     # ./maubot-rss.nix
