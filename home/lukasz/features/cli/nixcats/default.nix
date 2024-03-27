@@ -10,12 +10,12 @@
         mypy
         pylama
         flake8
-        jupyter
-        numpy
-        pandas
+        # jupyter
+        # numpy
+        # pandas
         tldextract # required by qute-pass
-        notebook
-        ipykernel
+        # notebook
+        # ipykernel
       ]
       ++ python-lsp-server.optional-dependencies.all);
 in

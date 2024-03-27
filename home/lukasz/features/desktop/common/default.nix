@@ -25,7 +25,7 @@ in
 
   home = {
     sessionVariables = {
-      BROWSER = "brave";
+      BROWSER = "vivaldi";
     };
   };
   programs.browserpass.enable = true;
