@@ -53,6 +53,7 @@ in
       ts = mkIf hasTmuxSessionizer "tmux-sessionizer";
       z = mkIf hasZoxide "zoxide";
       za = mkIf hasZoxide "zoxide add .";
+      tn = "tmux new -s (pwd | sed 's/.*\\///g')";
     };
     shellAliases = {
       # Get ip

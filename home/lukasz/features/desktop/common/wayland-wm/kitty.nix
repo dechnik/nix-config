@@ -17,6 +17,7 @@ in
     };
     shellAliases = {
       sshk = "kitty +kitten ssh";
+      kssh = "kitty +kitten ssh";
     };
   };
 
