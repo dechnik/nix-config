@@ -60,7 +60,10 @@ in
       tmuxPlugins.yank
       {
         plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = ''
+          set -g @resurrect-strategy-vim 'session'
+          set -g @resurrect-strategy-nvim 'session'
+        '';
       }
       {
         plugin = tmuxPlugins.continuum;
