@@ -14,7 +14,7 @@ buildGo121Module rec {
     sha256 = "sha256-G0GBqSYVXD27kM0+h0J0cxqcico/QpUDDqf5v7op5Kg=";
   };
 
-  vendorSha256 = "sha256-cOpBNJCn3+tkPix3px4u7OhlS+hTdDPvOCuz/J+WQ9g=";
+  vendorHash = "sha256-cOpBNJCn3+tkPix3px4u7OhlS+hTdDPvOCuz/J+WQ9g=";
 
   meta = with lib; {
     homepage = "https://github.com/tailscale/golink";
