@@ -21,6 +21,9 @@ lib.mkMerge [
       services.yt = {
         loadBalancer.servers = [{ url = "http://10.60.0.2:3000"; }];
       };
+      services.ob = {
+        loadBalancer.servers = [{ url = "http://10.60.0.3:9000"; }];
+      };
       services.sg = {
         loadBalancer.servers = [{ url = "http://127.0.0.1:3080"; }];
       };
@@ -36,6 +39,11 @@ lib.mkMerge [
       routers.sg = {
         rule = "Host(`sg.dechnik.net`)";
         service = "sg";
+        entryPoints = [ "web" ];
+      };
+      routers.ob= {
+        rule = "Host(`ob.dechnik.net`)";
+        service = "ob";
         entryPoints = [ "web" ];
       };
       routers.yt = {
