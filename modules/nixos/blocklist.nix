@@ -33,7 +33,7 @@ with lib; let
     download "https://v.firebog.net/hosts/Easyprivacy.txt"
     download "https://v.firebog.net/hosts/Prigent-Ads.txt"
     download "https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt"
-    download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.2o7Net/hosts"
+    ## download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.2o7Net/hosts"
     download "https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt"
     ## malicious domains
     download "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"

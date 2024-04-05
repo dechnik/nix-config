@@ -29,7 +29,7 @@ in
       };
       control-socket = {
         socket-type = "unix";
-        socket-name = "/tmp/kea-dhcp4.socket";
+        socket-name = "/run/kea/dhcp4.sock";
       };
       lease-database = {
         name = "/var/lib/kea/dhcp4.leases";
@@ -51,12 +51,23 @@ in
       valid-lifetime = 4000;
     };
   };
+  services.kea.ctrl-agent = {
+    enable = true;
+    settings = {
+      http-host = "127.0.0.1";
+      http-port = 8000;
+      control-sockets.dhcp4 = {
+        socket-type = "unix";
+        socket-name = "/run/kea/dhcp4.sock";
+      };
+    };
+  };
 
   services.prometheus.exporters.kea = {
     enable = true;
     openFirewall = true;
     controlSocketPaths = [
-      "/tmp/kea-dhcp4.socket"
+      "http://127.0.0.1:8000"
     ];
   };
 
