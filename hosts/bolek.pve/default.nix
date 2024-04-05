@@ -56,19 +56,19 @@
       };
 
       ${config.my.wan} = {
-        useDHCP = true;
-        # ipv4.addresses = [
-        #   {
-        #     address = "195.22.99.45";
-        #     prefixLength = 24;
-        #   }
-        # ];
-        # ipv6.addresses = [
-        #   {
-        #     address = "fe80::8cd9:35ff:fe05:bbdd";
-        #     prefixLength = 64;
-        #   }
-        # ];
+        # useDHCP = true;
+        ipv4.addresses = [
+          {
+            address = "195.22.99.45";
+            prefixLength = 24;
+          }
+        ];
+        ipv6.addresses = [
+          {
+            address = "fe80::8cd9:35ff:fe05:bbdd";
+            prefixLength = 64;
+          }
+        ];
 
         tempAddress = "disabled";
       };
