@@ -28,7 +28,7 @@ let
     {
       uri = "localhost";
       systems = [ "x86_64-linux" "aarch64-linux" "i686-linux" ];
-      maxJobs = 8;
+      maxJobs = 6;
       speedFactor = 50;
       supportedFeatures = [ "kvm" "big-parallel" "nixos-test" "benchmark" ];
     }

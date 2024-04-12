@@ -1,5 +1,6 @@
 { pkgs, lib, config, outputs, inputs, ... }:
 let
+  consul = import ../../../common/functions/consul.nix { inherit lib; };
   hydraUser = config.users.users.hydra.name;
   hydraGroup = config.users.users.hydra.group;
   # Make build machine file field
@@ -56,6 +57,12 @@ in
       useSubstitutes = true;
       extraConfig = /* xml */ ''
         max_unsupported_time = 30
+        <hydra_notify>
+          <prometheus>
+            listen_address = 127.0.0.1
+            port = 9199
+          </prometheus>
+        </hydra_notify>
         <runcommand>
           job = nix-config:main:*
           command = ${lib.getExe release-host-branch}
@@ -91,6 +98,7 @@ in
     };
   };
 
+  my.consulServices.hydra = consul.prometheusExporter "hydra" 9199;
   environment.persistence = {
     "/persist".directories = [ "/var/lib/hydra" ];
   };
