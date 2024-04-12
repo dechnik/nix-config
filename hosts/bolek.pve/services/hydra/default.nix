@@ -1,6 +1,6 @@
 { pkgs, lib, config, outputs, inputs, ... }:
 let
-  consul = import ../../../common/functions/consul.nix { inherit lib; };
+  consul = import ../../../../common/functions/consul.nix { inherit lib; };
   hydraUser = config.users.users.hydra.name;
   hydraGroup = config.users.users.hydra.group;
   # Make build machine file field
@@ -57,6 +57,7 @@ in
       useSubstitutes = true;
       extraConfig = /* xml */ ''
         max_unsupported_time = 30
+        queue_runner_metrics_address = [::]:9198
         <hydra_notify>
           <prometheus>
             listen_address = 127.0.0.1
@@ -99,6 +100,7 @@ in
   };
 
   my.consulServices.hydra = consul.prometheusExporter "hydra" 9199;
+  my.consulServices.hydra-queue-runner = consul.prometheusExporter "hydra-queue-runner" 9198;
   environment.persistence = {
     "/persist".directories = [ "/var/lib/hydra" ];
   };
