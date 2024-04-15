@@ -13,7 +13,7 @@ in
     enable = true;
     dataDir = "/storage/restic";
     prometheus = true;
-    listenAddress = ":${toString port}";
+    listenAddress = "${toString port}";
     extraFlags = [ "--no-auth" ];
   };
   services.traefik.dynamicConfigOptions.http = {

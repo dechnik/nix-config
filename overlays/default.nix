@@ -61,7 +61,7 @@ in rec {
     });
 
     hyprland-displaylink = inputs.hyprland.packages.${prev.system}.hyprland.override {
-      wlroots = inputs.hyprland.packages.x86_64-linux.wlroots-hyprland.overrideAttrs (oldAttrs: {
+      wlroots-hyprland = inputs.hyprland.packages.x86_64-linux.wlroots-hyprland.overrideAttrs (oldAttrs: {
         patches = (oldAttrs.patches or [ ]) ++ [ ./displaylink.patch ];
       });
     };
