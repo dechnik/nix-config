@@ -88,6 +88,10 @@
       url = "github:dechnik/nixCats-nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sessionx = {
+      url = "github:dechnik/tmux-sessionx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nixvim = {
     #   url = "github:nix-community/nixvim";
     #   inputs.nixpkgs.follows = "nixpkgs";

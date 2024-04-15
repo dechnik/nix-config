@@ -11,6 +11,6 @@
   oauth2ms = pkgs.callPackage ./oauth2ms { };
   golink = pkgs.callPackage ./golink { };
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
-  sessionx = pkgs.callPackage ./sessionx { };
+  # sessionx = pkgs.callPackage ./sessionx { };
   # cody = pkgs.callPackage ./cody { };
 }

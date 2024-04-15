@@ -53,7 +53,7 @@ in
     tmuxinator.enable = true;
     plugins = with pkgs; [
       {
-        plugin = sessionx;
+        plugin = inputs.sessionx.default;
         extraConfig = "set -g @sessionx-bind o";
       }
       tmuxPlugins.tmux-fzf
