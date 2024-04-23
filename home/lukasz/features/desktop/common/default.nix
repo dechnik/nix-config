@@ -1,6 +1,6 @@
 { pkgs, lib, outputs, ... }:
 let
-  browser = [ "brave.desktop" ];
+  browser = [ "vivaldi.desktop" ];
 in
 {
   imports = [
