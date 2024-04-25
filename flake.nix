@@ -20,11 +20,21 @@
     # Nix ecossystem
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    nixpkgs-stable.url ="github:nixos/nixpkgs/nixos-23.11";
 
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
     sops-nix.url = "github:mic92/sops-nix";
+    nix = {
+      url = "github:nixos/nix/2.21-maintenance";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+    hydra = {
+      url = "github:nixos/hydra";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.nix.follows = "nix";
+    };
     colmena = {
       url = "github:zhaofengli/colmena";
       inputs = {

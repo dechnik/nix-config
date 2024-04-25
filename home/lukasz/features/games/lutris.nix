@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    wine
+    # wine
+    wineWowPackages.staging
     winetricks
     (lutris.override {
       extraPkgs = pkgs: [
