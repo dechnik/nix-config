@@ -35,7 +35,7 @@
     unzip
     zip
     just
-    magic-wormhole
+    # magic-wormhole
 
     bc # Calculator
     bottom # System viewer
