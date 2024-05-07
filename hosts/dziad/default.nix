@@ -6,6 +6,8 @@
       inputs.hardware.nixosModules.common-cpu-amd
       # inputs.hardware.nixosModules.common-gpu-nvidia
       inputs.hardware.nixosModules.common-pc-ssd
+      inputs.nixos-cosmic.nixosModules.default
+      ./hardware-configuration.nix
       inputs.disko.nixosModules.disko
       ./services
 
@@ -18,8 +20,8 @@
       ../../common/optional/fping.nix
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
-      ../../common/optional/greetd.nix
-      ../../common/optional/qtile.nix
+      # ../../common/optional/greetd.nix
+      # ../../common/optional/qtile.nix
       ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
       # ../../common/optional/pantalaimon.nix
@@ -30,6 +32,17 @@
       # ../common/optional/zfs.nix
       # ../common/optional/quietboot.nix
     ];
+  services.displayManager.sddm.enable = lib.mkForce false;
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+  services.xserver = {
+    autoRepeatInterval = 60;
+    autoRepeatDelay = 250;
+  };
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];

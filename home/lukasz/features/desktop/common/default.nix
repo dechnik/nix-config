@@ -5,7 +5,7 @@ in
 {
   imports = [
     # ./firefox.nix
-    ./chromium.nix
+    # ./chromium.nix
     ./font.nix
     ./mpv.nix
     ./gtk.nix
@@ -41,7 +41,7 @@ in
     xdg-utils-spawn-terminal
     lyrics
     deluge
-    brave
+    # brave
     obsidian
     floorp
     (vivaldi.override {
