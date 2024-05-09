@@ -10,12 +10,13 @@
 }:
 tmuxPlugins.mkTmuxPlugin {
   pluginName = "sessionx";
-  version = "20240322";
+  version = "20240427";
+
   src = fetchFromGitHub {
     owner = "omerxx";
     repo = "tmux-sessionx";
-    rev = "1314fe62784b67df48cfbe39d1ad8eed1b33079e";
-    hash = "sha256-X3iEaKmGdpX+wR1E2qsW1ChUfT39oVK2xXD134WtXyk=";
+    rev = "ac9b0ec219c2e36ce6beb3f900ef852ba8888095";
+    hash = "sha256-TO5OG7lqcN2sKRtdF7DgFeZ2wx9O1FVh1MSp+6EoYxc=";
   };
   nativeBuildInputs = [ makeWrapper ];
 
@@ -31,12 +32,18 @@ tmuxPlugins.mkTmuxPlugin {
   postInstall = ''
     chmod +x $target/scripts/sessionx.sh
     wrapProgram $target/scripts/sessionx.sh \
-      --prefix PATH : ${lib.makeBinPath [ zoxide fzf gnugrep gnused coreutils ]}
+      --prefix PATH : ${ lib.makeBinPath [ zoxide fzf gnugrep gnused coreutils ]}
     chmod +x $target/scripts/preview.sh
     wrapProgram $target/scripts/preview.sh \
-      --prefix PATH : ${lib.makeBinPath [ coreutils gnugrep gnused ]}
+      --prefix PATH : ${ lib.makeBinPath [ coreutils gnugrep gnused ]}
     chmod +x $target/scripts/reload_sessions.sh
     wrapProgram $target/scripts/reload_sessions.sh \
-      --prefix PATH : ${lib.makeBinPath [ coreutils gnugrep gnused ]}
+      --prefix PATH : ${ lib.makeBinPath [ coreutils gnugrep gnused ]}
   '';
+
+  meta = with lib; {
+    description = "A fuzzy Tmux session manager with preview capabilities, deleting, renaming and more!";
+    homepage = "https://github.com/omerxx/tmux-sessionx";
+    platforms = platforms.all;
+  };
 }

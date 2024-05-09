@@ -8,9 +8,12 @@
     # ./systemd-fixes.nix
   ];
 
-  xdg.portal = {
-    extraPortals = [ pkgs.inputs.hyprland.xdg-desktop-portal-hyprland ];
-    configPackages = [ config.wayland.windowManager.hyprland.package ];
+  xdg.portal = let
+    hyprland = config.wayland.windowManager.hyprland.package;
+    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
+  in {
+    extraPortals = [xdph];
+    configPackages = [hyprland];
   };
 
   home.packages = with pkgs; [

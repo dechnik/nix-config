@@ -1,5 +1,6 @@
 { config
 , pkgs
+, lib
 , ...
 }:
 let
@@ -53,7 +54,7 @@ in
     tmuxinator.enable = true;
     plugins = with pkgs; [
       {
-        plugin = inputs.sessionx.default;
+        plugin = pkgs.sessionx;
         extraConfig = "set -g @sessionx-bind o";
       }
       tmuxPlugins.tmux-fzf
