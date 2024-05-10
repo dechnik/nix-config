@@ -39,6 +39,22 @@ in rec {
       cargoHash = "sha256-vcpxcRlW1OKoD64owFF6mkxSqmNrvY+y3Ckn5UwEQ50=";
     };
 
+    vivaldi = prev.vivaldi.overrideAttrs (oldAttrs: rec {
+      version = "6.6.3271.61";
+      suffix = {
+        aarch64-linux = "arm64";
+        x86_64-linux = "amd64";
+      }.${prev.stdenv.hostPlatform.system} or (throw "Unsupported system: ${prev.stdenv.hostPlatform.system}");
+
+      src = prev.fetchurl {
+        url = "https://downloads.vivaldi.com/stable/vivaldi-stable_${version}-1_${suffix}.deb";
+        hash = {
+          aarch64-linux = "sha256-G/KZ3BMn3nX+8hFmfZaYEo2hB/0GUxM3M4JwLzTglr0=";
+          x86_64-linux = "sha256-LH1/xalmKvZWKUWULWsJPz7YfPfISjiH+Tbx0Nj4VRY=";
+        }.${prev.stdenv.hostPlatform.system} or (throw "Unsupported system: ${prev.stdenv.hostPlatform.system}");
+      };
+    });
+
     passExtensions = prev.passExtensions // {
       # https://github.com/tadfisher/pass-otp/pull/173
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
