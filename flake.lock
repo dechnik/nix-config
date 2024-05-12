@@ -978,11 +978,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715231307,
-        "narHash": "sha256-jcJvGtLb0D38zqNXDktRnbK9l0az4kBzm6k7aSeMJ4g=",
+        "lastModified": 1715391030,
+        "narHash": "sha256-2uxhOqQ+yLP9GTq56Y8YAluNT3K4oamGdftYrY4VphE=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "bdfa0b80092945027f75950909366edec6171203",
+        "rev": "c3fb9f80210fcfbac11fc0a4148320cf428c10e8",
         "type": "github"
       },
       "original": {

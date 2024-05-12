@@ -37,6 +37,7 @@ in
 {
   home.packages = [
     tmux-sessionizer
+    pkgs.sesh
   ];
   programs.tmux = {
     enable = true;
@@ -54,7 +55,7 @@ in
     tmuxinator.enable = true;
     plugins = with pkgs; [
       {
-        plugin = pkgs.sessionx;
+        plugin = sessionx;
         extraConfig = "set -g @sessionx-bind o";
       }
       tmuxPlugins.tmux-fzf

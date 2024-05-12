@@ -39,11 +39,6 @@ in rec {
       cargoHash = "sha256-vcpxcRlW1OKoD64owFF6mkxSqmNrvY+y3Ckn5UwEQ50=";
     };
 
-    vivaldi = prev.vivaldi.overrideAttrs (oldAttrs: {
-      version = "6.6.3271.61";
-      hash = "sha256-LH1/xalmKvZWKUWULWsJPz7YfPfISjiH+Tbx0Nj4VRY=";
-    });
-
     passExtensions = prev.passExtensions // {
       # https://github.com/tadfisher/pass-otp/pull/173
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
