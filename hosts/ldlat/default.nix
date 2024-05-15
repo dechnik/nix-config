@@ -81,7 +81,7 @@
     dconf.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "modesetting" "displaylink" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   services.thermald.enable = lib.mkDefault true;
   environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
