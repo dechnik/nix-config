@@ -45,7 +45,7 @@
       workspace = "10";
     }
     {
-      name = "DVI-I-2";
+      name = "DP-4";
       width = 1920;
       height = 1080;
       x = 0;
@@ -53,7 +53,7 @@
       workspace = "8";
     }
     {
-      name = "DVI-I-1";
+      name = "DP-5";
       width = 1920;
       height = 1080;
       x = 1920;
