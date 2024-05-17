@@ -59,11 +59,5 @@ in rec {
     todoman = prev.todoman.overridePythonAttrs (_: {
       doCheck = false;
     });
-
-    hyprland-displaylink = inputs.hyprland.packages.${prev.system}.hyprland.override {
-      wlroots = prev.wlroots.overrideAttrs (oldAttrs: {
-        patches = (oldAttrs.patches or [ ]) ++ [ ./displaylink.patch ];
-      });
-    };
   };
 }

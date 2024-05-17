@@ -1,11 +1,13 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     # wine
-    wineWowPackages.staging
     winetricks
     (lutris.override {
-      extraPkgs = pkgs: [
-        pkgs.libnghttp2
+      extraPkgs = p: [
+        p.libnghttp2
+        p.wineWowPackages.staging
+        p.pixman
+        p.libjpeg
         # List package dependencies here
       ];
     })

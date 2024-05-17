@@ -361,7 +361,6 @@ in
         esac
       done
       ${pkgs.coreutils}/bin/touch "$lastrun"
-      # ${config.programs.emacs.package}/bin/emacsclient -e '(mu4e-update-index)'
     '';
   };
 

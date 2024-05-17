@@ -41,6 +41,7 @@
     systemPackages = with pkgs; [
       git
       pciutils
+      parted
       #nextcloud-client
     ];
 

@@ -17,7 +17,7 @@
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
       ../../common/optional/greetd.nix
-      ../../common/optional/qtile.nix
+      # ../../common/optional/qtile.nix
       ../../common/optional/wireless.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/printing.nix
@@ -81,7 +81,7 @@
     dconf.enable = true;
   };
 
-  services.xserver.videoDrivers = [ "modesetting" "displaylink" ];
+  services.xserver.videoDrivers = [ "modesetting" ];
 
   services.thermald.enable = lib.mkDefault true;
   environment.systemPackages = [ config.boot.kernelPackages.cpupower ];

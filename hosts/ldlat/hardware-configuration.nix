@@ -23,11 +23,6 @@
     };
   };
 
-  fileSystems."/old" = {
-    device = "/dev/disk/by-uuid/ca2956e1-474e-4238-92d5-39c26f8c5205";
-    fsType = "ext4";
-  };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D065-07C9";
     fsType = "vfat";

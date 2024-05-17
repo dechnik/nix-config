@@ -12,7 +12,6 @@
     ./features/desktop/optional/nc.nix
     ./features/desktop/optional/vscode.nix
     # ./features/desktop/optional/jetbrains.nix
-    ./features/desktop/hyprland/displaylink.nix
     ./features/desktop/hyprland
     ./features/desktop/wireless
     ./features/desktop/optional/work.nix
@@ -46,7 +45,7 @@
       workspace = "10";
     }
     {
-      name = "DVI-I-2";
+      name = "DP-6";
       width = 1920;
       height = 1080;
       x = 0;
@@ -54,7 +53,7 @@
       workspace = "8";
     }
     {
-      name = "DVI-I-1";
+      name = "DP-7";
       width = 1920;
       height = 1080;
       x = 1920;
