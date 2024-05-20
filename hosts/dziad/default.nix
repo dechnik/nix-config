@@ -19,6 +19,7 @@
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
       ../../common/optional/greetd.nix
+      ../../common/optional/gaming.nix
       # ../../common/optional/qtile.nix
       ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
