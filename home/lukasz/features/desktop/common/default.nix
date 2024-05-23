@@ -41,7 +41,7 @@ in
     xdg-utils-spawn-terminal
     lyrics
     deluge
-    # brave
+    brave
     obsidian
     floorp
     (vivaldi.override {
