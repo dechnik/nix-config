@@ -23,8 +23,8 @@ in
   services = {
     nextcloud = {
       inherit hostName;
-      package = pkgs.nextcloud28;
-      extraApps = with pkgs.nextcloud28Packages.apps; {
+      package = pkgs.nextcloud29;
+      extraApps = with pkgs.nextcloud29Packages.apps; {
         inherit mail;
       };
       # Auto-update Nextcloud Apps
