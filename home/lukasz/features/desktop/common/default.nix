@@ -1,6 +1,6 @@
 { pkgs, lib, outputs, ... }:
 let
-  browser = [ "vivaldi.desktop" ];
+  browser = [ "brave.desktop" ];
 in
 {
   imports = [
@@ -25,7 +25,7 @@ in
 
   home = {
     sessionVariables = {
-      BROWSER = "vivaldi";
+      BROWSER = "brave";
     };
   };
   programs.browserpass.enable = true;

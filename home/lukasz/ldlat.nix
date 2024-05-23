@@ -45,7 +45,7 @@
       workspace = "10";
     }
     {
-      name = "DP-6";
+      name = "DP-4";
       width = 1920;
       height = 1080;
       x = 0;
@@ -53,7 +53,7 @@
       workspace = "8";
     }
     {
-      name = "DP-7";
+      name = "DP-5";
       width = 1920;
       height = 1080;
       x = 1920;
