@@ -59,10 +59,6 @@
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -75,7 +71,6 @@
       url = "github:hyprwm/hyprland-protocols";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sg-nvim.url = "github:sourcegraph/sg.nvim";
 
     website = {
       url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
