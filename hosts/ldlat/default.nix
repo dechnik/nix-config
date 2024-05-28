@@ -6,6 +6,7 @@
       # inputs.hardware.nixosModules.common-cpu-intel
       inputs.hardware.nixosModules.common-gpu-intel
       inputs.hardware.nixosModules.common-pc-ssd
+      inputs.nixos-cosmic.nixosModules.default
 
       ./hardware-configuration.nix
 
@@ -16,7 +17,7 @@
       ../../common/optional/fping.nix
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
-      ../../common/optional/greetd.nix
+      # ../../common/optional/greetd.nix
       # ../../common/optional/qtile.nix
       ../../common/optional/wireless.nix
       ../../common/optional/bluetooth.nix
@@ -26,6 +27,13 @@
       ../../common/optional/nix-gc.nix
     ];
 
+  services.displayManager.sddm.enable = lib.mkForce false;
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
   sops.secrets = {
     oauth2ms = {
       sopsFile = ../../common/secrets.yaml;

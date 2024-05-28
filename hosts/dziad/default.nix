@@ -36,10 +36,6 @@
   services.displayManager.sddm.enable = lib.mkForce false;
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
-  services.xserver = {
-    autoRepeatInterval = 60;
-    autoRepeatDelay = 250;
-  };
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
