@@ -28,10 +28,10 @@ in
       schema_config = {
         configs = [
           {
-            from = "2020-05-15";
-            store = "boltdb";
+            from = "2024-05-29";
+            store = "tsdb";
             object_store = "filesystem";
-            schema = "v11";
+            schema = "v13";
             index = {
               prefix = "index_";
               period = retention;
@@ -52,12 +52,13 @@ in
         lifecycler.interface_names = [ config.my.lan "wg0" "tailscale0" "ens20" ];
         chunk_encoding = "snappy";
         # Disable block transfers on shutdown
-        max_transfer_retries = 0;
       };
 
       storage_config = {
-        boltdb = {
-          directory = "${config.services.loki.dataDir}/index";
+        tsdb_shipper = {
+          active_index_directory = "${config.services.loki.dataDir}/tsdb-index";
+          cache_location = "${config.services.loki.dataDir}/tsdb-cache";
+          cache_ttl = "24h";
         };
 
         filesystem = {
@@ -65,9 +66,9 @@ in
         };
       };
 
-      chunk_store_config = {
-        max_look_back_period = retention;
-      };
+      # chunk_store_config = {
+      #   max_look_back_period = retention;
+      # };
 
       table_manager = {
         retention_deletes_enabled = true;
@@ -77,6 +78,14 @@ in
       limits_config = {
         split_queries_by_interval = "24h";
         ingestion_burst_size_mb = 16;
+        retention_period = retention;
+      };
+      compactor = {
+        working_directory = "${config.services.loki.dataDir}/retention";
+        retention_enabled = true;
+        retention_delete_delay = "2h";
+        retention_delete_worker_count = 150;
+        delete_request_store = "filesystem";
       };
 
       ruler = {
