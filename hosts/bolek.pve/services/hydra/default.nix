@@ -50,9 +50,9 @@ in
     hydra = {
       enable = true;
       # package = pkgs.inputs.hydra.hydra;
-      package = pkgs.inputs.hydra.default.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [./hydra-restrict-eval.diff];
-      });
+      # package = pkgs.inputs.hydra.default.overrideAttrs (old: {
+      #   patches = (old.patches or []) ++ [./hydra-restrict-eval.diff];
+      # });
       hydraURL = "https://hydra.dechnik.net";
       notificationSender = "monitoring@dechnik.net";
       listenHost = "localhost";
