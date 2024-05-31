@@ -102,8 +102,8 @@ in
     };
   };
 
-  my.consulServices.hydra = consul.prometheusExporter "hydra" 9199;
-  my.consulServices.hydra-queue-runner = consul.prometheusExporter "hydra-queue-runner" 9198;
+  # my.consulServices.hydra = consul.prometheusExporter "hydra" 9199;
+  # my.consulServices.hydra-queue-runner = consul.prometheusExporter "hydra-queue-runner" 9198;
   environment.persistence = {
     "/persist".directories = [ "/var/lib/hydra" ];
   };
