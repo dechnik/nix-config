@@ -21,6 +21,10 @@
     ydotool
   ];
 
+  services.gnome-keyring = {
+    enable = true;
+    components = [ "secrets" ];
+  };
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     QT_QPA_PLATFORM = "wayland";

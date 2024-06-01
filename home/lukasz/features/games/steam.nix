@@ -29,22 +29,22 @@ in
     desktopEntries = {
       steam-ses = {
         name = "Steam Session";
-        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} --expose-wayland -O ${monitor.name} -e -- steam -gamepadui";
+        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} --expose-wayland -f -O ${monitor.name} -e -- steam -gamepadui";
         type = "Application";
       };
       steam-ses-keyboard = {
         name = "Steam Session Keyboard";
-        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} --expose-wayland -O ${monitor.name} -e -- steam";
+        exec = "${pkgs.gamescope}/bin/gamescope -W ${toString monitor.width} -H ${toString monitor.height} --expose-wayland -f -O ${monitor.name} -e -- steam";
         type = "Application";
       };
       steam-ses-tv = {
         name = "Steam Session TV";
-        exec = "${pkgs.gamescope}/bin/gamescope -W 3840 -H 2160 -O HDMI-A-1 --expose-wayland -e -- steam -gamepadui";
+        exec = "${pkgs.gamescope}/bin/gamescope -W 3840 -H 2160 -f -O HDMI-A-1 --expose-wayland -e -- steam -gamepadui";
         type = "Application";
       };
       steam-ses-tv-keyboard = {
         name = "Steam Session TV Keyboard";
-        exec = "${pkgs.gamescope}/bin/gamescope -W 3840 -H 2160 --expose-wayland -O HDMI-A-1 -e -- steam";
+        exec = "${pkgs.gamescope}/bin/gamescope -W 3840 -H 2160 -f --expose-wayland -O HDMI-A-1 -e -- steam";
         type = "Application";
       };
     };
