@@ -66,7 +66,7 @@
         useDHCP = true;
       };
     };
-    # networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
   };
 
   boot = {
