@@ -4,6 +4,8 @@
     ./kitty.nix
     ./wofi.nix
     ./waybar.nix
+    ./qutebrowser.nix
+    ./zathura.nix
   ];
   home.packages = with pkgs; [
     glib
