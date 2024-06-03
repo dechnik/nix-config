@@ -23,7 +23,7 @@
       # ../../common/optional/greetd.nix
       ../../common/optional/gaming.nix
       # ../../common/optional/qtile.nix
-      ../../common/optional/vpn.nix
+      # ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
       # ../../common/optional/pantalaimon.nix
       ../../common/optional/zram.nix

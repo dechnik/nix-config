@@ -23,7 +23,7 @@
       ../../common/optional/bluetooth.nix
       ../../common/optional/printing.nix
       # ../../common/optional/pantalaimon.nix
-      ../../common/optional/vpn.nix
+      # ../../common/optional/vpn.nix
       ../../common/optional/nix-gc.nix
     ];
 
