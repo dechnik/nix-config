@@ -69,7 +69,7 @@
   networking = {
     hostName = "dziad"; # Define your hostname.
     domain = "dechnik.net";
-    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     #
     nameservers = [
       "1.1.1.1"
