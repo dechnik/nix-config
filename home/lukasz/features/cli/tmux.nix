@@ -33,10 +33,24 @@ let
       tmux switch-client -t "$selected_name"
     '';
   };
+  tmux-sesh = pkgs.writeShellScriptBin "tmux-sesh" ''
+    sesh connect "$(
+    	${pkgs.sesh}/bin/sesh list -tz | fzf-tmux -p 55%,60% \
+    		--no-sort --border-label ' sesh ' --prompt '⚡  ' \
+    		--header '  ^a all ^t tmux ^x zoxide ^d tmux kill ^f find' \
+    		--bind 'tab:down,btab:up' \
+    		--bind 'ctrl-a:change-prompt(⚡  )+reload(sesh list)' \
+    		--bind 'ctrl-t:change-prompt(🪟  )+reload(sesh list -t)' \
+    		--bind 'ctrl-x:change-prompt(📁  )+reload(sesh list -z)' \
+    		--bind 'ctrl-f:change-prompt(🔎  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    		--bind 'ctrl-d:execute(tmux kill-session -t {})+change-prompt(⚡  )+reload(sesh list)'
+    )"
+  '';
 in
 {
   home.packages = [
     tmux-sessionizer
+    tmux-sesh
     pkgs.sesh
   ];
   programs.tmux = {
@@ -156,6 +170,7 @@ in
       set -g renumber-windows on       # renumber all windows when any window is closed
       set -g set-clipboard on          # use system clipboard
       bind-key -r f run-shell "tmux neww tmux-sessionizer"
+      bind-key "k" run-shell "tmux-sesh"
     '';
   };
 }
