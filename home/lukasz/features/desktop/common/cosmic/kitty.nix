@@ -37,6 +37,7 @@ in
       copy_on_select = "clipboard";
       background_opacity = "0.9";
       window_padding_width = 2;
+      hide_window_decorations = "yes";
       foreground = "#${palette.base05}";
       background = "#${palette.base00}";
       selection_background = "#${palette.base05}";
