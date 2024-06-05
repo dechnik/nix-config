@@ -5,7 +5,7 @@ in
 {
   imports = [
     # ./firefox.nix
-    # ./chromium.nix
+    ./chromium.nix
     ./font.nix
     ./mpv.nix
     ./gtk.nix

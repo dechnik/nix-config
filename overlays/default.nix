@@ -44,9 +44,6 @@ in rec {
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
     };
 
-    # https://github.com/NixOS/nix/issues/7098
-    hydra_unstable = addPatches prev.hydra_unstable [ ./hydra-restrict-eval.diff ];
-
     # https://github.com/mdellweg/pass_secret_service/pull/37
     pass-secret-service = addPatches prev.pass-secret-service [ ./pass-secret-service-native.diff ];
 
@@ -59,5 +56,45 @@ in rec {
     todoman = prev.todoman.overridePythonAttrs (_: {
       doCheck = false;
     });
+    qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
+      preFixup =
+        oldAttrs.preFixup
+        +
+        # Fix for https://github.com/NixOS/nixpkgs/issues/168484
+        (let
+          schemaPath = package: "${package}/share/gsettings-schemas/${package.name}";
+        in ''
+          makeWrapperArgs+=(
+            --prefix XDG_DATA_DIRS : ${schemaPath final.gsettings-desktop-schemas}
+            --prefix XDG_DATA_DIRS : ${schemaPath final.gtk3}
+          )
+        '');
+      patches =
+        (oldAttrs.patches or [])
+        ++ [
+          # Repaint tabs when colorscheme changes
+          ./qutebrowser-refresh-tab-colorscheme.patch
+          # Reload on SIGHUP
+          # https://github.com/qutebrowser/qutebrowser/pull/8110
+          (final.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/qutebrowser/qutebrowser/pull/8110.patch";
+            hash = "sha256-W30aGOAy8F/PlfUK2fgJQEcVu5QHcWSus6RKIlvVT1g=";
+          })
+        ];
+    });
+    hydra_unstable =
+      (prev.hydra_unstable.overrideAttrs (old: {
+        version = "2024-05-23";
+        src = final.fetchFromGitHub {
+          owner = "nixos";
+          repo = "hydra";
+          rev = "b3e0d9a8b78d55e5fea394839524f5a24d694230";
+          hash = "sha256-WAJJ4UL3hsqsfZ05cHthjEwItnv7Xy84r2y6lzkBMh8=";
+        };
+        patches = [./hydra-restrict-eval.diff];
+      }))
+      .override {
+        nix = final.nixVersions.nix_2_22;
+      };
   };
 }

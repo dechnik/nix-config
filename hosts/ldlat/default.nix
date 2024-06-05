@@ -19,11 +19,11 @@
       ../../common/optional/pipewire.nix
       # ../../common/optional/greetd.nix
       # ../../common/optional/qtile.nix
-      ../../common/optional/wireless.nix
+      ../../common/optional/wireless-nn.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/printing.nix
       # ../../common/optional/pantalaimon.nix
-      # ../../common/optional/vpn.nix
+      ../../common/optional/vpn-nn.nix
       ../../common/optional/nix-gc.nix
     ];
 
@@ -66,8 +66,13 @@
         useDHCP = true;
       };
     };
-    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   };
+  # networking.networkmanager.settings = {
+  #   connectivity = {
+  #     uri = "http://nmcheck.gnome.org/check_network_status.txt";
+  #   };
+  # };
 
   boot = {
     # kernelPackages = pkgs.linuxKernel.packages.linux_6_5;

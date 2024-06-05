@@ -1,6 +1,7 @@
-{ inputs, lib, ... }:
+{ inputs, lib, pkgs, ... }:
 {
   nix = {
+    package = pkgs.nixVersions.nix_2_22;
     settings = {
       substituters = [
         "https://cache.dechnik.net"
@@ -14,7 +15,11 @@
       ];
       trusted-users = [ "root" "@wheel" ];
       auto-optimise-store = lib.mkDefault true;
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+      ];
       warn-dirty = false;
       system-features = [ "kvm" "big-parallel" ];
     };
