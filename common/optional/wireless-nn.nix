@@ -36,6 +36,32 @@
           psk = "$PSK_BIURO";
         };
       };
+      dziadowo5-wifi = {
+        connection = {
+          id = "dziadowo5-wifi";
+          permissions = "";
+          type = "wifi";
+        };
+        ipv4 = {
+          dns-search = "";
+          method = "auto";
+        };
+        ipv6 = {
+          addr-gen-mode = "stable-privacy";
+          dns-search = "";
+          method = "auto";
+        };
+        wifi = {
+          mac-address-blacklist = "";
+          mode = "infrastructure";
+          ssid = "dziadowo5";
+        };
+        wifi-security = {
+          auth-alg = "open";
+          key-mgmt = "wpa-psk";
+          psk = "$PSK_HOME";
+        };
+      };
     };
   };
   # networking.wireless = {
