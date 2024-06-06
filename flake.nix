@@ -88,10 +88,10 @@
       url = "github:dechnik/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    applet-gpg = {
-      url = "path:/home/lukasz/Projects/cosmic/cosmic-applet-gpg";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # applet-gpg = {
+    #   url = "path:/home/lukasz/Projects/cosmic/cosmic-applet-gpg";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     # nixvim = {
     #   url = "github:nix-community/nixvim";
     #   inputs.nixpkgs.follows = "nixpkgs";

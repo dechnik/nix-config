@@ -108,7 +108,7 @@ in
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
   environment.etc."cosmic-comp/config.ron".source = lib.mkForce cosmic-config;
-  environment.systemPackages = [
-    inputs.applet-gpg.packages.${pkgs.system}.default
-  ];
+  # environment.systemPackages = [
+  #   inputs.applet-gpg.packages.${pkgs.system}.default
+  # ];
 }
