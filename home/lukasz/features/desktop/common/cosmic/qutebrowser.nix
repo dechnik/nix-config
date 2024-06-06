@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let inherit (config.colorscheme) palette variant;
 in
@@ -27,6 +27,13 @@ in
         ln -sf "$HOME/Documents/qutebrowser/bookmarks" "$HOME/.config/qutebrowser/bookmarks"
       fi
     '';
+    # Install language dictionaries for spellcheck backends
+    qutebrowserInstallDicts =
+      lib.concatStringsSep "\\\n" (map (lang: ''
+            if ! find "$XDG_DATA_HOME/qutebrowser/qtwebengine_dictionaries" -type d -maxdepth 1 -name "${lang}*" 2>/dev/null | grep -q .; then
+            ${pkgs.python3}/bin/python ${pkgs.qutebrowser}/share/qutebrowser/scripts/dictcli.py install ${lang}
+            fi
+            '') ["en-US" "pl-PL"]);
   };
 
   # xdg.mimeApps.defaultApplications = {
@@ -36,7 +43,6 @@ in
   #   "x-scheme-handler/https" = [ "org.qutebrowser.qutebrowser.desktop" ];
   #   "x-scheme-handler/qute" = [ "org.qutebrowser.qutebrowser.desktop" ];
   # };
-
 
   programs.qutebrowser = {
     enable = true;
