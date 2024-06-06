@@ -46,7 +46,9 @@ in
 
   programs.qutebrowser = {
     enable = true;
-    package = pkgs.qutebrowser;
+    package = pkgs.qutebrowser.override {
+      enableWideVine = true;
+    };
     loadAutoconfig = true;
     searchEngines = {
       DEFAULT = "https://search.brave.com/search?q={}";
