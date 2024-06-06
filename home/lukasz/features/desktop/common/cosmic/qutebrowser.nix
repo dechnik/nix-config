@@ -56,6 +56,7 @@ in
         show = "multiple";
         position = "left";
         indicator.width = 0;
+        width = "10%";
       };
       fonts = {
         default_family = config.fontProfiles.regular.family;
@@ -63,7 +64,7 @@ in
       };
       colors = {
         webpage = {
-          preferred_color_scheme = variant;
+          preferred_color_scheme = "auto";
           bg = "#ffffff";
         };
         completion = {
