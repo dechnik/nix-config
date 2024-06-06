@@ -87,6 +87,7 @@ let
         (modifiers: [Super], key: "Tab"): Spawn("cosmic-launcher alt-tab"),
 
         (modifiers: [], key: "Print"): Spawn("cosmic-screenshot"),
+        (modifiers: [], key: "Scroll_Lock"): Spawn("pass-wofi"),
 
         (modifiers: [], key: "XF86AudioRaiseVolume"): Spawn("amixer sset Master 5%+"),
         (modifiers: [], key: "XF86AudioLowerVolume"): Spawn("amixer sset Master 5%-"),
