@@ -44,13 +44,19 @@ in
     loadAutoconfig = true;
     searchEngines = {
       DEFAULT = "https://search.brave.com/search?q={}";
+      b = "https://search.brave.com/search?q={}";
     };
     keyBindings.normal = {
       # try to fill username / password
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
     };
     settings = {
+      spellcheck.languages = ["en-US" "pl-PL"];
       auto_save.session = true;
+      # if input is focused on tab load, allow typing
+      input.insert_mode.auto_load = true;
+      # exit insert mode if clicking on non editable item
+      input.insert_mode.auto_leave = true;
       window.hide_decoration = true;
       tabs = {
         show = "multiple";
@@ -197,7 +203,7 @@ in
       };
     };
     extraConfig = ''
-      c.tabs.padding = {"bottom": 10, "left": 10, "right": 10, "top": 10}
+      c.tabs.padding = {"bottom": 4, "left": 10, "right": 10, "top": 4}
     '';
   };
 }
