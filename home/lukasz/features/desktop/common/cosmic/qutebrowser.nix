@@ -58,6 +58,8 @@ in
       # exit insert mode if clicking on non editable item
       input.insert_mode.auto_leave = true;
       window.hide_decoration = true;
+      tabs.title.format = "{audio}{index}: {current_title}";
+      tabs.title.format_pinned = "{audio}{index}P: {current_title}";
       tabs = {
         show = "multiple";
         position = "left";
@@ -187,10 +189,10 @@ in
           indicator.stop = "#${palette.base0C}";
           odd.bg = "#${palette.base00}";
           odd.fg = "#${palette.base05}";
-          pinned.even.bg = "#${palette.base0B}";
-          pinned.even.fg = "#${palette.base00}";
-          pinned.odd.bg = "#${palette.base0B}";
-          pinned.odd.fg = "#${palette.base00}";
+          pinned.even.bg = "#${palette.base00}";
+          pinned.even.fg = "#${palette.base05}";
+          pinned.odd.bg = "#${palette.base00}";
+          pinned.odd.fg = "#${palette.base05}";
           pinned.selected.even.bg = "#${palette.base02}";
           pinned.selected.even.fg = "#${palette.base05}";
           pinned.selected.odd.bg = "#${palette.base02}";
