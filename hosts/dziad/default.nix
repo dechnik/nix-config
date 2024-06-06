@@ -28,18 +28,12 @@
       # ../../common/optional/pantalaimon.nix
       ../../common/optional/zram.nix
       ../../common/optional/nix-gc.nix
+      ../../common/optional/cosmic.nix
       # ../common/optional/postfix.nix
       # ../../common/optional/gamemode.nix
       # ../common/optional/zfs.nix
       # ../common/optional/quietboot.nix
     ];
-  services.displayManager.sddm.enable = lib.mkForce false;
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];

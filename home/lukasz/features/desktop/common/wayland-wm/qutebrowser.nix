@@ -51,10 +51,11 @@ in
     };
     settings = {
       auto_save.session = true;
+      window.hide_decoration = true;
       tabs = {
         show = "multiple";
         position = "left";
-        width = "10%";
+        indicator.width = 0;
       };
       fonts = {
         default_family = config.fontProfiles.regular.family;

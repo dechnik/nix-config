@@ -25,15 +25,12 @@
       # ../../common/optional/pantalaimon.nix
       ../../common/optional/vpn-nn.nix
       ../../common/optional/nix-gc.nix
+      ../../common/optional/cosmic.nix
     ];
 
-  services.displayManager.sddm.enable = lib.mkForce false;
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
+  environment.systemPackages = [
+    config.boot.kernelPackages.cpupower
+  ];
   sops.secrets = {
     oauth2ms = {
       sopsFile = ../../common/secrets.yaml;
@@ -97,7 +94,6 @@
   services.xserver.videoDrivers = [ "modesetting" ];
 
   services.thermald.enable = lib.mkDefault true;
-  environment.systemPackages = [ config.boot.kernelPackages.cpupower ];
   # Enable fwupd
   services.fwupd.enable = lib.mkDefault true;
 

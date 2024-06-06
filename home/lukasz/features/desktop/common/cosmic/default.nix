@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./kitty.nix
@@ -8,6 +8,7 @@
     ./zathura.nix
   ];
   home.packages = with pkgs; [
+    inputs.hyprwm-contrib.packages.${system}.grimblast
     glib
     gsettings-desktop-schemas
     grim
