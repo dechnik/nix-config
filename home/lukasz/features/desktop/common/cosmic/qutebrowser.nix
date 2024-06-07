@@ -53,12 +53,41 @@ in
     searchEngines = {
       DEFAULT = "https://search.brave.com/search?q={}";
       b = "https://search.brave.com/search?q={}";
+      nu = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      gh = "https://github.com/?q={}";
+      yt = "https://www.youtube.com/results?search_query={}";
     };
     keyBindings.normal = {
       # try to fill username / password
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
     };
     settings = {
+      confirm_quit = ["downloads"];
+      scrolling.smooth =
+        if pkgs.stdenv.isDarwin
+        then false
+        else true;
+      downloads.location.directory = "${
+        if pkgs.stdenv.isDarwin
+        then "/Users/"
+        else "/home/"
+      }lukasz/Downloads";
+      fileselect.single_file.command = [
+        "kitty"
+        "--class"
+        "yazi,yazi"
+        "-1"
+        "-e"
+        "yazi --chooser-file {}"
+      ];
+      fileselect.multiple_files.command = [
+        "kitty"
+        "--class"
+        "yazi,yazi"
+        "-1"
+        "-e"
+        "yazi --chooser-file {}"
+      ];
       spellcheck.languages = ["en-US" "pl-PL"];
       auto_save.session = true;
       # if input is focused on tab load, allow typing
@@ -80,7 +109,7 @@ in
       };
       colors = {
         webpage = {
-          preferred_color_scheme = "auto";
+          preferred_color_scheme = "dark";
           bg = "#ffffff";
         };
         completion = {
