@@ -17,6 +17,11 @@ let inherit (config.colorscheme) palette variant;
     "application/x-extension-xhtml" = browser;
     "application/x-extension-xht" = browser;
   };
+  gruvbox-css = builtins.fetchurl {
+    name = "gruvbox-all-sites.css";
+    url = "https://github.com/alphapapa/solarized-everything-css/raw/master/css/gruvbox/gruvbox-all-sites.css";
+    sha256 = "sha256:1l9bsdcf2qdrjb5q6z59q38kinr1f8b10wahb1kf51py24v1mjwz";
+  };
 in
 {
   home = {
@@ -264,6 +269,7 @@ in
     };
     extraConfig = ''
       c.tabs.padding = {"bottom": 4, "left": 10, "right": 10, "top": 4}
+      config.bind(',gr', 'config-cycle content.user_stylesheets ${gruvbox-css} ""')
     '';
   };
 }
