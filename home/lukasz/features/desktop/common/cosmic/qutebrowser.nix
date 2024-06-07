@@ -122,6 +122,8 @@ in
         indicator.width = 0;
         width = "10%";
       };
+      content.pdfjs = true;
+      content.autoplay = false;
       fonts = {
         default_family = config.fontProfiles.regular.family;
         default_size = "10pt";
