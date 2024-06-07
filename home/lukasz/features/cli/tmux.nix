@@ -171,6 +171,9 @@ in
       set -g set-clipboard on          # use system clipboard
       bind-key -r f run-shell "tmux neww tmux-sessionizer"
       bind-key "k" run-shell "tmux-sesh"
+      set -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
     '';
   };
 }
