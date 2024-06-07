@@ -1,12 +1,28 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 let inherit (config.colorscheme) palette variant;
+  browser = ["org.qutebrowser.qutebrowser.desktop"];
+  associations = {
+    "text/html" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
+    "x-scheme-handler/ftp" = browser;
+    "x-scheme-handler/chrome" = browser;
+    "x-scheme-handler/about" = browser;
+    "x-scheme-handler/unknown" = browser;
+    "application/x-extension-htm" = browser;
+    "application/x-extension-html" = browser;
+    "application/x-extension-shtml" = browser;
+    "application/xhtml+xml" = browser;
+    "application/x-extension-xhtml" = browser;
+    "application/x-extension-xht" = browser;
+  };
 in
 {
   home = {
-    # sessionVariables = {
-    #   BROWSER = "qutebrowser";
-    # };
+    sessionVariables = {
+      BROWSER = "qutebrowser";
+    };
     persistence = {
       "/persist/home/lukasz".directories = [
         ".config/qutebrowser/greasemonkey"
@@ -27,8 +43,18 @@ in
         ln -sf "$HOME/Documents/qutebrowser/bookmarks" "$HOME/.config/qutebrowser/bookmarks"
       fi
     '';
+    # Install language dictionaries for spellcheck backends
+    qutebrowserInstallDicts =
+      lib.concatStringsSep "\\\n" (map (lang: ''
+            if ! find "$XDG_DATA_HOME/qutebrowser/qtwebengine_dictionaries" -type d -maxdepth 1 -name "${lang}*" 2>/dev/null | grep -q .; then
+            ${pkgs.python3}/bin/python ${pkgs.qutebrowser}/share/qutebrowser/scripts/dictcli.py install ${lang}
+            fi
+            '') ["en-US" "pl-PL"]);
   };
 
+  xdg.mimeApps.enable = true;
+  xdg.mimeApps.associations.added = associations;
+  xdg.mimeApps.defaultApplications = associations;
   # xdg.mimeApps.defaultApplications = {
   #   "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
   #   "text/xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
@@ -37,25 +63,64 @@ in
   #   "x-scheme-handler/qute" = [ "org.qutebrowser.qutebrowser.desktop" ];
   # };
 
-
   programs.qutebrowser = {
     enable = true;
-    package = pkgs.qutebrowser;
+    package = pkgs.qutebrowser.override {
+      enableWideVine = true;
+    };
     loadAutoconfig = true;
     searchEngines = {
       DEFAULT = "https://search.brave.com/search?q={}";
+      b = "https://search.brave.com/search?q={}";
+      nu = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
+      gh = "https://github.com/?q={}";
+      yt = "https://www.youtube.com/results?search_query={}";
     };
     keyBindings.normal = {
       # try to fill username / password
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
     };
     settings = {
+      confirm_quit = ["downloads"];
+      scrolling.smooth =
+        if pkgs.stdenv.isDarwin
+        then false
+        else true;
+      downloads.location.directory = "${
+        if pkgs.stdenv.isDarwin
+        then "/Users/"
+        else "/home/"
+      }lukasz/Downloads";
+      fileselect.single_file.command = [
+        "kitty"
+        "--class"
+        "yazi,yazi"
+        "-1"
+        "-e"
+        "yazi --chooser-file {}"
+      ];
+      fileselect.multiple_files.command = [
+        "kitty"
+        "--class"
+        "yazi,yazi"
+        "-1"
+        "-e"
+        "yazi --chooser-file {}"
+      ];
+      spellcheck.languages = ["en-US" "pl-PL"];
       auto_save.session = true;
+      # if input is focused on tab load, allow typing
+      input.insert_mode.auto_load = true;
+      # exit insert mode if clicking on non editable item
+      input.insert_mode.auto_leave = true;
       window.hide_decoration = true;
+      tabs.title.format = "{audio}{index}: {current_title}";
+      tabs.title.format_pinned = "{audio}{index}P: {current_title}";
       tabs = {
         show = "multiple";
         position = "left";
         indicator.width = 0;
+        width = "10%";
       };
       fonts = {
         default_family = config.fontProfiles.regular.family;
@@ -63,7 +128,7 @@ in
       };
       colors = {
         webpage = {
-          preferred_color_scheme = variant;
+          preferred_color_scheme = "dark";
           bg = "#ffffff";
         };
         completion = {
@@ -180,10 +245,10 @@ in
           indicator.stop = "#${palette.base0C}";
           odd.bg = "#${palette.base00}";
           odd.fg = "#${palette.base05}";
-          pinned.even.bg = "#${palette.base0B}";
-          pinned.even.fg = "#${palette.base00}";
-          pinned.odd.bg = "#${palette.base0B}";
-          pinned.odd.fg = "#${palette.base00}";
+          pinned.even.bg = "#${palette.base00}";
+          pinned.even.fg = "#${palette.base05}";
+          pinned.odd.bg = "#${palette.base00}";
+          pinned.odd.fg = "#${palette.base05}";
           pinned.selected.even.bg = "#${palette.base02}";
           pinned.selected.even.fg = "#${palette.base05}";
           pinned.selected.odd.bg = "#${palette.base02}";
@@ -196,7 +261,7 @@ in
       };
     };
     extraConfig = ''
-      c.tabs.padding = {"bottom": 10, "left": 10, "right": 10, "top": 10}
+      c.tabs.padding = {"bottom": 4, "left": 10, "right": 10, "top": 4}
     '';
   };
 }

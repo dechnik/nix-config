@@ -1,12 +1,28 @@
 { lib, config, pkgs, ... }:
 
 let inherit (config.colorscheme) palette variant;
+  browser = ["org.qutebrowser.qutebrowser.desktop"];
+  associations = {
+    "text/html" = browser;
+    "x-scheme-handler/http" = browser;
+    "x-scheme-handler/https" = browser;
+    "x-scheme-handler/ftp" = browser;
+    "x-scheme-handler/chrome" = browser;
+    "x-scheme-handler/about" = browser;
+    "x-scheme-handler/unknown" = browser;
+    "application/x-extension-htm" = browser;
+    "application/x-extension-html" = browser;
+    "application/x-extension-shtml" = browser;
+    "application/xhtml+xml" = browser;
+    "application/x-extension-xhtml" = browser;
+    "application/x-extension-xht" = browser;
+  };
 in
 {
   home = {
-    # sessionVariables = {
-    #   BROWSER = "qutebrowser";
-    # };
+    sessionVariables = {
+      BROWSER = "qutebrowser";
+    };
     persistence = {
       "/persist/home/lukasz".directories = [
         ".config/qutebrowser/greasemonkey"
@@ -36,6 +52,9 @@ in
             '') ["en-US" "pl-PL"]);
   };
 
+  xdg.mimeApps.enable = true;
+  xdg.mimeApps.associations.added = associations;
+  xdg.mimeApps.defaultApplications = associations;
   # xdg.mimeApps.defaultApplications = {
   #   "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
   #   "text/xml" = [ "org.qutebrowser.qutebrowser.desktop" ];

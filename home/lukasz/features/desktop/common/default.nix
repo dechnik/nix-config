@@ -23,19 +23,19 @@ in
     # "/persist/home/lukasz".directories = [ ".local/share/keyrings" ];
   };
 
-  home = {
-    sessionVariables = {
-      BROWSER = "brave";
-    };
-  };
+  # home = {
+  #   sessionVariables = {
+  #     BROWSER = "brave";
+  #   };
+  # };
   programs.browserpass.enable = true;
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = browser;
-    "text/xml" = browser;
-    "x-scheme-handler/http" = browser;
-    "x-scheme-handler/https" = browser;
-    "applications/x-www-browser" = browser;
-  };
+  # xdg.mimeApps.defaultApplications = {
+  #   "text/html" = browser;
+  #   "text/xml" = browser;
+  #   "x-scheme-handler/http" = browser;
+  #   "x-scheme-handler/https" = browser;
+  #   "applications/x-www-browser" = browser;
+  # };
   xdg.mimeApps.enable = true;
   home.packages = with pkgs; [
     xdg-utils-spawn-terminal
