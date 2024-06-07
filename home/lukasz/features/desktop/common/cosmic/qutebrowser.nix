@@ -78,7 +78,8 @@ in
       DEFAULT = "https://search.brave.com/search?q={}";
       b = "https://search.brave.com/search?q={}";
       nu = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-      gh = "https://github.com/?q={}";
+      nh = "https://home-manager-options.extranix.com/?release=master&query={}";
+      gh = "https://github.com/search?type=repositories&q={}";
       yt = "https://www.youtube.com/results?search_query={}";
     };
     keyBindings.normal = {
