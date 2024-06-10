@@ -87,6 +87,12 @@ in
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
     };
     settings = {
+      qt.args = [
+        "enable-accelerated-video-decode"
+        "enable-gpu-rasterization"
+        "ignore-gpu-blocklist"
+      ];
+      qt.highdpi = true;
       confirm_quit = ["downloads"];
       scrolling.smooth =
         if pkgs.stdenv.isDarwin
