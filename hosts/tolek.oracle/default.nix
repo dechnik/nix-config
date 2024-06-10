@@ -65,7 +65,7 @@
       trustedInterfaces = [ config.my.lan ];
     };
   };
-  system.stateVersion = "22.05";
+  system.stateVersion = "24.05";
   # Slows down write operations considerably
   nix.settings.auto-optimise-store = false;
 
