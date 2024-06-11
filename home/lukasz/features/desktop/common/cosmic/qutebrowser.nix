@@ -85,6 +85,7 @@ in
     keyBindings.normal = {
       # try to fill username / password
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
+      ",m" = "hint links spawn --detach ${config.programs.mpv.package}/bin/mpv {hint-url}";
     };
     settings = {
       qt.args = [
@@ -94,15 +95,16 @@ in
       ];
       qt.highdpi = true;
       confirm_quit = ["downloads"];
-      scrolling.smooth =
-        if pkgs.stdenv.isDarwin
-        then false
-        else true;
+      # scrolling.smooth =
+      #   if pkgs.stdenv.isDarwin
+      #   then false
+      #   else true;
       downloads.location.directory = "${
         if pkgs.stdenv.isDarwin
         then "/Users/"
         else "/home/"
       }lukasz/Downloads";
+      downloads.position = "bottom";
       fileselect.single_file.command = [
         "kitty"
         "--class"
@@ -132,10 +134,14 @@ in
         show = "multiple";
         position = "left";
         indicator.width = 0;
-        width = "10%";
+        width = "6%";
       };
       content.pdfjs = true;
       content.autoplay = false;
+      content.headers.do_not_track = true;
+      content.default_encoding = "utf-8";
+      content.javascript.clipboard = "access";
+      content.webgl = true;
       fonts = {
         default_family = config.fontProfiles.regular.family;
         default_size = "10pt";
