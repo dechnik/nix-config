@@ -15,6 +15,7 @@ in
     ./virt.nix
   ];
   xdg.portal.enable = true;
+  xdg.portal.config.common.default = "*";
   # services.gnome-keyring = {
   #   enable = true;
   #   components = [ "secrets" ];
