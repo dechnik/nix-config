@@ -11,7 +11,6 @@
       inputs.disko.nixosModules.disko
       ./services
 
-      ./hardware-configuration.nix
       # ./boot-loader.nix
 
       ../../common/global
