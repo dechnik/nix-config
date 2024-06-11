@@ -85,7 +85,7 @@ in
     keyBindings.normal = {
       # try to fill username / password
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
-      ",m" = "hint links spawn --detach ${config.programs.mpv.package}/bin/mpv {hint-url}";
+      ",m" = "hint links spawn --detach mpv {hint-url}";
     };
     settings = {
       qt.args = [
