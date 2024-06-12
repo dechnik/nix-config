@@ -43,12 +43,12 @@ in
     lyrics
     deluge
     brave
-    obsidian
+    # obsidian
     floorp
-    (vivaldi.override {
-      proprietaryCodecs = true;
-      enableWidevine = false;
-    })
+    # (vivaldi.override {
+    #   proprietaryCodecs = true;
+    #   enableWidevine = false;
+    # })
     # tor-browser-bundle-bin
     pcmanfm
     meld

@@ -69,18 +69,18 @@ in rec {
             --prefix XDG_DATA_DIRS : ${schemaPath final.gtk3}
           )
         '');
-      patches =
-        (oldAttrs.patches or [])
-        ++ [
-          # Repaint tabs when colorscheme changes
-          ./qutebrowser-refresh-tab-colorscheme.patch
-          # Reload on SIGHUP
-          # https://github.com/qutebrowser/qutebrowser/pull/8110
-          (final.fetchurl {
-            url = "https://patch-diff.githubusercontent.com/raw/qutebrowser/qutebrowser/pull/8110.patch";
-            hash = "sha256-W30aGOAy8F/PlfUK2fgJQEcVu5QHcWSus6RKIlvVT1g=";
-          })
-        ];
+      # patches =
+      #   (oldAttrs.patches or [])
+      #   ++ [
+      #     # Repaint tabs when colorscheme changes
+      #     ./qutebrowser-refresh-tab-colorscheme.patch
+      #     # Reload on SIGHUP
+      #     # https://github.com/qutebrowser/qutebrowser/pull/8110
+      #     (final.fetchurl {
+      #       url = "https://patch-diff.githubusercontent.com/raw/qutebrowser/qutebrowser/pull/8110.patch";
+      #       hash = "sha256-W30aGOAy8F/PlfUK2fgJQEcVu5QHcWSus6RKIlvVT1g=";
+      #     })
+      #   ];
     });
     hydra_unstable =
       (prev.hydra_unstable.overrideAttrs (old: {
