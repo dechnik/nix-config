@@ -43,7 +43,7 @@ in
     lyrics
     deluge
     brave
-    # obsidian
+    obsidian
     floorp
     # (vivaldi.override {
     #   proprietaryCodecs = true;
