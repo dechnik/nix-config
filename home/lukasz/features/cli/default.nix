@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:let
+  pythonEnv = pkgs.python3.withPackages (ps:
+    with ps;
+      [
+        tldextract # required by qute-pass
+      ]);
+in
+{
   imports = [
     ./atuin.nix
     ./bash.nix
@@ -30,6 +37,7 @@
     ./yazi.nix
   ];
   home.packages = with pkgs; [
+    pythonEnv
     comma # Install and run programs by sticking a , before them
     # distrobox # Nice escape hatch, integrates docker images with my environment
     cryptsetup
