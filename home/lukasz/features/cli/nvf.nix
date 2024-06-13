@@ -66,9 +66,9 @@ in
           elixir.enable = false;
           zig.enable = false;
           ocaml.enable = false;
-          python.enable = false;
+          python.enable = true;
           dart.enable = false;
-          bash.enable = false;
+          bash.enable = true;
           tailwind.enable = false;
           typst.enable = false;
           clang = {
@@ -77,7 +77,7 @@ in
           };
 
           rust = {
-            enable = false;
+            enable = true;
             crates.enable = false;
           };
         };
