@@ -12,7 +12,8 @@
     ./lf.nix
     # ./neovim.nix
     # ./nixvim/neovim.nix
-    ./nixcats
+    # ./nixcats
+    ./nvf.nix
     ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix

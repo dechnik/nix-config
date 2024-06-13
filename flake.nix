@@ -84,6 +84,15 @@
       url = "github:dechnik/nixCats-nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sg-nvim.url = "github:sourcegraph/sg.nvim";
+    nvf = {
+      url = "github:notashelf/nvf";
+      # you can override input nixpkgs
+      inputs.nixpkgs.follows = "nixpkgs";
+      # you can also override individual plugins
+      # for example:
+      # inputs.sg-nvim.follows = "sg-nvim"; # <- this will use the obsidian-nvim from your inputs
+    };
     sessionx = {
       url = "github:dechnik/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
