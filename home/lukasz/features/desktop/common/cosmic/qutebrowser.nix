@@ -98,6 +98,7 @@ in
       ];
       qt.highdpi = true;
       confirm_quit = ["downloads"];
+      editor.command = ["kitty" "nvim" "{file}" "-c" "normal {line}G{column0}l"];
       # scrolling.smooth =
       #   if pkgs.stdenv.isDarwin
       #   then false

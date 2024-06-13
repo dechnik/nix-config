@@ -38,6 +38,7 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
+                # mountOptions = [ "compress=zstd" ];
               };
             };
           };

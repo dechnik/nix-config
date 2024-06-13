@@ -42,6 +42,7 @@
       git
       pciutils
       parted
+      mdadm
       #nextcloud-client
     ];
 
