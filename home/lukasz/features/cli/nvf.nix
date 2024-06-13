@@ -120,6 +120,9 @@ in
         autocomplete = {
           enable = true;
           type = "nvim-cmp";
+          sources = {
+            cody = "[Cody]";
+          };
         };
         filetree = {
           nvimTree = {
@@ -227,35 +230,43 @@ in
         };
         startPlugins = [
           pkgs.vimPlugins.oil-nvim
+          inputs.sg-nvim.packages.${pkgs.system}.sg-nvim
         ];
-        luaConfigRC.oil-nvim= entryAnywhere ''
-          require("oil").setup({
-            columns = {
-              "icon",
-              "permissions",
-              "size",
-              -- "mtime",
-            },
-            keymaps = {
-              ["g?"] = "actions.show_help",
-              ["<CR>"] = "actions.select",
-              ["<C-s>"] = "actions.select_vsplit",
-              ["<C-h>"] = "actions.select_split",
-              ["<C-t>"] = "actions.select_tab",
-              ["<C-p>"] = "actions.preview",
-              ["<C-c>"] = "actions.close",
-              ["<C-l>"] = "actions.refresh",
-              ["-"] = "actions.parent",
-              ["_"] = "actions.open_cwd",
-              ["`"] = "actions.cd",
-              ["~"] = "actions.tcd",
-              ["gs"] = "actions.change_sort",
-              ["gx"] = "actions.open_external",
-              ["g."] = "actions.toggle_hidden",
-              ["g\\"] = "actions.toggle_trash",
-            },
-          })
-        '';
+        luaConfigRC = {
+          oil-nvim= entryAnywhere ''
+            require("oil").setup({
+              columns = {
+                "icon",
+                "permissions",
+                "size",
+                -- "mtime",
+              },
+              keymaps = {
+                ["g?"] = "actions.show_help",
+                ["<CR>"] = "actions.select",
+                ["<C-s>"] = "actions.select_vsplit",
+                ["<C-h>"] = "actions.select_split",
+                ["<C-t>"] = "actions.select_tab",
+                ["<C-p>"] = "actions.preview",
+                ["<C-c>"] = "actions.close",
+                ["<C-l>"] = "actions.refresh",
+                ["-"] = "actions.parent",
+                ["_"] = "actions.open_cwd",
+                ["`"] = "actions.cd",
+                ["~"] = "actions.tcd",
+                ["gs"] = "actions.change_sort",
+                ["gx"] = "actions.open_external",
+                ["g."] = "actions.toggle_hidden",
+                ["g\\"] = "actions.toggle_trash",
+              },
+            })
+          '';
+          sg-nvim= entryAnywhere ''
+            require("sg").setup({
+              enable_cody = true,
+            })
+          '';
+        };
         maps.normal = {
           "-" = {
             action = "<cmd>Oil<CR>";
@@ -272,8 +283,9 @@ in
     };
   };
   home = {
-    # packages = [
-    # ];
+    packages = [
+      inputs.sg-nvim.packages.${pkgs.system}.default
+    ];
     sessionVariables = {
       EDITOR = "vim";
       VISUAL = "vim";
