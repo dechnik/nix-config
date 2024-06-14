@@ -2,7 +2,8 @@
   imports = [
     ./traefik.nix
     ./binary-cache.nix
-    ./dhcp.nix
+    # ./dhcp.nix
+    ./dnsmasq.nix
     ./hydra
     ./files.nix
     # ./cgit
