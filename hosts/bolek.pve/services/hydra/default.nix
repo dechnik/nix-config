@@ -58,6 +58,7 @@ in
       listenHost = "localhost";
       smtpHost = "localhost";
       useSubstitutes = true;
+      dbi = "dbi:Pg:dbname=hydra;user=hydra;";
       extraConfig = /* xml */ ''
         max_unsupported_time = 30
         queue_runner_metrics_address = [::]:9198
