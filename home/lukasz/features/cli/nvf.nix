@@ -60,7 +60,7 @@ in
           css.enable = false;
           sql.enable = false;
           java.enable = false;
-          ts.enable = false;
+          ts.enable = true;
           svelte.enable = false;
           go.enable = false;
           elixir.enable = false;
@@ -284,6 +284,12 @@ in
             action = "<cmd>Oil .<CR>";
             silent = true;
             desc = "Open nvim root directory";
+          };
+          "<leader>fc" = {
+            action = "require('sg.extensions.telescope').fuzzy_search_results";
+            lua = true;
+            silent = true;
+            desc = "Cody search";
           };
         };
       };

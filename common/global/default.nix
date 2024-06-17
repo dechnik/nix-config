@@ -43,6 +43,7 @@
       pciutils
       parted
       mdadm
+      nfs-utils
       #nextcloud-client
     ];
 
