@@ -8,7 +8,7 @@
       package = pkgs.nerdfonts.override { fonts = [ "GeistMono" ]; };
     };
     regular = {
-      family = "Geist Sans";
+      family = "Geist";
       package = pkgs.geist-font;
     };
   };
