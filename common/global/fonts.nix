@@ -20,6 +20,7 @@
       alegreya
       alegreya-sans
       julia-mono
+      geist-font
 
       #remacs-all-the-icons-fonts
       # nerdfonts
