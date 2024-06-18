@@ -1,6 +1,7 @@
 {
   imports = [
     # ./nc.nix
+    ./atuin.nix
     ./tailscale.nix
     ./wireguard.nix
     ./restic.nix
