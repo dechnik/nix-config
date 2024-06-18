@@ -1,3 +1,4 @@
+{config,...}:
 {
   programs.atuin = {
     enable = true;
@@ -9,6 +10,21 @@
       style = "compact";
       inline_height = 16;
       keymap_mode = "auto";
+    };
+  };
+  systemd.user.timers.atuin-sync = {
+    Unit.Description = "Atuin auto sync";
+    Timer.OnUnitActiveSec = "1h";
+    Install.WantedBy = [ "timers.target" ];
+  };
+
+  systemd.user.services.atuin-sync = {
+    Unit.Description = "Atuin auto sync";
+
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${config.programs.atuin.package}/bin/atuin sync";
+      IOSchedulingClass = "idle";
     };
   };
 }
