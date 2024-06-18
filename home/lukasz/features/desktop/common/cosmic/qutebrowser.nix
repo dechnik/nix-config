@@ -178,6 +178,7 @@ in
       fonts = {
         default_family = config.fontProfiles.regular.family;
         default_size = "10pt";
+        web.family.fixed = config.fontProfiles.monospace.family;
       };
       colors = {
         webpage = {

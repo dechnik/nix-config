@@ -41,5 +41,10 @@
       addresses = [ "10.69.0.10/32" ];
       public_key = "nZ74UF6t++0EugNPZIuu+uc89CVR/DNw2iaY4M4VsRg=";
     };
+    ant = {
+      additional_networks = [ ];
+      addresses = [ "10.69.0.11/32" ];
+      public_key = "UGbk/rnvLXBxsoo41P3vSAnT1Z7fWNnh3eNo4uyT3DY=";
+    };
   };
 }
