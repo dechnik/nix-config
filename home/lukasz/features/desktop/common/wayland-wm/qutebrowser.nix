@@ -17,6 +17,11 @@ let inherit (config.colorscheme) palette variant;
     "application/x-extension-xhtml" = browser;
     "application/x-extension-xht" = browser;
   };
+  gruvbox-css = builtins.fetchurl {
+    name = "gruvbox-all-sites.css";
+    url = "https://github.com/alphapapa/solarized-everything-css/raw/master/css/gruvbox/gruvbox-all-sites.css";
+    sha256 = "sha256:1l9bsdcf2qdrjb5q6z59q38kinr1f8b10wahb1kf51py24v1mjwz";
+  };
 in
 {
   home = {
@@ -73,24 +78,37 @@ in
       DEFAULT = "https://search.brave.com/search?q={}";
       b = "https://search.brave.com/search?q={}";
       nu = "https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query={}";
-      gh = "https://github.com/?q={}";
+      nh = "https://home-manager-options.extranix.com/?release=master&query={}";
+      gh = "https://github.com/search?type=repositories&q={}";
       yt = "https://www.youtube.com/results?search_query={}";
     };
     keyBindings.normal = {
       # try to fill username / password
       ",p" = "spawn --userscript qute-pass --dmenu-invocation 'wofi --show dmenu'";
+      ",m" = "hint links spawn --detach mpv {hint-url}";
     };
     settings = {
+      url.start_pages  = [
+        "https://search.brave.com"
+      ];
+      qt.args = [
+        "enable-accelerated-video-decode"
+        "enable-gpu-rasterization"
+        "ignore-gpu-blocklist"
+      ];
+      qt.highdpi = true;
       confirm_quit = ["downloads"];
-      scrolling.smooth =
-        if pkgs.stdenv.isDarwin
-        then false
-        else true;
+      editor.command = ["kitty" "nvim" "{file}" "-c" "normal {line}G{column0}l"];
+      # scrolling.smooth =
+      #   if pkgs.stdenv.isDarwin
+      #   then false
+      #   else true;
       downloads.location.directory = "${
         if pkgs.stdenv.isDarwin
         then "/Users/"
         else "/home/"
       }lukasz/Downloads";
+      downloads.position = "bottom";
       fileselect.single_file.command = [
         "kitty"
         "--class"
@@ -120,11 +138,47 @@ in
         show = "multiple";
         position = "left";
         indicator.width = 0;
-        width = "10%";
+        width = "6%";
+      };
+      content.pdfjs = true;
+      content.autoplay = false;
+      content.headers.do_not_track = true;
+      content.default_encoding = "utf-8";
+      content.javascript.clipboard = "access";
+      content.webgl = true;
+      content = {
+        blocking = {
+          enabled = true;
+          method = "both";
+          adblock.lists = [
+            "https://easylist.to/easylist/easylist.txt"
+            "https://easylist.to/easylist/easyprivacy.txt"
+            "https://easylist.to/easylist/fanboy-annoyance.txt"
+            "https://secure.fanboy.co.nz/fanboy-cookiemonster.txt"
+            "https://secure.fanboy.co.nz/fanboy-annoyance.txt"
+            "https://easylist-downloads.adblockplus.org/abp-filters-anti-cv.txt"
+            "https://pgl.yoyo.org/adservers/serverlist.php?showintro=0;hostformat=hosts"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2021.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badware.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/privacy.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/badlists.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/annoyances.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/resource-abuse.txt"
+            "https://github.com/uBlockOrigin/uAssets/raw/master/filters/unbreak.txt"
+            "https://www.i-dont-care-about-cookies.eu/abp/"
+            "https://raw.githubusercontent.com/Ewpratten/youtube_ad_blocklist/master/blocklist.txt"
+            "https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=1&mimetype=plaintext"
+            "https://gitlab.com/curben/urlhaus-filter/-/raw/master/urlhaus-filter-online.txt"
+          ];
+        };
       };
       fonts = {
         default_family = config.fontProfiles.regular.family;
         default_size = "10pt";
+        web.family.fixed = config.fontProfiles.monospace.family;
       };
       colors = {
         webpage = {
@@ -262,6 +316,7 @@ in
     };
     extraConfig = ''
       c.tabs.padding = {"bottom": 4, "left": 10, "right": 10, "top": 4}
+      config.bind(',gr', 'config-cycle content.user_stylesheets ${gruvbox-css} ""')
     '';
   };
 }
