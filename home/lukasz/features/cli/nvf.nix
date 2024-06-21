@@ -228,51 +228,57 @@ in
         presence = {
           neocord.enable = false;
         };
-        startPlugins = [
-          pkgs.vimPlugins.oil-nvim
-          inputs.sg-nvim.packages.${pkgs.system}.sg-nvim
-        ];
-        luaConfigRC = {
-          oil-nvim= entryAnywhere ''
-            require("oil").setup({
-              skip_confirm_for_simple_edits = true,
-              view_options = {
-                show_hidden = true,
-                is_always_hidden = function(name, _)
-                  return name == '..' or name == '.git'
-                end,
-              },
-              columns = {
-                "icon",
-                "permissions",
-                "size",
-                -- "mtime",
-              },
-              keymaps = {
-                ["g?"] = "actions.show_help",
-                ["<CR>"] = "actions.select",
-                ["<C-s>"] = "actions.select_vsplit",
-                ["<C-h>"] = "actions.select_split",
-                ["<C-t>"] = "actions.select_tab",
-                ["<C-p>"] = "actions.preview",
-                ["<C-c>"] = "actions.close",
-                ["<C-l>"] = "actions.refresh",
-                ["-"] = "actions.parent",
-                ["_"] = "actions.open_cwd",
-                ["`"] = "actions.cd",
-                ["~"] = "actions.tcd",
-                ["gs"] = "actions.change_sort",
-                ["gx"] = "actions.open_external",
-                ["g."] = "actions.toggle_hidden",
-                ["g\\"] = "actions.toggle_trash",
-              },
-            })
-          '';
-          sg-nvim= entryAnywhere ''
-            require("sg").setup({
-              enable_cody = true,
-            })
-          '';
+        extraPlugins = {
+          sg-nvim = {
+            package = inputs.sg-nvim.packages.${pkgs.system}.sg-nvim;
+            setup = ''
+              require("sg").setup({
+                enable_cody = true,
+              })
+            '';
+          };
+          harpoon = {
+            package = pkgs.vimPlugins.harpoon2;
+            setup = "require('harpoon').setup({})";
+          };
+          oil-nvim = {
+            package = pkgs.vimPlugins.oil-nvim;
+            setup = ''
+              require("oil").setup({
+                skip_confirm_for_simple_edits = true,
+                view_options = {
+                  show_hidden = true,
+                  is_always_hidden = function(name, _)
+                    return name == '..' or name == '.git'
+                  end,
+                },
+                columns = {
+                  "icon",
+                  "permissions",
+                  "size",
+                  -- "mtime",
+                },
+                keymaps = {
+                  ["g?"] = "actions.show_help",
+                  ["<CR>"] = "actions.select",
+                  ["<C-s>"] = "actions.select_vsplit",
+                  ["<C-h>"] = "actions.select_split",
+                  ["<C-t>"] = "actions.select_tab",
+                  ["<C-p>"] = "actions.preview",
+                  ["<C-c>"] = "actions.close",
+                  ["<C-l>"] = "actions.refresh",
+                  ["-"] = "actions.parent",
+                  ["_"] = "actions.open_cwd",
+                  ["`"] = "actions.cd",
+                  ["~"] = "actions.tcd",
+                  ["gs"] = "actions.change_sort",
+                  ["gx"] = "actions.open_external",
+                  ["g."] = "actions.toggle_hidden",
+                  ["g\\"] = "actions.toggle_trash",
+                },
+              })
+            '';
+          };
         };
         maps.normal = {
           "-" = {
@@ -290,6 +296,34 @@ in
             lua = true;
             silent = true;
             desc = "Cody search";
+          };
+          "<leader>Ha" = {
+            action = "function() require('harpoon'):list():add() end";
+            silent = true;
+            lua = true;
+            desc = "Harpoon append";
+          };
+          "<leader>Hl" = {
+            action = "function() require('harpoon').ui:toggle_quick_menu(require('harpoon'):list()) end";
+            silent = true;
+            lua = true;
+            desc = "Harpoon list";
+          };
+          "<C-1>" = {
+            action = "function() require('harpoon'):list():select(1) end";
+            lua = true;
+          };
+          "<C-2>" = {
+            action = "function() require('harpoon'):list():select(2) end";
+            lua = true;
+          };
+          "<C-3>" = {
+            action = "function() require('harpoon'):list():select(3) end";
+            lua = true;
+          };
+          "<C-4>" = {
+            action = "function() require('harpoon'):list():select(4) end";
+            lua = true;
           };
         };
       };
