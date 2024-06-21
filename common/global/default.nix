@@ -44,6 +44,7 @@
       parted
       mdadm
       nfs-utils
+      nixos-shell
       #nextcloud-client
     ];
 
