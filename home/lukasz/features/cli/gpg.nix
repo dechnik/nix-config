@@ -11,16 +11,16 @@ in
       "EE6FCD5EF119342E3A679BBA23A2A6BD2AC7ACC6"
       "05095B28F0B05E3C2EA1820655692ED47A6EA731"
     ];
-    # pinentryPackage = if config.gtk.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
-    pinentryPackage =
-      if osConfig.services.desktopManager.cosmic.enable then
-        pkgs.pinentry-qt
-      else if osConfig.services.xserver.desktopManager.xfce.enable then
-        pkgs.pinentry-gtk2
-      else if osConfig.programs.hyprland.enable then
-        pkgs.pinentry-gnome3
-      else
-        pkgs.pinentry-curses;
+    pinentryPackage = if config.gtk.enable then pkgs.pinentry-gnome3 else pkgs.pinentry-curses;
+    # pinentryPackage =
+    #   if osConfig.services.desktopManager.cosmic.enable then
+    #     pkgs.pinentry-qt
+    #   else if osConfig.services.xserver.desktopManager.xfce.enable then
+    #     pkgs.pinentry-gtk2
+    #   else if osConfig.programs.hyprland.enable then
+    #     pkgs.pinentry-gnome3
+    #   else
+    #     pkgs.pinentry-curses;
     enableExtraSocket = true;
   };
 
