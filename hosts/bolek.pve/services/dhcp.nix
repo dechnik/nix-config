@@ -40,6 +40,7 @@ in
       renew-timer = 1000;
       subnet4 = [
         {
+          id = 1;
           pools = [
             {
               pool = "10.60.0.171 - 10.60.0.250";
