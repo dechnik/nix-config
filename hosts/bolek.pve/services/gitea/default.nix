@@ -1,7 +1,4 @@
 { config, ... }:
-let
-  themeFile = ./theme-gruvbox-dark.css;
-in
 {
   services.traefik.dynamicConfigOptions.http = {
     services.gitea = {
@@ -14,10 +11,6 @@ in
       entryPoints = [ "web" ];
     };
   };
-  system.activationScripts.gitea-theme = ''
-    mkdir -p /srv/gitea/custom/public/css
-    ln -sf ${themeFile} /srv/gitea/custom/public/css/theme-gruvbox-dark.css
-  '';
   services = {
     gitea = {
       enable = true;
@@ -64,10 +57,6 @@ in
         };
         mailer = {
           ENABLED = false;
-        };
-        ui = {
-          THEMES = "auto,gitea,arc-green,gruvbox-dark";
-          DEFAULT_THEME = "gruvbox-dark";
         };
         picture = {
           DISABLE_GRAVATAR = true;
