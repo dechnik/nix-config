@@ -18,6 +18,7 @@
 
   inputs = {
     # Nix ecossystem
+    utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs-stable.url ="github:nixos/nixpkgs/nixos-23.11";
@@ -32,6 +33,11 @@
         nixpkgs.follows = "nixpkgs";
         stable.follows = "nixpkgs";
       };
+    };
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs."flake-utils".follows = "utils";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
       url = "github:nix-community/disko";
