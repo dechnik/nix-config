@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   config,
   ...
 }: let
@@ -10,6 +11,9 @@ in {
     sopsFile = ../secrets.yaml;
   };
 
+  imports = [
+    inputs.attic.nixosModules.atticd
+  ];
 
   services = {
     # https://lgug2z.com/articles/deploying-a-cloudflare-r2-backed-nix-binary-cache-attic-on-fly-io/
@@ -59,7 +63,7 @@ in {
         loadBalancer.servers = [{ url = "http://127.0.0.1:${toString port}"; }];
       };
 
-      routers.cache = {
+      routers.attic = {
         rule = "Host(`attic.dechnik.net`)";
         service = "attic";
         entryPoints = [ "web" ];

@@ -1,5 +1,6 @@
 {
   imports = [
+    ./attic.nix
     ./traefik.nix
     ./binary-cache.nix
     ./dhcp.nix

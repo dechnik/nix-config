@@ -18,7 +18,7 @@ with lib; let
     ## suspicious domains
     download "https://hosts-file.net/grm.txt"
     download "https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts"
-    download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/KADhosts/hosts"
+    # download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/KADhosts/hosts"
     download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Spam/hosts"
     download "https://v.firebog.net/hosts/static/w3kbl.txt"
     ## advertising domains
