@@ -17,6 +17,7 @@ in
     ./gpg.nix
     ./k3s.nix
     ./lf.nix
+    ./gh.nix
     # ./neovim.nix
     # ./nixvim/neovim.nix
     # ./nixcats
@@ -44,6 +45,7 @@ in
     unzip
     zip
     just
+    jless
     # magic-wormhole
 
     bc # Calculator
