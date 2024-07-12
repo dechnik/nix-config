@@ -8,25 +8,32 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.machine.runner }}
     strategy:
       fail-fast: false
       matrix:
         machine:
           - host: bolek.pve
             platform: x86-64-linux
+            runner: ubuntu-latest
           - host: lolek.pve
             platform: x86-64-linux
+            runner: ubuntu-latest
           - host: tola.pve
             platform: x86-64-linux
+            runner: ubuntu-latest
           - host: dziad
             platform: x86-64-linux
+            runner: ubuntu-latest
           - host: ldlat
             platform: x86-64-linux
+            runner: ubuntu-latest
           - host: ola.hetzner
             platform: x86-64-linux
+            runner: ubuntu-latest
           - host: tolek.oracle
             platform: aarch64-linux
+            runner: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
