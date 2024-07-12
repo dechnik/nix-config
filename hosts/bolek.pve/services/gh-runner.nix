@@ -36,7 +36,11 @@
       nodejs
       gawk
       git
-    ];
+    ] ++
+        (builtins.map
+        (elem: writeShellScriptBin "${elem}" "echo wanted to run: ${elem} \${@}")
+        ["sudo" "apt-get" "apt"]
+    );
 
     # Customize this to include your GitHub username so we can track
     # who is running which node.
