@@ -8,6 +8,7 @@ let
 
   paths = [
     "/var/lib/headscale"
+    "/var/lib/atticd"
     config.services.postgresqlBackup.location
   ];
 
