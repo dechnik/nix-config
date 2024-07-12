@@ -24,10 +24,10 @@ jobs:
             runner: ubuntu-latest
           - host: dziad
             platform: x86-64-linux
-            runner: ubuntu-latest
+            runner: lukasz-bolek
           - host: ldlat
             platform: x86-64-linux
-            runner: ubuntu-latest
+            runner: lukasz-bolek
           - host: ola.hetzner
             platform: x86-64-linux
             runner: ubuntu-latest
