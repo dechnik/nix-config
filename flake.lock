@@ -616,26 +616,6 @@
         "type": "github"
       }
     },
-    "gitness": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1720367411,
-        "narHash": "sha256-ANUKUkVtEVxUjm4ZbehxgrAXBsQBk32izoKkJugKRqc=",
-        "owner": "dechnik",
-        "repo": "gitness",
-        "rev": "b117664ff9b37218bb4e87ac15aa3cc33a262d2f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dechnik",
-        "repo": "gitness",
-        "type": "github"
-      }
-    },
     "hardware": {
       "locked": {
         "lastModified": 1719895800,
@@ -3362,7 +3342,6 @@
         "attic": "attic",
         "colmena": "colmena",
         "disko": "disko",
-        "gitness": "gitness",
         "hardware": "hardware",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
