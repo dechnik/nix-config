@@ -30,7 +30,7 @@ in {
       settings = {
         storage = {
           type = "local";
-          path = "/storage/attic";
+          path = "/mnt/sg/attic";
         };
         listen = "[::]:${toString port}";
 
