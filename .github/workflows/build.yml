@@ -1,0 +1,42 @@
+name: "build"
+
+on: push
+
+concurrency:
+  group: ${{ github.workflow }}-$${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        machine:
+          - host: bolek.pve
+            platform: x86-64-linux
+    steps:
+      - uses: actions/checkout@v4
+
+      # We only run this if we are building an aarch64-linux system
+      - if: matrix.machine.platform == 'aarch64-linux'
+        uses: docker/setup-qemu-action@v3
+
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            fallback = true
+            http-connections = 128
+            max-substitution-jobs = 128
+            extra-platforms = aarch64-linux
+            substituters = https://hyprland.cachix.org?priority=43 https://nix-community.cachix.org?priority=41 https://cosmic.cachix.org?priority=42 https://attic.dechnik.net/system?priority=44 https://cache.dechnik.net?priority=45 https://cache.nixos.org/
+            trusted-public-keys = cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ= hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= system:5mtbpEmaoC7RVnZJz/KZU2Of2QXQTMBriCJjt3SK9Iw= cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build and push system
+        run: |
+          nix run github:zhaofengli/attic#default login lukasz https://attic.dechnik.net ${{ secrets.ATTIC_TOKEN }}
+          nix run github:zhaofengli/attic#default watch-store system &
+          nix build '.#nixosConfigurations."${{ matrix.machine.host }}".config.system.build.toplevel'
+          nix run github:zhaofengli/attic#default push system result -j 2

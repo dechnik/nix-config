@@ -3,15 +3,17 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://cache.dechnik.net"
-      "https://hyprland.cachix.org"
-      "https://nix-community.cachix.org"
-      "https://cosmic.cachix.org"
+      "https://hyprland.cachix.org?priority=43"
+      "https://nix-community.cachix.org?priority=41"
+      "https://cosmic.cachix.org?priority=42"
+      "https://attic.dechnik.net/system?priority=44"
+      "https://cache.dechnik.net?priority=45"
     ];
     extra-trusted-public-keys = [
       "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "system:5mtbpEmaoC7RVnZJz/KZU2Of2QXQTMBriCJjt3SK9Iw="
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
   };
