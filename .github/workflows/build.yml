@@ -15,6 +15,18 @@ jobs:
         machine:
           - host: bolek.pve
             platform: x86-64-linux
+          - host: lolek.pve
+            platform: x86-64-linux
+          - host: tola.pve
+            platform: x86-64-linux
+          - host: dziad
+            platform: x86-64-linux
+          - host: ldlat
+            platform: x86-64-linux
+          - host: ola.hetzner
+            platform: x86-64-linux
+          - host: tolek.oracle
+            platform: aarch64-linux
     steps:
       - uses: actions/checkout@v4
 
