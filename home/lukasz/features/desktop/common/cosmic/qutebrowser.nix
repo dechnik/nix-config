@@ -110,7 +110,7 @@ in
       }lukasz/Downloads";
       downloads.position = "bottom";
       downloads.remove_finished = 10000;
-      download.location.suggestion = "both";
+      downloads.location.suggestion = "both";
       fileselect.single_file.command = [
         "kitty"
         "--class"
