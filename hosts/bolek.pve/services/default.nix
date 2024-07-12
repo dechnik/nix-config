@@ -1,5 +1,6 @@
 {
   imports = [
+    ./gh-runner.nix
     ./attic.nix
     ./traefik.nix
     ./binary-cache.nix
