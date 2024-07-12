@@ -26,7 +26,7 @@
     package = pkgs.github-runner;
     url = "https://github.com/dechnik/nix-config";
     replace = true;
-    extraLabels = ["nixos" "docker"];
+    extraLabels = ["nixos" "docker" "lukasz-${config.networking.hostName}"];
     user = "github-runner";
 
     # Justifications for the packages:
