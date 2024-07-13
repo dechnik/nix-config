@@ -1,6 +1,7 @@
 {
   imports = [
     # ./nc.nix
+    ./gitlab.nix
     ./atuin.nix
     ./tailscale.nix
     ./wireguard.nix
