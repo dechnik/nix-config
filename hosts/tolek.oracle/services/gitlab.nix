@@ -26,6 +26,11 @@
       group = "git";
       sopsFile = ../secrets.yaml;
     };
+    gitlab-ldap-password = {
+      owner = "git";
+      group = "git";
+      sopsFile = ../secrets.yaml;
+    };
   };
   users = {
     users = {
@@ -64,18 +69,60 @@
         enable = true;
         domain = "dechnik.net";
         address = "localhost";
+        port = 25;
         enableStartTLSAuto = false;
+      };
+      extraConfig = {
+        ldap = {
+          enabled = true;
+          servers = {
+            main = {
+              label = "LDAP";
+              host = "127.0.0.1";
+              port = 3890;
+              uid = "uid";
+              active_directory = false;
+              bind_dn = "uid=ro_admin,ou=people,dc=dechnik,dc=net";
+              password = {_secret = config.sops.secrets.gitlab-ldap-password.path;};
+              base = "ou=people,dc=dechnik,dc=net";
+              encryption = "plain";
+              user_filter = "(&(objectclass=person)(memberOf=cn=gitlab,ou=groups,dc=dechnik,dc=net))";
+              allow_username_or_email_login = false;
+              attributes = {
+                username = "uid";
+                email = "mail";
+                name = "displayName";
+                first_name = "givenName";
+                last_name = "sn";
+              };
+            };
+          };
+        };
       };
     };
     traefik.dynamicConfigOptions.http = {
       services.gitlab = {
-        loadBalancer.servers = [{ url = "http://unix:/run/gitlab/gitlab-workhorse.socket"; }];
+        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
       };
 
       routers.gitlab = {
         rule = "Host(`gitlab.dechnik.net`)";
         service = "gitlab";
         entryPoints = [ "web" ];
+      };
+    };
+    nginx = {
+      enable = true;
+      defaultHTTPListenPort = 8080;
+      virtualHosts = {
+        "gitlab.dechnik.net" = {
+          locations."/" = {
+            proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+            extraConfig = ''
+              client_max_body_size 50M;
+            '';
+          };
+        };
       };
     };
   };
