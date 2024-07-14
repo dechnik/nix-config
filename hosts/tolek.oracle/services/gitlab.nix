@@ -80,14 +80,18 @@
               label = "LDAP";
               host = "127.0.0.1";
               port = 3890;
+              timeout = 10;
               uid = "uid";
               active_directory = false;
+              verify_certificates = false;
               bind_dn = "uid=ro_admin,ou=people,dc=dechnik,dc=net";
               password = {_secret = config.sops.secrets.gitlab-ldap-password.path;};
               base = "ou=people,dc=dechnik,dc=net";
               encryption = "plain";
               user_filter = "(&(objectclass=person)(memberOf=cn=gitlab,ou=groups,dc=dechnik,dc=net))";
               allow_username_or_email_login = false;
+              block_auto_created_users = false;
+              lowercase_usernames = false;
               attributes = {
                 username = "uid";
                 email = "mail";
