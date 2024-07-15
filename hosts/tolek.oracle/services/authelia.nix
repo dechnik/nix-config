@@ -105,10 +105,13 @@ in
         path = "/var/lib/authelia-${cfg.name}/db.sqlite3";
       };
       access_control = {
-        default_policy = "one_factor";
-        # rules = [
-        #   { domain = "tailscale.dechnik.net"; subject = [ "group:admin" ]; policy = "two_factor"; }
-        # ];
+        default_policy = "deny";
+        rules = [
+          {
+            domain = [ "*.dechnik.net" ];
+            policy = "two_factor";
+          }
+        ];
       };
       notifier.smtp = rec {
         host = "localhost";
