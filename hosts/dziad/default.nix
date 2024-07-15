@@ -65,6 +65,7 @@
     networkmanager.enable = true;  # Easiest to use and most distros use this by default.
     #
     nameservers = [
+      "100.100.100.100"
       "1.1.1.1"
       "1.0.0.1"
     ];

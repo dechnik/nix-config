@@ -28,6 +28,7 @@
     hostName = "tola"; # Define your hostname.
     domain = "pve.dechnik.net";
     nameservers = [
+      "100.100.100.100"
       "10.60.0.1"
     ];
     defaultGateway = "10.60.0.1";
