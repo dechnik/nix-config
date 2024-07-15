@@ -3,6 +3,29 @@
 with lib;
 
 let
+  mkWebfinger = config: file: pkgs.writeTextDir file (lib.generators.toJSON { } config);
+  mkWebfingers =
+    { subject, ... }@config:
+    map (mkWebfinger config) [
+      subject
+      (lib.escapeURL subject)
+    ];
+  webfingerRoot = pkgs.symlinkJoin {
+    name = "dechnik.net-webfinger";
+    paths = lib.flatten (
+      builtins.map mkWebfingers [
+        {
+          subject = "acct:lukasz@dechnik.net";
+          links = [
+            {
+              rel = "http://openid.net/specs/connect/1.0/issuer";
+              href = "https://auth.dechnik.net";
+            }
+          ];
+        }
+      ]
+    );
+  };
   cfg = config.services.authelia.instances.main;
 in
 {
@@ -108,16 +131,48 @@ in
     };
   };
 
+  services.nginx = {
+    enable = true;
+    defaultHTTPListenPort = 8080;
+    virtualHosts = {
+      "dechnik.net" = {
+        locations."/.well-known/webfinger" = {
+          root = webfingerRoot;
+          extraConfig = ''
+            add_header Access-Control-Allow-Origin "*";
+            default_type "application/jrd+json";
+            types { application/jrd+json json; }
+            if ($arg_resource) {
+              rewrite ^(.*)$ /$arg_resource break;
+            }
+            rewrite ^(.*)$ /acct:lukasz@dechnik.net break;
+          '';
+        };
+      };
+    };
+  };
   services.traefik.dynamicConfigOptions.http = {
-    services.auth = {
-      loadBalancer.servers = [{ url = "http://10.61.0.1:9091"; }];
+    services = {
+      auth = {
+        loadBalancer.servers = [{ url = "http://10.61.0.1:9091"; }];
+      };
+      webfinger = {
+        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+      };
     };
 
-    routers.auth = {
-      rule = "Host(`auth.dechnik.net`)";
-      service = "auth";
-      entryPoints = [ "web" ];
-      middlewares = [ "authelia-delete-prompt" ];
+    routers = {
+      auth = {
+        rule = "Host(`auth.dechnik.net`)";
+        service = "auth";
+        entryPoints = [ "web" ];
+        middlewares = [ "authelia-delete-prompt" ];
+      };
+      webfinger = {
+        rule = "(Host(`dechnik.net`) && PathPrefix(`/.well-known/webfinger`))";
+        service = "webfinger";
+        entryPoints = [ "web" ];
+      };
     };
 
     middlewares.authelia-delete-prompt.plugin = {
