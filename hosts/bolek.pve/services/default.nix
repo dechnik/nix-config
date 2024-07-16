@@ -10,8 +10,8 @@
     ./files.nix
     # ./cgit
     ./psql-backup.nix
-    ./gitea
-    ./gitea/runner.nix
+    # ./gitea
+    # ./gitea/runner.nix
     # ./uwsgi.nix
     # ./searx.nix
     # ./website.nix
@@ -21,6 +21,7 @@
     ./grafana.nix
     ./headscale.nix
     ./tailscale.nix
+    ./tailscale-headscale.nix
     ./restic.nix
     # ./golink.nix
     ./wireguard.nix
