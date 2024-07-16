@@ -5,6 +5,7 @@
     ./invidious.nix
     ./jellyfin.nix
     ./tailscale.nix
+    ./tailscale-headscale.nix
     ./nc.nix
     ./website
   ];
