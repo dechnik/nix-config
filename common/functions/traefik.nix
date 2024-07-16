@@ -99,6 +99,7 @@ with lib; let
         middlewares.dechnik-ips = {
           ipWhiteList.sourceRange = [
             "100.64.0.0/10"
+            "100.116.172.0/24"
             "10.69.0.0/24"
             "10.60.0.0/24"
             "10.61.0.0/24"

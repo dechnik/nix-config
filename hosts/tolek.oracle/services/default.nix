@@ -4,6 +4,7 @@
     ./gitlab.nix
     ./atuin.nix
     ./tailscale.nix
+    ./tailscale-headscale.nix
     ./wireguard.nix
     ./restic.nix
     ./lldap.nix
