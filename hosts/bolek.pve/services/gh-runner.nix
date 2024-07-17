@@ -35,6 +35,7 @@
       nix
       nodejs
       gawk
+      curl
       git
     ] ++
         (builtins.map
