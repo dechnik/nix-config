@@ -36,6 +36,7 @@
       nodejs
       gawk
       curl
+      tailscale
       git
     ] ++
         (builtins.map
