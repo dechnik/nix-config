@@ -76,7 +76,7 @@ in {
           restartTriggers = [svcConfig.package];
           script = ''
             mkdir -p ${dataDir}
-            export TS_AUTHKEY=`cat ${svcConfig.tailscaleKeyPath}`
+            # export TS_AUTHKEY=`cat ${svcConfig.tailscaleKeyPath}`
             ${svcConfig.package}/bin/proxy-to-grafana \
               --hostname=${svcConfig.hostname} \
               --backend-addr=localhost:${toString svcConfig.backendPort} \
@@ -87,6 +87,7 @@ in {
           serviceConfig = {
             User = username;
             Group = username;
+            EnvironmentFile = svcConfig.tailscaleKeyPath;
             Restart = "always";
             RestartSec = "15";
             WorkingDirectory = baseDataDir;

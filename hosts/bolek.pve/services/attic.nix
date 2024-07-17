@@ -10,7 +10,7 @@ in {
   sops.secrets.attic-env = {
     sopsFile = ../secrets.yaml;
   };
-  sops.secrets.tailscale-preauthkey = {
+  sops.secrets.tailscale-auth-env = {
     sopsFile = ../../../common/secrets.yaml;
   };
 
@@ -22,7 +22,7 @@ in {
     tailscale-proxies = {
       attic = {
         enable = true;
-        tailscaleKeyPath = config.sops.secrets.tailscale-preauthkey.path;
+        tailscaleKeyPath = config.sops.secrets.tailscale-auth-env.path;
 
         hostname = "attic";
         backendPort = port;
