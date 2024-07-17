@@ -21,7 +21,7 @@ in {
             description = ''
               Package to use
             '';
-            default = pkgs.unstable.tailscale-tools;
+            default = pkgs.tailscale-tools;
           };
 
           hostname = mkOption {

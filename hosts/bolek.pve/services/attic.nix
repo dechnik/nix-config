@@ -10,12 +10,24 @@ in {
   sops.secrets.attic-env = {
     sopsFile = ../secrets.yaml;
   };
+  sops.secrets.tailscale-preauthkey = {
+    sopsFile = ../../../common/secrets.yaml;
+  };
 
   imports = [
     inputs.attic.nixosModules.atticd
   ];
 
   services = {
+    tailscale-proxies = {
+      attic = {
+        enable = true;
+        tailscaleKeyPath = config.sops.secrets.tailscale-preauthkey.path;
+
+        hostname = "attic";
+        backendPort = port;
+      };
+    };
     # https://lgug2z.com/articles/deploying-a-cloudflare-r2-backed-nix-binary-cache-attic-on-fly-io/
     # https://lgug2z.com/articles/building-and-privately-caching-x86-and-aarch64-nixos-systems-on-github-actions/
 
