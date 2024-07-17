@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./tailscale.nix
+    ./tailscale.nix
     ./tailscale-headscale.nix
     ./wireguard.nix
   ];
