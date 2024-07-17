@@ -11,5 +11,6 @@
   golink = pkgs.callPackage ./golink { };
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
   sessionx = pkgs.callPackage ./sessionx { };
+  tailscale-tools = pkgs.callPackage ./tailscale-tools { };
   # cody = pkgs.callPackage ./cody { };
 }
