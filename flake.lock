@@ -3785,12 +3785,12 @@
         "rev": "9f44a01bd47bab5602c91478e9fc6959d053180c",
         "revCount": 27,
         "type": "git",
-        "url": "https://git.dechnik.net/lukasz/website.git"
+        "url": "https://gitlab.dechnik.net/lukasz/website.git"
       },
       "original": {
         "ref": "master",
         "type": "git",
-        "url": "https://git.dechnik.net/lukasz/website.git"
+        "url": "https://gitlab.dechnik.net/lukasz/website.git"
       }
     },
     "xdph": {

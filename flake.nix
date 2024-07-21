@@ -7,10 +7,8 @@
       "https://nix-community.cachix.org?priority=41"
       "https://cosmic.cachix.org?priority=42"
       "https://attic.dechnik.net/system?priority=44"
-      "https://cache.dechnik.net?priority=45"
     ];
     extra-trusted-public-keys = [
-      "cache.dechnik.net:VM4JPWTGlfhOxnJsFk1r325lDewW44eyZ32ivqPaFJQ="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "system:5mtbpEmaoC7RVnZJz/KZU2Of2QXQTMBriCJjt3SK9Iw="
@@ -72,7 +70,7 @@
     };
 
     website = {
-      url = "git+https://git.dechnik.net/lukasz/website.git?ref=master";
+      url = "git+https://gitlab.dechnik.net/lukasz/website.git?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # emacs-overlay.url = "github:nix-community/emacs-overlay/d7d53d728dc68d0fca4601b4e155e746ce274098";
@@ -147,7 +145,7 @@
       homeManagerModules = import ./modules/home-manager;
 
       overlays = import ./overlays { inherit inputs outputs; };
-      hydraJobs = import ./hydra.nix { inherit inputs outputs; };
+      # hydraJobs = import ./hydra.nix { inherit inputs outputs; };
       colmena = import ./colmena.nix { inherit inputs outputs; };
 
       # packages = forEachPkgs (pkgs: import ./pkgs { inherit pkgs; });
