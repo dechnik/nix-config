@@ -67,4 +67,4 @@ jobs:
           nix run github:zhaofengli/attic#default login lukasz http://attic.panther-crocodile.ts.net ${{ secrets.ATTIC_TOKEN }}
           nix run github:zhaofengli/attic#default watch-store system &
           nix build '.#nixosConfigurations."${{ matrix.machine.host }}".config.system.build.toplevel'
-          nix run github:zhaofengli/attic#default push system result -j 2
+          nix run github:zhaofengli/attic#default push system result -j 2 || true
