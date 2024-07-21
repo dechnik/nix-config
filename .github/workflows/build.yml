@@ -1,6 +1,11 @@
 name: "build"
 
-on: push
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-$${{ github.head_ref || github.run_id }}
@@ -34,6 +39,7 @@ jobs:
           - host: tolek.oracle
             platform: aarch64-linux
             runner: ubuntu-latest
+    name: Build - ${{ matrix.machine.host }}
     steps:
       - uses: actions/checkout@v4
 
