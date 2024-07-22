@@ -13,6 +13,10 @@
     sopsFile = ../secrets.yaml;
   };
 
+  nix.settings.trusted-users = [
+    "github-runner"
+  ];
+
   virtualisation.docker.enable = true;
 
   users.users.github-runner = {
