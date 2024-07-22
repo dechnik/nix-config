@@ -14,6 +14,9 @@
   };
 
   virtualisation.docker.enable = true;
+  nix.settings.trusted-users = [
+    "github-runner"
+  ];
 
   users.users.github-runner = {
     isSystemUser = true;
