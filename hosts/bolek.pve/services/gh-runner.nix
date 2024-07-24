@@ -41,6 +41,7 @@
       gawk
       curl
       tailscale
+      xz
       git
     ] ++
         (builtins.map

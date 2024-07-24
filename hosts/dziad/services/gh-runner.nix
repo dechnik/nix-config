@@ -39,6 +39,7 @@
       nodejs
       gawk
       curl
+      xz
       tailscale
       git
     ] ++
