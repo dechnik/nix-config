@@ -6,7 +6,7 @@
     ./binary-cache.nix
     ./dhcp.nix
     # ./dnsmasq.nix
-    ./hydra
+    # ./hydra
     ./files.nix
     # ./cgit
     ./psql-backup.nix
