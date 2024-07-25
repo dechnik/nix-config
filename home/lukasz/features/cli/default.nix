@@ -61,7 +61,7 @@ in
     kubectl
 
     nil # Nix LSP
-    nixfmt-classic # Nix formatter
+    nixfmt-rfc-style
     nvd # Differ
     nix-output-monitor
     nh # Nice wrapper for NixOS and HM

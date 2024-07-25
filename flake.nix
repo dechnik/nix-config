@@ -153,7 +153,7 @@
       # formatter = forEachPkgs (pkgs: pkgs.nixpkgs-fmt);
       packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
       devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
-      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style); # TODO change after official
 
       nixosConfigurations = {
         "dziad" = mkNixos [ ./hosts/dziad ];
