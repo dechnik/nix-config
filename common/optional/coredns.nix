@@ -36,6 +36,11 @@ in
             health_check 5s
           }
         }
+        panther-crocodile.ts.net {
+          forward . 100.100.100.100:53 {
+            health_check 5s
+          }
+        }
         # Internal zones.
         ${currentSite} {
           hosts {
