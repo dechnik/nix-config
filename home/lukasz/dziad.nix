@@ -6,7 +6,7 @@
     ./features/trusted
     ./features/trusted/mail
     ./features/trusted/mail/personal.nix
-    ./features/trusted/mail/work.nix
+    # ./features/trusted/mail/work.nix
     ./features/games
     # ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
