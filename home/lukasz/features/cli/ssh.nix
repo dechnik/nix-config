@@ -15,7 +15,7 @@ in
         }];
       };
       trusted = lib.hm.dag.entryBefore [ "net" ] {
-        host = "dechnik.net *.dechnik.net";
+        host = "dechnik.net *.dechnik.net *.panther-crocodile.ts.net";
         forwardAgent = true;
       };
     };
