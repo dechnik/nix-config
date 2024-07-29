@@ -80,8 +80,7 @@ in
         format = "text";
       };
       server = {
-        host = "10.61.0.1";
-        port = 9091;
+        address = "tcp://10.61.0.1:9091/";
       };
       session = {
         name = "session";
