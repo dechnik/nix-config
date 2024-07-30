@@ -22,6 +22,7 @@
     wl-mirror
     wl-mirror-pick
     ydotool
+    swaybg
     nwg-displays
   ];
 
