@@ -22,6 +22,7 @@
     wl-mirror
     wl-mirror-pick
     ydotool
+    nwg-displays
   ];
 
   services.gnome-keyring = {
@@ -31,6 +32,7 @@
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     QT_QPA_PLATFORM = "wayland";
-    LIBSEAT_BACKEND = "logind";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
   };
 }

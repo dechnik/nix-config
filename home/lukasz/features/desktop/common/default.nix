@@ -43,6 +43,7 @@ in
     lyrics
     deluge
     brave
+    google-chrome
     obsidian
     floorp
     # (vivaldi.override {
