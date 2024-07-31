@@ -30,6 +30,7 @@
 
   environment.systemPackages = [
     config.boot.kernelPackages.cpupower
+    pkgs.quickemu
   ];
   sops.secrets = {
     oauth2ms = {

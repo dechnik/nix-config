@@ -58,6 +58,9 @@
   services.dbus.packages = [
     pkgs.pcmanfm
   ];
+  environment.systemPackages = [
+    pkgs.quickemu
+  ];
 
   networking = {
     hostName = "dziad"; # Define your hostname.
