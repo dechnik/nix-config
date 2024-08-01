@@ -1,24 +1,27 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   homeCfgs = config.home-manager.users;
-  homeSharePaths = lib.mapAttrsToList (n: v: "${v.home.path}/share") homeCfgs;
-  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}"'';
+  homeSharePaths = lib.mapAttrsToList (_: v: "${v.home.path}/share") homeCfgs;
+  vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
 
   lukaszCfg = homeCfgs.lukasz;
   gtkTheme = lukaszCfg.gtk.theme;
   iconTheme = lukaszCfg.gtk.iconTheme;
   wallpaper = lukaszCfg.wallpaper;
 
-  sway-kiosk = command: "${lib.getExe pkgs.sway} --config ${pkgs.writeText "kiosk.config" ''
+  sway-kiosk = command: "${lib.getExe pkgs.sway} --unsupported-gpu --config ${pkgs.writeText "kiosk.config" ''
     output * bg #000000 solid_color
     xwayland disable
     input "type:touchpad" {
       tap enabled
     }
-    exec 'GTK_USE_PORTAL=0 ${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
+    exec '${vars} ${command}; ${pkgs.sway}/bin/swaymsg exit'
   ''}";
-in
-{
+in {
   users.extraUsers.greeter = {
     packages = [
       gtkTheme.package
