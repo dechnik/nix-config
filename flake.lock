@@ -1099,11 +1099,11 @@
         "nixpkgs-stable": "nixpkgs-stable_3"
       },
       "locked": {
-        "lastModified": 1722449994,
-        "narHash": "sha256-xcpJE83RMrMPcfmoSScTs8yxGGIexOaHCt2lb3rKzzU=",
+        "lastModified": 1722484172,
+        "narHash": "sha256-JGqm77WqFIrrqpYpDpAztJ+f87lt7ks41G9ZQjl/lhs=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "7bccbcaafaf1e1e8077c0440c9e2defc8f5a2a75",
+        "rev": "bc45fe60ecd6bd8f130cd707cb6b58c716012389",
         "type": "github"
       },
       "original": {
