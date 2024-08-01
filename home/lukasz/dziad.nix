@@ -15,8 +15,8 @@
     # ./features/desktop/optional/jetbrains.nix
     # ./features/desktop/optional/videoedit.nix
     # ./features/desktop/hyprland/nvidia.nix
-    # ./features/desktop/hyprland
-    ./features/desktop/common/cosmic
+    ./features/desktop/hyprland
+    # ./features/desktop/common/cosmic
     ./features/desktop/common
     ./features/desktop/optional/bluetooth.nix
   ];

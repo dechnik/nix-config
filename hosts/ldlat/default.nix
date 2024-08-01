@@ -6,7 +6,6 @@
       # inputs.hardware.nixosModules.common-cpu-intel
       inputs.hardware.nixosModules.common-gpu-intel
       inputs.hardware.nixosModules.common-pc-ssd
-      inputs.nixos-cosmic.nixosModules.default
 
       ./hardware-configuration.nix
 
@@ -17,15 +16,17 @@
       ../../common/optional/fping.nix
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
-      # ../../common/optional/greetd.nix
+      ../../common/optional/greetd.nix
       # ../../common/optional/qtile.nix
-      ../../common/optional/wireless-nn.nix
+      # ../../common/optional/wireless-nn.nix
+      ../../common/optional/wireless.nix
       ../../common/optional/bluetooth.nix
       ../../common/optional/printing.nix
       # ../../common/optional/pantalaimon.nix
-      ../../common/optional/vpn-nn.nix
+      # ../../common/optional/vpn-nn.nix
+      ../../common/optional/vpn.nix
       ../../common/optional/nix-gc.nix
-      ../../common/optional/cosmic.nix
+      # ../../common/optional/cosmic.nix
     ];
 
   environment.systemPackages = [
@@ -64,7 +65,7 @@
         useDHCP = true;
       };
     };
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
   };
   # networking.networkmanager.settings = {
   #   connectivity = {

@@ -6,7 +6,6 @@
       inputs.hardware.nixosModules.common-cpu-amd
       # inputs.hardware.nixosModules.common-gpu-nvidia
       inputs.hardware.nixosModules.common-pc-ssd
-      inputs.nixos-cosmic.nixosModules.default
       ./hardware-configuration.nix
       inputs.disko.nixosModules.disko
       ./services
@@ -19,15 +18,16 @@
       ../../common/optional/fping.nix
       ../../common/optional/docker.nix
       ../../common/optional/pipewire.nix
-      # ../../common/optional/greetd.nix
+      ../../common/optional/greetd.nix
       ../../common/optional/gaming.nix
       # ../../common/optional/qtile.nix
-      ../../common/optional/vpn-nn.nix
+      # ../../common/optional/vpn-nn.nix
+      ../../common/optional/vpn.nix
       ../../common/optional/bluetooth.nix
       # ../../common/optional/pantalaimon.nix
       ../../common/optional/zram.nix
       ../../common/optional/nix-gc.nix
-      ../../common/optional/cosmic.nix
+      # ../../common/optional/cosmic.nix
       # ../common/optional/postfix.nix
       # ../../common/optional/gamemode.nix
       # ../common/optional/zfs.nix
@@ -65,7 +65,7 @@
   networking = {
     hostName = "dziad"; # Define your hostname.
     domain = "dechnik.net";
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
     #
     nameservers = [
       "100.100.100.100"

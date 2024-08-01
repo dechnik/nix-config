@@ -6,7 +6,7 @@ in {
     options = {
       selection-clipboard = "clipboard";
       font = "${config.fontProfiles.regular.family} 12";
-      recolor = true;
+      recolor = false;
       default-bg = "#${palette.base00}";
       default-fg = "#${palette.base01}";
       statusbar-bg = "#${palette.base02}";

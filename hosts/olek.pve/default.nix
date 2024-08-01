@@ -3,12 +3,11 @@
 {
   imports =
     [
-      inputs.nixos-cosmic.nixosModules.default
       ./hardware-configuration.nix
 
       ../../common/optional/auto-upgrade.nix
       ../../common/optional/qemu-vm.nix
-      # ../common/optional/greetd.nix
+      ../../common/optional/greetd.nix
       # ../../common/optional/xserver.nix
       # ../../common/optional/gnome.nix
       # ../../common/optional/plasma6.nix
@@ -18,15 +17,6 @@
       ./services
       inputs.disko.nixosModules.disko
     ];
-
-    # Cosmic Test
-  services.displayManager.sddm.enable = lib.mkForce false;
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
 
   services.spice-vdagentd.enable = true;
 

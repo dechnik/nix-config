@@ -117,7 +117,7 @@ in
         modules-right = [
           # "custom/gamemode"
           "network"
-          "custom/tailscale-ping"
+          # "custom/tailscale-ping"
           "tray"
           "custom/hostname"
         ];
