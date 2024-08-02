@@ -45,6 +45,16 @@ rec {
       cargoHash = "sha256-vcpxcRlW1OKoD64owFF6mkxSqmNrvY+y3Ckn5UwEQ50=";
     };
 
+    dart =
+      (prev.dart.overrideAttrs (old: {
+        version = "3.4.4";
+        src = final.fetchurl {
+          url = "https://storage.googleapis.com/dart-archive/channels/stable/release/3.4.4/sdk/dartsdk-linux-arm64-release.zip";
+          sha256 = "0ih3yx0bjigfbv5dfc262rw3y4ps5pzdilps4k1scb1xhs8y9kml";
+        };
+      })).override
+        { version = "3.4.4"; };
+
     passExtensions = prev.passExtensions // {
       # https://github.com/tadfisher/pass-otp/pull/173
       pass-otp = addPatches prev.passExtensions.pass-otp [ ./pass-otp-fix-completion.patch ];
