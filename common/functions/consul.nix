@@ -1,8 +1,12 @@
 { lib, ... }:
-with lib; let
+with lib;
+let
   prometheusExporter = name: port: {
     name = "${name}-exporter";
-    tags = [ "${name}-exporter" "prometheus" ];
+    tags = [
+      "${name}-exporter"
+      "prometheus"
+    ];
     port = port;
     check = {
       name = "${name} health check";
@@ -12,4 +16,6 @@ with lib; let
     };
   };
 in
-{ inherit prometheusExporter; }
+{
+  inherit prometheusExporter;
+}

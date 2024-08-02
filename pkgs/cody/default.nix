@@ -23,10 +23,12 @@ let
       hash = "sha256-qrqE0/dDe5mI8sYPlESOu/we7Kk7UKoQtSQ0vToPYyk=";
     };
   };
-in buildFHSUserEnv {
+in
+buildFHSUserEnv {
   name = "cody";
-  targetPkgs = pkgs: [cody-deb];
-  multiPkgs = pkgs: with pkgs; [
+  targetPkgs = pkgs: [ cody-deb ];
+  multiPkgs =
+    pkgs: with pkgs; [
       cairo
       gdk-pixbuf
       libsoup

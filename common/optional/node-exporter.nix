@@ -1,7 +1,4 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   consul = import ../functions/consul.nix { inherit lib; };
 in
@@ -11,7 +8,9 @@ in
     enabledCollectors = [ "systemd" ];
   };
 
-  networking.firewall.interfaces."${config.my.lan}".allowedTCPPorts = [ config.services.prometheus.exporters.node.port ];
+  networking.firewall.interfaces."${config.my.lan}".allowedTCPPorts = [
+    config.services.prometheus.exporters.node.port
+  ];
 
   my.consulServices.node_exporter = consul.prometheusExporter "node" config.services.prometheus.exporters.node.port;
 }

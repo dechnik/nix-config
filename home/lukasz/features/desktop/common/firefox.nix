@@ -1,4 +1,9 @@
-{ pkgs, lib, inputs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 let
   addons = inputs.firefox-addons.packages.${pkgs.system};
@@ -48,7 +53,9 @@ in
   programs.firefox = {
     enable = true;
     package = pkgs.firefox.override {
-      cfg = { enableTridactylNative = true; };
+      cfg = {
+        enableTridactylNative = true;
+      };
     };
     profiles.lukasz = {
       extensions = with addons; [

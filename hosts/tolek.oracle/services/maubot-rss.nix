@@ -1,8 +1,6 @@
 { inputs, config, ... }:
 {
-  imports = [
-    inputs.maubot.nixosModules.rss
-  ];
+  imports = [ inputs.maubot.nixosModules.rss ];
 
   sops.secrets = {
     maubot-rss-config = {
@@ -13,9 +11,7 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/maubot-rss"
-    ];
+    "/persist".directories = [ "/var/lib/maubot-rss" ];
   };
 
   services.maubot-rss = {
@@ -33,7 +29,7 @@
   };
   services.traefik.dynamicConfigOptions.http = {
     services.maubot-rss = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:8823"; }];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:8823"; } ];
     };
 
     routers.maubot-rss = {

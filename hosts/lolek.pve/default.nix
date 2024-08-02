@@ -1,31 +1,33 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./services
+  imports = [
+    ./hardware-configuration.nix
+    ./services
 
-      ../../common/optional/qemu-vm.nix
-      ../../common/optional/consul.nix
-      ../../common/optional/promtail.nix
-      ../../common/optional/nginx.nix
-      ../../common/optional/avahi.nix
-      ../../common/optional/node-exporter.nix
-      ../../common/optional/systemd-exporter.nix
-      ../../common/optional/postfix.nix
-      ../../common/global
-      ../../common/users/lukasz
-    ];
+    ../../common/optional/qemu-vm.nix
+    ../../common/optional/consul.nix
+    ../../common/optional/promtail.nix
+    ../../common/optional/nginx.nix
+    ../../common/optional/avahi.nix
+    ../../common/optional/node-exporter.nix
+    ../../common/optional/systemd-exporter.nix
+    ../../common/optional/postfix.nix
+    ../../common/global
+    ../../common/users/lukasz
+  ];
 
   my.lan = "ens19";
 
   networking = {
     hostName = "lolek";
     domain = "pve.dechnik.net";
-    nameservers = [
-      "10.60.0.1"
-    ];
+    nameservers = [ "10.60.0.1" ];
     defaultGateway = "10.60.0.1";
     defaultGateway6 = "";
     dhcpcd.enable = false;
@@ -59,9 +61,7 @@
         80 # HTTP
       ];
 
-      allowedUDPPorts = lib.mkForce [
-        config.services.tailscale.port
-      ];
+      allowedUDPPorts = lib.mkForce [ config.services.tailscale.port ];
 
       trustedInterfaces = [ config.my.lan ];
     };

@@ -1,9 +1,20 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   programs.password-store = {
     enable = true;
-    settings = { PASSWORD_STORE_DIR = "$HOME/.local/share/password-store"; };
-    package = pkgs.pass.withExtensions (exts: [ exts.pass-otp exts.pass-import ]);
+    settings = {
+      PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
+    };
+    package = pkgs.pass.withExtensions (exts: [
+      exts.pass-otp
+      exts.pass-import
+    ]);
   };
 
   services.pass-secret-service = {

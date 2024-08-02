@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   wireguard = import ../../../common/functions/wireguard.nix { inherit config lib; };

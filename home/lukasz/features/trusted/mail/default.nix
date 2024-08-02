@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   convert-multipart = import ./convert-multipart.nix pkgs;
@@ -171,7 +172,11 @@ in
         exec = "neomutt %U";
         icon = "mutt";
         terminal = true;
-        categories = [ "Network" "Email" "ConsoleOnly" ];
+        categories = [
+          "Network"
+          "Email"
+          "ConsoleOnly"
+        ];
         type = "Application";
         mimeType = [ "x-scheme-handler/mailto" ];
       };
@@ -198,7 +203,8 @@ in
     lynx
   ];
 
-  options.accounts.email.accounts = with lib;
+  options.accounts.email.accounts =
+    with lib;
     mkOption { type = with types; attrsOf (submodule (import ./options.nix)); };
 
   config.programs = {
@@ -226,7 +232,10 @@ in
       '';
       binds = [
         {
-          map = [ "index" "pager" ];
+          map = [
+            "index"
+            "pager"
+          ];
           key = "g";
           action = "noop";
         }
@@ -303,17 +312,26 @@ in
           action = "<first-entry><pipe-entry>${convert-multipart}<enter><enter-command>source /tmp/neomutt-commands<enter>";
         }
         {
-          map = [ "index" "pager" ];
+          map = [
+            "index"
+            "pager"
+          ];
           key = "a";
           action = "<enter-command>set my_pipe_decode=\$pipe_decode pipe_decode<return><pipe-message>${pkgs.abook}/bin/abook --config $XDG_CONFIG_HOME/abook/abookrc --datafile $HOME/Documents/abook/addressbook --add-email<return><enter-command>set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<return>";
         }
         {
-          map = [ "index" "pager" ];
+          map = [
+            "index"
+            "pager"
+          ];
           key = "gi";
           action = "<change-folder>=Inbox<enter>";
         }
         {
-          map = [ "index" "pager" ];
+          map = [
+            "index"
+            "pager"
+          ];
           key = "gs";
           action = "<change-folder>=Sent<enter>";
         }
@@ -325,7 +343,8 @@ in
 
   config.systemd.user.services.mbsync = {
     Service =
-      let keyring = import ../keyring.nix { inherit pkgs; };
+      let
+        keyring = import ../keyring.nix { inherit pkgs; };
       in
       {
         ExecCondition = ''
@@ -344,46 +363,48 @@ in
 
   config.xdg.dataFile."mail/.postsync" = {
     executable = true;
-    text = with lib; let
-      mbsyncAccounts =
-        filter (a: a.mbsync.enable)
-          (attrValues config.accounts.email.accounts);
-    in
-    ''
-      #!/bin/sh
-      ${pkgs.mu}/bin/mu index
-      lastrun="${config.xdg.dataHome}/mail/.mailsynclastrun"
-      for acc in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
-        new=$(${pkgs.findutils}/bin/find ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/new/ ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/cur/ -type f -newer "$lastrun" 2> /dev/null)
-        newcount=$(echo "$new" | ${pkgs.gnused}/bin/sed '/^\s*$/d' | ${pkgs.coreutils}/bin/wc -l)
-        case 1 in
-          $((newcount > 0)) ) ${pkgs.libnotify}/bin/notify-send --app-name="mail" "New mail!" "📬  $newcount new mail(s) in \`$acc\` account."
-        esac
-      done
-      ${pkgs.coreutils}/bin/touch "$lastrun"
-    '';
+    text =
+      with lib;
+      let
+        mbsyncAccounts = filter (a: a.mbsync.enable) (attrValues config.accounts.email.accounts);
+      in
+      ''
+        #!/bin/sh
+        ${pkgs.mu}/bin/mu index
+        lastrun="${config.xdg.dataHome}/mail/.mailsynclastrun"
+        for acc in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
+          new=$(${pkgs.findutils}/bin/find ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/new/ ${config.xdg.dataHome}/mail/$acc/[Ii][Nn][Bb][Oo][Xx]/cur/ -type f -newer "$lastrun" 2> /dev/null)
+          newcount=$(echo "$new" | ${pkgs.gnused}/bin/sed '/^\s*$/d' | ${pkgs.coreutils}/bin/wc -l)
+          case 1 in
+            $((newcount > 0)) ) ${pkgs.libnotify}/bin/notify-send --app-name="mail" "New mail!" "📬  $newcount new mail(s) in \`$acc\` account."
+          esac
+        done
+        ${pkgs.coreutils}/bin/touch "$lastrun"
+      '';
   };
 
   config.xdg.dataFile."mail/.presync" = {
     executable = true;
-    text = with lib; let
-      mbsyncAccounts =
-        filter (a: a.mbsync.enable)
-          (attrValues config.accounts.email.accounts);
-    in
-    ''
-      #!/bin/sh
-      for account in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
-        target="${config.xdg.dataHome}/mail/$account/.null"
-        ${pkgs.coreutils}/bin/ln -sf /dev/null "$target"
-      done
-    '';
+    text =
+      with lib;
+      let
+        mbsyncAccounts = filter (a: a.mbsync.enable) (attrValues config.accounts.email.accounts);
+      in
+      ''
+        #!/bin/sh
+        for account in ${concatMapStringsSep " " (a: a.name) mbsyncAccounts}; do
+          target="${config.xdg.dataHome}/mail/$account/.null"
+          ${pkgs.coreutils}/bin/ln -sf /dev/null "$target"
+        done
+      '';
   };
 
   # We use msmtpq to send email, which means if we save the mail offline we
   # can run this queue runner from time to time.
   config.systemd.user.services.msmtp-queue-runner = {
-    Unit = { Description = "msmtp-queue runner"; };
+    Unit = {
+      Description = "msmtp-queue runner";
+    };
     Service = {
       Type = "oneshot";
       ExecStart = "${pkgs.msmtp}/bin/msmtp-queue -r";
@@ -391,11 +412,15 @@ in
   };
 
   config.systemd.user.timers.msmtp-queue-runner = {
-    Unit = { Description = "msmtp-queue runner"; };
+    Unit = {
+      Description = "msmtp-queue runner";
+    };
     Timer = {
       Unit = "msmtp-queue-runner.service";
       OnCalendar = "*:0/5";
     };
-    Install = { WantedBy = [ "timers.target" ]; };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
   };
 }

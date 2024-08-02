@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   consul = import ../functions/consul.nix { inherit lib; };
@@ -55,7 +56,10 @@ in
       '';
     };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   # services.prometheus.exporters.nginx = {
   #   enable = true;
@@ -78,7 +82,9 @@ in
           # '';
           mkApp = domain: {
             name = domain;
-            metrics_override = { prefix = "nginxlog"; };
+            metrics_override = {
+              prefix = "nginxlog";
+            };
             source.files = [ "/var/log/nginx/${domain}.access.log" ];
             namespace_label = "vhost";
           };
@@ -86,7 +92,9 @@ in
         [
           {
             name = "catch";
-            metrics_override = { prefix = "nginxlog"; };
+            metrics_override = {
+              prefix = "nginxlog";
+            };
             source.files = [ "/var/log/nginx/access.log" ];
             namespace_label = "vhost";
           }

@@ -1,5 +1,1 @@
-{
-  imports = [
-    ./tailscale.nix
-  ];
-}
+{ imports = [ ./tailscale.nix ]; }

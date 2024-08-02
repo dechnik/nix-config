@@ -1,6 +1,12 @@
 { inputs, outputs }:
 let
-  inherit (inputs.nixpkgs.lib) replaceStrings filterAttrs nameValuePair mapAttrs elem;
+  inherit (inputs.nixpkgs.lib)
+    replaceStrings
+    filterAttrs
+    nameValuePair
+    mapAttrs
+    elem
+    ;
 
   notBroken = pkg: !(pkg.meta.broken or false);
   hasPlatform = sys: pkg: elem sys (pkg.meta.platforms or [ ]);

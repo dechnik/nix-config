@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{ pkgs, config, ... }:
 {
   sops.secrets = {
     gitea-runner = {
@@ -16,9 +16,7 @@
       url = "https://git.dechnik.net";
       tokenFile = config.sops.secrets.gitea-runner.path;
       name = "pve";
-      labels = [
-        "native:host"
-      ];
+      labels = [ "native:host" ];
       hostPackages = with pkgs; [
         bash
         coreutils
@@ -35,9 +33,7 @@
       url = "https://git.dechnik.net";
       tokenFile = config.sops.secrets.gitea-runner2.path;
       name = "pve";
-      labels = [
-        "ubuntu-latest:docker://node:18-bullseye"
-      ];
+      labels = [ "ubuntu-latest:docker://node:18-bullseye" ];
       settings = {
         container.network = "host";
       };
@@ -48,5 +44,5 @@
     isSystemUser = true;
     group = "gitea-runner";
   };
-  users.groups.gitea-runner = {};
+  users.groups.gitea-runner = { };
 }

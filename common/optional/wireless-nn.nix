@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   # Wireless secrets stored through sops
   sops.secrets.wireless = {
     sopsFile = ../secrets.yaml;
@@ -6,9 +7,7 @@
   };
 
   networking.networkmanager.ensureProfiles = {
-    environmentFiles = [
-      config.sops.secrets.wireless.path
-    ];
+    environmentFiles = [ config.sops.secrets.wireless.path ];
     profiles = {
       biuro-wifi = {
         connection = {

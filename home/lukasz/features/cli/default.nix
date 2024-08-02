@@ -1,9 +1,10 @@
-{ pkgs, ... }:let
-  pythonEnv = pkgs.python3.withPackages (ps:
-    with ps;
-      [
-        tldextract # required by qute-pass
-      ]);
+{ pkgs, ... }:
+let
+  pythonEnv = pkgs.python3.withPackages (
+    ps: with ps; [
+      tldextract # required by qute-pass
+    ]
+  );
 in
 {
   imports = [

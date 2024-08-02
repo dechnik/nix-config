@@ -1,16 +1,12 @@
-{ config
-, lib
-, ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   consul = import ../functions/consul.nix { inherit lib; };
 
   site = builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.domain;
 in
 {
-  imports = [
-    ../../modules/nixos/blocklist.nix
-  ];
+  imports = [ ../../modules/nixos/blocklist.nix ];
   services.blocklist-downloader.enable = true;
 
   services.coredns = {
@@ -45,12 +41,13 @@ in
         ${currentSite} {
           hosts {
             ${
-          lib.concatMapStrings (host: ''
-            ${host.ipAddress} ${host.hostName}.${currentSite}
-          '')
-            # config.services.dhcpd4.machines
-            [ ]
-        }
+              lib.concatMapStrings
+                (host: ''
+                  ${host.ipAddress} ${host.hostName}.${currentSite}
+                '')
+                # config.services.dhcpd4.machines
+                [ ]
+            }
           }
         }
         ${concatStringsSep "\n" (attrValues (mapAttrs peer peers))}
@@ -88,7 +85,10 @@ in
 
   # networking.firewall.interfaces."${config.my.lan}".allowedTCPPorts = [ 53 9153 ];
   # networking.firewall.interfaces."${config.my.lan}".allowedUDPPorts = [ 53 ];
-  networking.firewall.allowedTCPPorts = [ 53 9153 ];
+  networking.firewall.allowedTCPPorts = [
+    53
+    9153
+  ];
   networking.firewall.allowedUDPPorts = [ 53 ];
 
   my.consulServices.coredns_exporter = consul.prometheusExporter "coredns" 9153;

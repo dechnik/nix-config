@@ -1,16 +1,21 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
 
-      ../../common/optional/qemu-vm.nix
-      ../../common/optional/nix-gc.nix
-      ../../common/global
-      ../../common/users/lukasz
-      inputs.disko.nixosModules.disko
-    ];
+    ../../common/optional/qemu-vm.nix
+    ../../common/optional/nix-gc.nix
+    ../../common/global
+    ../../common/users/lukasz
+    inputs.disko.nixosModules.disko
+  ];
   services.spice-vdagentd.enable = true;
   boot = {
     loader.grub = {

@@ -4,7 +4,8 @@ let
 in
 {
   services.nginx.virtualHosts =
-    let days = n: toString (n * 60 * 60 * 24);
+    let
+      days = n: toString (n * 60 * 60 * 24);
     in
     {
       "dev.dechnik.net" = {

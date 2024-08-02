@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   consul = import ../../../common/functions/consul.nix { inherit lib; };
   serverName = "dechnik.net";
@@ -15,9 +20,7 @@ let
 in
 {
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/matrix-synapse"
-    ];
+    "/persist".directories = [ "/var/lib/matrix-synapse" ];
   };
 
   sops.secrets = {
@@ -39,12 +42,8 @@ in
     enable = true;
     withJemalloc = true;
 
-    extraConfigFiles = [
-      config.sops.secrets.matrix-synapse.path
-    ];
-    plugins = with config.services.matrix-synapse.package.plugins; [
-      matrix-synapse-ldap3
-    ];
+    extraConfigFiles = [ config.sops.secrets.matrix-synapse.path ];
+    plugins = with config.services.matrix-synapse.package.plugins; [ matrix-synapse-ldap3 ];
     settings = {
       server_name = serverName;
       public_baseurl = "https://matrix.dechnik.net";
@@ -72,7 +71,15 @@ in
           tls = false;
           x_forwarded = true;
           type = "http";
-          resources = [ { names = [ "client" "federation" ]; compress = false; } ];
+          resources = [
+            {
+              names = [
+                "client"
+                "federation"
+              ];
+              compress = false;
+            }
+          ];
         }
 
         {
@@ -91,13 +98,13 @@ in
   services.traefik.dynamicConfigOptions.http = {
     services = {
       matrix = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:8008"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:8008"; } ];
       };
       matrix-admin = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:8080"; } ];
       };
       element = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:8080"; } ];
       };
     };
 

@@ -1,11 +1,15 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 let
   consul = import ../../../common/functions/consul.nix { inherit lib; };
 in
 {
-  imports = [
-    inputs.nixos-mailserver.nixosModules.mailserver
-  ];
+  imports = [ inputs.nixos-mailserver.nixosModules.mailserver ];
   # https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/issues/275
   services.dovecot2.sieve.extensions = [ "fileinto" ];
   mailserver = rec {

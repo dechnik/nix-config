@@ -1,12 +1,8 @@
 { config, inputs, ... }:
 {
-  imports = [
-    inputs.gitness.nixosModules.default
-  ];
+  imports = [ inputs.gitness.nixosModules.default ];
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/gitness"
-    ];
+    "/persist".directories = [ "/var/lib/gitness" ];
   };
   sops.secrets = {
     gitness-env = {
@@ -18,9 +14,7 @@
   users = {
     users = {
       gitness = {
-        extraGroups = [
-          "docker"
-        ];
+        extraGroups = [ "docker" ];
       };
     };
   };

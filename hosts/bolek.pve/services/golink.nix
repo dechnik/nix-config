@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   sops.secrets.golink-tskey = {
     sopsFile = ../secrets.yaml;
     owner = config.services.golink.user;
@@ -10,7 +11,5 @@
     verbose = true;
   };
 
-  environment.persistence."/persist".directories = [
-    "/var/lib/golink"
-  ];
+  environment.persistence."/persist".directories = [ "/var/lib/golink" ];
 }

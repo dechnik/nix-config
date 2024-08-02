@@ -1,17 +1,15 @@
-{ config
-, lib
-,
-}:
+{ config, lib }:
 let
   internalVhost =
-    { domain
-    , proxyPass
-    , proxyWebsockets ? true
-    , tailscaleAuth ? true
-    , allowLocal ? true
-    , locationExtraConfig ? ""
-    ,
-    }: {
+    {
+      domain,
+      proxyPass,
+      proxyWebsockets ? true,
+      tailscaleAuth ? true,
+      allowLocal ? true,
+      locationExtraConfig ? "",
+    }:
+    {
       security.acme.certs."${domain}" = {
         domain = domain;
         group = "nginx";
@@ -41,11 +39,12 @@ let
     };
 
   externalVhost =
-    { domain
-    , proxyPass
-    , proxyWebsockets ? true
-    ,
-    }: {
+    {
+      domain,
+      proxyPass,
+      proxyWebsockets ? true,
+    }:
+    {
       security.acme.certs."${domain}" = {
         domain = domain;
         group = "nginx";

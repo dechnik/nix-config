@@ -1,14 +1,12 @@
-{ pkgs
-, lib
-, ...
-}:
-with lib; let
+{ pkgs, lib, ... }:
+with lib;
+let
   base =
-    { hostName
-    , interface
-    , ipv4
-    , site
-    ,
+    {
+      hostName,
+      interface,
+      ipv4,
+      site,
     }:
     {
       inherit hostName;
@@ -34,9 +32,7 @@ with lib; let
         };
       };
     }
-    // optionalAttrs (builtins.hasAttr "ipv6Gateway" site) {
-      defaultGateway6 = site.ipv6Gateway;
-    };
+    // optionalAttrs (builtins.hasAttr "ipv6Gateway" site) { defaultGateway6 = site.ipv6Gateway; };
 in
 {
   inherit base;

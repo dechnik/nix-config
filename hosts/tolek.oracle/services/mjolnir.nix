@@ -14,7 +14,7 @@
       enable = true;
       options = {
         listenAddress = "127.0.0.1";
-      #   listenPort = 8100;
+        #   listenPort = 8100;
       };
       username = "mjolnir";
       passwordFile = config.sops.secrets.mjolnir-password.path;
@@ -27,9 +27,7 @@
     };
   };
   systemd.services.mjolnir = {
-    after = [
-      "matrix-synapse.target"
-    ];
+    after = [ "matrix-synapse.target" ];
   };
   # services.pantalaimon-headless.instances.mjolnir = {
   #   listenAddress = "127.0.0.1";

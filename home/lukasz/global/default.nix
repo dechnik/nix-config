@@ -1,7 +1,17 @@
-{ inputs, lib, pkgs, config, outputs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  config,
+  outputs,
+  ...
+}:
 let
   inherit (inputs.nix-colors) colorSchemes;
-  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) colorschemeFromPicture nixWallpaperFromScheme;
+  inherit (inputs.nix-colors.lib-contrib { inherit pkgs; })
+    colorschemeFromPicture
+    nixWallpaperFromScheme
+    ;
 in
 {
   imports = [
@@ -21,7 +31,11 @@ in
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+      ];
       warn-dirty = false;
     };
   };

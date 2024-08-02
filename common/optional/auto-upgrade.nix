@@ -1,7 +1,13 @@
-{ pkgs, lib, config, inputs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
 let
-  toplevel = builtins.replaceStrings [".dechnik.net"] [""] config.networking.fqdn;
-  hostname = builtins.replaceStrings ["."] ["_"] toplevel;
+  toplevel = builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.fqdn;
+  hostname = builtins.replaceStrings [ "." ] [ "_" ] toplevel;
   upgrade_flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}#${toplevel}";
   check_flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}";
   # Only enable auto upgrade if current config came from a clean tree
@@ -12,9 +18,7 @@ in
   system.autoUpgrade = {
     enable = isClean;
     dates = "daily";
-    flags = [
-      "--refresh"
-    ];
+    flags = [ "--refresh" ];
     flake = upgrade_flake;
   };
   # Only run if current config (self) is older than the new one.

@@ -1,16 +1,15 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   domain = "grafana.${config.networking.domain}";
 in
 {
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/grafana"
-    ];
+    "/persist".directories = [ "/var/lib/grafana" ];
   };
   sops.secrets = {
     grafana-admin = {
@@ -22,7 +21,11 @@ in
 
   services.traefik.dynamicConfigOptions.http = {
     services.grafana = {
-      loadBalancer.servers = [{ url = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}"; }];
+      loadBalancer.servers = [
+        {
+          url = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
+        }
+      ];
     };
 
     routers.grafana = {

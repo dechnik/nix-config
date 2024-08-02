@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -63,16 +68,12 @@ in
 
   };
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/authelia-${cfg.name}"
-    ];
+    "/persist".directories = [ "/var/lib/authelia-${cfg.name}" ];
   };
 
   services.authelia.instances.main = {
     enable = true;
-    settingsFiles = [
-      "${config.sops.secrets.authelia-identity-providers.path}"
-    ];
+    settingsFiles = [ "${config.sops.secrets.authelia-identity-providers.path}" ];
     settings = {
       theme = "dark";
       log = {
@@ -156,10 +157,10 @@ in
   services.traefik.dynamicConfigOptions.http = {
     services = {
       auth = {
-        loadBalancer.servers = [{ url = "http://10.61.0.1:9091"; }];
+        loadBalancer.servers = [ { url = "http://10.61.0.1:9091"; } ];
       };
       webfinger = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:8080"; } ];
       };
     };
 

@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
-let inherit (config.colorscheme) palette variant;
-in {
+let
+  inherit (config.colorscheme) palette variant;
+in
+{
   programs.foot = {
     enable = true;
     server.enable = true;

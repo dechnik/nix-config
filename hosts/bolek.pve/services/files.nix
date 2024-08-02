@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
   domain = "files.dechnik.net";
   default-conf = pkgs.writeText "default.conf" ''
@@ -39,7 +36,7 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.static-files = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:50000"; }];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:50000"; } ];
     };
 
     routers.static-files = {

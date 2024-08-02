@@ -1,7 +1,13 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-let inherit (config.colorscheme) palette variant;
-  browser = ["org.qutebrowser.qutebrowser.desktop"];
+let
+  inherit (config.colorscheme) palette variant;
+  browser = [ "org.qutebrowser.qutebrowser.desktop" ];
   associations = {
     "text/html" = browser;
     "x-scheme-handler/http" = browser;
@@ -36,7 +42,6 @@ in
     };
   };
 
-
   home.activation = {
     qutebrowser-marks = ''
       if [[ -f $HOME/Documents/qutebrowser/quickmarks ]]; then
@@ -49,12 +54,18 @@ in
       fi
     '';
     # Install language dictionaries for spellcheck backends
-    qutebrowserInstallDicts =
-      lib.concatStringsSep "\\\n" (map (lang: ''
-            if ! find "$XDG_DATA_HOME/qutebrowser/qtwebengine_dictionaries" -type d -maxdepth 1 -name "${lang}*" 2>/dev/null | grep -q .; then
-            ${pkgs.python3}/bin/python ${pkgs.qutebrowser}/share/qutebrowser/scripts/dictcli.py install ${lang}
-            fi
-            '') ["en-US" "pl-PL"]);
+    qutebrowserInstallDicts = lib.concatStringsSep "\\\n" (
+      map
+        (lang: ''
+          if ! find "$XDG_DATA_HOME/qutebrowser/qtwebengine_dictionaries" -type d -maxdepth 1 -name "${lang}*" 2>/dev/null | grep -q .; then
+          ${pkgs.python3}/bin/python ${pkgs.qutebrowser}/share/qutebrowser/scripts/dictcli.py install ${lang}
+          fi
+        '')
+        [
+          "en-US"
+          "pl-PL"
+        ]
+    );
   };
 
   xdg.mimeApps.enable = true;
@@ -70,9 +81,7 @@ in
 
   programs.qutebrowser = {
     enable = true;
-    package = pkgs.qutebrowser.override {
-      enableWideVine = true;
-    };
+    package = pkgs.qutebrowser.override { enableWideVine = true; };
     loadAutoconfig = true;
     searchEngines = {
       DEFAULT = "https://search.brave.com/search?q={}";
@@ -88,25 +97,27 @@ in
       ",m" = "hint links spawn --detach mpv {hint-url}";
     };
     settings = {
-      url.start_pages  = [
-        "https://search.brave.com"
-      ];
+      url.start_pages = [ "https://search.brave.com" ];
       qt.args = [
         "enable-accelerated-video-decode"
         "enable-gpu-rasterization"
         "ignore-gpu-blocklist"
       ];
       qt.highdpi = true;
-      confirm_quit = ["downloads"];
-      editor.command = ["kitty" "nvim" "{file}" "-c" "normal {line}G{column0}l"];
+      confirm_quit = [ "downloads" ];
+      editor.command = [
+        "kitty"
+        "nvim"
+        "{file}"
+        "-c"
+        "normal {line}G{column0}l"
+      ];
       # scrolling.smooth =
       #   if pkgs.stdenv.isDarwin
       #   then false
       #   else true;
       downloads.location.directory = "${
-        if pkgs.stdenv.isDarwin
-        then "/Users/"
-        else "/home/"
+        if pkgs.stdenv.isDarwin then "/Users/" else "/home/"
       }lukasz/Downloads";
       downloads.position = "bottom";
       downloads.remove_finished = 10000;
@@ -127,7 +138,10 @@ in
         "-e"
         "yazi --chooser-file {}"
       ];
-      spellcheck.languages = ["en-US" "pl-PL"];
+      spellcheck.languages = [
+        "en-US"
+        "pl-PL"
+      ];
       auto_save.session = true;
       # if input is focused on tab load, allow typing
       input.insert_mode.auto_load = true;

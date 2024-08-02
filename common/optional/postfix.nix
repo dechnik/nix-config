@@ -1,10 +1,11 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
-  consul = import ../functions/consul.nix {inherit lib;};
+  consul = import ../functions/consul.nix { inherit lib; };
 in
 {
   sops.secrets = {

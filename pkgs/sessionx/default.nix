@@ -1,4 +1,5 @@
-{ tmuxPlugins,
+{
+  tmuxPlugins,
   fetchFromGitHub,
   makeWrapper,
   lib,
@@ -6,7 +7,7 @@
   fzf,
   gnugrep,
   gnused,
-  coreutils
+  coreutils,
 }:
 tmuxPlugins.mkTmuxPlugin {
   pluginName = "sessionx";
@@ -32,13 +33,33 @@ tmuxPlugins.mkTmuxPlugin {
   postInstall = ''
     chmod +x $target/scripts/sessionx.sh
     wrapProgram $target/scripts/sessionx.sh \
-      --prefix PATH : ${ lib.makeBinPath [ zoxide fzf gnugrep gnused coreutils ]}
+      --prefix PATH : ${
+        lib.makeBinPath [
+          zoxide
+          fzf
+          gnugrep
+          gnused
+          coreutils
+        ]
+      }
     chmod +x $target/scripts/preview.sh
     wrapProgram $target/scripts/preview.sh \
-      --prefix PATH : ${ lib.makeBinPath [ coreutils gnugrep gnused ]}
+      --prefix PATH : ${
+        lib.makeBinPath [
+          coreutils
+          gnugrep
+          gnused
+        ]
+      }
     chmod +x $target/scripts/reload_sessions.sh
     wrapProgram $target/scripts/reload_sessions.sh \
-      --prefix PATH : ${ lib.makeBinPath [ coreutils gnugrep gnused ]}
+      --prefix PATH : ${
+        lib.makeBinPath [
+          coreutils
+          gnugrep
+          gnused
+        ]
+      }
   '';
 
   meta = with lib; {

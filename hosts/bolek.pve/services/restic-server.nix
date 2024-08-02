@@ -1,7 +1,4 @@
-{ lib
-, config
-, ...
-}:
+{ lib, config, ... }:
 let
   consul = import ../../../common/functions/consul.nix { inherit lib; };
 
@@ -18,7 +15,7 @@ in
   };
   services.traefik.dynamicConfigOptions.http = {
     services.restic = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:${toString port}"; }];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:${toString port}"; } ];
     };
 
     routers.restic = {

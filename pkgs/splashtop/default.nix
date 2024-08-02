@@ -66,7 +66,7 @@ stdenv.mkDerivation rec {
     wrapGAppsHook
   ];
 
-    buildInputs = [
+  buildInputs = [
     stdenv.cc.cc.lib
     alsa-lib
     at-spi2-atk
@@ -149,9 +149,7 @@ stdenv.mkDerivation rec {
     downloadPage = "https://support-splashtopbusiness.splashtop.com/hc/en-us/articles/4404715685147";
     description = "Remotely access your desktop from any device from anywhere!";
     license = licenses.unlicense;
-    platforms = [
-      "x86_64-linux"
-    ];
+    platforms = [ "x86_64-linux" ];
   };
 }
 #  new Debian package, version 2.0.

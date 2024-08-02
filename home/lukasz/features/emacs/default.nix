@@ -1,7 +1,8 @@
-{ pkgs
-, inputs
-, config
-, ...
+{
+  pkgs,
+  inputs,
+  config,
+  ...
 }:
 let
   c = config.xdg.configHome;
@@ -15,25 +16,32 @@ let
     version = "29-${inputs.emacs-src.shortRev}";
     src = inputs.emacs-src;
   });
-  my_emacs_with_packages = with pkgs; ((emacsPackagesFor my_emacs).emacsWithPackages (epkgs: [
-    epkgs.vterm
-    epkgs.all-the-icons-ivy
-    epkgs.all-the-icons
-  ]));
+  my_emacs_with_packages =
+    with pkgs;
+    ((emacsPackagesFor my_emacs).emacsWithPackages (epkgs: [
+      epkgs.vterm
+      epkgs.all-the-icons-ivy
+      epkgs.all-the-icons
+    ]));
   # my_emacs = inputs.emacs-overlay.packages.${pkgs.system}.emacsPgtk.overrideAttrs (_: {
   #   name = "emacs29";
   #   version = "29.0-${inputs.emacs-src.shortRev}";
   #   src = inputs.emacs-src;
   # });
-  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
-    python-lsp-server
-    pyls-isort
-    pytest
-    black
-    nose
-    mypy
-    tldextract # required by qute-pass
-  ] ++ python-lsp-server.optional-dependencies.all);
+  pythonEnv = pkgs.python3.withPackages (
+    ps:
+    with ps;
+    [
+      python-lsp-server
+      pyls-isort
+      pytest
+      black
+      nose
+      mypy
+      tldextract # required by qute-pass
+    ]
+    ++ python-lsp-server.optional-dependencies.all
+  );
 in
 {
   # home = {
@@ -60,7 +68,10 @@ in
         exec = "emacsmail %U";
         icon = "emacs";
         terminal = false;
-        categories = [ "Network" "Email" ];
+        categories = [
+          "Network"
+          "Email"
+        ];
         type = "Application";
         mimeType = [ "x-scheme-handler/mailto" ];
       };
@@ -70,75 +81,89 @@ in
       "x-scheme-handler/mailto" = "mu4e.desktop";
     };
   };
-  home.packages = with pkgs; let
-    emacs-client = makeDesktopItem {
-      name = "emacs-client";
-      desktopName = "Emacs Client";
-      genericName = "Text Editor";
-      keywords = [ "Text" "Editor" ];
-      comment = "Edit text";
-      type = "Application";
-      terminal = false;
-      startupWMClass = "Emacs";
-      exec = "${emacs-overlay}/bin/emacsclient -create-frame --alternate-editor= --no-wait %F";
-      # Exec=sh -c "if [ -n \\"\\$*\\" ]; then exec emacsclient --alternate-editor= --display=\\"\\$DISPLAY\\" \\"\\$@\\"; else exec emacsclient --alternate-editor= --create-frame; fi" placeholder %F
-      icon = "emacs";
-      categories = [ "Development" "TextEditor" ];
-      mimeTypes = [
-        "text/english"
-        "text/plain"
-        "text/x-makefile"
-        "text/x-c++hdr"
-        "text/x-c++src"
-        "text/x-chdr"
-        "text/x-csrc"
-        "text/x-java"
-        "text/x-moc"
-        "text/x-pascal"
-        "text/x-tcl"
-        "text/x-tex"
-        "application/x-shellscript"
-        "text/x-c"
-        "text/x-c++"
-      ];
-    };
-  in
-  [
-    ## Emacs itself
-    binutils # native-comp needs 'as', provided by this
+  home.packages =
+    with pkgs;
+    let
+      emacs-client = makeDesktopItem {
+        name = "emacs-client";
+        desktopName = "Emacs Client";
+        genericName = "Text Editor";
+        keywords = [
+          "Text"
+          "Editor"
+        ];
+        comment = "Edit text";
+        type = "Application";
+        terminal = false;
+        startupWMClass = "Emacs";
+        exec = "${emacs-overlay}/bin/emacsclient -create-frame --alternate-editor= --no-wait %F";
+        # Exec=sh -c "if [ -n \\"\\$*\\" ]; then exec emacsclient --alternate-editor= --display=\\"\\$DISPLAY\\" \\"\\$@\\"; else exec emacsclient --alternate-editor= --create-frame; fi" placeholder %F
+        icon = "emacs";
+        categories = [
+          "Development"
+          "TextEditor"
+        ];
+        mimeTypes = [
+          "text/english"
+          "text/plain"
+          "text/x-makefile"
+          "text/x-c++hdr"
+          "text/x-c++src"
+          "text/x-chdr"
+          "text/x-csrc"
+          "text/x-java"
+          "text/x-moc"
+          "text/x-pascal"
+          "text/x-tcl"
+          "text/x-tex"
+          "application/x-shellscript"
+          "text/x-c"
+          "text/x-c++"
+        ];
+      };
+    in
+    [
+      ## Emacs itself
+      binutils # native-comp needs 'as', provided by this
 
-    ## Doom dependencies
-    (ripgrep.override { withPCRE2 = true; })
-    gnutls # for TLS connectivity
+      ## Doom dependencies
+      (ripgrep.override { withPCRE2 = true; })
+      gnutls # for TLS connectivity
 
-    ## Optional dependencies
-    fd # faster projectile indexing
-    imagemagick # for image-dired
-    # pinentry_emacs # in-emacs gnupg prompts
-    zstd # for undo-fu-session/undo-tree compression
+      ## Optional dependencies
+      fd # faster projectile indexing
+      imagemagick # for image-dired
+      # pinentry_emacs # in-emacs gnupg prompts
+      zstd # for undo-fu-session/undo-tree compression
 
-    ## Module dependencies
-    # :checkers spell
-    (aspellWithDicts (ds: with ds; [ en en-computers en-science ]))
-    # :tools editorconfig
-    editorconfig-core-c # per-project style config
-    # :tools lookup & :lang org +roam
-    sqlite
-    emacsql-sqlite
-    # :lang latex & :lang org (latex previews)
-    texlive.combined.scheme-full
-    rnix-lsp
-    pythonEnv
-    shellcheck
+      ## Module dependencies
+      # :checkers spell
+      (aspellWithDicts (
+        ds: with ds; [
+          en
+          en-computers
+          en-science
+        ]
+      ))
+      # :tools editorconfig
+      editorconfig-core-c # per-project style config
+      # :tools lookup & :lang org +roam
+      sqlite
+      emacsql-sqlite
+      # :lang latex & :lang org (latex previews)
+      texlive.combined.scheme-full
+      rnix-lsp
+      pythonEnv
+      shellcheck
 
-    zotero
+      zotero
 
-    # Node
-    nodejs-18_x
-    nodePackages.typescript-language-server
-    emacsmail
-    # emacs-client
-  ];
+      # Node
+      nodejs-18_x
+      nodePackages.typescript-language-server
+      emacsmail
+      # emacs-client
+    ];
   services.emacs = {
     enable = true;
     package = my_emacs_with_packages;
@@ -155,7 +180,9 @@ in
       ExecStart = "${pkgs.runtimeShell} -l -c '${pkgs.zotero}/bin/zotero --headless'";
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 60";
     };
-    Install = { WantedBy = [ "default.target" ]; };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
   };
   # systemd.user.services.emacs-kill-fisrt-frame = {
   #   Unit = {
@@ -194,9 +221,7 @@ in
     # extraPackages = epkgs: (with epkgs; [
     # ]);
   };
-  home.sessionPath = [
-    (h + "/.emacs.d/bin")
-  ];
+  home.sessionPath = [ (h + "/.emacs.d/bin") ];
   home.sessionVariables = {
     DOOMDIR = "${c}/doom";
     MINEMACSDIR = "${h}/.emacs.d/minemacs";

@@ -1,17 +1,18 @@
-{ lib
-, pkgs
-, stdenv
-, fetchFromGitHub
-, makeWrapper
-, pass
-, jq
-, wofi
-, libnotify
-, wl-clipboard
-, findutils
-, gnused
-, gnugrep
-, coreutils
+{
+  lib,
+  pkgs,
+  stdenv,
+  fetchFromGitHub,
+  makeWrapper,
+  pass,
+  jq,
+  wofi,
+  libnotify,
+  wl-clipboard,
+  findutils,
+  gnused,
+  gnugrep,
+  coreutils,
 }:
 
 with lib;
@@ -51,4 +52,3 @@ stdenv.mkDerivation {
     platforms = platforms.all;
   };
 }
-

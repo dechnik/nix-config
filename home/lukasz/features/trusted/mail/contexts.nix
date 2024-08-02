@@ -1,15 +1,13 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 accounts:
-with lib; let
+with lib;
+let
   neomuttAccounts = filter (a: a.mu.enable) (attrValues accounts);
-  primaryAccount =
-    head (filter (a: a.primary) neomuttAccounts ++ neomuttAccounts);
+  primaryAccount = head (filter (a: a.primary) neomuttAccounts ++ neomuttAccounts);
   otherAccounts = filter (a: a != primaryAccount) neomuttAccounts;
 
-  accountConfig = account:
+  accountConfig =
+    account:
     let
       accName = "${account.name}";
       accAddr = "${account.address}";

@@ -1,4 +1,10 @@
-{ inputs, lib, config, pkgs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ../common
@@ -19,9 +25,7 @@
       (import ./monitors.nix {
         inherit lib;
         inherit (config) monitors;
-      }) +
-      (import ./config.nix {
-        inherit (config) colorscheme wallpaper;
-      });
+      })
+      + (import ./config.nix { inherit (config) colorscheme wallpaper; });
   };
 }

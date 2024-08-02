@@ -1,11 +1,6 @@
-{ pkgs
-, config
-, ...
-}:
+{ pkgs, config, ... }:
 {
-  home.packages = with pkgs; [
-    spotify-tui
-  ];
+  home.packages = with pkgs; [ spotify-tui ];
 
   services = {
     spotifyd = {

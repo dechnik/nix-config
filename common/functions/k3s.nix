@@ -1,7 +1,7 @@
-{ config
-, pkgs
-, lib
-,
+{
+  config,
+  pkgs,
+  lib,
 }:
 let
   server = site: {
@@ -87,4 +87,6 @@ let
     };
   };
 in
-{ inherit server agent; }
+{
+  inherit server agent;
+}

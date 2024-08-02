@@ -1,4 +1,5 @@
-{ colorscheme, wallpaper }: ''
+{ colorscheme, wallpaper }:
+''
   general {
     gaps_in=2
     gaps_out=1

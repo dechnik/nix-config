@@ -1,4 +1,10 @@
-{ inputs, lib, config, pkgs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ../common
@@ -8,13 +14,15 @@
     # ./systemd-fixes.nix
   ];
 
-  xdg.portal = let
-    hyprland = config.wayland.windowManager.hyprland.package;
-    xdph = pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;};
-  in {
-    extraPortals = [xdph];
-    configPackages = [hyprland];
-  };
+  xdg.portal =
+    let
+      hyprland = config.wayland.windowManager.hyprland.package;
+      xdph = pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; };
+    in
+    {
+      extraPortals = [ xdph ];
+      configPackages = [ hyprland ];
+    };
 
   home.packages = with pkgs; [
     inputs.hyprwm-contrib.packages.${system}.grimblast
@@ -106,86 +114,90 @@
           "border,1,3,easeout"
         ];
       };
-      exec = [
-        "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
-      ];
-      bind = let
-        swaylock = "${config.programs.swaylock.package}/bin/swaylock";
-        playerctl = "${config.services.playerctld.package}/bin/playerctl";
-        playerctld = "${config.services.playerctld.package}/bin/playerctld";
-        makoctl = "${config.services.mako.package}/bin/makoctl";
-        wofi = "${config.programs.wofi.package}/bin/wofi";
-        pass-wofi = "${pkgs.pass-wofi.override {
-          pass = config.programs.password-store.package;
-        }}/bin/pass-wofi";
+      exec = [ "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill" ];
+      bind =
+        let
+          swaylock = "${config.programs.swaylock.package}/bin/swaylock";
+          playerctl = "${config.services.playerctld.package}/bin/playerctl";
+          playerctld = "${config.services.playerctld.package}/bin/playerctld";
+          makoctl = "${config.services.mako.package}/bin/makoctl";
+          wofi = "${config.programs.wofi.package}/bin/wofi";
+          pass-wofi = "${
+            pkgs.pass-wofi.override { pass = config.programs.password-store.package; }
+          }/bin/pass-wofi";
 
-        grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
-        pactl = "${pkgs.pulseaudio}/bin/pactl";
+          grimblast = "${pkgs.inputs.hyprwm-contrib.grimblast}/bin/grimblast";
+          pactl = "${pkgs.pulseaudio}/bin/pactl";
 
-        gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
-        xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
-        defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
+          gtk-launch = "${pkgs.gtk3}/bin/gtk-launch";
+          xdg-mime = "${pkgs.xdg-utils}/bin/xdg-mime";
+          defaultApp = type: "${gtk-launch} $(${xdg-mime} query default ${type})";
 
-        terminal = config.home.sessionVariables.TERMINAL;
-        browser = defaultApp "x-scheme-handler/https";
-        editor = defaultApp "text/plain";
-      in [
-        # Program bindings
-        "SUPER,r,exec,$TERMINAL $SHELL -ic yazi"
-        "SUPER,Return,exec,${terminal}"
-        "SUPERSHIFT,Return,exec,${terminal} -e tmux new tmux-sessionizer"
-        "SUPER,e,exec,${editor}"
-        "SUPER,v,exec,${editor}"
-        "SUPER,w,exec,${browser}"
+          terminal = config.home.sessionVariables.TERMINAL;
+          browser = defaultApp "x-scheme-handler/https";
+          editor = defaultApp "text/plain";
+        in
+        [
+          # Program bindings
+          "SUPER,r,exec,$TERMINAL $SHELL -ic yazi"
+          "SUPER,Return,exec,${terminal}"
+          "SUPERSHIFT,Return,exec,${terminal} -e tmux new tmux-sessionizer"
+          "SUPER,e,exec,${editor}"
+          "SUPER,v,exec,${editor}"
+          "SUPER,w,exec,${browser}"
 
-        # Lock screen
-        "SUPER,Escape,exec,wlogout -p layer-shell"
+          # Lock screen
+          "SUPER,Escape,exec,wlogout -p layer-shell"
 
-        "SUPERSHIFT,s,exec,spicemenu"
-        # Brightness control (only works if the system has lightd)
-        ",XF86MonBrightnessUp,exec,light -A 10"
-        ",XF86MonBrightnessDown,exec,light -U 10"
-        # Volume
-        ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
-        ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
-        "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-        ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
-        # Screenshotting
-        ",Print,exec,${grimblast} --notify copy output"
-        "SHIFT,Print,exec,${grimblast} --notify copy active"
-        "CONTROL,Print,exec,${grimblast} --notify copy screen"
-        "SUPER,Print,exec,${grimblast} --notify copy window"
-        "ALT,Print,exec,${grimblast} --notify copy area"
-      ] ++
-      (lib.optionals config.services.playerctld.enable [
-        # Media control
-        ",XF86AudioNext,exec,${playerctl} next"
-        ",XF86AudioPrev,exec,${playerctl} previous"
-        ",XF86AudioPlay,exec,${playerctl} play-pause"
-        ",XF86AudioStop,exec,${playerctl} stop"
-        "ALT,XF86AudioNext,exec,${playerctld} shift"
-        "ALT,XF86AudioPrev,exec,${playerctld} unshift"
-        "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
-      ]) ++
-      # Screen lock
-      (lib.optionals config.programs.swaylock.enable [
-        ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper} --grace 2"
-        "SUPERSHIFT,Escape,exec,${swaylock} -i ${config.wallpaper} --grace 2"
-      ]) ++
-      # Notification manager
-      (lib.optionals config.services.mako.enable [
-        "SUPER,w,exec,${makoctl} dismiss"
-      ]) ++
-      # Launcher
-      (lib.optionals config.programs.wofi.enable [
-        "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
-        "SUPER,d,exec,${wofi} -S run,drun"
-      ] ++ (lib.optionals config.programs.password-store.enable [
-        ",Scroll_Lock,exec,${pass-wofi}" # fn+k
-        ",XF86Calculator,exec,${pass-wofi}" # fn+f12
-        "SUPER,semicolon,exec,pass-wofi"
-      ]));
+          "SUPERSHIFT,s,exec,spicemenu"
+          # Brightness control (only works if the system has lightd)
+          ",XF86MonBrightnessUp,exec,light -A 10"
+          ",XF86MonBrightnessDown,exec,light -U 10"
+          # Volume
+          ",XF86AudioRaiseVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
+          ",XF86AudioLowerVolume,exec,${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+          ",XF86AudioMute,exec,${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+          "SHIFT,XF86AudioMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          ",XF86AudioMicMute,exec,${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+          # Screenshotting
+          ",Print,exec,${grimblast} --notify copy output"
+          "SHIFT,Print,exec,${grimblast} --notify copy active"
+          "CONTROL,Print,exec,${grimblast} --notify copy screen"
+          "SUPER,Print,exec,${grimblast} --notify copy window"
+          "ALT,Print,exec,${grimblast} --notify copy area"
+        ]
+        ++ (lib.optionals config.services.playerctld.enable [
+          # Media control
+          ",XF86AudioNext,exec,${playerctl} next"
+          ",XF86AudioPrev,exec,${playerctl} previous"
+          ",XF86AudioPlay,exec,${playerctl} play-pause"
+          ",XF86AudioStop,exec,${playerctl} stop"
+          "ALT,XF86AudioNext,exec,${playerctld} shift"
+          "ALT,XF86AudioPrev,exec,${playerctld} unshift"
+          "ALT,XF86AudioPlay,exec,systemctl --user restart playerctld"
+        ])
+        ++
+          # Screen lock
+          (lib.optionals config.programs.swaylock.enable [
+            ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper} --grace 2"
+            "SUPERSHIFT,Escape,exec,${swaylock} -i ${config.wallpaper} --grace 2"
+          ])
+        ++
+          # Notification manager
+          (lib.optionals config.services.mako.enable [ "SUPER,w,exec,${makoctl} dismiss" ])
+        ++
+          # Launcher
+          (
+            lib.optionals config.programs.wofi.enable [
+              "SUPER,x,exec,${wofi} -S drun -x 10 -y 10 -W 25% -H 60%"
+              "SUPER,d,exec,${wofi} -S run,drun"
+            ]
+            ++ (lib.optionals config.programs.password-store.enable [
+              ",Scroll_Lock,exec,${pass-wofi}" # fn+k
+              ",XF86Calculator,exec,${pass-wofi}" # fn+f12
+              "SUPER,semicolon,exec,pass-wofi"
+            ])
+          );
 
       # monitor = map (m: let
       #   resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";

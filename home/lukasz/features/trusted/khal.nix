@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # TODO enable when https://github.com/NixOS/nixpkgs/issues/263504 resolved
   # home.packages = with pkgs; [ khal ];
   xdg.configFile."khal/config".text = ''
@@ -22,9 +23,7 @@
   '';
   home.persistence = {
     "/persist/home/lukasz" = {
-      directories = [
-        ".local/share/khal"
-      ];
+      directories = [ ".local/share/khal" ];
     };
   };
 }

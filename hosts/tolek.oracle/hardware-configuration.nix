@@ -7,7 +7,11 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "virtio_pci" "usbhid" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "virtio_pci"
+        "usbhid"
+      ];
     };
     loader = {
       systemd-boot = {
@@ -25,10 +29,12 @@
     };
   };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 8196;
-  }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 8196;
+    }
+  ];
 
   nixpkgs.hostPlatform.system = "aarch64-linux";
 }

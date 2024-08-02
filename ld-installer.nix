@@ -1,5 +1,11 @@
 let
-  configuration = { config, lib, pkgs, ... }:
+  configuration =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     with pkgs;
     let
       pinentryFlavour =
@@ -14,7 +20,9 @@ let
 
     in
     {
-      nixpkgs.config = { allowBroken = true; };
+      nixpkgs.config = {
+        allowBroken = true;
+      };
 
       isoImage.isoBaseName = lib.mkForce "nixos-ld";
       # Uncomment this to disable compression and speed up image creation time

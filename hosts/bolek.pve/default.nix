@@ -1,27 +1,31 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./services
+  imports = [
+    ./hardware-configuration.nix
+    ./services
 
-      ../../common/optional/qemu-vm.nix
-      ../../common/optional/consul-server.nix
-      ../../common/optional/docker.nix
-      ../../common/optional/postfix.nix
-      ../../common/optional/avahi.nix
-      ../../common/optional/promtail.nix
-      ../../common/optional/samba-base.nix
-      ../../common/optional/samba-storage.nix
-      ../../common/optional/node-exporter.nix
-      ../../common/optional/systemd-exporter.nix
-      ../../common/optional/smokeping-exporter.nix
-      ../../common/optional/postgres.nix
-      ../../common/optional/coredns.nix
-      ../../common/global
-      ../../common/users/lukasz
-    ];
+    ../../common/optional/qemu-vm.nix
+    ../../common/optional/consul-server.nix
+    ../../common/optional/docker.nix
+    ../../common/optional/postfix.nix
+    ../../common/optional/avahi.nix
+    ../../common/optional/promtail.nix
+    ../../common/optional/samba-base.nix
+    ../../common/optional/samba-storage.nix
+    ../../common/optional/node-exporter.nix
+    ../../common/optional/systemd-exporter.nix
+    ../../common/optional/smokeping-exporter.nix
+    ../../common/optional/postgres.nix
+    ../../common/optional/coredns.nix
+    ../../common/global
+    ../../common/users/lukasz
+  ];
 
   nix = {
     gc = {

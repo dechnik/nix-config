@@ -1,9 +1,7 @@
 { inputs, config, ... }:
 {
   disabledModules = [ "services/matrix/maubot.nix" ];
-  imports = [
-    inputs.maubot.nixosModules.default
-  ];
+  imports = [ inputs.maubot.nixosModules.default ];
 
   sops.secrets = {
     maubot-config = {
@@ -14,9 +12,7 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/maubot"
-    ];
+    "/persist".directories = [ "/var/lib/maubot" ];
   };
 
   services.maubot = {
@@ -29,7 +25,7 @@
   };
   services.traefik.dynamicConfigOptions.http = {
     services.maubot = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:29316"; }];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:29316"; } ];
     };
 
     routers.maubot = {

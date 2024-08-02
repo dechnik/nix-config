@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   retention = "24h";
@@ -10,9 +11,7 @@ let
 in
 {
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/loki"
-    ];
+    "/persist".directories = [ "/var/lib/loki" ];
   };
   services.loki = {
     enable = true;
@@ -49,7 +48,12 @@ in
           kvstore.store = "inmemory";
           replication_factor = 1;
         };
-        lifecycler.interface_names = [ config.my.lan "wg0" "tailscale0" "ens20" ];
+        lifecycler.interface_names = [
+          config.my.lan
+          "wg0"
+          "tailscale0"
+          "ens20"
+        ];
         chunk_encoding = "snappy";
         # Disable block transfers on shutdown
       };
@@ -107,7 +111,9 @@ in
 
   services.traefik.dynamicConfigOptions.http = {
     services.loki = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}"; }];
+      loadBalancer.servers = [
+        { url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}"; }
+      ];
     };
 
     routers.loki = {

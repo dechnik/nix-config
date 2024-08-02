@@ -12,7 +12,7 @@
     };
     traefik.dynamicConfigOptions.http = {
       services.cache = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.nix-serve.port}"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:${toString config.services.nix-serve.port}"; } ];
       };
 
       routers.cache = {

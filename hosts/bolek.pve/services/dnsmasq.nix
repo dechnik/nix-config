@@ -1,24 +1,18 @@
-
 { lib, config, ... }:
 {
-  my.machines = [
-  ];
+  my.machines = [ ];
   services.dnsmasq = {
     enable = true;
 
     # don't use it locally for dns
     resolveLocalQueries = lib.mkDefault false;
     settings = {
-      interface = [
-        config.my.lan
-      ];
+      interface = [ config.my.lan ];
 
       # disable dns
       port = 0;
 
-      dhcp-range = [
-        "interface:${config.my.lan},10.60.0.171,10.60.0.250,255.255.255.0,12h"
-      ];
+      dhcp-range = [ "interface:${config.my.lan},10.60.0.171,10.60.0.250,255.255.255.0,12h" ];
 
       dhcp-option = [
         # gateway
@@ -30,12 +24,12 @@
         "option:dns-server,10.60.0.1"
       ];
 
-      dhcp-option-force = [
-        "option:domain-search,pve,dechnik.net"
-      ];
+      dhcp-option-force = [ "option:domain-search,pve,dechnik.net" ];
 
       # static leases
-      dhcp-host = builtins.map (machine: "${machine.mac},${machine.hostname},${machine.ipAddress}") config.my.machines;
+      dhcp-host = builtins.map (
+        machine: "${machine.mac},${machine.hostname},${machine.ipAddress}"
+      ) config.my.machines;
     };
   };
 }

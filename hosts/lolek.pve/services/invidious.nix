@@ -3,7 +3,8 @@
 let
   domain = "yt.pve.dechnik.net";
   port = 3000;
-in {
+in
+{
   sops.secrets.invidious-config = {
     sopsFile = ../secrets.yaml;
     neededForUsers = true;
@@ -36,11 +37,11 @@ in {
     # nginx.enable = true;
     inherit port domain;
     database = {
-        createLocally = true;
+      createLocally = true;
     };
     settings = {
       use_quic = true;
-      admins = ["lukasz"];
+      admins = [ "lukasz" ];
       channel_threads = 2;
       use_pubsub_feeds = true;
       https_only = true;

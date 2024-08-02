@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
 let
   domain = "dav.dechnik.net";
@@ -9,9 +10,7 @@ let
 in
 {
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/radicale"
-    ];
+    "/persist".directories = [ "/var/lib/radicale" ];
   };
 
   sops.secrets.radicale-htpasswd = {
@@ -24,7 +23,10 @@ in
       enable = true;
       settings = {
         server = {
-          hosts = [ "127.0.0.1:${port}" "::1:${port}" ];
+          hosts = [
+            "127.0.0.1:${port}"
+            "::1:${port}"
+          ];
         };
         auth = {
           type = "htpasswd";
@@ -38,7 +40,7 @@ in
     };
     traefik.dynamicConfigOptions.http = {
       services.dav = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:${port}"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:${port}"; } ];
       };
 
       routers.dav = {

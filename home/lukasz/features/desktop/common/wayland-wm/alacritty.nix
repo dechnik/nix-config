@@ -1,8 +1,9 @@
-{ colors
-, default
-, config
-, pkgs
-, ...
+{
+  colors,
+  default,
+  config,
+  pkgs,
+  ...
 }:
 # terminals
 let
@@ -34,7 +35,7 @@ in
         size = 10;
       };
 
-      draw_bold_text_with_bright_colors= true;
+      draw_bold_text_with_bright_colors = true;
       colors = rec {
         primary = {
           background = "#${palette.base00}";
@@ -50,12 +51,10 @@ in
           cyan = "#${palette.base0C}";
           white = "#${palette.base05}";
         };
-        bright =
-          normal
-          // {
-            black = "#${palette.base03}";
-            white = "#${palette.base06}";
-          };
+        bright = normal // {
+          black = "#${palette.base03}";
+          white = "#${palette.base06}";
+        };
       };
     };
   };

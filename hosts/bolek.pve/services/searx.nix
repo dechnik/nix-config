@@ -1,11 +1,19 @@
-{ inputs, pkgs, config, ... }:
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}:
 {
   security.acme.certs = {
     "sx.dechnik.net" = {
       group = "nginx";
     };
   };
-  users.groups.searx.members = [ "searx" config.services.nginx.user ];
+  users.groups.searx.members = [
+    "searx"
+    config.services.nginx.user
+  ];
   services = {
     searx = {
       enable = true;

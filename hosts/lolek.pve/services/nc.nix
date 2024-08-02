@@ -15,9 +15,7 @@ in
   };
 
   environment.persistence = {
-    "/persist".directories = [
-      "/srv/nextcloud"
-    ];
+    "/persist".directories = [ "/srv/nextcloud" ];
   };
 
   services = {

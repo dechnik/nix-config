@@ -1,4 +1,9 @@
-{ lib, inputs, config, ... }:
+{
+  lib,
+  inputs,
+  config,
+  ...
+}:
 {
   # disabledModules = [ "services/matrix/maubot.nix" ];
   # imports = [
@@ -14,9 +19,7 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/maubot"
-    ];
+    "/persist".directories = [ "/var/lib/maubot" ];
   };
 
   services.maubot = {
@@ -47,7 +50,7 @@
   # };
   services.traefik.dynamicConfigOptions.http = {
     services.maubot = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:29316"; }];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:29316"; } ];
     };
 
     routers.maubot = {

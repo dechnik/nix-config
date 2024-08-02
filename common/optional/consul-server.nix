@@ -1,8 +1,6 @@
-{ config
-, lib
-, ...
-}:
-with lib builtins; let
+{ config, lib, ... }:
+with lib builtins;
+let
   domain = "consul.${config.networking.domain}";
 
   s = import ../../metadata/sites.nix { inherit lib config; };
@@ -37,7 +35,7 @@ in
 
       services.traefik.dynamicConfigOptions.http = {
         services.consul = {
-          loadBalancer.servers = [{ url = "http://127.0.0.1:8500"; }];
+          loadBalancer.servers = [ { url = "http://127.0.0.1:8500"; } ];
         };
 
         routers.consul = {

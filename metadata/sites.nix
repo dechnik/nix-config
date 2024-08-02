@@ -1,18 +1,16 @@
-{ lib
-, config
-,
-}:
+{ lib, config }:
 with lib;
-with builtins; let
+with builtins;
+let
   baseDomain = ".dechnik.net";
 
   currentSite = builtins.replaceStrings [ baseDomain ] [ "" ] config.networking.domain;
 
-  consulPeers =
-    mapAttrs (key: value: value.consul) (filterAttrs (key: hasAttr "consul") (removeAttrs sites [ currentSite ]));
+  consulPeers = mapAttrs (key: value: value.consul) (
+    filterAttrs (key: hasAttr "consul") (removeAttrs sites [ currentSite ])
+  );
 
-  consul =
-    mapAttrs (key: value: value.consul) (filterAttrs (key: hasAttr "consul") sites);
+  consul = mapAttrs (key: value: value.consul) (filterAttrs (key: hasAttr "consul") sites);
 
   nameservers = lib.unique (lib.flatten (attrValues (mapAttrs (name: site: site.nameservers) sites)));
 
@@ -68,5 +66,12 @@ with builtins; let
   };
 in
 {
-  inherit baseDomain currentSite consulPeers consul nameservers sites;
+  inherit
+    baseDomain
+    currentSite
+    consulPeers
+    consul
+    nameservers
+    sites
+    ;
 }

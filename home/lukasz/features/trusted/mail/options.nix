@@ -1,8 +1,6 @@
-{ config
-, lib
-, ...
-}:
-with lib; {
+{ config, lib, ... }:
+with lib;
+{
   options.display-folders = mkOption {
     type = types.listOf types.str;
     default = [ "Inbox" ];

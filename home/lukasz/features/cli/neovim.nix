@@ -1,23 +1,23 @@
-{
-  inputs,
-  pkgs,
-  ...
-}: let
-  pythonEnv = pkgs.python3.withPackages (ps:
+{ inputs, pkgs, ... }:
+let
+  pythonEnv = pkgs.python3.withPackages (
+    ps:
     with ps;
-      [
-        python-lsp-server
-        pyls-isort
-        pytest
-        black
-        nose
-        mypy
-        pylama
-        flake8
-        tldextract # required by qute-pass
-      ]
-      ++ python-lsp-server.optional-dependencies.all);
-in {
+    [
+      python-lsp-server
+      pyls-isort
+      pytest
+      black
+      nose
+      mypy
+      pylama
+      flake8
+      tldextract # required by qute-pass
+    ]
+    ++ python-lsp-server.optional-dependencies.all
+  );
+in
+{
   home.packages = with pkgs; [
     statix
     editorconfig-checker
@@ -25,7 +25,7 @@ in {
     nixd
     pythonEnv
     binutils # native-comp needs 'as', provided by this
-    (ripgrep.override {withPCRE2 = true;})
+    (ripgrep.override { withPCRE2 = true; })
     gnutls # for TLS connectivity
     fd # faster projectile indexing
     imagemagick # for image-dired
@@ -55,10 +55,11 @@ in {
       fd
       nix-doc
     ];
-    extraPython3Packages = py: with py; [
-      black
-      python-lsp-server
-      flake8
-    ];
+    extraPython3Packages =
+      py: with py; [
+        black
+        python-lsp-server
+        flake8
+      ];
   };
 }

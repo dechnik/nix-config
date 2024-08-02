@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     plugins.telescope.enable = true;
 
-    plugins.telescope.enabledExtensions = [ "ui-select" "projects" ];
-    plugins.telescope.extensionConfig.ui-select = {};
+    plugins.telescope.enabledExtensions = [
+      "ui-select"
+      "projects"
+    ];
+    plugins.telescope.extensionConfig.ui-select = { };
 
     plugins.telescope.extensions.frecency.enable = true;
     plugins.telescope.extensions.fzf-native.enable = true;

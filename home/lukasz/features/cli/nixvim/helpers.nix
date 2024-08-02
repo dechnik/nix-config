@@ -19,28 +19,29 @@ let
     upperChars
     ;
 
-  inherit (builtins)
-    elem
-    hasAttr
-    substring
-    ;
+  inherit (builtins) elem hasAttr substring;
 
 in
 rec {
   inherit (lib.types) isType setType;
-  inherit (builtins) isAttrs isBool isFloat isInt isList isNull isPath isString typeOf;
+  inherit (builtins)
+    isAttrs
+    isBool
+    isFloat
+    isInt
+    isList
+    isNull
+    isPath
+    isString
+    typeOf
+    ;
 
   camelToSnake = replaceStrings upperChars (map (s: "_${s}") lowerChars);
 
-  camelToSnakeAttrs =
-    mapAttrs' (
-      name: value:
-        nameValuePair
-          (camelToSnake name)
-          (if isAttrs value
-           then camelToSnakeAttrs value
-           else value)
-    );
+  camelToSnakeAttrs = mapAttrs' (
+    name: value:
+    nameValuePair (camelToSnake name) (if isAttrs value then camelToSnakeAttrs value else value)
+  );
 
   isLua = isType "lua";
   isLuaFunction = x: isLua x && x._lua_type == "function";
@@ -52,18 +53,22 @@ rec {
   # Example:
   #   mkLua "vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>')"
   #   => { _type = "lua"; value = "vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>')"; }
-  mkLua = value:
+  mkLua =
+    value:
     setType "lua" {
       value =
-        if isString value
-        then value
-        else if isStringLike value
-        then toString value
-        else throw "mkLua: expected a string, got ${value}";
+        if isString value then
+          value
+        else if isStringLike value then
+          toString value
+        else
+          throw "mkLua: expected a string, got ${value}";
     };
 
   mkLuaFunction = argstr: body: mkLua "function(${argstr}) ${body} end";
-  mkLuaNamedFunction = name: argstr: body: mkLua "function ${name}(${argstr}) ${body} end";
+  mkLuaNamedFunction =
+    name: argstr: body:
+    mkLua "function ${name}(${argstr}) ${body} end";
   mkLuaLambda = body: mkLuaFunction "" body;
   mkLuaCall = name: args: mkLua "${name}(${concatMapStringsSep ", " toLua args})";
 
@@ -73,7 +78,7 @@ rec {
   # Example:
   #   mkPluginSetupCall "plugin" { option = true; }
   #   => ''require("plugin").setup({ ["option"] = true })''
-  mkPluginSetupCall = plugin: options: ''require("${plugin}").setup(${toLuaObject' {} options})'';
+  mkPluginSetupCall = plugin: options: ''require("${plugin}").setup(${toLuaObject' { } options})'';
 
   # Quote a string for use in Lua.
   #
@@ -110,47 +115,49 @@ rec {
   #     ["foo"] = "bar",
   #     ["qux"] = { 1, 2, 3 }
   #   }''
-  toLua' = { multiline ? true }:
+  toLua' =
+    {
+      multiline ? true,
+    }:
     let
-      toLua'' = spaces': v: with builtins;
+      toLua'' =
+        spaces': v:
+        with builtins;
         let
           spaces = if multiline then "${spaces'}  " else "";
           indent = if multiline then "\n${spaces}" else " ";
           indent' = if multiline then "\n${spaces'}" else " ";
         in
-        if isLua v
-        then v.value
-        else if isBool v
-        then boolToString v
-        else if isFloat v
-        then toString v
-        else if isInt v
-        then toString v
-        else if isNull v
-        then "nil"
-        else if isString v
-        then escapeLuaString v
-        else if isList v
-        then
-          if v == []
-          then "{}"
-          else "{ ${concatMapStringsSep ", " (toLua'' spaces) v} }"
-        else if isStringLike v
-        then escapeLuaString (toString v)
-        else if isAttrs v
-        then
-          if v == {}
-          then "{}"
+        if isLua v then
+          v.value
+        else if isBool v then
+          boolToString v
+        else if isFloat v then
+          toString v
+        else if isInt v then
+          toString v
+        else if isNull v then
+          "nil"
+        else if isString v then
+          escapeLuaString v
+        else if isList v then
+          if v == [ ] then "{}" else "{ ${concatMapStringsSep ", " (toLua'' spaces) v} }"
+        else if isStringLike v then
+          escapeLuaString (toString v)
+        else if isAttrs v then
+          if v == { } then
+            "{}"
           else
             let
-              mapper = k: v:
-                if substring 0 1 k == "@"
-                then toLua'' spaces v
-                else "[${toLua'' spaces k}] = ${toLua'' spaces v}";
+              mapper =
+                k: v:
+                if substring 0 1 k == "@" then toLua'' spaces v else "[${toLua'' spaces k}] = ${toLua'' spaces v}";
             in
             "{${indent}${concatStringsSep ",${indent}" (mapAttrsToList mapper v)}${indent'}}"
-        else throw "toLua': unsupported type: ${typeOf v}";
-      in toLua'' "";
+        else
+          throw "toLua': unsupported type: ${typeOf v}";
+    in
+    toLua'' "";
 
   # Wrapper around `toLua` that filters out null values and empty lists in attrsets.
   #
@@ -164,26 +171,43 @@ rec {
   # Example:
   #   toLuaObject' { multiline = false; } { foo = null; bar = []; baz = {}; qux = [ 1 2 3 ]; }
   #   => ''{ ["qux"] = { 1, 2, 3 } }''
-  toLuaObject' = opts: x:
-    if isAttrs x && !isLua x && !isStringLike x
-    then toLua' opts (filterEmptyAttrs x)
-    else toLua' opts x;
+  toLuaObject' =
+    opts: x:
+    if isAttrs x && !isLua x && !isStringLike x then
+      toLua' opts (filterEmptyAttrs x)
+    else
+      toLua' opts x;
 
   # Recursively filter out empty values (null, [], {}) from an attrset after.
   #
   # Example:
   #   filterEmptyAttrs { foo = null; bar = []; baz = {}; qux = [ 1 2 3 ]; }
   #   => { qux = [ 1 2 3 ]; }
-  filterEmptyAttrs =
-    lib.converge (filterAttrsRecursive (_: v: !elem v [ null [] {} ]));
+  filterEmptyAttrs = lib.converge (
+    filterAttrsRecursive (
+      _: v:
+      !elem v [
+        null
+        [ ]
+        { }
+      ]
+    )
+  );
 
-  mkNvimKeymapCall = fnName: {
-    mode ? "n",
-    lhs,
-    rhs,
-    opts ? {},
-  }:
-    mkLuaCall fnName [ mode lhs rhs opts ];
+  mkNvimKeymapCall =
+    fnName:
+    {
+      mode ? "n",
+      lhs,
+      rhs,
+      opts ? { },
+    }:
+    mkLuaCall fnName [
+      mode
+      lhs
+      rhs
+      opts
+    ];
 
   mkNvimKeymap = mkNvimKeymapCall "vim.keymap.set";
 
@@ -206,11 +230,12 @@ rec {
       };
     in
     mode:
-      if hasAttr mode vimLongKeyModes
-      then vimLongKeyModes.${mode}
-      else if builtins.elem mode vimShortKeyModes
-      then mode
-      else throw "normalizeVimKeymapModes: invalid key mode: ${mode}";
+    if hasAttr mode vimLongKeyModes then
+      vimLongKeyModes.${mode}
+    else if builtins.elem mode vimShortKeyModes then
+      mode
+    else
+      throw "normalizeVimKeymapModes: invalid key mode: ${mode}";
 
   # Returns a string containing a Neovim Lua API keymap definition for the given keymap.
   #
@@ -230,26 +255,37 @@ rec {
   #   => ''vim.keymap.set({ "n", "v" }, "<leader>hD", function() _.diffthis('~') end)''
   #   mkNvimKeymaps { "n"."]c" = [ "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'" { expr = true } ]; }
   #   => ''vim.keymap.set("n", "]c", "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })''
-  mkNvimKeymaps = attrs:
-  # TODO: check that each character is a valid mode
-  # TODO: check that each character is unique
-  # TODO: support full mode names
-    mapAttrs (_mode: maps: let
-      mode = stringToCharacters _mode;
-    in
+  mkNvimKeymaps =
+    attrs:
+    # TODO: check that each character is a valid mode
+    # TODO: check that each character is unique
+    # TODO: support full mode names
+    mapAttrs (
+      _mode: maps:
+      let
+        mode = stringToCharacters _mode;
+      in
       mapAttrs (
         lhs: rhs:
-          mkLuaCall "vim.keymap.set" ([ mode lhs ]
-            ++ (
-              if isAttrs rhs
-              then [ rhs.rhs rhs.opts ]
-              else [ rhs ]
-            ))
+        mkLuaCall "vim.keymap.set" (
+          [
+            mode
+            lhs
+          ]
+          ++ (
+            if isAttrs rhs then
+              [
+                rhs.rhs
+                rhs.opts
+              ]
+            else
+              [ rhs ]
+          )
+        )
         # if (isAttrs rhs) && (hasAttr "opts" rhs) then
         #   mkLuaCall "vim.keymap.set" [mode lhs rhs.rhs rhs.opts]
         # else
         #   mkLuaCall "vim.keymap.set" [mode lhs rhs]
-      )
-      maps)
-    attrs;
+      ) maps
+    ) attrs;
 }

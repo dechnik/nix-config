@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, config, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
 let
   traefik = import ../../../common/functions/traefik.nix { inherit config lib pkgs; };
 in
@@ -10,7 +16,7 @@ lib.mkMerge [
       };
       services = {
         mail = {
-          loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+          loadBalancer.servers = [ { url = "http://127.0.0.1:8080"; } ];
         };
       };
 
@@ -24,7 +30,10 @@ lib.mkMerge [
           rule = "Host(`traefik.hetzner.dechnik.net`) ";
           service = "api@internal";
           entryPoints = [ "web" ];
-          middlewares = [ "dechnik-ips" "auth" ];
+          middlewares = [
+            "dechnik-ips"
+            "auth"
+          ];
         };
       };
     };

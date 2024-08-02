@@ -1,7 +1,7 @@
-{ lib
-, buildGo121Module
-, fetchFromGitHub
-,
+{
+  lib,
+  buildGo121Module,
+  fetchFromGitHub,
 }:
 buildGo121Module rec {
   pname = "golink";

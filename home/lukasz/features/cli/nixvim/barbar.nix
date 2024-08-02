@@ -3,7 +3,10 @@
     plugins.barbar = {
       enable = true;
       icons = rec {
-        separator = { left = ""; right = ""; };
+        separator = {
+          left = "";
+          right = "";
+        };
         button = "󰅙";
         filetype = {
           customColors = true;
@@ -21,13 +24,19 @@
         inactive = {
           button = "󰅚";
           filetype = filetype;
-          separator = { left = " "; right = " "; };
+          separator = {
+            left = " ";
+            right = " ";
+          };
         };
 
         pinned = {
           button = "";
           filename = true;
-          separator = { left = ""; right = "▎"; };
+          separator = {
+            left = "";
+            right = "▎";
+          };
         };
       };
       maps.normal = {

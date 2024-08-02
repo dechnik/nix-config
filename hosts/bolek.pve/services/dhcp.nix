@@ -23,9 +23,7 @@ in
     enable = true;
     settings = {
       interfaces-config = {
-        interfaces = [
-          config.my.lan
-        ];
+        interfaces = [ config.my.lan ];
       };
       control-socket = {
         socket-type = "unix";
@@ -41,11 +39,7 @@ in
       subnet4 = [
         {
           id = 1;
-          pools = [
-            {
-              pool = "10.60.0.171 - 10.60.0.250";
-            }
-          ];
+          pools = [ { pool = "10.60.0.171 - 10.60.0.250"; } ];
           subnet = "10.60.0.0/24";
         }
       ];
@@ -67,9 +61,7 @@ in
   services.prometheus.exporters.kea = {
     enable = true;
     openFirewall = true;
-    controlSocketPaths = [
-      "http://127.0.0.1:8000"
-    ];
+    controlSocketPaths = [ "http://127.0.0.1:8000" ];
   };
 
   my.consulServices.kea_exporter = consul.prometheusExporter "kea" config.services.prometheus.exporters.kea.port;

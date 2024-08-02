@@ -11,26 +11,24 @@
       ];
     };
 
-    specialArgs = { inherit inputs outputs; };
+    specialArgs = {
+      inherit inputs outputs;
+    };
     # specialArgs = {
     #   inherit inputs;
     # };
   };
 }
-  // builtins.mapAttrs
-  (name: value: {
-    deployment = {
-      buildOnTarget =
-        # TODO(kradalby): aarch64 linux machines get grumpy about some
-        # delegation stuff
-        if value.config.nixpkgs.hostPlatform.system == "aarch64-linux"
-        then true
-        else false;
-      allowLocalDeployment = true;
-      targetUser = "lukasz";
-      targetHost = value.config.networking.fqdn;
-    };
-    nixpkgs.system = value.config.nixpkgs.hostPlatform.system;
-    imports = value._module.args.modules;
-  })
-  outputs.nixosConfigurations
+// builtins.mapAttrs (name: value: {
+  deployment = {
+    buildOnTarget =
+      # TODO(kradalby): aarch64 linux machines get grumpy about some
+      # delegation stuff
+      if value.config.nixpkgs.hostPlatform.system == "aarch64-linux" then true else false;
+    allowLocalDeployment = true;
+    targetUser = "lukasz";
+    targetHost = value.config.networking.fqdn;
+  };
+  nixpkgs.system = value.config.nixpkgs.hostPlatform.system;
+  imports = value._module.args.modules;
+}) outputs.nixosConfigurations

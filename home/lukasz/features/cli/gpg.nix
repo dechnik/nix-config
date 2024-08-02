@@ -1,6 +1,16 @@
-{ pkgs, osConfig, config, lib, ... }:
+{
+  pkgs,
+  osConfig,
+  config,
+  lib,
+  ...
+}:
 let
-  fetchKey = { url, sha256 ? lib.fakeSha256 }:
+  fetchKey =
+    {
+      url,
+      sha256 ? lib.fakeSha256,
+    }:
     builtins.fetchurl { inherit sha256 url; };
 in
 {

@@ -1,4 +1,9 @@
-{ inputs, lib, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 {
   nix = {
     package = pkgs.nixVersions.latest;
@@ -15,7 +20,10 @@
         "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
         "system:5mtbpEmaoC7RVnZJz/KZU2Of2QXQTMBriCJjt3SK9Iw="
       ];
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       auto-optimise-store = lib.mkDefault true;
       experimental-features = [
         "nix-command"
@@ -23,7 +31,10 @@
         "ca-derivations"
       ];
       warn-dirty = false;
-      system-features = [ "kvm" "big-parallel" ];
+      system-features = [
+        "kvm"
+        "big-parallel"
+      ];
     };
     # package = pkgs.nixUnstable;
     # package = pkgs.nixVersions.nix_2_12;

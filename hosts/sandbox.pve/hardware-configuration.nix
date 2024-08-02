@@ -1,13 +1,22 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 
 {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-    ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   boot = {
-    initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
+    initrd.availableKernelModules = [
+      "ata_piix"
+      "uhci_hcd"
+      "virtio_pci"
+      "sr_mod"
+      "virtio_blk"
+    ];
     supportedFilesystems = [ "zfs" ];
     # Since I'm using nixos-unstable mostly, the latest ZFS is sometimes
     # incompatible with the latest kernel.
@@ -21,7 +30,6 @@
   fileSystems."/persist" = {
     neededForBoot = true;
   };
-
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

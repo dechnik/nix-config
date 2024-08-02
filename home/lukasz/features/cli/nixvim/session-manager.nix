@@ -1,7 +1,9 @@
-{ pkgs
-, lib
-, fetchFromGitHub
-, ... }:
+{
+  pkgs,
+  lib,
+  fetchFromGitHub,
+  ...
+}:
 let
   helpers = import ./helpers.nix { inherit lib; };
 in
@@ -25,11 +27,10 @@ in
       "globals"
     ];
 
-    extraConfigLua =
-      helpers.mkPluginSetupCall "session_manager" {
-        autoload_mode = helpers.mkLua "require('session_manager.config').AutoloadMode.CurrentDir";
-        autosave_only_in_session = true;
-      };
+    extraConfigLua = helpers.mkPluginSetupCall "session_manager" {
+      autoload_mode = helpers.mkLua "require('session_manager.config').AutoloadMode.CurrentDir";
+      autosave_only_in_session = true;
+    };
 
     # autoCmd = [{
     #   event = [ "BufWritePost" ];
@@ -45,7 +46,10 @@ in
     # }];
 
     globals.auto_save = 1;
-    globals.auto_save_events = [ "InsertLeave" "TextChanged" ];
+    globals.auto_save_events = [
+      "InsertLeave"
+      "TextChanged"
+    ];
 
     extraPlugins = with pkgs.vimPlugins; [
       nvim-session-manager

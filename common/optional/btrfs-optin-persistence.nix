@@ -33,33 +33,49 @@ in
     "/" = {
       device = "/dev/disk/by-label/${hostname}";
       fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" ];
+      options = [
+        "subvol=root"
+        "compress=zstd"
+      ];
     };
 
     "/nix" = {
       device = "/dev/disk/by-label/${hostname}";
       fsType = "btrfs";
-      options = [ "subvol=nix" "noatime" "compress=zstd" ];
+      options = [
+        "subvol=nix"
+        "noatime"
+        "compress=zstd"
+      ];
     };
 
     "/persist" = {
       device = "/dev/disk/by-label/${hostname}";
       fsType = "btrfs";
-      options = [ "subvol=persist" "compress=zstd" ];
+      options = [
+        "subvol=persist"
+        "compress=zstd"
+      ];
       neededForBoot = true;
     };
 
     "/swap" = {
       device = "/dev/disk/by-label/${hostname}";
       fsType = "btrfs";
-      options = [ "subvol=swap" "noatime" ];
+      options = [
+        "subvol=swap"
+        "noatime"
+      ];
     };
   };
 
   environment.persistence."/persist" = {
     users.lukasz = {
       directories = [
-        { directory = ".gnupg"; mode = "0700"; }
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
       ];
     };
   };

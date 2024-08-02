@@ -1,4 +1,4 @@
- {
+{
   programs.nixvim = {
     plugins.lsp.enable = true;
     plugins.lsp.servers = {
@@ -12,8 +12,9 @@
 
     # plugins.lsp.servers.rnix-lsp.enable = true;
 
-    extraConfigVim = /* vim */ ''
-      au BufRead,BufNewFile flake.lock setf json
-    '';
+    extraConfigVim = # vim
+      ''
+        au BufRead,BufNewFile flake.lock setf json
+      '';
   };
 }

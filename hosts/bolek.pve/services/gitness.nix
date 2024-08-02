@@ -3,7 +3,7 @@
   services = {
     traefik.dynamicConfigOptions.http = {
       services.gitness = {
-        loadBalancer.servers = [{ url = "http://10.60.0.3:3088"; }];
+        loadBalancer.servers = [ { url = "http://10.60.0.3:3088"; } ];
       };
 
       routers.gitness = {

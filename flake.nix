@@ -21,7 +21,7 @@
     utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-stable.url ="github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     hardware.url = "github:nixos/nixos-hardware";
     impermanence.url = "github:nix-community/impermanence";
@@ -110,30 +110,52 @@
     #   url = "git+https://git.dechnik.net/lukasz/neovim.git?ref=master";
     # };
   };
-  outputs = { self, attic, nixpkgs, home-manager, disko, ... }@inputs:
+  outputs =
+    {
+      self,
+      attic,
+      nixpkgs,
+      home-manager,
+      disko,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      systems = [ "x86_64-linux" "aarch64-linux" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
+      pkgsFor = lib.genAttrs systems (
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }
+      );
       # forEachSystem = nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-linux" ];
       # forEachPkgs = f: forEachSystem (sys: f nixpkgs.legacyPackages.${sys});
-      mkNixos = modules: nixpkgs.lib.nixosSystem {
-        inherit modules;
-        extraModules = [
-          inputs.colmena.nixosModules.deploymentOptions
-          # inputs.disko.nixosModules.disko
-        ];
-        specialArgs = { inherit inputs outputs; };
-      };
-      mkHome = modules: pkgs: home-manager.lib.homeManagerConfiguration {
-        inherit modules pkgs;
-        extraSpecialArgs = { inherit inputs outputs; };
-      };
+      mkNixos =
+        modules:
+        nixpkgs.lib.nixosSystem {
+          inherit modules;
+          extraModules = [
+            inputs.colmena.nixosModules.deploymentOptions
+            # inputs.disko.nixosModules.disko
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+      mkHome =
+        modules: pkgs:
+        home-manager.lib.homeManagerConfiguration {
+          inherit modules pkgs;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
     in
     {
       nixosModules = import ./modules/nixos;

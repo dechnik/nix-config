@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, config, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
 let
   traefik = import ../../../common/functions/traefik.nix { inherit config lib pkgs; };
 in
@@ -13,15 +19,35 @@ lib.mkMerge [
         rule = "Host(`traefik.oracle.dechnik.net`) ";
         service = "api@internal";
         entryPoints = [ "web" ];
-        middlewares = [ "dechnik-ips" "auth" ];
+        middlewares = [
+          "dechnik-ips"
+          "auth"
+        ];
       };
     };
 
     services.authelia.instances.main.settings.access_control.rules = [
-      { domain = "traefik.oracle.dechnik.net"; subject = [ "group:admin" ]; policy = "one_factor"; }
-      { domain = "traefik.hetzner.dechnik.net"; subject = [ "group:admin" ]; policy = "one_factor"; }
-      { domain = "traefik.pve.dechnik.net"; subject = [ "group:admin" ]; policy = "one_factor"; }
-      { domain = "tailscale.dechnik.net"; resources = [ "^/admin*" ]; subject = [ "group:admin" ]; policy = "one_factor"; }
+      {
+        domain = "traefik.oracle.dechnik.net";
+        subject = [ "group:admin" ];
+        policy = "one_factor";
+      }
+      {
+        domain = "traefik.hetzner.dechnik.net";
+        subject = [ "group:admin" ];
+        policy = "one_factor";
+      }
+      {
+        domain = "traefik.pve.dechnik.net";
+        subject = [ "group:admin" ];
+        policy = "one_factor";
+      }
+      {
+        domain = "tailscale.dechnik.net";
+        resources = [ "^/admin*" ];
+        subject = [ "group:admin" ];
+        policy = "one_factor";
+      }
     ];
   }
 

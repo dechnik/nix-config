@@ -1,14 +1,13 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
 let
   restic = import ../../../common/functions/restic.nix { inherit config lib pkgs; };
 
-  paths = [
-    "/var/lib/gitness"
-  ];
+  paths = [ "/var/lib/gitness" ];
 
   cfg = site: {
     secret = "restic-tola-bolek-token";
@@ -16,6 +15,4 @@ let
     inherit paths;
   };
 in
-lib.mkMerge [
-  (restic.backupJob (cfg "pve"))
-]
+lib.mkMerge [ (restic.backupJob (cfg "pve")) ]

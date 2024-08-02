@@ -1,14 +1,26 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-      ./disks.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ./disks.nix
+  ];
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_scsi" "sd_mod" ];
+      availableKernelModules = [
+        "ata_piix"
+        "uhci_hcd"
+        "virtio_pci"
+        "sr_mod"
+        "virtio_scsi"
+        "sd_mod"
+      ];
     };
     kernelModules = [ "kvm-intel" ];
     loader = {
@@ -27,17 +39,17 @@
 
   networking.hostId = "92e65e5c";
 
-  fileSystems."/persist" =
-    { device = "zroot/root/persist";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
+  fileSystems."/persist" = {
+    device = "zroot/root/persist";
+    fsType = "zfs";
+    neededForBoot = true;
+  };
 
-  fileSystems."/" =
-    { device = "zroot/root";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
+  fileSystems."/" = {
+    device = "zroot/root";
+    fsType = "zfs";
+    neededForBoot = true;
+  };
 
   # fileSystems."/" =
   #   { device = "zroot/root";

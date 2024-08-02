@@ -1,20 +1,20 @@
-{ config
-, lib
-, pkgs
-,
+{
+  config,
+  lib,
+  pkgs,
 }:
-with lib; let
-  consul = import ./consul.nix {inherit lib;};
+with lib;
+let
+  consul = import ./consul.nix { inherit lib; };
 
   traefik =
-    { hostname ? ''${builtins.replaceStrings [".dechnik.net"] [""] config.networking.fqdn}''
-    , site
-    , persist ? true
-    ,
-    }: {
-      environment.persistence = lib.mkIf persist {
-        "/persist".directories = [ "/var/lib/traefik" ];
-      };
+    {
+      hostname ? ''${builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.fqdn}'',
+      site,
+      persist ? true,
+    }:
+    {
+      environment.persistence = lib.mkIf persist { "/persist".directories = [ "/var/lib/traefik" ]; };
 
       # sops.secrets."traefik-config.json" = {
       #   sopsFile = ../../hosts/${hostname}/secrets.yaml;
@@ -29,11 +29,12 @@ with lib; let
       };
 
       services.traefik.enable = true;
-      services.traefik.environmentFiles = [
-        config.security.acme.defaults.environmentFile
-      ];
+      services.traefik.environmentFiles = [ config.security.acme.defaults.environmentFile ];
 
-      networking.firewall.allowedTCPPorts = [ 80 443 ];
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
 
       # services.traefik.staticConfigFile = "/var/lib/traefik/config.yml";
 
@@ -60,7 +61,10 @@ with lib; let
             domains = [
               {
                 main = "dechnik.net";
-                sans = [ "*.dechnik.net" "*.${site}.dechnik.net" ];
+                sans = [
+                  "*.dechnik.net"
+                  "*.${site}.dechnik.net"
+                ];
               }
             ];
           };
@@ -110,7 +114,12 @@ with lib; let
           forwardAuth = {
             address = "http://10.61.0.1:9091/api/verify?rd=https%3A%2F%2Fauth.dechnik.net%2F";
             trustForwardHeader = true;
-            authResponseHeaders = [ "Remote-User" "Remote-Groups" "Remote-Name" "Remote-Email" ];
+            authResponseHeaders = [
+              "Remote-User"
+              "Remote-Groups"
+              "Remote-Name"
+              "Remote-Email"
+            ];
           };
         };
       };
@@ -120,4 +129,6 @@ with lib; let
       users.users.traefik.extraGroups = [ "acme" ];
     };
 in
-{ inherit traefik; }
+{
+  inherit traefik;
+}

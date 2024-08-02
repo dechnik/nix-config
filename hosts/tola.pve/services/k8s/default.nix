@@ -6,7 +6,10 @@ let
 in
 {
   services.kubernetes = {
-    roles = ["master" "node"];
+    roles = [
+      "master"
+      "node"
+    ];
     addons.dns.enable = true;
     # Allow privileged pods
     apiserver.allowPrivileged = true;

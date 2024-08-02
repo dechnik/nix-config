@@ -1,4 +1,9 @@
-{ emacsPackagesFor, writeText, config, ... }:
+{
+  emacsPackagesFor,
+  writeText,
+  config,
+  ...
+}:
 let
   emacsPackages = emacsPackagesFor config.programs.emacs.package;
   scheme = config.colorscheme;

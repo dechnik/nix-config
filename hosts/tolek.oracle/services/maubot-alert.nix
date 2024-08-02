@@ -1,8 +1,6 @@
 { inputs, config, ... }:
 {
-  imports = [
-    inputs.maubot.nixosModules.alert
-  ];
+  imports = [ inputs.maubot.nixosModules.alert ];
 
   sops.secrets = {
     maubot-alert-config = {
@@ -13,9 +11,7 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/maubot-alert"
-    ];
+    "/persist".directories = [ "/var/lib/maubot-alert" ];
   };
 
   services.maubot-alert = {
@@ -30,7 +26,7 @@
   };
   services.traefik.dynamicConfigOptions.http = {
     services.maubot-alert = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:8820"; }];
+      loadBalancer.servers = [ { url = "http://127.0.0.1:8820"; } ];
     };
 
     routers.maubot-alert = {

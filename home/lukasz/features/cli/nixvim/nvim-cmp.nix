@@ -14,10 +14,21 @@
         { name = "nvim_lua"; }
       ];
       formatting = {
-        fields = [ "abbr" "kind" "menu" ];
+        fields = [
+          "abbr"
+          "kind"
+          "menu"
+        ];
       };
-      mappingPresets = [ "insert" "cmdline" ];
-      mapping."<CR>".modes = [ "i" "s" "c" ];
+      mappingPresets = [
+        "insert"
+        "cmdline"
+      ];
+      mapping."<CR>".modes = [
+        "i"
+        "s"
+        "c"
+      ];
       mapping."<CR>".action = ''
         function(fallback)
           if cmp.visible() and cmp.get_active_entry() then

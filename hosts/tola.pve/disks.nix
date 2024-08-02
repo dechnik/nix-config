@@ -1,4 +1,8 @@
-{ disks ? [ "/dev/vda" ], ... }: {
+{
+  disks ? [ "/dev/vda" ],
+  ...
+}:
+{
   disk = {
     disk1 = {
       device = builtins.elemAt disks 0;

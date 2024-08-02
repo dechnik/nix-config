@@ -3,9 +3,7 @@ let
   inherit (inputs.nvf.lib.nvim.dag) entryAnywhere;
 in
 {
-  imports = [
-    inputs.nvf.homeManagerModules.default
-  ];
+  imports = [ inputs.nvf.homeManagerModules.default ];
   programs.nvf = {
     enable = true;
     # your settings need to go into the settings attribute set
@@ -21,8 +19,7 @@ in
         };
         withNodeJs = true;
         withPython3 = true;
-        python3Packages = [
-        ];
+        python3Packages = [ ];
         lsp = {
           formatOnSave = false;
           lspkind.enable = false;
@@ -197,7 +194,10 @@ in
               nix = "110";
               ruby = "120";
               java = "130";
-              go = ["90" "130"];
+              go = [
+                "90"
+                "130"
+              ];
             };
           };
         };
@@ -325,9 +325,7 @@ in
     };
   };
   home = {
-    packages = [
-      inputs.sg-nvim.packages.${pkgs.system}.default
-    ];
+    packages = [ inputs.sg-nvim.packages.${pkgs.system}.default ];
     sessionVariables = {
       EDITOR = "vim";
       VISUAL = "vim";

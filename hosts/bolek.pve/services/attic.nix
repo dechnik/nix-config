@@ -3,10 +3,12 @@
   inputs,
   config,
   ...
-}: let
+}:
+let
   port = 56789;
-in {
-  environment.systemPackages = [pkgs.attic];
+in
+{
+  environment.systemPackages = [ pkgs.attic ];
   sops.secrets.attic-env = {
     sopsFile = ../secrets.yaml;
   };
@@ -14,9 +16,7 @@ in {
     sopsFile = ../../../common/secrets.yaml;
   };
 
-  imports = [
-    inputs.attic.nixosModules.atticd
-  ];
+  imports = [ inputs.attic.nixosModules.atticd ];
 
   services = {
     tailscale-proxies = {
@@ -72,7 +72,7 @@ in {
     };
     traefik.dynamicConfigOptions.http = {
       services.attic = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:${toString port}"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:${toString port}"; } ];
       };
 
       routers.attic = {

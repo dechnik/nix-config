@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   wofi = "${pkgs.wofi}/bin/wofi";
   kitty = "${config.programs.kitty.package}/bin/kitty";

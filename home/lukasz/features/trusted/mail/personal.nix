@@ -1,7 +1,8 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 let
   folder-config = import ./folder-config.nix { inherit config lib; };
@@ -79,17 +80,17 @@ in
       sig-org = ''
 
 
-Regards,
-#+begin_signature
---
-*Lukasz Dechnik*
+        Regards,
+        #+begin_signature
+        --
+        *Lukasz Dechnik*
 
-PGP mail accepted and encouraged.
+        PGP mail accepted and encouraged.
 
-Key Id: D7BCC570927C355B
+        Key Id: D7BCC570927C355B
 
-https://keys.openpgp.org/vks/v1/by-fingerprint/35655963B7835180125FE55DD7BCC570927C355B
-#+end_signature
+        https://keys.openpgp.org/vks/v1/by-fingerprint/35655963B7835180125FE55DD7BCC570927C355B
+        #+end_signature
       '';
       mu.enable = true;
       # imapnotify = {

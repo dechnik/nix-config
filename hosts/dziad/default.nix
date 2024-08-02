@@ -1,38 +1,43 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      inputs.hardware.nixosModules.common-cpu-amd
-      # inputs.hardware.nixosModules.common-gpu-nvidia
-      inputs.hardware.nixosModules.common-pc-ssd
-      ./hardware-configuration.nix
-      inputs.disko.nixosModules.disko
-      ./services
+  imports = [
+    inputs.hardware.nixosModules.common-cpu-amd
+    # inputs.hardware.nixosModules.common-gpu-nvidia
+    inputs.hardware.nixosModules.common-pc-ssd
+    ./hardware-configuration.nix
+    inputs.disko.nixosModules.disko
+    ./services
 
-      # ./boot-loader.nix
+    # ./boot-loader.nix
 
-      ../../common/global
-      ../../common/users/lukasz
+    ../../common/global
+    ../../common/users/lukasz
 
-      ../../common/optional/fping.nix
-      ../../common/optional/docker.nix
-      ../../common/optional/pipewire.nix
-      ../../common/optional/greetd.nix
-      ../../common/optional/gaming.nix
-      # ../../common/optional/qtile.nix
-      # ../../common/optional/vpn-nn.nix
-      ../../common/optional/vpn.nix
-      ../../common/optional/bluetooth.nix
-      # ../../common/optional/pantalaimon.nix
-      ../../common/optional/zram.nix
-      ../../common/optional/nix-gc.nix
-      # ../../common/optional/cosmic.nix
-      # ../common/optional/postfix.nix
-      # ../../common/optional/gamemode.nix
-      # ../common/optional/zfs.nix
-      # ../common/optional/quietboot.nix
-    ];
+    ../../common/optional/fping.nix
+    ../../common/optional/docker.nix
+    ../../common/optional/pipewire.nix
+    ../../common/optional/greetd.nix
+    ../../common/optional/gaming.nix
+    # ../../common/optional/qtile.nix
+    # ../../common/optional/vpn-nn.nix
+    ../../common/optional/vpn.nix
+    ../../common/optional/bluetooth.nix
+    # ../../common/optional/pantalaimon.nix
+    ../../common/optional/zram.nix
+    ../../common/optional/nix-gc.nix
+    # ../../common/optional/cosmic.nix
+    # ../common/optional/postfix.nix
+    # ../../common/optional/gamemode.nix
+    # ../common/optional/zfs.nix
+    # ../common/optional/quietboot.nix
+  ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];
@@ -55,17 +60,13 @@
   my.wan = "eno1";
   services.gvfs.enable = true;
 
-  services.dbus.packages = [
-    pkgs.pcmanfm
-  ];
-  environment.systemPackages = [
-    pkgs.quickemu
-  ];
+  services.dbus.packages = [ pkgs.pcmanfm ];
+  environment.systemPackages = [ pkgs.quickemu ];
 
   networking = {
     hostName = "dziad"; # Define your hostname.
     domain = "dechnik.net";
-    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = lib.mkForce false; # Easiest to use and most distros use this by default.
     #
     nameservers = [
       "100.100.100.100"
@@ -99,7 +100,10 @@
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;
     # kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-    binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+    binfmt.emulatedSystems = [
+      "aarch64-linux"
+      "i686-linux"
+    ];
   };
 
   programs = {

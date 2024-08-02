@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   services.deluge = {
     enable = true;
     user = "transmission";
@@ -20,7 +21,10 @@
       daemon_port = 58846;
       # Listen on 6880 only
       random_port = false;
-      listen_ports = [ 6880 6880 ];
+      listen_ports = [
+        6880
+        6880
+      ];
       # Outgoing is random
       random_outgoing_ports = true;
     };
@@ -39,8 +43,6 @@
   };
 
   environment.persistence = {
-    "/persist".directories = [
-      "/var/lib/deluge"
-    ];
+    "/persist".directories = [ "/var/lib/deluge" ];
   };
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
   packageNames = map (p: p.pname or p.name or null) config.home.packages;
@@ -102,68 +107,72 @@ in
       # Open command buffer in vim when alt+e is pressed
       ''
         bind \ee edit_command_buffer
-      '' +
-      # kitty integration
       ''
-        set --global KITTY_INSTALLATION_DIR "${pkgs.kitty}/lib/kitty"
-        set --global KITTY_SHELL_INTEGRATION enabled
-        source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
-        set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
-      '' +
-      '' source /var/run/secrets/lukasz-pprofile
-      '' +
-      # Use vim bindings and cursors
+      +
+        # kitty integration
+        ''
+          set --global KITTY_INSTALLATION_DIR "${pkgs.kitty}/lib/kitty"
+          set --global KITTY_SHELL_INTEGRATION enabled
+          source "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_conf.d/kitty-shell-integration.fish"
+          set --prepend fish_complete_path "$KITTY_INSTALLATION_DIR/shell-integration/fish/vendor_completions.d"
+        ''
+      + ''
+        source /var/run/secrets/lukasz-pprofile
       ''
-        fish_vi_key_bindings
-        ${lib.optionalString config.programs.atuin.enable ''
-        bind k _atuin_bind_up
-        ''}
-        set fish_cursor_default     block      blink
-        set fish_cursor_insert      line       blink
-        set fish_cursor_replace_one underscore blink
-        set fish_cursor_visual      block
-      '' +
-      # Use terminal colors
-      ''
-        set -U fish_color_autosuggestion      brblack
-        set -U fish_color_cancel              -r
-        set -U fish_color_command             brgreen
-        set -U fish_color_comment             brmagenta
-        set -U fish_color_cwd                 green
-        set -U fish_color_cwd_root            red
-        set -U fish_color_end                 brmagenta
-        set -U fish_color_error               brred
-        set -U fish_color_escape              brcyan
-        set -U fish_color_history_current     --bold
-        set -U fish_color_host                normal
-        set -U fish_color_match               --background=brblue
-        set -U fish_color_normal              normal
-        set -U fish_color_operator            cyan
-        set -U fish_color_param               brblue
-        set -U fish_color_quote               yellow
-        set -U fish_color_redirection         bryellow
-        set -U fish_color_search_match        'bryellow' '--background=brblack'
-        set -U fish_color_selection           'white' '--bold' '--background=brblack'
-        set -U fish_color_status              red
-        set -U fish_color_user                brgreen
-        set -U fish_color_valid_path          --underline
-        set -U fish_pager_color_completion    normal
-        set -U fish_pager_color_description   yellow
-        set -U fish_pager_color_prefix        'white' '--bold' '--underline'
-        set -U fish_pager_color_progress      'brwhite' '--background=cyan'
-        ${lib.optionalString config.programs.foot.enable ''
-        function update_cwd_osc --on-variable PWD --description 'Notify terminals when $PWD changes'
-            if status --is-command-substitution || set -q INSIDE_EMACS
-                return
+      +
+        # Use vim bindings and cursors
+        ''
+          fish_vi_key_bindings
+          ${lib.optionalString config.programs.atuin.enable ''
+            bind k _atuin_bind_up
+          ''}
+          set fish_cursor_default     block      blink
+          set fish_cursor_insert      line       blink
+          set fish_cursor_replace_one underscore blink
+          set fish_cursor_visual      block
+        ''
+      +
+        # Use terminal colors
+        ''
+          set -U fish_color_autosuggestion      brblack
+          set -U fish_color_cancel              -r
+          set -U fish_color_command             brgreen
+          set -U fish_color_comment             brmagenta
+          set -U fish_color_cwd                 green
+          set -U fish_color_cwd_root            red
+          set -U fish_color_end                 brmagenta
+          set -U fish_color_error               brred
+          set -U fish_color_escape              brcyan
+          set -U fish_color_history_current     --bold
+          set -U fish_color_host                normal
+          set -U fish_color_match               --background=brblue
+          set -U fish_color_normal              normal
+          set -U fish_color_operator            cyan
+          set -U fish_color_param               brblue
+          set -U fish_color_quote               yellow
+          set -U fish_color_redirection         bryellow
+          set -U fish_color_search_match        'bryellow' '--background=brblack'
+          set -U fish_color_selection           'white' '--bold' '--background=brblack'
+          set -U fish_color_status              red
+          set -U fish_color_user                brgreen
+          set -U fish_color_valid_path          --underline
+          set -U fish_pager_color_completion    normal
+          set -U fish_pager_color_description   yellow
+          set -U fish_pager_color_prefix        'white' '--bold' '--underline'
+          set -U fish_pager_color_progress      'brwhite' '--background=cyan'
+          ${lib.optionalString config.programs.foot.enable ''
+            function update_cwd_osc --on-variable PWD --description 'Notify terminals when $PWD changes'
+                if status --is-command-substitution || set -q INSIDE_EMACS
+                    return
+                end
+                printf \e\]7\;file://%s%s\e\\ $hostname (string escape --style=url $PWD)
             end
-            printf \e\]7\;file://%s%s\e\\ $hostname (string escape --style=url $PWD)
-        end
 
-        update_cwd_osc # Run once since we might have inherited PWD from a parent shell
-        function mark_prompt_start --on-event fish_prompt
-            echo -en "\e]133;A\e\\"
-        end
-        ''}
-      '';
+            update_cwd_osc # Run once since we might have inherited PWD from a parent shell
+            function mark_prompt_start --on-event fish_prompt
+                echo -en "\e]133;A\e\\"
+            end
+          ''}
+        '';
   };
 }

@@ -1,4 +1,9 @@
-{ config, outputs, lib, ... }:
+{
+  config,
+  outputs,
+  lib,
+  ...
+}:
 let
   hostnames = builtins.attrNames outputs.nixosConfigurations;
 in
@@ -9,10 +14,12 @@ in
       net = {
         host = builtins.concatStringsSep " " hostnames;
         forwardAgent = true;
-        remoteForwards = [{
-          bind.address = ''/%d/.gnupg-sockets/S.gpg-agent'';
-          host.address = ''/%d/.gnupg-sockets/S.gpg-agent.extra'';
-        }];
+        remoteForwards = [
+          {
+            bind.address = ''/%d/.gnupg-sockets/S.gpg-agent'';
+            host.address = ''/%d/.gnupg-sockets/S.gpg-agent.extra'';
+          }
+        ];
       };
       trusted = lib.hm.dag.entryBefore [ "net" ] {
         host = "dechnik.net *.dechnik.net *.panther-crocodile.ts.net";

@@ -1,4 +1,10 @@
-{ outputs, config, lib, pkgs, ... }:
+{
+  outputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # Dependencies
@@ -37,23 +43,33 @@ let
   mail = terminal-spawn neomutt;
 
   # Function to simplify making waybar outputs
-  jsonOutput = name: { pre ? "", text ? "", tooltip ? "", alt ? "", class ? "", percentage ? "" }: "${pkgs.writeShellScriptBin "waybar-${name}" ''
-    set -euo pipefail
-    ${pre}
-    ${jq} -cn \
-      --arg text "${text}" \
-      --arg tooltip "${tooltip}" \
-      --arg alt "${alt}" \
-      --arg class "${class}" \
-      --arg percentage "${percentage}" \
-      '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
-  ''}/bin/waybar-${name}";
+  jsonOutput =
+    name:
+    {
+      pre ? "",
+      text ? "",
+      tooltip ? "",
+      alt ? "",
+      class ? "",
+      percentage ? "",
+    }:
+    "${pkgs.writeShellScriptBin "waybar-${name}" ''
+      set -euo pipefail
+      ${pre}
+      ${jq} -cn \
+        --arg text "${text}" \
+        --arg tooltip "${tooltip}" \
+        --arg alt "${alt}" \
+        --arg class "${class}" \
+        --arg percentage "${percentage}" \
+        '{text:$text,tooltip:$tooltip,alt:$alt,class:$class,percentage:$percentage}'
+    ''}/bin/waybar-${name}";
 in
 {
   programs.waybar = {
     enable = true;
     package = pkgs.waybar.overrideAttrs (oa: {
-      mesonFlags = (oa.mesonFlags or  [ ]) ++ [ "-Dexperimental=true" ];
+      mesonFlags = (oa.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
     });
     systemd.enable = true;
     settings = {
@@ -64,19 +80,20 @@ in
         margin = "0";
         position = "top";
         output = builtins.map (m: m.name) (builtins.filter (m: !m.isPrimary) config.monitors);
-        modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
-          "sway/workspaces"
-          "sway/mode"
-        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
-          "hyprland/workspaces"
-          "hyprland/submap"
-        ]) ++ [
-          # "custom/currentplayer"
-          # "custom/player"
-        ];
-        modules-center = [
-          "clock"
-        ];
+        modules-left =
+          (lib.optionals config.wayland.windowManager.sway.enable [
+            "sway/workspaces"
+            "sway/mode"
+          ])
+          ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+            "hyprland/workspaces"
+            "hyprland/submap"
+          ])
+          ++ [
+            # "custom/currentplayer"
+            # "custom/player"
+          ];
+        modules-center = [ "clock" ];
 
         clock = {
           format = "{:%d/%m %H:%M}";
@@ -97,16 +114,19 @@ in
         margin = "0";
         position = "top";
         output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
-        modules-left = (lib.optionals config.wayland.windowManager.sway.enable [
-          "sway/workspaces"
-          "sway/mode"
-        ]) ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
-          "hyprland/workspaces"
-          "hyprland/submap"
-        ]) ++ [
-          "custom/currentplayer"
-          "custom/player"
-        ];
+        modules-left =
+          (lib.optionals config.wayland.windowManager.sway.enable [
+            "sway/workspaces"
+            "sway/mode"
+          ])
+          ++ (lib.optionals config.wayland.windowManager.hyprland.enable [
+            "hyprland/workspaces"
+            "hyprland/submap"
+          ])
+          ++ [
+            "custom/currentplayer"
+            "custom/player"
+          ];
         modules-center = [
           "pulseaudio"
           "battery"
@@ -159,7 +179,11 @@ in
             headphone = "󰋋";
             headset = "󰋎";
             portable = "";
-            default = [ "" "" "" ];
+            default = [
+              ""
+              ""
+              ""
+            ];
           };
           on-click = pavucontrol;
         };
@@ -173,7 +197,18 @@ in
         battery = {
           bat = "BAT0";
           interval = 10;
-          format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
+          format-icons = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
           format = "{icon} {capacity}%";
           format-charging = "󰂄 {capacity}%";
           onclick = "";
@@ -208,14 +243,22 @@ in
               # Build variables for each host
               pre = ''
                 set -o pipefail
-                ${concatStringsSep "\n" (map (host: ''
-                  ping_${replaceStrings ["."] ["_"] host}="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${replaceStrings ["."] ["_"] host}="Dc"
-                '') hosts)}
+                ${concatStringsSep "\n" (
+                  map (host: ''
+                    ping_${
+                      replaceStrings [ "." ] [ "_" ] host
+                    }="$(${timeout} 2 ${ping} -c 1 -q ${host} 2>/dev/null | ${tail} -1 | ${cut} -d '/' -f5 | ${cut} -d '.' -f1)ms" || ping_${
+                      replaceStrings [ "." ] [ "_" ] host
+                    }="Dc"
+                  '') hosts
+                )}
               '';
               # Access a remote machine's and a home machine's ping
               text = "  $ping_${remoteMachine}   $ping_${mailMachine}   $ping_${homeMachine}";
               # Show pings from all machines
-              tooltip = concatStringsSep "\n" (map (host: "${host}: $ping_${replaceStrings ["."] ["_"] host}") hosts);
+              tooltip = concatStringsSep "\n" (
+                map (host: "${host}: $ping_${replaceStrings [ "." ] [ "_" ] host}") hosts
+              );
             };
           format = "{}";
           on-click = "";
@@ -235,7 +278,8 @@ in
           interval = 2;
           return-type = "json";
           exec =
-            let keyring = import ../../../trusted/keyring.nix { inherit pkgs; };
+            let
+              keyring = import ../../../trusted/keyring.nix { inherit pkgs; };
             in
             jsonOutput "gpg-agent" {
               pre = ''status=$(${keyring.isUnlocked} && echo "unlocked" || echo "locked")'';
@@ -285,9 +329,7 @@ in
           exec-if = "${gamemoded} --status | ${grep} 'is active' -q";
           interval = 2;
           return-type = "json";
-          exec = jsonOutput "gamemode" {
-            tooltip = "Gamemode is active";
-          };
+          exec = jsonOutput "gamemode" { tooltip = "Gamemode is active"; };
           format = " ";
         };
         "custom/gammastep" = {
@@ -375,92 +417,97 @@ in
     # x y -> vertical, horizontal
     # x y z -> top, horizontal, bottom
     # w x y z -> top, right, bottom, left
-    style = let inherit (config.colorscheme) palette; in /* css */ ''
-      * {
-        transition: none;
-        box-shadow: none;
-      }
+    style =
+      let
+        inherit (config.colorscheme) palette;
+      in
+      # css
+      ''
+        * {
+          transition: none;
+          box-shadow: none;
+        }
 
-      #waybar {
-        font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
-        font-size: 1.2em;
-        font-weight: 400;
-        color: #${palette.base04};
-        background: #${palette.base01};
-      }
-      #workspaces {
-        margin: 0 4px;
-      }
+        #waybar {
+          font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
+          font-size: 1.2em;
+          font-weight: 400;
+          color: #${palette.base04};
+          background: #${palette.base01};
+        }
+        #workspaces {
+          margin: 0 4px;
+        }
 
-      #workspaces button {
-        margin: 4px 0;
-        padding: 0 4px;
-        color: #${palette.base05};
-      }
+        #workspaces button {
+          margin: 4px 0;
+          padding: 0 4px;
+          color: #${palette.base05};
+        }
 
-      #workspaces button.visible {
-      }
+        #workspaces button.visible {
+        }
 
-      #workspaces button.active {
-        border-radius: 0px;
-        background-color: #${palette.base02};
-      }
+        #workspaces button.active {
+          border-radius: 0px;
+          background-color: #${palette.base02};
+        }
 
-      #workspaces button.urgent {
-        color: rgba(238, 46, 36, 1);
-      }
+        #workspaces button.urgent {
+          color: rgba(238, 46, 36, 1);
+        }
 
-      #tray {
-        margin: 4px 4px 4px 4px;
-        border-radius: 0px;
-        background-color: #${palette.base02};
-      }
+        #tray {
+          margin: 4px 4px 4px 4px;
+          border-radius: 0px;
+          background-color: #${palette.base02};
+        }
 
-      #tray * {
-        padding: 0 6px;
-        border-left: 1px solid #${palette.base00};
-      }
+        #tray * {
+          padding: 0 6px;
+          border-left: 1px solid #${palette.base00};
+        }
 
-      #tray *:first-child {
-        border-left: none;
-      }
+        #tray *:first-child {
+          border-left: none;
+        }
 
-      #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature  {
-        margin: 4px 2px;
-        padding: 0 6px;
-        background-color: #${palette.base02};
-        border-radius: 0px;
-        min-width: 20px;
-      }
+        #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-gammastep, #custom-gpg-agent, #custom-unread-mail, #custom-tailscale-ping, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature  {
+          margin: 4px 2px;
+          padding: 0 6px;
+          background-color: #${palette.base02};
+          border-radius: 0px;
+          min-width: 20px;
+        }
 
-      #pulseaudio.muted {
-        color: #${palette.base0F};
-      }
+        #pulseaudio.muted {
+          color: #${palette.base0F};
+        }
 
-      #pulseaudio.bluetooth {
-        color: #${palette.base0C};
-      }
+        #pulseaudio.bluetooth {
+          color: #${palette.base0C};
+        }
 
-      #clock {
-        margin-left: 0px;
-        margin-right: 4px;
-        background-color: transparent;
-      }
-      #custom-hostname {
-        margin-left: 0px;
-        margin-right: 4px;
-        background-color: transparent;
-      }
+        #clock {
+          margin-left: 0px;
+          margin-right: 4px;
+          background-color: transparent;
+        }
+        #custom-hostname {
+          margin-left: 0px;
+          margin-right: 4px;
+          background-color: transparent;
+        }
 
-      #temperature.critical {
-        color: #${palette.base0F};
-      }
+        #temperature.critical {
+          color: #${palette.base0F};
+        }
 
-      #window {
-        font-size: 0.9em;
-        font-weight: 400;
-        font-family: sans-serif;
-      }
-    '';
+        #window {
+          font-size: 0.9em;
+          font-weight: 400;
+          font-family: sans-serif;
+        }
+      '';
   };
 }

@@ -1,7 +1,8 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 let
   folder-config = import ./folder-config.nix { inherit config lib; };
@@ -21,10 +22,12 @@ in
     '';
   };
   systemd.user.services.mbsync.Service.Environment = [
-    "SASL_PATH=${lib.concatStringsSep ":" [
-      "${pkgs.cyrus_sasl.out}/lib/sasl2"
-      "${pkgs.cyrus-sasl-xoauth2}/usr/lib/sasl2"
-    ]}"
+    "SASL_PATH=${
+      lib.concatStringsSep ":" [
+        "${pkgs.cyrus_sasl.out}/lib/sasl2"
+        "${pkgs.cyrus-sasl-xoauth2}/usr/lib/sasl2"
+      ]
+    }"
   ];
   accounts.email.accounts = {
     "ebi" = {
@@ -95,10 +98,10 @@ in
       sig-org = ''
 
 
-#+begin_signature
---
-#+INCLUDE: ~/.local/share/mail/.sig/ebi.sig export html
-#+end_signature
+        #+begin_signature
+        --
+        #+INCLUDE: ~/.local/share/mail/.sig/ebi.sig export html
+        #+end_signature
       '';
       mu.enable = true;
       # imapnotify = {

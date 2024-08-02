@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   # sops.secrets = {
   #   matterbridge-config = {
   #     owner = "matterbridge";

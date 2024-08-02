@@ -1,7 +1,6 @@
-{ inputs, pkgs, ... }: {
-  imports = [
-    inputs.nixvim.homeManagerModules.nixvim
-  ];
+{ inputs, pkgs, ... }:
+{
+  imports = [ inputs.nixvim.homeManagerModules.nixvim ];
   programs.nixvim = {
     enable = true;
     luaLoader.enable = true;
@@ -18,14 +17,38 @@
       "<C-j>" = "<C-w>j";
       "<C-k>" = "<C-w>k";
       "<C-l>" = "<C-w>l";
-      "<leader>pf" = { action = "<cmd>Telescope find_files<cr>"; desc = "Project Files"; };
-      "<leader>ps" = { action = "<cmd>Telescope live_grep<cr>"; desc = "Project Search"; };
-      "<leader>vh" = { action = "<cmd>Telescope help_tags<cr>"; desc = "Help Tags"; };
-      "<C-p>" = { action = "<cmd>Telescope git_files<cr>"; desc = "Git Files"; };
-      "<leader>pi" = { action = "<cmd>TroubleToggle quickfix<cr>"; desc = "Project Issues"; };
-      "<leader>pv" = { action = "<cmd>NvimTreeToggle<cr>"; desc = "Project View"; };
-      "<leader>u" = { action = "<cmd>UndoTreeToggle<cr>"; desc = "UndoTree"; };
-      "<leader>gs" = { action = "<cmd>Git<cr>"; desc = "Git"; };
+      "<leader>pf" = {
+        action = "<cmd>Telescope find_files<cr>";
+        desc = "Project Files";
+      };
+      "<leader>ps" = {
+        action = "<cmd>Telescope live_grep<cr>";
+        desc = "Project Search";
+      };
+      "<leader>vh" = {
+        action = "<cmd>Telescope help_tags<cr>";
+        desc = "Help Tags";
+      };
+      "<C-p>" = {
+        action = "<cmd>Telescope git_files<cr>";
+        desc = "Git Files";
+      };
+      "<leader>pi" = {
+        action = "<cmd>TroubleToggle quickfix<cr>";
+        desc = "Project Issues";
+      };
+      "<leader>pv" = {
+        action = "<cmd>NvimTreeToggle<cr>";
+        desc = "Project View";
+      };
+      "<leader>u" = {
+        action = "<cmd>UndoTreeToggle<cr>";
+        desc = "UndoTree";
+      };
+      "<leader>gs" = {
+        action = "<cmd>Git<cr>";
+        desc = "Git";
+      };
       # Keep centered
       "J" = "mzJ`z";
       "<C-d>" = "<C-d>zz";
@@ -35,10 +58,22 @@
       # Convenience
       "Q" = "<nop>";
       # Diagnostics
-      "<leader>e" = { action = "vim.diagnostic.open_float"; lua = true; };
-      "[d" = { action = "vim.diagnostic.goto_prev"; lua = true; };
-      "]d" = { action = "vim.diagnostic.goto_next"; lua = true; };
-      "<leader>q" = { action = "vim.diagnostic.setloclist"; lua = true; };
+      "<leader>e" = {
+        action = "vim.diagnostic.open_float";
+        lua = true;
+      };
+      "[d" = {
+        action = "vim.diagnostic.goto_prev";
+        lua = true;
+      };
+      "]d" = {
+        action = "vim.diagnostic.goto_next";
+        lua = true;
+      };
+      "<leader>q" = {
+        action = "vim.diagnostic.setloclist";
+        lua = true;
+      };
     };
 
     maps.insert."<C-c>" = "<Esc>";
@@ -115,59 +150,65 @@
     autoCmd = [
       {
         event = [ "FileType" ];
-        pattern = [ "gitcommit" "markdown" ];
+        pattern = [
+          "gitcommit"
+          "markdown"
+        ];
         callback = {
-          __raw = ''function()
-          vim.opt_local.wrap = true
-          vim.opt_local.spell = true
-        end'';
+          __raw = ''
+            function()
+                      vim.opt_local.wrap = true
+                      vim.opt_local.spell = true
+                    end'';
         };
       }
       {
         event = [ "TextYankPost" ];
         pattern = [ "*" ];
         callback = {
-          __raw = ''function()
-            vim.highlight.on_yank()
-        end'';
+          __raw = ''
+            function()
+                        vim.highlight.on_yank()
+                    end'';
         };
         group = "YankHighlight";
       }
       {
         event = [ "LspAttach" ];
         callback = {
-          __raw = ''function(ev)
-          vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-          vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf })
-          vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf })
-          vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf })
-          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>wl", function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-          end, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf })
-          vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf })
-          vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf })
-          vim.keymap.set("n", "<leader>f", function()
-            vim.lsp.buf.format({ async = true })
-          end, { buffer = ev.buf })
-          if vim.lsp.buf.range_code_action then
-            vim.keymap.set("n", "<leader>ca", function()
-              vim.lsp.buf.code_action()
-              end, { buffer = ev.buf })
-            vim.keymap.set("x", "<leader>ca", function()
-              vim.lsp.buf.range_code_action()
-              end, { buffer = ev.buf })
-          else
-            vim.keymap.set({ "n", "x" }, "<leader>ca", function()
-              vim.lsp.buf.code_action()
-              end, { buffer = ev.buf })
-          end
-        end'';
+          __raw = ''
+            function(ev)
+                      vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+                      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf })
+                      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf })
+                      vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = ev.buf })
+                      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>wl", function()
+                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                      end, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = ev.buf })
+                      vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = ev.buf })
+                      vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = ev.buf })
+                      vim.keymap.set("n", "<leader>f", function()
+                        vim.lsp.buf.format({ async = true })
+                      end, { buffer = ev.buf })
+                      if vim.lsp.buf.range_code_action then
+                        vim.keymap.set("n", "<leader>ca", function()
+                          vim.lsp.buf.code_action()
+                          end, { buffer = ev.buf })
+                        vim.keymap.set("x", "<leader>ca", function()
+                          vim.lsp.buf.range_code_action()
+                          end, { buffer = ev.buf })
+                      else
+                        vim.keymap.set({ "n", "x" }, "<leader>ca", function()
+                          vim.lsp.buf.code_action()
+                          end, { buffer = ev.buf })
+                      end
+                    end'';
         };
         group = "UserLspConfig";
       }
@@ -222,10 +263,21 @@
         { name = "crates"; }
       ];
       formatting = {
-        fields = [ "abbr" "kind" "menu" ];
+        fields = [
+          "abbr"
+          "kind"
+          "menu"
+        ];
       };
-      mappingPresets = [ "insert" "cmdline" ];
-      mapping."<CR>".modes = [ "i" "s" "c" ];
+      mappingPresets = [
+        "insert"
+        "cmdline"
+      ];
+      mapping."<CR>".modes = [
+        "i"
+        "s"
+        "c"
+      ];
       mapping."<CR>".action = ''
         function(fallback)
           if cmp.visible() and cmp.get_active_entry() then
@@ -255,9 +307,20 @@
 
     plugins.lualine = {
       enable = true;
-      sections.lualine_b = [ "branch" "diff" "diagnostics" ];
-      sections.lualine_c = [ "filename" "lsp_progress" ];
-      sections.lualine_x = [ "encoding" "fileformat" "filetype" ];
+      sections.lualine_b = [
+        "branch"
+        "diff"
+        "diagnostics"
+      ];
+      sections.lualine_c = [
+        "filename"
+        "lsp_progress"
+      ];
+      sections.lualine_x = [
+        "encoding"
+        "fileformat"
+        "filetype"
+      ];
     };
 
     plugins.nvim-autopairs = {

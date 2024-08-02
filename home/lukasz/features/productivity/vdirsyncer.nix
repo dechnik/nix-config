@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   pass = "${config.programs.password-store.package}/bin/pass";
 in
@@ -6,8 +11,7 @@ in
   home.packages = with pkgs; [ vdirsyncer ];
 
   home.persistence = {
-    "/persist/home/lukasz".directories =
-      [ ".local/share/vdirsyncer" ];
+    "/persist/home/lukasz".directories = [ ".local/share/vdirsyncer" ];
   };
   home.activation = {
     vdir-config = ''
@@ -17,9 +21,12 @@ in
   };
 
   systemd.user.services.vdirsyncer = {
-    Unit = { Description = "vdirsyncer synchronization"; };
+    Unit = {
+      Description = "vdirsyncer synchronization";
+    };
     Service =
-      let gpgCmds = import ../trusted/keyring.nix { inherit pkgs; };
+      let
+        gpgCmds = import ../trusted/keyring.nix { inherit pkgs; };
       in
       {
         Type = "oneshot";
@@ -30,11 +37,15 @@ in
       };
   };
   systemd.user.timers.vdirsyncer = {
-    Unit = { Description = "Automatic vdirsyncer synchronization"; };
+    Unit = {
+      Description = "Automatic vdirsyncer synchronization";
+    };
     Timer = {
       OnBootSec = "30";
       OnUnitActiveSec = "5m";
     };
-    Install = { WantedBy = [ "timers.target" ]; };
+    Install = {
+      WantedBy = [ "timers.target" ];
+    };
   };
 }

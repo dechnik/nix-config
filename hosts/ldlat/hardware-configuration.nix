@@ -1,14 +1,27 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
-  imports =
-    [
-      ../../common/optional/btrfs-optin-persistence.nix
-      ../../common/optional/encrypted-root.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
+  imports = [
+    ../../common/optional/btrfs-optin-persistence.nix
+    ../../common/optional/encrypted-root.nix
+  ];
 
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "ahci" "nvme" "usb_storage" "sd_mod" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "thunderbolt"
+        "vmd"
+        "ahci"
+        "nvme"
+        "usb_storage"
+        "sd_mod"
+      ];
       kernelModules = [ "kvm-intel" ];
     };
     loader = {
@@ -28,10 +41,12 @@
     fsType = "vfat";
   };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 8192;
-  }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 8192;
+    }
+  ];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;

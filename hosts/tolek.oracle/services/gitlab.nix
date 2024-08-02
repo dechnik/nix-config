@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   sops.secrets = {
     gitlab-root-password = {
@@ -57,7 +62,7 @@
       https = true;
       initialRootEmail = "admin@dechnik.net";
       initialRootPasswordFile = config.sops.secrets.gitlab-root-password.path;
-# Hack, https://github.com/NixOS/nixpkgs/pull/135926 broke stuff
+      # Hack, https://github.com/NixOS/nixpkgs/pull/135926 broke stuff
       pages.settings.pages-domain = "not.actually.enabled";
       secrets = {
         dbFile = config.sops.secrets.gitlab-db.path;
@@ -85,7 +90,9 @@
               active_directory = false;
               verify_certificates = false;
               bind_dn = "uid=ro_admin,ou=people,dc=dechnik,dc=net";
-              password = {_secret = config.sops.secrets.gitlab-ldap-password.path;};
+              password = {
+                _secret = config.sops.secrets.gitlab-ldap-password.path;
+              };
               base = "ou=people,dc=dechnik,dc=net";
               encryption = "plain";
               user_filter = "(&(objectclass=person)(memberOf=cn=gitlab,ou=groups,dc=dechnik,dc=net))";
@@ -106,7 +113,7 @@
     };
     traefik.dynamicConfigOptions.http = {
       services.gitlab = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:8080"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:8080"; } ];
       };
 
       routers.gitlab = {

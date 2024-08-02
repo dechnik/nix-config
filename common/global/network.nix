@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   options = {
     my.wan = lib.mkOption {
       type = lib.types.str;
@@ -17,7 +18,7 @@
 
     my.machines = lib.mkOption {
       type = lib.types.listOf (lib.types.attrsOf lib.types.str);
-      default = [];
+      default = [ ];
     };
   };
 

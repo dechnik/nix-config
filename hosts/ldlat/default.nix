@@ -1,33 +1,38 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      # inputs.hardware.nixosModules.common-cpu-intel
-      inputs.hardware.nixosModules.common-gpu-intel
-      inputs.hardware.nixosModules.common-pc-ssd
+  imports = [
+    # inputs.hardware.nixosModules.common-cpu-intel
+    inputs.hardware.nixosModules.common-gpu-intel
+    inputs.hardware.nixosModules.common-pc-ssd
 
-      ./hardware-configuration.nix
+    ./hardware-configuration.nix
 
-      ../../common/global
-      ../../common/users/lukasz
-      ./services
+    ../../common/global
+    ../../common/users/lukasz
+    ./services
 
-      ../../common/optional/fping.nix
-      ../../common/optional/docker.nix
-      ../../common/optional/pipewire.nix
-      ../../common/optional/greetd.nix
-      # ../../common/optional/qtile.nix
-      # ../../common/optional/wireless-nn.nix
-      ../../common/optional/wireless.nix
-      ../../common/optional/bluetooth.nix
-      ../../common/optional/printing.nix
-      # ../../common/optional/pantalaimon.nix
-      # ../../common/optional/vpn-nn.nix
-      ../../common/optional/vpn.nix
-      ../../common/optional/nix-gc.nix
-      # ../../common/optional/cosmic.nix
-    ];
+    ../../common/optional/fping.nix
+    ../../common/optional/docker.nix
+    ../../common/optional/pipewire.nix
+    ../../common/optional/greetd.nix
+    # ../../common/optional/qtile.nix
+    # ../../common/optional/wireless-nn.nix
+    ../../common/optional/wireless.nix
+    ../../common/optional/bluetooth.nix
+    ../../common/optional/printing.nix
+    # ../../common/optional/pantalaimon.nix
+    # ../../common/optional/vpn-nn.nix
+    ../../common/optional/vpn.nix
+    ../../common/optional/nix-gc.nix
+    # ../../common/optional/cosmic.nix
+  ];
 
   environment.systemPackages = [
     config.boot.kernelPackages.cpupower
@@ -50,9 +55,7 @@
 
   services.gvfs.enable = true;
 
-  services.dbus.packages = [
-    pkgs.pcmanfm
-  ];
+  services.dbus.packages = [ pkgs.pcmanfm ];
 
   networking = {
     hostName = "ldlat"; # Define your hostname.
@@ -65,7 +68,7 @@
         useDHCP = true;
       };
     };
-    networkmanager.enable = lib.mkForce false;  # Easiest to use and most distros use this by default.
+    networkmanager.enable = lib.mkForce false; # Easiest to use and most distros use this by default.
   };
   # networking.networkmanager.settings = {
   #   connectivity = {

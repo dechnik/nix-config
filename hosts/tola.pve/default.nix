@@ -1,22 +1,27 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./services
+  imports = [
+    ./hardware-configuration.nix
+    ./services
 
-      ../../common/optional/qemu-vm.nix
-      ../../common/optional/nix-gc2.nix
-      ../../common/optional/consul.nix
-      ../../common/optional/docker.nix
-      ../../common/optional/promtail.nix
-      ../../common/optional/node-exporter.nix
-      ../../common/optional/systemd-exporter.nix
-      ../../common/global
-      ../../common/users/lukasz
-      inputs.disko.nixosModules.disko
-    ];
+    ../../common/optional/qemu-vm.nix
+    ../../common/optional/nix-gc2.nix
+    ../../common/optional/consul.nix
+    ../../common/optional/docker.nix
+    ../../common/optional/promtail.nix
+    ../../common/optional/node-exporter.nix
+    ../../common/optional/systemd-exporter.nix
+    ../../common/global
+    ../../common/users/lukasz
+    inputs.disko.nixosModules.disko
+  ];
   services.spice-vdagentd.enable = true;
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_zen;

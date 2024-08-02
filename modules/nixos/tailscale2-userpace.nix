@@ -9,9 +9,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.services.tailscale2;
-in {
+in
+{
   options.services.tailscale2 = {
     enable = mkEnableOption (lib.mdDoc "Second Tailscale daemon that only runs in userspace");
 
@@ -27,7 +29,7 @@ in {
       description = lib.mdDoc "Username or user ID of the user allowed to to fetch Tailscale TLS certificates for the node.";
     };
 
-    package = lib.mkPackageOptionMD pkgs "tailscale" {};
+    package = lib.mkPackageOptionMD pkgs "tailscale" { };
 
     authKeyFile = mkOption {
       type = types.nullOr types.path;
@@ -59,8 +61,8 @@ in {
     extraUpFlags = mkOption {
       description = lib.mdDoc "Extra flags to pass to {command}`tailscale up`.";
       type = types.listOf types.str;
-      default = [];
-      example = ["--ssh"];
+      default = [ ];
+      example = [ "--ssh" ];
     };
   };
 
@@ -71,9 +73,9 @@ in {
         ${cfg.package}/bin/tailscale --socket=${cfg.socketFile} "$@"
       '')
     ]; # for the CLI
-    systemd.packages = [cfg.package];
+    systemd.packages = [ cfg.package ];
     systemd.services.tailscaled2 = {
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
 
       preStart = "${cfg.package}/bin/tailscaled --cleanup --statedir ${cfg.stateDir} --socket ${cfg.socketFile}";
       postStart = "${cfg.package}/bin/tailscaled --cleanup --statedir ${cfg.stateDir} --socket ${cfg.socketFile}";
@@ -107,9 +109,9 @@ in {
     };
 
     systemd.services.tailscaled2-autoconnect = mkIf (cfg.authKeyFile != null) {
-      after = ["tailscaled2.service"];
-      wants = ["tailscaled2.service"];
-      wantedBy = ["multi-user.target"];
+      after = [ "tailscaled2.service" ];
+      wants = [ "tailscaled2.service" ];
+      wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "oneshot";
       };

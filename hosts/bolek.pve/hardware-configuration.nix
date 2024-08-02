@@ -1,14 +1,25 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-      ../../common/optional/btrfs-optin-persistence.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ../../common/optional/btrfs-optin-persistence.nix
+  ];
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
+      availableKernelModules = [
+        "ata_piix"
+        "uhci_hcd"
+        "virtio_pci"
+        "sr_mod"
+        "virtio_blk"
+      ];
     };
     kernelModules = [ "kvm-intel" ];
     loader = {
@@ -30,17 +41,18 @@
     };
   };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/vda1";
-      fsType = "btrfs";
-      options = [ "subvol=boot" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/vda1";
+    fsType = "btrfs";
+    options = [ "subvol=boot" ];
+  };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 8196;
-  }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 8196;
+    }
+  ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

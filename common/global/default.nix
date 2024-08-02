@@ -1,4 +1,9 @@
-{ pkgs, inputs, outputs, ... }:
+{
+  pkgs,
+  inputs,
+  outputs,
+  ...
+}:
 {
   imports = [
     inputs.home-manager.nixosModules.home-manager
@@ -22,7 +27,9 @@
 
   home-manager = {
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs outputs; };
+    extraSpecialArgs = {
+      inherit inputs outputs;
+    };
   };
   # Fix for qt6 plugins
   # TODO: maybe upstream this?

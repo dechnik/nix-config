@@ -1,9 +1,8 @@
-{ lib, config, ... }: {
+{ lib, config, ... }:
+{
   environment.persistence = {
     "/persist" = {
-      directories = [
-        "/var/lib/fail2ban"
-      ];
+      directories = [ "/var/lib/fail2ban" ];
     };
   };
   services.fail2ban = {

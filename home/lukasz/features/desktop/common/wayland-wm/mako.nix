@@ -1,6 +1,8 @@
 { config, ... }:
-let inherit (config.colorscheme) palette variant;
-in {
+let
+  inherit (config.colorscheme) palette variant;
+in
+{
   services.mako = {
     enable = true;
     iconPath =

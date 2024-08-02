@@ -7,7 +7,13 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sd_mod" "sr_mod" ];
+      availableKernelModules = [
+        "ahci"
+        "xhci_pci"
+        "virtio_pci"
+        "sd_mod"
+        "sr_mod"
+      ];
     };
     loader = {
       grub = {
@@ -17,17 +23,18 @@
     };
   };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=boot" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/sda1";
+    fsType = "btrfs";
+    options = [ "subvol=boot" ];
+  };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 2048;
-  }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 2048;
+    }
+  ];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;

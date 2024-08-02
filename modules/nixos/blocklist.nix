@@ -1,9 +1,11 @@
-{ pkgs
-, config
-, lib
-, ...
+{
+  pkgs,
+  config,
+  lib,
+  ...
 }:
-with lib; let
+with lib;
+let
   blockDownloader = ''
     HOSTS_FILE="${config.services.blocklist-downloader.dataDir}/${config.services.blocklist-downloader.fileName}"
     HOSTS_FILES="$HOSTS_FILE.d"
@@ -93,15 +95,13 @@ in
           File name of compiled blocklist
         '';
       };
-      dnsService =
-        mkOption
-          {
-            type = types.str;
-            default = "coredns.service";
-            description = ''
-              systemd service unit to reload after success.
-            '';
-          };
+      dnsService = mkOption {
+        type = types.str;
+        default = "coredns.service";
+        description = ''
+          systemd service unit to reload after success.
+        '';
+      };
     };
   };
 
@@ -115,8 +115,14 @@ in
         PrivateTmp = true;
       };
       script = blockDownloader;
-      wants = [ "network-online.target" config.services.blocklist-downloader.dnsService ];
-      after = [ "network-online.target" config.services.blocklist-downloader.dnsService ];
+      wants = [
+        "network-online.target"
+        config.services.blocklist-downloader.dnsService
+      ];
+      after = [
+        "network-online.target"
+        config.services.blocklist-downloader.dnsService
+      ];
       wantedBy = [ "multi-user.target" ];
     };
 

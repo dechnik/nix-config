@@ -1,11 +1,9 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 let
   # consul = import ./consul.nix {inherit lib;};
 
-  serverPeer = name:
+  serverPeer =
+    name:
     let
       wireguardHosts = import ../../metadata/wireguard.nix;
       wireguardConfig = wireguardHosts.servers."${name}";
@@ -16,7 +14,8 @@ let
       endpoint = "${wireguardConfig.endpoint_address}:${toString wireguardConfig.endpoint_port}";
     };
 
-  clientPeer = name:
+  clientPeer =
+    name:
     let
       wireguardHosts = import ../../metadata/wireguard.nix;
       wireguardConfig = wireguardHosts.clients."${name}";
@@ -26,7 +25,8 @@ let
       allowedIPs = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
     };
 
-  server = name: privateKeyPath:
+  server =
+    name: privateKeyPath:
     let
       wireguardHosts = import ../../metadata/wireguard.nix;
       wireguardConfig = wireguardHosts.servers."${name}";
@@ -34,7 +34,9 @@ let
       clients = map clientPeer (builtins.attrNames wireguardHosts.clients);
 
       # We need to filter out the current host
-      servers = map serverPeer (builtins.filter (host: host != name) (builtins.attrNames wireguardHosts.servers));
+      servers = map serverPeer (
+        builtins.filter (host: host != name) (builtins.attrNames wireguardHosts.servers)
+      );
     in
     {
       ips = wireguardConfig.addresses ++ wireguardConfig.additional_networks;
@@ -43,7 +45,8 @@ let
       peers = servers ++ clients;
     };
 
-  client = name: privateKeyPath:
+  client =
+    name: privateKeyPath:
     let
       wireguardHosts = import ../../metadata/wireguard.nix;
       wireguardConfig = wireguardHosts.clients."${name}";
@@ -68,7 +71,9 @@ let
     };
 
     networking.firewall = {
-      allowedUDPPorts = lib.mkIf (config.networking.wireguard.interfaces.wg0.listenPort != null) [ config.networking.wireguard.interfaces.wg0.listenPort ];
+      allowedUDPPorts = lib.mkIf (config.networking.wireguard.interfaces.wg0.listenPort != null) [
+        config.networking.wireguard.interfaces.wg0.listenPort
+      ];
       trustedInterfaces = [ "wg0" ];
     };
 
@@ -81,11 +86,9 @@ let
     # my.consulServices.wireguard_exporter = consul.prometheusExporter "wireguard" config.services.prometheus.exporters.wireguard.port;
   };
 
-  clientService = name: secret:
-    service name secret (client name config.sops.secrets.${secret}.path);
+  clientService = name: secret: service name secret (client name config.sops.secrets.${secret}.path);
 
-  serverService = name: secret:
-    service name secret (server name config.sops.secrets.${secret}.path);
+  serverService = name: secret: service name secret (server name config.sops.secrets.${secret}.path);
 in
 {
   inherit clientService serverService;

@@ -1,8 +1,6 @@
 { inputs, config, ... }:
 {
-  imports = [
-    inputs.grafana-matrix-forwarder.nixosModules.default
-  ];
+  imports = [ inputs.grafana-matrix-forwarder.nixosModules.default ];
 
   sops.secrets = {
     matrix-bot-auth = {

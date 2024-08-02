@@ -1,22 +1,27 @@
-{ pkgs, inputs, config, lib, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  lib,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix
 
-      ../../common/optional/auto-upgrade.nix
-      ../../common/optional/qemu-vm.nix
-      ../../common/optional/greetd.nix
-      # ../../common/optional/xserver.nix
-      # ../../common/optional/gnome.nix
-      # ../../common/optional/plasma6.nix
-      ../../common/optional/nix-gc.nix
-      ../../common/global
-      ../../common/users/lukasz
-      ./services
-      inputs.disko.nixosModules.disko
-    ];
+    ../../common/optional/auto-upgrade.nix
+    ../../common/optional/qemu-vm.nix
+    ../../common/optional/greetd.nix
+    # ../../common/optional/xserver.nix
+    # ../../common/optional/gnome.nix
+    # ../../common/optional/plasma6.nix
+    ../../common/optional/nix-gc.nix
+    ../../common/global
+    ../../common/users/lukasz
+    ./services
+    inputs.disko.nixosModules.disko
+  ];
 
   services.spice-vdagentd.enable = true;
 

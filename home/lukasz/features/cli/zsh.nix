@@ -1,14 +1,14 @@
-{ config
-, pkgs
-, lib
-, ...
-}: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   # home.packages = [pkgs.pure-prompt];
   home.persistence = {
     "/persist/home/lukasz" = {
-      directories = [
-        ".local/share/zsh"
-      ];
+      directories = [ ".local/share/zsh" ];
       allowOther = true;
     };
   };
@@ -48,9 +48,9 @@
       zstyle ':completion:*' verbose true
       _comp_options+=(globdots)
       # ${lib.optionalString config.services.gpg-agent.enable ''
-      #   gnupg_path=$(ls $XDG_RUNTIME_DIR/gnupg)
-      #   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/$gnupg_path/S.gpg-agent.ssh"
-      # ''}
+        #   gnupg_path=$(ls $XDG_RUNTIME_DIR/gnupg)
+        #   export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/$gnupg_path/S.gpg-agent.ssh"
+        # ''}
       command_not_found_handler() {
         ${pkgs.comma}/bin/comma "$@"
       }
@@ -86,6 +86,8 @@
       us = "systemctl --user";
       rs = "sudo systemctl";
     };
-    shellGlobalAliases = { eza = "eza --icons --git"; };
+    shellGlobalAliases = {
+      eza = "eza --icons --git";
+    };
   };
 }

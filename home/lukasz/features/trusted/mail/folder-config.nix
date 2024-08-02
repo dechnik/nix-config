@@ -1,25 +1,22 @@
-{ config
-, lib
-, ...
-}:
+{ config, lib, ... }:
 # A function given the contents of config.accounts.email.accounts which renders
 # a neomutt configuration snippet which shows the primary account and thence the
 # other accounts in alphabetical order, rendering the folders therein...
 accounts:
-with lib; let
+with lib;
+let
   neomuttAccounts = filter (a: a.neomutt.enable) (attrValues accounts);
-  primaryAccount =
-    head (filter (a: a.primary) neomuttAccounts ++ neomuttAccounts);
+  primaryAccount = head (filter (a: a.primary) neomuttAccounts ++ neomuttAccounts);
   otherAccounts = filter (a: a != primaryAccount) neomuttAccounts;
 
-  accountConfig = account:
+  accountConfig =
+    account:
     let
       baseDir = "${config.xdg.dataHome}/mail/${account.name}";
       folders = account.display-folders;
       folder-parts = folder: splitString "/" folder;
       folder-suffix = folder: last (folder-parts folder);
-      folder-prefix = folder:
-        concatStringsSep "" (map (f: "  ") (folder-parts folder));
+      folder-prefix = folder: concatStringsSep "" (map (f: "  ") (folder-parts folder));
       folder-name = folder: ''
         "${folder-prefix folder}${folder-suffix folder}" "${baseDir}/${folder}"
       '';

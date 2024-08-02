@@ -1,4 +1,10 @@
-{ config, lib, pkgs, utils, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  utils,
+  ...
+}:
 
 let
   cfg = config.services.lldap;
@@ -115,13 +121,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall =
-      lib.mkIf cfg.openFirewall {
-        allowedTCPPorts = [
-          cfg.settings.ldap_port
-          cfg.settings.http_port
-        ];
-      };
+    networking.firewall = lib.mkIf cfg.openFirewall {
+      allowedTCPPorts = [
+        cfg.settings.ldap_port
+        cfg.settings.http_port
+      ];
+    };
     systemd.services.lldap = {
       description = "Lightweight LDAP server (lldap)";
       after = [ "network-online.target" ];

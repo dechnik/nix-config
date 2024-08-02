@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   fonts = {
     packages = with pkgs; [
@@ -24,7 +22,13 @@
 
       #remacs-all-the-icons-fonts
       # nerdfonts
-      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono" "GeistMono"];})
+      (nerdfonts.override {
+        fonts = [
+          "FiraCode"
+          "JetBrainsMono"
+          "GeistMono"
+        ];
+      })
     ];
     # enableDefaultFonts = false;
 

@@ -31,8 +31,6 @@
     # ./wormhole.nix
   ];
 
-  environment.persistence."/persist".directories = [
-    "/var/lib/private"
-  ];
+  environment.persistence."/persist".directories = [ "/var/lib/private" ];
 
 }

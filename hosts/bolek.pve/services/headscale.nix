@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
   webuiport = 5050;
   cfg = config.services.headscale;
@@ -56,9 +61,7 @@ in
           "HS_SERVER" = "https://tailscale.dechnik.net";
           "LOG_LEVEL" = "Debug";
         };
-        environmentFiles = [
-          "${config.sops.secrets.headscale-webui-env.path}"
-        ];
+        environmentFiles = [ "${config.sops.secrets.headscale-webui-env.path}" ];
         volumes = [
           "/var/lib/headscale-webui:/data"
           "${hdConfigFile}:/etc/headscale/config.yaml:ro"
@@ -108,13 +111,15 @@ in
     traefik.dynamicConfigOptions.http = {
       services = {
         tailscale = {
-          loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.headscale.port}"; }];
+          loadBalancer.servers = [ { url = "http://127.0.0.1:${toString config.services.headscale.port}"; } ];
         };
         tailscale-metrics = {
-          loadBalancer.servers = [{ url = "http://${toString config.services.headscale.settings.metrics_listen_addr}"; }];
+          loadBalancer.servers = [
+            { url = "http://${toString config.services.headscale.settings.metrics_listen_addr}"; }
+          ];
         };
         tailscale-web = {
-          loadBalancer.servers = [{ url = "http://127.0.0.1:${toString webuiport}"; }];
+          loadBalancer.servers = [ { url = "http://127.0.0.1:${toString webuiport}"; } ];
         };
       };
 
@@ -140,12 +145,20 @@ in
     };
   };
 
-  environment.systemPackages = [ config.services.headscale.package pkgs.sqlite-interactive pkgs.sqlite-web ];
+  environment.systemPackages = [
+    config.services.headscale.package
+    pkgs.sqlite-interactive
+    pkgs.sqlite-web
+  ];
 
   environment.persistence = {
     "/persist".directories = [
       "/var/lib/headscale"
-      { directory = "/var/lib/headscale-webui"; user = "1000"; group = "1000"; }
+      {
+        directory = "/var/lib/headscale-webui";
+        user = "1000";
+        group = "1000";
+      }
     ];
   };
 }

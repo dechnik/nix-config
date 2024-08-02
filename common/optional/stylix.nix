@@ -1,11 +1,6 @@
-{ inputs
-, pkgs
-, ...
-}:
+{ inputs, pkgs, ... }:
 {
-  imports = [
-    inputs.stylix.nixosModules.stylix
-  ];
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
   stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
   stylix.image = pkgs.fetchurl {

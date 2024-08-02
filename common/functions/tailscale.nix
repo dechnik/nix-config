@@ -1,22 +1,23 @@
-{ config
-, pkgs
-, lib
-,
+{
+  config,
+  pkgs,
+  lib,
 }:
 let
   package = pkgs.tailscale;
   tailscale =
-    { hostname ? ''${builtins.replaceStrings [".dechnik.net"] [""] config.networking.fqdn}''
-    , loginServer ? ""
-    , exitNode ? false
-    , advertiseRoutes ? []
-    , acceptDns ? false
-    , reset ? true
-    , reauth ? false
-    , ssh ? false
-    , tags ? []
-    ,
-    }: {
+    {
+      hostname ? ''${builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.fqdn}'',
+      loginServer ? "",
+      exitNode ? false,
+      advertiseRoutes ? [ ],
+      acceptDns ? false,
+      reset ? true,
+      reauth ? false,
+      ssh ? false,
+      tags ? [ ],
+    }:
+    {
       sops.secrets.tailscale-preauthkey = {
         sopsFile = ../secrets.yaml;
       };
@@ -28,22 +29,17 @@ let
 
       # make the tailscale command usable to users
       environment.systemPackages = [ package ];
-          # enable the tailscale service
+      # enable the tailscale service
       services.tailscale = {
         enable = true;
         inherit package;
 
         authKeyFile = config.sops.secrets.tailscale-preauthkey.path;
 
-        useRoutingFeatures =
-          if exitNode || (builtins.length advertiseRoutes) > 0
-          then "both"
-          else "client";
+        useRoutingFeatures = if exitNode || (builtins.length advertiseRoutes) > 0 then "both" else "client";
 
         extraUpFlags =
-          [
-            ''--hostname ${hostname}''
-          ]
+          [ ''--hostname ${hostname}'' ]
           ++ lib.optional ((builtins.stringLength loginServer) > 0) ''--login-server ${loginServer}''
           ++ lib.optional reauth "--force-reauth"
           ++ lib.optional reset "--reset"
@@ -51,8 +47,12 @@ let
           ++ lib.optional acceptDns "--accept-dns=false"
           ++ lib.optional exitNode "--advertise-exit-node"
           ++ lib.optional exitNode "--advertise-connector"
-          ++ lib.optional ((builtins.length advertiseRoutes) > 0) ''--advertise-routes=${builtins.concatStringsSep "," advertiseRoutes}''
-          ++ lib.optional ((builtins.length tags) > 0) ''--advertise-tags=${builtins.concatStringsSep "," tags}'';
+          ++ lib.optional (
+            (builtins.length advertiseRoutes) > 0
+          ) ''--advertise-routes=${builtins.concatStringsSep "," advertiseRoutes}''
+          ++ lib.optional (
+            (builtins.length tags) > 0
+          ) ''--advertise-tags=${builtins.concatStringsSep "," tags}'';
       };
     };
 in

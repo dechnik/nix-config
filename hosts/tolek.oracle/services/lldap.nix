@@ -52,7 +52,7 @@
 
   services.traefik.dynamicConfigOptions.http = {
     services.lldap = {
-      loadBalancer.servers = [{ url = "http://10.61.0.1:17170"; }];
+      loadBalancer.servers = [ { url = "http://10.61.0.1:17170"; } ];
     };
 
     routers.lldap = {

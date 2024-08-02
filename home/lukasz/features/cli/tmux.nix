@@ -1,12 +1,19 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   tmux-sessionizer = pkgs.writeShellApplication {
     name = "tmux-sessionizer";
-    runtimeInputs = with pkgs; [ util-linux procps tmux coreutils fzf ];
+    runtimeInputs = with pkgs; [
+      util-linux
+      procps
+      tmux
+      coreutils
+      fzf
+    ];
     text = ''
       if [[ $# -eq 1 ]]; then
           selected=$1

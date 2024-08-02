@@ -1,8 +1,21 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
 {
   boot = {
     initrd = {
-      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
       # kernelModules = [ "kvm-amd" ];
     };
     loader = {
@@ -40,9 +53,7 @@
   #   fsType = "ext4";
   # };
 
-  environment.systemPackages = with pkgs; [
-    mdadm
-  ];
+  environment.systemPackages = with pkgs; [ mdadm ];
   fileSystems."/mnt/games" = {
     device = "/dev/disk/by-label/games";
     fsType = "ext4";

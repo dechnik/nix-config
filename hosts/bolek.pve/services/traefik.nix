@@ -1,4 +1,10 @@
-{ pkgs, lib, inputs, config, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  config,
+  ...
+}:
 let
   traefik = import ../../../common/functions/traefik.nix { inherit config lib pkgs; };
 in
@@ -13,22 +19,25 @@ lib.mkMerge [
         rule = "Host(`traefik.pve.dechnik.net`) ";
         service = "api@internal";
         entryPoints = [ "web" ];
-        middlewares = [ "dechnik-ips" "auth" ];
+        middlewares = [
+          "dechnik-ips"
+          "auth"
+        ];
       };
       services.nc = {
-        loadBalancer.servers = [{ url = "http://10.60.0.2:80"; }];
+        loadBalancer.servers = [ { url = "http://10.60.0.2:80"; } ];
       };
       services.yt = {
-        loadBalancer.servers = [{ url = "http://10.60.0.2:3000"; }];
+        loadBalancer.servers = [ { url = "http://10.60.0.2:3000"; } ];
       };
       services.ob = {
-        loadBalancer.servers = [{ url = "http://10.60.0.3:9000"; }];
+        loadBalancer.servers = [ { url = "http://10.60.0.3:9000"; } ];
       };
       services.sg = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:3080"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:3080"; } ];
       };
       services.tj = {
-        loadBalancer.servers = [{ url = "http://127.0.0.1:8880"; }];
+        loadBalancer.servers = [ { url = "http://127.0.0.1:8880"; } ];
       };
 
       routers.nc = {
@@ -41,7 +50,7 @@ lib.mkMerge [
         service = "sg";
         entryPoints = [ "web" ];
       };
-      routers.ob= {
+      routers.ob = {
         rule = "Host(`ob.dechnik.net`)";
         service = "ob";
         entryPoints = [ "web" ];

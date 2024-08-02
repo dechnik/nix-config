@@ -1,33 +1,39 @@
 { outputs, inputs }:
 let
-  addPatches = pkg: patches: pkg.overrideAttrs (oldAttrs: {
-    patches = (oldAttrs.patches or [ ]) ++ patches;
-  });
-in rec {
+  addPatches =
+    pkg: patches:
+    pkg.overrideAttrs (oldAttrs: {
+      patches = (oldAttrs.patches or [ ]) ++ patches;
+    });
+in
+rec {
   # For every flake input, aliases 'pkgs.inputs.${flake}' to
   # 'inputs.${flake}.packages.${pkgs.system}' or
   # 'inputs.${flake}.legacyPackages.${pkgs.system}' or
   flake-inputs = final: _: {
-    inputs = builtins.mapAttrs
-      (_: flake: let
-        legacyPackages = ((flake.legacyPackages or {}).${final.system} or {});
-        packages = ((flake.packages or {}).${final.system} or {});
+    inputs = builtins.mapAttrs (
+      _: flake:
+      let
+        legacyPackages = ((flake.legacyPackages or { }).${final.system} or { });
+        packages = ((flake.packages or { }).${final.system} or { });
       in
-        if legacyPackages != {} then legacyPackages else packages
-      )
-      inputs;
+      if legacyPackages != { } then legacyPackages else packages
+    ) inputs;
   };
 
   # additions = final: _prev: import ../pkgs { pkgs = final; };
-  additions = final: prev: import ../pkgs { pkgs = final; } // {
-    # vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins { };
-    # vimPlugins = prev.vimPlugins // import ../pkgs/vim-plugins {
-    #   inherit (final) fetchFromGitHub;
-    #   inherit (prev.vimUtils) buildVimPlugin;
-    #   inherit (final) sources;
-    # };
-    sources = prev.callPackage (import ../pkgs/_sources/generated.nix) {};
-  };
+  additions =
+    final: prev:
+    import ../pkgs { pkgs = final; }
+    // {
+      # vimPlugins = prev.vimPlugins // final.callPackage ../pkgs/vim-plugins { };
+      # vimPlugins = prev.vimPlugins // import ../pkgs/vim-plugins {
+      #   inherit (final) fetchFromGitHub;
+      #   inherit (prev.vimUtils) buildVimPlugin;
+      #   inherit (final) sources;
+      # };
+      sources = prev.callPackage (import ../pkgs/_sources/generated.nix) { };
+    };
 
   # Modifies existing packages
   modifications = final: prev: {
@@ -60,15 +66,18 @@ in rec {
       preFixup =
         oldAttrs.preFixup
         +
-        # Fix for https://github.com/NixOS/nixpkgs/issues/168484
-        (let
-          schemaPath = package: "${package}/share/gsettings-schemas/${package.name}";
-        in ''
-          makeWrapperArgs+=(
-            --prefix XDG_DATA_DIRS : ${schemaPath final.gsettings-desktop-schemas}
-            --prefix XDG_DATA_DIRS : ${schemaPath final.gtk3}
-          )
-        '');
+          # Fix for https://github.com/NixOS/nixpkgs/issues/168484
+          (
+            let
+              schemaPath = package: "${package}/share/gsettings-schemas/${package.name}";
+            in
+            ''
+              makeWrapperArgs+=(
+                --prefix XDG_DATA_DIRS : ${schemaPath final.gsettings-desktop-schemas}
+                --prefix XDG_DATA_DIRS : ${schemaPath final.gtk3}
+              )
+            ''
+          );
       # patches =
       #   (oldAttrs.patches or [])
       #   ++ [
@@ -91,10 +100,8 @@ in rec {
           rev = "b3e0d9a8b78d55e5fea394839524f5a24d694230";
           hash = "sha256-WAJJ4UL3hsqsfZ05cHthjEwItnv7Xy84r2y6lzkBMh8=";
         };
-        patches = [./hydra-restrict-eval.diff];
-      }))
-      .override {
-        nix = final.nixVersions.nix_2_22;
-      };
+        patches = [ ./hydra-restrict-eval.diff ];
+      })).override
+        { nix = final.nixVersions.nix_2_22; };
   };
 }

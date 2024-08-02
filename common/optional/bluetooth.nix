@@ -1,8 +1,10 @@
-{ config
-, pkgs
-, inputs
-, ...
-}: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   hardware = {
     bluetooth = {
       enable = true;

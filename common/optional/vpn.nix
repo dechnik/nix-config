@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   xl2tpd-ppp-wrapped = pkgs.stdenv.mkDerivation {
     name = "xl2tpd-ppp-wrapped";
@@ -26,7 +31,11 @@ in
   networking.firewall = {
     checkReversePath = "loose";
     allowedTCPPorts = [ 1701 ];
-    allowedUDPPorts = [ 1701 500 4500 ];
+    allowedUDPPorts = [
+      1701
+      500
+      4500
+    ];
     # extraInputRules = ''
     #   ip protocol { ah, esp } accept
     #   meta ipsec exists meta l4proto { tcp, udp } th dport 53 accept
@@ -53,9 +62,7 @@ in
   # '';
   services.strongswan = {
     enable = true;
-    secrets = [
-      "/etc/ipsec.d/*.secrets"
-    ];
+    secrets = [ "/etc/ipsec.d/*.secrets" ];
   };
   systemd.services.strongswan.environment.STRONGSWAN_CONF = lib.mkForce "/run/secrets/strongswan-config";
   sops.secrets = {

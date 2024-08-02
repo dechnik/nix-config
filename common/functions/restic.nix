@@ -1,16 +1,18 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
-with lib; let
+with lib;
+let
   commonJob =
-    { name
-    , repository
-    , secret
-    , paths
-    , owner ? "root"
-    ,
+    {
+      name,
+      repository,
+      secret,
+      paths,
+      owner ? "root",
     }:
     mkMerge [
       {
@@ -47,13 +49,14 @@ with lib; let
     ];
 
   backupJob =
-    { name ? config.networking.fqdn
-    , site
-    , secret
-    , paths
-    , owner ? "root"
-    ,
-    }: (commonJob {
+    {
+      name ? config.networking.fqdn,
+      site,
+      secret,
+      paths,
+      owner ? "root",
+    }:
+    (commonJob {
       inherit secret;
       inherit paths;
       inherit owner;

@@ -1,4 +1,4 @@
-{config,...}:
+{ config, ... }:
 {
   services.atuin = {
     enable = true;
@@ -8,7 +8,9 @@
   };
   services.traefik.dynamicConfigOptions.http = {
     services.atuin = {
-      loadBalancer.servers = [{ url = "http://${config.services.atuin.host}:${toString config.services.atuin.port}"; }];
+      loadBalancer.servers = [
+        { url = "http://${config.services.atuin.host}:${toString config.services.atuin.port}"; }
+      ];
     };
 
     routers.atuin = {

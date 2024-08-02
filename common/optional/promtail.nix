@@ -6,9 +6,7 @@ in
   services.promtail = {
     enable = true;
 
-    extraFlags = [
-      "--client.external-labels=host=${config.networking.hostName}.${site}"
-    ];
+    extraFlags = [ "--client.external-labels=host=${config.networking.hostName}.${site}" ];
 
     configuration = {
       server.disable = true;

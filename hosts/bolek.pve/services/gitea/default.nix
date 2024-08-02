@@ -2,7 +2,9 @@
 {
   services.traefik.dynamicConfigOptions.http = {
     services.gitea = {
-      loadBalancer.servers = [{ url = "http://127.0.0.1:${toString config.services.gitea.settings.server.HTTP_PORT}"; }];
+      loadBalancer.servers = [
+        { url = "http://127.0.0.1:${toString config.services.gitea.settings.server.HTTP_PORT}"; }
+      ];
     };
 
     routers.gitea = {

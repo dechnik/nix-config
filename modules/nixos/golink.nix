@@ -1,18 +1,25 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.services.golink;
+let
+  cfg = config.services.golink;
 
-in {
+in
+{
   options.services.golink = {
     enable = mkEnableOption "Enable golink";
 
     package = mkOption {
       type = types.package;
       description = ''
-                  golink package to use
-                '';
+        golink package to use
+      '';
       default = pkgs.golink;
     };
 
@@ -65,19 +72,15 @@ in {
       enable = true;
       script =
         let
-          args =
-            [
-              "--sqlitedb ${cfg.databaseFile}"
-            ]
-            ++ lib.optionals cfg.verbose [ "--verbose" ];
+          args = [ "--sqlitedb ${cfg.databaseFile}" ] ++ lib.optionals cfg.verbose [ "--verbose" ];
         in
-          ''
-                  ${lib.optionalString (cfg.tailscaleAuthKeyFile != null) ''
-                    export TS_AUTHKEY="$(head -n1 ${lib.escapeShellArg cfg.tailscaleAuthKeyFile})"
-                  ''}
+        ''
+          ${lib.optionalString (cfg.tailscaleAuthKeyFile != null) ''
+            export TS_AUTHKEY="$(head -n1 ${lib.escapeShellArg cfg.tailscaleAuthKeyFile})"
+          ''}
 
-                  ${cfg.package}/bin/golink ${builtins.concatStringsSep " " args}
-                '';
+          ${cfg.package}/bin/golink ${builtins.concatStringsSep " " args}
+        '';
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];
       serviceConfig = {

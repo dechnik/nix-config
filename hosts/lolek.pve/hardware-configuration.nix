@@ -1,11 +1,16 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
-  imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
-      ../../common/optional/btrfs-optin-persistence.nix
-      ../../common/optional/postgres.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  ...
+}:
+{
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+    ../../common/optional/btrfs-optin-persistence.nix
+    ../../common/optional/postgres.nix
+  ];
 
   # hardware.opengl = {
   #   enable = true;
@@ -16,7 +21,15 @@
 
   boot = {
     initrd = {
-      availableKernelModules = [ "ehci_pci" "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_scsi" "sd_mod" ];
+      availableKernelModules = [
+        "ehci_pci"
+        "ata_piix"
+        "uhci_hcd"
+        "virtio_pci"
+        "sr_mod"
+        "virtio_scsi"
+        "sd_mod"
+      ];
     };
     kernelModules = [ "kvm-intel" ];
     loader = {
@@ -32,17 +45,18 @@
     fsType = "ext4";
   };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/sda1";
-      fsType = "btrfs";
-      options = [ "subvol=boot" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/sda1";
+    fsType = "btrfs";
+    options = [ "subvol=boot" ];
+  };
 
-  swapDevices = [{
-    device = "/swap/swapfile";
-    size = 8196;
-  }];
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 8196;
+    }
+  ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

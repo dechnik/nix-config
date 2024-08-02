@@ -1,7 +1,5 @@
-{ config
-, lib
-, ...
-}: {
+{ config, lib, ... }:
+{
   options = {
     my.consulServices = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
@@ -11,9 +9,7 @@
 
   config = {
     environment.persistence = {
-      "/persist".directories = [
-        "/var/lib/consul"
-      ];
+      "/persist".directories = [ "/var/lib/consul" ];
     };
 
     services.consul = {
@@ -26,7 +22,9 @@
         log_level = "INFO";
         datacenter = builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.domain;
 
-        retry_join = lib.mkIf (config.networking.defaultGateway != null) (lib.mkDefault [ config.networking.defaultGateway.address ]);
+        retry_join = lib.mkIf (config.networking.defaultGateway != null) (
+          lib.mkDefault [ config.networking.defaultGateway.address ]
+        );
 
         # addresses = {
         #   http = "127.0.0.1";
