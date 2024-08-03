@@ -179,8 +179,8 @@
         ++
           # Screen lock
           (lib.optionals config.programs.swaylock.enable [
-            ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper} --grace 2"
-            "SUPERSHIFT,Escape,exec,${swaylock} -i ${config.wallpaper} --grace 2"
+            ",XF86Launch4,exec,${swaylock} -i ${config.wallpaper}"
+            "SUPERSHIFT,Escape,exec,${swaylock} -i ${config.wallpaper}"
           ])
         ++
           # Notification manager
