@@ -38,7 +38,7 @@ jobs:
             runner: ubuntu-latest
           - host: tolek.oracle
             platform: aarch64-linux
-            runner: nixos
+            runner: ubuntu-latest
     name: Build - ${{ matrix.machine.host }}
     steps:
       - uses: actions/checkout@v4
