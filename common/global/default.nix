@@ -49,6 +49,7 @@
       git
       pciutils
       parted
+      restic
       mdadm
       nfs-utils
       nixos-shell
