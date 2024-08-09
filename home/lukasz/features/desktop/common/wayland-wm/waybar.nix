@@ -8,13 +8,12 @@
 
 let
   neomutt = "${pkgs.neomutt}/bin/neomutt";
-  # TODO enable when https://github.com/NixOS/nixpkgs/issues/263504 resolved
-  # ikhal = "${pkgs.khal}/bin/ikhal";
+  ikhal = "${pkgs.khal}/bin/ikhal";
 
   terminal = "${pkgs.kitty}/bin/kitty";
   terminal-spawn = cmd: "${terminal} $SHELL -i -c ${cmd}";
 
-  # calendar = terminal-spawn ikhal;
+  calendar = terminal-spawn ikhal;
   mail = terminal-spawn neomutt;
 
   commonDeps = with pkgs; [
@@ -150,7 +149,7 @@ in
           tooltip-format = ''
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
-          # on-click = calendar;
+          on-click = calendar;
         };
         cpu = {
           format = "   {usage}%";
@@ -352,6 +351,7 @@ in
           };
           return-type = "json";
           interval = 2;
+          escape = true;
           max-length = 30;
           format = "{icon} {}";
           format-icons = {
