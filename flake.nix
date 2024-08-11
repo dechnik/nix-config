@@ -65,7 +65,7 @@
     };
 
     website = {
-      url = "git+https://gitlab.dechnik.net/lukasz/website.git?ref=master";
+      url = "github:dechnik/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # emacs-overlay.url = "github:nix-community/emacs-overlay/d7d53d728dc68d0fca4601b4e155e746ce274098";

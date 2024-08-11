@@ -3808,18 +3808,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1721551190,
-        "narHash": "sha256-YzvmOIyLVAnc+w2qh+AahqRIeE1JkNMPeXIyrPSmyZc=",
-        "ref": "master",
-        "rev": "90a58ed15c25a8cd22d52d29ced31ca7b1eaeeda",
-        "revCount": 28,
-        "type": "git",
-        "url": "https://gitlab.dechnik.net/lukasz/website.git"
+        "lastModified": 1723322276,
+        "narHash": "sha256-URNFGM8VfgImbbATuo4/3/qicuzZGCUWp83HHetLxQw=",
+        "owner": "dechnik",
+        "repo": "website",
+        "rev": "962cb8115972a9bd5b79fb1d85053894e4822c65",
+        "type": "github"
       },
       "original": {
-        "ref": "master",
-        "type": "git",
-        "url": "https://gitlab.dechnik.net/lukasz/website.git"
+        "owner": "dechnik",
+        "repo": "website",
+        "type": "github"
       }
     },
     "xdph": {
