@@ -92,4 +92,4 @@ jobs:
         uses: ad-m/github-push-action@v0.8.0
         with:
           force: true
-          push_to: ${{ matrix.machine.target-branch }}
+          branch: ${{ matrix.machine.target-branch }}
