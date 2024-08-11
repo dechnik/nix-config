@@ -21,24 +21,31 @@ jobs:
           - host: bolek.pve
             platform: x86-64-linux
             runner: ubuntu-latest
+            target-branch: release-bolek_pve
           - host: lolek.pve
             platform: x86-64-linux
             runner: ubuntu-latest
+            target-branch: release-lolek_pve
           - host: tola.pve
             platform: x86-64-linux
             runner: ubuntu-latest
+            target-branch: release-tola_pve
           - host: dziad
             platform: x86-64-linux
             runner: nixos
+            target-branch: release-dziad
           - host: ldlat
             platform: x86-64-linux
             runner: nixos
+            target-branch: release-ldlat
           - host: ola.hetzner
             platform: x86-64-linux
             runner: ubuntu-latest
+            target-branch: release-ola_hetzner
           - host: tolek.oracle
             platform: aarch64-linux
             runner: ubuntu-latest
+            target-branch: release-tolek_oracle
     name: Build - ${{ matrix.machine.host }}
     steps:
       - uses: actions/checkout@v4
@@ -74,3 +81,15 @@ jobs:
           nix run github:zhaofengli/attic#default watch-store system &
           nix build '.#nixosConfigurations."${{ matrix.machine.host }}".config.system.build.toplevel'
           nix run github:zhaofengli/attic#default push system result -j 2 || true
+
+      - name: Configure git
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Push to target branch
+        if: github.ref == 'refs/heads/master' && success()
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          force: true
+          push_to: ${{ matrix.machine.target-branch }}
