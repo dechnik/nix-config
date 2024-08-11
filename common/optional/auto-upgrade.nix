@@ -8,8 +8,8 @@
 let
   toplevel = builtins.replaceStrings [ ".dechnik.net" ] [ "" ] config.networking.fqdn;
   hostname = builtins.replaceStrings [ "." ] [ "_" ] toplevel;
-  upgrade_flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}#${toplevel}";
-  check_flake = "git+https://git.dechnik.net/lukasz/nix-config.git?ref=release-${hostname}";
+  upgrade_flake = "github:dechnik/nix-config/release-${hostname}#${toplevel}";
+  check_flake = "github:dechnik/nix-config/release-${hostname}";
   # Only enable auto upgrade if current config came from a clean tree
   # This avoids accidental auto-upgrades when working locally.
   isClean = inputs.self ? rev;
