@@ -14,6 +14,7 @@
     ../../common/optional/consul.nix
     ../../common/optional/promtail.nix
     ../../common/optional/nginx.nix
+    ../../common/optional/nix-gc2.nix
     ../../common/optional/avahi.nix
     ../../common/optional/node-exporter.nix
     ../../common/optional/systemd-exporter.nix

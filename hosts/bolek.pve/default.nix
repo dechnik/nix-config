@@ -16,6 +16,7 @@
     ../../common/optional/postfix.nix
     ../../common/optional/avahi.nix
     ../../common/optional/promtail.nix
+    ../../common/optional/nix-gc2.nix
     ../../common/optional/samba-base.nix
     ../../common/optional/samba-storage.nix
     ../../common/optional/node-exporter.nix
