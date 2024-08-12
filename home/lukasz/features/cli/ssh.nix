@@ -1,18 +1,20 @@
 {
-  config,
   outputs,
   lib,
   ...
 }:
 let
   hostnames = builtins.attrNames outputs.nixosConfigurations;
+  hosts = builtins.map (host: builtins.replaceStrings [ "." ] [ "-" ] host) hostnames;
+  allHosts = hostnames ++ hosts;
+  #  ++ map (host: builtins.replaceStrings [ "." ] [ "_" ] host) builtins.attrNames outputs.nixosConfigurations;
 in
 {
   programs.ssh = {
     enable = true;
     matchBlocks = {
       net = {
-        host = builtins.concatStringsSep " " hostnames;
+        host = builtins.concatStringsSep " " allHosts;
         forwardAgent = true;
         remoteForwards = [
           {
