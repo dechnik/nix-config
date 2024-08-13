@@ -61,7 +61,11 @@
   services.gvfs.enable = true;
 
   services.dbus.packages = [ pkgs.pcmanfm ];
-  environment.systemPackages = [ pkgs.quickemu ];
+  environment.systemPackages = with pkgs; [
+    quickemu
+    qt5.qtwayland
+    qt6.qtwayland
+  ];
 
   networking = {
     hostName = "dziad"; # Define your hostname.
@@ -121,6 +125,16 @@
   hardware = {
     graphics = {
       enable = true;
+      extraPackages = [
+        pkgs.rocmPackages.clr.icd
+        pkgs.amdvlk
+        # Encoding/decoding acceleration
+        pkgs.libvdpau-va-gl
+        pkgs.vaapiVdpau
+      ];
+      extraPackages32 = [
+        pkgs.driversi686Linux.amdvlk
+      ];
       enable32Bit = true;
     };
   };

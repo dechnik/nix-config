@@ -50,7 +50,7 @@ in
     brave
     google-chrome
     obsidian
-    floorp
+    ladybird
     # (vivaldi.override {
     #   proprietaryCodecs = true;
     #   enableWidevine = false;
