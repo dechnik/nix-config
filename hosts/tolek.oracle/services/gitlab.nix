@@ -51,7 +51,11 @@
     gitlab = {
       enable = true;
       statePath = "/var/lib/git/state";
-      backup.path = "/var/lib/git/backup";
+      backup = {
+        path = "/var/lib/git/backup";
+        startAt = [ "03:00" ];
+        keepTime = 720;
+      };
       databaseCreateLocally = true;
       databaseUsername = "git";
       databaseName = "git";
@@ -78,6 +82,9 @@
         enableStartTLSAuto = false;
       };
       extraConfig = {
+        gitlab = {
+          email_from = "monitoring@dechnik.net";
+        };
         ldap = {
           enabled = true;
           servers = {
