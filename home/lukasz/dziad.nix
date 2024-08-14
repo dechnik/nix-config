@@ -9,6 +9,7 @@
     ./features/trusted/mail/personal.nix
     # ./features/trusted/mail/work.nix
     ./features/games
+    ./features/games/starsector.nix
     # ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
     ./features/desktop/optional/nc.nix

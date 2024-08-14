@@ -63,8 +63,6 @@
   services.dbus.packages = [ pkgs.pcmanfm ];
   environment.systemPackages = with pkgs; [
     quickemu
-    qt5.qtwayland
-    qt6.qtwayland
   ];
 
   networking = {
