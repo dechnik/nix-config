@@ -12,6 +12,7 @@
     ./zathura.nix
     ./qutebrowser.nix
     ./waybar.nix
+    ./waypipe.nix
   ];
   home.packages = with pkgs; [
     glib
