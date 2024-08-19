@@ -61,9 +61,6 @@
   services.gvfs.enable = true;
 
   services.dbus.packages = [ pkgs.pcmanfm ];
-  environment.systemPackages = with pkgs; [
-    quickemu
-  ];
 
   networking = {
     hostName = "dziad"; # Define your hostname.
