@@ -24,7 +24,7 @@ in
         ];
       };
       trusted = lib.hm.dag.entryBefore [ "net" ] {
-        host = "dechnik.net *.dechnik.net *.panther-crocodile.ts.net";
+        host = "*.panther-crocodile.ts.net";
         forwardAgent = true;
         remoteForwards = [
           {
@@ -40,6 +40,10 @@ in
         forwardX11Trusted = true;
         setEnv.WAYLAND_DISPLAY = "wayland-waypipe";
         extraOptions.StreamLocalBindUnlink = "yes";
+      };
+      my = lib.hm.dag.entryBefore [ "net" ] {
+        host = "dechnik.net *.dechnik.net";
+        forwardAgent = true;
       };
     };
     includes = [
