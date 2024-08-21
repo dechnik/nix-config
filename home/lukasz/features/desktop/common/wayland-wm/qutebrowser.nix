@@ -7,22 +7,6 @@
 
 let
   inherit (config.colorscheme) palette variant;
-  browser = [ "org.qutebrowser.qutebrowser.desktop" ];
-  associations = {
-    "text/html" = browser;
-    "x-scheme-handler/http" = browser;
-    "x-scheme-handler/https" = browser;
-    "x-scheme-handler/ftp" = browser;
-    "x-scheme-handler/chrome" = browser;
-    "x-scheme-handler/about" = browser;
-    "x-scheme-handler/unknown" = browser;
-    "application/x-extension-htm" = browser;
-    "application/x-extension-html" = browser;
-    "application/x-extension-shtml" = browser;
-    "application/xhtml+xml" = browser;
-    "application/x-extension-xhtml" = browser;
-    "application/x-extension-xht" = browser;
-  };
   gruvbox-css = builtins.fetchurl {
     name = "gruvbox-all-sites.css";
     url = "https://github.com/alphapapa/solarized-everything-css/raw/master/css/gruvbox/gruvbox-all-sites.css";
@@ -31,9 +15,6 @@ let
 in
 {
   home = {
-    sessionVariables = {
-      BROWSER = "qutebrowser";
-    };
     persistence = {
       "/persist/home/lukasz".directories = [
         ".config/qutebrowser/greasemonkey"
@@ -67,17 +48,6 @@ in
         ]
     );
   };
-
-  xdg.mimeApps.enable = true;
-  xdg.mimeApps.associations.added = associations;
-  xdg.mimeApps.defaultApplications = associations;
-  # xdg.mimeApps.defaultApplications = {
-  #   "text/html" = [ "org.qutebrowser.qutebrowser.desktop" ];
-  #   "text/xml" = [ "org.qutebrowser.qutebrowser.desktop" ];
-  #   "x-scheme-handler/http" = [ "org.qutebrowser.qutebrowser.desktop" ];
-  #   "x-scheme-handler/https" = [ "org.qutebrowser.qutebrowser.desktop" ];
-  #   "x-scheme-handler/qute" = [ "org.qutebrowser.qutebrowser.desktop" ];
-  # };
 
   programs.qutebrowser = {
     enable = true;
