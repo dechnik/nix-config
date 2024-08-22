@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     awscli
+    winbox
     # aws-sam-cli
     azure-cli
     # azure-functions-core-tools
