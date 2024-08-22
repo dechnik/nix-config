@@ -38,6 +38,7 @@
     # ../common/optional/zfs.nix
     # ../common/optional/quietboot.nix
   ];
+  environment.systemPackages = with pkgs; [ boosteroid ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.videoDrivers = [ "amdgpu" ];

@@ -15,5 +15,6 @@ rec {
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
   sessionx = pkgs.callPackage ./sessionx { };
   tailscale-tools = pkgs.callPackage ./tailscale-tools { };
+  boosteroid = pkgs.callPackage ./boosteroid { };
   # cody = pkgs.callPackage ./cody { };
 }
