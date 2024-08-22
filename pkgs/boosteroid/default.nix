@@ -17,23 +17,15 @@
   dbus,
   wayland-scanner,
   fetchurl,
-  requireFile,
   dpkg
 }:
 stdenv.mkDerivation rec {
   pname = "boosteroid";
   version = "1.9.3-beta";
-  # src = fetchurl {
-  #   url = "https://boosteroid.com/linux/installer/boosteroid-install-x64.deb";
-  #   hash = "";
-  # };
-  src = requireFile rec {
-    name = "boosteroid-install-x64.deb";
-    sha256 = "1kivgxygn1521x7vps5d0dy1ww3r9cxkcmxh4jssj4w7mgfakgsm";
-    message = ''
-      https://boosteroid.com/linux/installer/boosteroid-install-x64.deb
-      nix-prefetch-url file:///tmp/${name}
-    '';
+  src = fetchurl {
+    curlOpts = "--user-agent 'Mozilla/5.0'";
+    url = "https://boosteroid.com/linux/installer/boosteroid-install-x64.deb";
+    hash = "sha256-Vb+p3KuHE6m1JLBXNjtLeXAefAOt6LtPD6IE+3x/O84=";
   };
 
   nativeBuildInputs = [
