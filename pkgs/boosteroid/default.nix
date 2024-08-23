@@ -73,8 +73,7 @@ stdenv.mkDerivation rec {
       --replace-warn /opt/BoosteroidGamesS.R.L./bin $out/bin \
       --replace-warn Icon=/usr/share/icons/Boosteroid/icon.svg Icon=$out/share/icons/Boosteroid/icon.svg
     wrapProgram "$out/bin/Boosteroid" \
-      --set QT_QPA_PLATFORM "xcb" \
-      --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath buildInputs}
+      --set QT_QPA_PLATFORM "xcb"
     runHook postInstall
   '';
 }

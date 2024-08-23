@@ -36,6 +36,7 @@
 
   environment.systemPackages = [
     config.boot.kernelPackages.cpupower
+    pkgs.boosteroid
   ];
   sops.secrets = {
     oauth2ms = {
