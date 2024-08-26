@@ -18,7 +18,15 @@ in
   system.autoUpgrade = {
     enable = isClean;
     dates = "daily";
-    flags = [ "--refresh" ];
+    flags = [
+      "--refresh"
+      "--accept-flake-config"
+    ];
+    allowReboot = true;
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
     flake = upgrade_flake;
   };
   # Only run if current config (self) is older than the new one.

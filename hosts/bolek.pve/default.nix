@@ -24,6 +24,7 @@
     ../../common/optional/smokeping-exporter.nix
     ../../common/optional/postgres.nix
     ../../common/optional/coredns.nix
+    ../../common/optional/auto-upgrade.nix
     ../../common/global
     ../../common/users/lukasz
   ];
