@@ -10,8 +10,8 @@ let
 in
 rec {
   home.pointerCursor = {
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
+    package = pkgs.apple-cursor;
+    name = "macOS-BigSur";
     size = 20;
     gtk.enable = true;
     x11.enable = true;
