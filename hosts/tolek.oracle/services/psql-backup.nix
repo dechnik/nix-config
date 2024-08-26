@@ -2,6 +2,9 @@
   services.postgresqlBackup = {
     enable = true;
 
-    databases = [ "matrix-synapse" ];
+    databases = [
+      "git"
+      "atuin"
+    ];
   };
 }

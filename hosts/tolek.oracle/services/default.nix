@@ -10,10 +10,10 @@
     ./lldap.nix
     ./authelia.nix
     ./traefik.nix
-    ./matrix-synapse.nix
+    # ./matrix-synapse.nix
     ./psql-backup.nix
     # ./matterbridge.nix
-    ./mjolnir.nix
+    # ./mjolnir.nix
     ./weechat.nix
     # ./maubot.nix
     # ./maubot-alert.nix

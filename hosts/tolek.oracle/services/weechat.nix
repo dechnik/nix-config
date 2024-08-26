@@ -17,11 +17,11 @@
       };
     };
   };
-  services.pantalaimon-headless.instances.weechat = {
-    listenPort = 20662;
-    homeserver = "https://dechnik.net";
-    ssl = false;
-  };
+  # services.pantalaimon-headless.instances.weechat = {
+  #   listenPort = 20662;
+  #   homeserver = "https://dechnik.net";
+  #   ssl = false;
+  # };
   services.nginx = {
     enable = true;
     defaultHTTPListenPort = 8080;
