@@ -10,9 +10,9 @@ let
   vars = ''XDG_DATA_DIRS="$XDG_DATA_DIRS:${lib.concatStringsSep ":" homeSharePaths}" GTK_USE_PORTAL=0'';
 
   lukaszCfg = homeCfgs.lukasz;
-  gtkTheme = lukaszCfg.gtk.theme;
-  iconTheme = lukaszCfg.gtk.iconTheme;
   wallpaper = lukaszCfg.wallpaper;
+  gtkCfg = lukaszCfg.gtk;
+  fontCfg = lukaszCfg.fontProfiles.regular;
 
   sway-kiosk =
     command:
@@ -28,8 +28,10 @@ in
 {
   users.extraUsers.greeter = {
     packages = [
-      gtkTheme.package
-      iconTheme.package
+      gtkCfg.theme.package
+      gtkCfg.iconTheme.package
+      gtkCfg.cursorTheme.package
+      fontCfg.package
     ];
     # For caching and such
     home = "/tmp/greeter-home";
@@ -40,8 +42,10 @@ in
     enable = true;
     settings = {
       GTK = {
-        icon_theme_name = "Papirus";
-        theme_name = gtkTheme.name;
+        theme_name = lib.mkForce gtkCfg.theme.name;
+        icon_theme_name = lib.mkForce gtkCfg.iconTheme.name;
+        cursor_theme_name = lib.mkForce gtkCfg.cursorTheme.name;
+        font_name = lib.mkForce "${fontCfg.family} ${toString gtkCfg.font.size}";
       };
       background = {
         path = wallpaper;
