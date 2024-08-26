@@ -23,8 +23,8 @@ rec {
       size = 12;
     };
     cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      package = pkgs.apple-cursor;
+      name = "macOS-BigSur";
       size = 20;
     };
     theme = {

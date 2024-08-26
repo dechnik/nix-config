@@ -69,6 +69,9 @@ rec {
       doCheck = false;
     });
 
+    # TODO https://github.com/NixOS/nixpkgs/pull/336901
+    olm = prev.olm.overrideAttrs (prev.lib.addMetaAttrs { knownVulnerabilities = [ ]; });
+
     todoman = prev.todoman.overridePythonAttrs (_: {
       doCheck = false;
     });
