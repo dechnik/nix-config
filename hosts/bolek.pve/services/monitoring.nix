@@ -150,20 +150,19 @@ in
                   value = "{{ $value }}";
                 };
               }
-              # {
-              #   alert = "InstanceLowDiskPrediction12Hours";
-              #   expr = ''predict_linear(node_filesystem_free_bytes{fstype!~"(tmpfs|ramfs)"}[3h],12 * 3600) < 0'';
-              #   for = "2h";
-              #   labels = {
-              #     severity = "critical";
-              #     frequency = "5m";
-              #   };
-              #   annotations = {
-              #     description = ''Disk {{ $labels.mountpoint }} ({{ $labels.device }}) will be full in less than 12 hours'';
-              #     summary = ''Instance {{ $labels.instance }}: Disk {{ $labels.mountpoint }} ({{ $labels.device}}) will be full in less than 12 hours'';
-              #   };
-              # }
-
+              {
+                alert = "InstanceLowDiskPrediction12Hours";
+                expr = ''predict_linear(node_filesystem_free_bytes{fstype!~"(tmpfs|ramfs)"}[3h],12 * 3600) < 0'';
+                for = "2h";
+                labels = {
+                  severity = "critical";
+                  frequency = "5m";
+                };
+                annotations = {
+                  description = ''Disk {{ $labels.mountpoint }} ({{ $labels.device }}) will be full in less than 12 hours'';
+                  summary = ''Instance {{ $labels.instance }}: Disk {{ $labels.mountpoint }} ({{ $labels.device}}) will be full in less than 12 hours'';
+                };
+              }
               {
                 alert = "InstanceLowMem";
                 expr = "node_memory_MemAvailable_bytes / 1024 / 1024 < node_memory_MemTotal_bytes / 1024 / 1024 / 10";
@@ -178,7 +177,7 @@ in
 
               {
                 alert = "ServiceFailed";
-                expr = ''node_systemd_unit_state{state="failed"} > 0'';
+                expr = ''node_systemd_unit_state{state="failed", name!="tailscaled-autoconnect.service"} > 0'';
                 for = "2m";
                 labels.severity = "critical";
                 annotations = {
