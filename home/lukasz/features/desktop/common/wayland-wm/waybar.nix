@@ -109,7 +109,7 @@ in
       primary = {
         mode = "dock";
         layer = "top";
-        height = 34;
+        height = 32;
         margin = "0";
         position = "top";
         output = builtins.map (m: m.name) (builtins.filter (m: m.isPrimary) config.monitors);
@@ -139,6 +139,9 @@ in
           "custom/hostname"
         ];
 
+        tray = {
+          icon-size = 14;
+        };
         "wlr/workspaces" = {
           on-click = "activate";
           format = "{name}";
@@ -379,13 +382,13 @@ in
       # css
       ''
         * {
+          font-family: ${config.fontProfiles.regular.name}, ${config.fontProfiles.monospace.name};
+          font-size: 10pt;
           transition: none;
           box-shadow: none;
         }
 
-        #waybar {
-          font-family: ${config.fontProfiles.regular.name}, ${config.fontProfiles.monospace.name};
-          font-size: 10pt;
+        window#waybar {
           color: #${palette.base04};
           background: #${palette.base01};
         }
@@ -455,12 +458,6 @@ in
 
         #temperature.critical {
           color: #${palette.base0F};
-        }
-
-        #window {
-          font-size: 0.9em;
-          font-weight: 400;
-          font-family: sans-serif;
         }
       '';
   };
