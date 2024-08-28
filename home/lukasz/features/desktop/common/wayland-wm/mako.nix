@@ -10,7 +10,7 @@ in
         "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
       else
         "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
-    font = "${config.fontProfiles.regular.family} 12";
+    font = "${config.fontProfiles.regular.name} ${toString config.fontProfiles.regular.size}";
     padding = "10,20";
     anchor = "top-right";
     width = 400;

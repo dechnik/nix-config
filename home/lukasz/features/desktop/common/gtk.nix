@@ -19,8 +19,7 @@ rec {
   gtk = {
     enable = true;
     font = {
-      name = config.fontProfiles.regular.family;
-      size = 12;
+      inherit (config.fontProfiles.regular) name size;
     };
     cursorTheme = {
       package = pkgs.apple-cursor;

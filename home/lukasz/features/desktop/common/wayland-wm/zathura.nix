@@ -7,7 +7,7 @@ in
     enable = true;
     options = {
       selection-clipboard = "clipboard";
-      font = "${config.fontProfiles.regular.family} 12";
+      font = "${config.fontProfiles.regular.name} ${toString config.fontProfiles.regular.size}";
       recolor = false;
       default-bg = "#${palette.base00}";
       default-fg = "#${palette.base01}";

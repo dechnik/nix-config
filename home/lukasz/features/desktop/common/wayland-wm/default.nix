@@ -4,7 +4,7 @@
     # ./gammastep.nix
     ./kitty.nix
     ./alacritty.nix
-    ./foot.nix
+    # ./foot.nix
     ./mako.nix
     ./swayidle.nix
     ./swaylock.nix

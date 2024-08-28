@@ -384,9 +384,8 @@ in
         }
 
         #waybar {
-          font-family: ${config.fontProfiles.regular.family}, ${config.fontProfiles.monospace.family};
-          font-size: 1.2em;
-          font-weight: 400;
+          font-family: ${config.fontProfiles.regular.name}, ${config.fontProfiles.monospace.name};
+          font-size: 10pt;
           color: #${palette.base04};
           background: #${palette.base01};
         }

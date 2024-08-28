@@ -29,10 +29,10 @@ in
       scrolling.history = 10000;
 
       font = {
-        normal.family = config.fontProfiles.monospace.family;
-        bold.family = config.fontProfiles.monospace.family;
-        italic.family = config.fontProfiles.monospace.family;
-        size = 10;
+        normal.family = config.fontProfiles.monospace.name;
+        bold.family = config.fontProfiles.monospace.name;
+        italic.family = config.fontProfiles.monospace.name;
+        size = config.fontProfiles.monospace.size;
       };
 
       draw_bold_text_with_bright_colors = true;

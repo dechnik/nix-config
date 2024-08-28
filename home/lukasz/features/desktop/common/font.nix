@@ -5,11 +5,11 @@
     monospace = {
       # family = "JetBrainsMono Nerd Font";
       # package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-      family = "GeistMono Nerd Font";
+      name = "GeistMono Nerd Font";
       package = pkgs.nerdfonts.override { fonts = [ "GeistMono" ]; };
     };
     regular = {
-      family = "Geist";
+      name = "Geist";
       package = pkgs.geist-font;
     };
   };

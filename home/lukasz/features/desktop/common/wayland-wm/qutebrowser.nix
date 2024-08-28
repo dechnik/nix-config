@@ -162,9 +162,9 @@ in
         };
       };
       fonts = {
-        default_family = config.fontProfiles.regular.family;
-        default_size = "10pt";
-        web.family.fixed = config.fontProfiles.monospace.family;
+        default_family = config.fontProfiles.regular.name;
+        default_size = "${toString config.fontProfiles.regular.size}pt";
+        web.family.fixed = config.fontProfiles.monospace.name;
       };
       colors = {
         webpage = {

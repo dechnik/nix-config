@@ -11,8 +11,6 @@ let
 
   lukaszCfg = homeCfgs.lukasz;
   wallpaper = lukaszCfg.wallpaper;
-  gtkCfg = lukaszCfg.gtk;
-  fontCfg = lukaszCfg.fontProfiles.regular;
 
   sway-kiosk =
     command:
@@ -27,12 +25,6 @@ let
 in
 {
   users.extraUsers.greeter = {
-    packages = [
-      gtkCfg.theme.package
-      gtkCfg.iconTheme.package
-      gtkCfg.cursorTheme.package
-      fontCfg.package
-    ];
     # For caching and such
     home = "/tmp/greeter-home";
     createHome = true;
@@ -40,13 +32,13 @@ in
 
   programs.regreet = {
     enable = true;
+    iconTheme = lukaszCfg.gtk.iconTheme;
+    theme = lukaszCfg.gtk.theme;
+    font = lukaszCfg.fontProfiles.regular;
+    cursorTheme = {
+      inherit (lukaszCfg.gtk.cursorTheme) name package;
+    };
     settings = {
-      GTK = {
-        theme_name = lib.mkForce gtkCfg.theme.name;
-        icon_theme_name = lib.mkForce gtkCfg.iconTheme.name;
-        cursor_theme_name = lib.mkForce gtkCfg.cursorTheme.name;
-        font_name = lib.mkForce "${fontCfg.family} ${toString gtkCfg.font.size}";
-      };
       background = {
         path = wallpaper;
         fit = "Cover";

@@ -32,8 +32,7 @@ in
   programs.kitty = {
     enable = true;
     font = {
-      name = config.fontProfiles.monospace.family;
-      size = 10;
+      inherit (config.fontProfiles.monospace) name size;
     };
     settings = {
       editor = config.home.sessionVariables.EDITOR;
