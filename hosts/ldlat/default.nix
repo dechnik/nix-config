@@ -69,6 +69,7 @@
       };
     };
     networkmanager.enable = lib.mkForce false; # Easiest to use and most distros use this by default.
+    # networkmanager.unmanaged = [ "tailscale0" "lo" "wg0" ];
   };
   # networking.networkmanager.settings = {
   #   connectivity = {

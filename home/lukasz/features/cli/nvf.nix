@@ -176,8 +176,9 @@ in
                   path = "~/Documents/Obsidian";
                 }
               ];
+              notes_subdir = "Notes";
               daily_notes = {
-                folder = "Daily";
+                folder = "Periodic Notes/Daily Notes";
                 date_format = "%Y-%m-%d";
                 alias_format = "%B %-d, %Y";
               };
