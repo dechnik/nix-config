@@ -12,6 +12,7 @@
     ./features/games/starsector.nix
     # ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
+    ./features/cli/work.nix
     ./features/desktop/optional/nc.nix
     ./features/desktop/optional/vscode.nix
     # ./features/desktop/optional/jetbrains.nix

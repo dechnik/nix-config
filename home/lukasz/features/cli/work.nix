@@ -7,6 +7,7 @@
     # aws-sam-cli
     azure-cli
     # azure-functions-core-tools
+    bicep
     terraform
   ];
   home.sessionVariables.FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT = 1;
