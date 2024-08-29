@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./global
@@ -23,6 +23,7 @@
 
   colorscheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard;
 
+  home.packages = with pkgs; [ boosteroid ];
   mailhost = "ldlat";
 
   # My setup's layout:
