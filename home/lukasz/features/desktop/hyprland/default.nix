@@ -199,7 +199,14 @@
               ",Scroll_Lock,exec,${pass-wofi}" # fn+k
               ",XF86Calculator,exec,${pass-wofi}" # fn+f12
               "SUPER,semicolon,exec,pass-wofi"
-            ])
+            ]) ++ (
+              let
+                cliphist = lib.getExe config.services.cliphist.package;
+              in
+              lib.optionals config.services.cliphist.enable [
+                ''SUPER,c,exec,selected=$(${cliphist} list | ${wofi} -S dmenu) && echo "$selected" | ${cliphist} decode | wl-copy''
+              ]
+            )
           );
 
       # monitor = map (m: let

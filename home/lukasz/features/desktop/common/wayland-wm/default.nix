@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./cliphist.nix
     # ./gammastep.nix
     ./kitty.nix
     ./alacritty.nix
