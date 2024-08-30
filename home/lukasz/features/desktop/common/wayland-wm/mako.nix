@@ -5,11 +5,7 @@ in
 {
   services.mako = {
     enable = true;
-    iconPath =
-      if variant == "dark" then
-        "${config.gtk.iconTheme.package}/share/icons/Papirus-Dark"
-      else
-        "${config.gtk.iconTheme.package}/share/icons/Papirus-Light";
+    iconPath = "${config.gtk.iconTheme.package}/share/icons/Gruvbox-Plus-Dark";
     font = "${config.fontProfiles.regular.name} ${toString config.fontProfiles.regular.size}";
     padding = "10,20";
     anchor = "top-right";
