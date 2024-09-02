@@ -71,6 +71,9 @@ in
     "/persist".directories = [ "/var/lib/authelia-${cfg.name}" ];
   };
 
+  systemd.services."authelia-main.service" = {
+    after = [ "network.target" "lldap.service" ];
+  };
   services.authelia.instances.main = {
     enable = true;
     settingsFiles = [ "${config.sops.secrets.authelia-identity-providers.path}" ];
