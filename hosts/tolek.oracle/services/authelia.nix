@@ -71,7 +71,7 @@ in
     "/persist".directories = [ "/var/lib/authelia-${cfg.name}" ];
   };
 
-  systemd.services."authelia-main.service" = {
+  systemd.services."authelia-main" = {
     after = [ "network.target" "lldap.service" ];
   };
   services.authelia.instances.main = {
