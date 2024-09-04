@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 # cli utilities
 {
   home.packages = with pkgs; [
@@ -9,6 +9,7 @@
     # azure-functions-core-tools
     bicep
     terraform
+    inputs.azure-dev-cli.packages.${system}.default
   ];
   home.sessionVariables.FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT = 1;
   home.sessionVariables.AZURE_DEV_COLLECT_TELEMETRY = "no";

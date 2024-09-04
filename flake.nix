@@ -94,6 +94,7 @@
       url = "github:dechnik/tmux-sessionx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    azure-dev-cli.url = "github:dechnik/azure-dev-cli";
     # applet-gpg = {
     #   url = "path:/home/lukasz/Projects/cosmic/cosmic-applet-gpg";
     #   inputs.nixpkgs.follows = "nixpkgs";
