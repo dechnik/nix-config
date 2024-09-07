@@ -130,6 +130,8 @@ in
     systemd.services.lldap = {
       description = "Lightweight LDAP server (lldap)";
       wantedBy = [ "multi-user.target" ];
+      wants = [ "network.target" ];
+      after = [ "network.target" ];
       serviceConfig = {
         ExecStart = "${lib.getExe cfg.package} run --config-file ${format.generate "lldap_config.toml" cfg.settings}";
         StateDirectory = "lldap";
