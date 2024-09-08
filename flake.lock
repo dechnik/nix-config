@@ -3464,8 +3464,7 @@
         "sessionx": "sessionx",
         "sg-nvim": "sg-nvim_2",
         "sops-nix": "sops-nix",
-        "utils": "utils_2",
-        "website": "website"
+        "utils": "utils_2"
       }
     },
     "rust-overlay": {
@@ -3889,26 +3888,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "website": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1725136535,
-        "narHash": "sha256-6Hsossfx+HSk3VIhOkPH4Mz++WxLm3BmHmiKyG2b9Ko=",
-        "owner": "dechnik",
-        "repo": "website",
-        "rev": "8eb0d81e34e9a62d8d9b420d6227d0fdc6e36701",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dechnik",
-        "repo": "website",
         "type": "github"
       }
     },

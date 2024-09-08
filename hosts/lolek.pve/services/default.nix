@@ -7,6 +7,6 @@
     ./tailscale.nix
     ./tailscale-headscale.nix
     ./nc.nix
-    ./website
+    # ./website
   ];
 }
