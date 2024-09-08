@@ -52,7 +52,7 @@ in
 
           nix.enable = true;
 
-          markdown.enable = false;
+          markdown.enable = true;
           html.enable = false;
           css.enable = false;
           sql.enable = false;
@@ -160,32 +160,34 @@ in
             hop.enable = true;
             leap.enable = true;
           };
-
+          preview.markdownPreview = {
+            enable = true;
+          };
           images = {
             image-nvim.enable = false;
           };
         };
         notes = {
           obsidian = {
-            enable = true; # FIXME: neovim fails to build if obsidian is enabled
-            setupOpts = {
-              dir = "~/Documents/Obsidian";
-              workspaces = [
-                {
-                  name = "vault";
-                  path = "~/Documents/Obsidian";
-                }
-              ];
-              notes_subdir = "Notes";
-              daily_notes = {
-                folder = "Periodic Notes/Daily Notes";
-                date_format = "%Y-%m-%d";
-                alias_format = "%B %-d, %Y";
-              };
-              ui = {
-                enable = false;
-              };
-            };
+            enable = false; # FIXME: neovim fails to build if obsidian is enabled
+              # setupOpts = {
+              #   dir = "~/Documents/Obsidian";
+              #   workspaces = [
+              #     {
+              #       name = "vault";
+              #       path = "~/Documents/Obsidian";
+              #     }
+              #   ];
+              #   notes_subdir = "Notes";
+              #   daily_notes = {
+              #     folder = "Periodic Notes/Daily Notes";
+              #     date_format = "%Y-%m-%d";
+              #     alias_format = "%B %-d, %Y";
+              #   };
+              #   ui = {
+              #     enable = false;
+              #   };
+              # };
           };
           orgmode.enable = false;
           mind-nvim.enable = false;
@@ -306,36 +308,36 @@ in
             silent = true;
             desc = "Open nvim root directory";
           };
-          "<leader>os" = {
-            action = "<cmd>ObsidianSearch <CR>";
-            silent = true;
-            desc = "[O]bsidian [S]earch";
-          };
-          "<leader>on" = {
-            action = "<cmd>ObsidianNew <CR>";
-            silent = true;
-            desc = "[O]bsidian [N]ew";
-          };
-          "<leader>ol" = {
-            action = "<cmd>ObsidianLink <CR>";
-            silent = true;
-            desc = "[O]bsidian [L]ink";
-          };
-          "<leader>oe" = {
-            action = "<cmd>ObsidianLinkNew <CR>";
-            silent = true;
-            desc = "[O]bsidian Link [N]ew";
-          };
-          "<leader>ot" = {
-            action = "<cmd>ObsidianTags <CR>";
-            silent = true;
-            desc = "[O]bsidian [T]ags";
-          };
-          "<leader>of" = {
-            action = "<cmd>ObsidianFollowLink <CR>";
-            silent = true;
-            desc = "[O]bsidian [F]ollow Link";
-          };
+            # "<leader>os" = {
+            #   action = "<cmd>ObsidianSearch <CR>";
+            #   silent = true;
+            #   desc = "[O]bsidian [S]earch";
+            # };
+            # "<leader>on" = {
+            #   action = "<cmd>ObsidianNew <CR>";
+            #   silent = true;
+            #   desc = "[O]bsidian [N]ew";
+            # };
+            # "<leader>ol" = {
+            #   action = "<cmd>ObsidianLink <CR>";
+            #   silent = true;
+            #   desc = "[O]bsidian [L]ink";
+            # };
+            # "<leader>oe" = {
+            #   action = "<cmd>ObsidianLinkNew <CR>";
+            #   silent = true;
+            #   desc = "[O]bsidian Link [N]ew";
+            # };
+            # "<leader>ot" = {
+            #   action = "<cmd>ObsidianTags <CR>";
+            #   silent = true;
+            #   desc = "[O]bsidian [T]ags";
+            # };
+            # "<leader>of" = {
+            #   action = "<cmd>ObsidianFollowLink <CR>";
+            #   silent = true;
+            #   desc = "[O]bsidian [F]ollow Link";
+            # };
           "<leader>fc" = {
             action = "require('sg.extensions.telescope').fuzzy_search_results";
             lua = true;
