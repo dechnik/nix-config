@@ -10,8 +10,10 @@ let
 in
 rec {
   home.pointerCursor = {
-    package = pkgs.apple-cursor;
-    name = "macOS-BigSur";
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    # package = pkgs.apple-cursor;
+    # name = "macOS-BigSur";
     size = 20;
     gtk.enable = true;
     x11.enable = true;
@@ -22,8 +24,10 @@ rec {
       inherit (config.fontProfiles.regular) name size;
     };
     cursorTheme = {
-      package = pkgs.apple-cursor;
-      name = "macOS-BigSur";
+      # package = pkgs.apple-cursor;
+      # name = "macOS-BigSur";
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
       size = 20;
     };
     theme = {
