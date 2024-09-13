@@ -115,6 +115,8 @@
         ];
       };
       exec = [
+        "exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland"
+        "systemctl --user restart pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-gtk"
         "${pkgs.swaybg}/bin/swaybg -i ${config.wallpaper} --mode fill"
         "hyprctl setcursor ${config.gtk.cursorTheme.name} ${toString config.gtk.cursorTheme.size}"
       ];

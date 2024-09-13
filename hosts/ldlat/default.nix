@@ -38,6 +38,10 @@
     config.boot.kernelPackages.cpupower
     pkgs.boosteroid
   ];
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
   sops.secrets = {
     oauth2ms = {
       sopsFile = ../../common/secrets.yaml;
