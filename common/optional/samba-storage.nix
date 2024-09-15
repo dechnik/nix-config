@@ -9,7 +9,7 @@ let
 in
 {
   services.samba = {
-    shares = {
+    settings = {
       storage = {
         path = "/storage/storage";
         browsable = "yes";
