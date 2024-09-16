@@ -36,7 +36,6 @@
     };
     attic = {
       url = "github:zhaofengli/attic";
-      inputs."flake-utils".follows = "utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
