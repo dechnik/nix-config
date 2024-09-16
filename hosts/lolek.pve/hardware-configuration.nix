@@ -12,12 +12,14 @@
     ../../common/optional/postgres.nix
   ];
 
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true;
-  #   driSupport32Bit = true;
-  # };
-  # services.xserver.videoDrivers = ["nvidia"];
+  hardware.opengl = {
+    enable = true;
+  };
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia = {
+    open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   boot = {
     initrd = {
