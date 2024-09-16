@@ -26,10 +26,6 @@ jobs:
             platform: x86-64-linux
             runner: ubuntu-latest
             target-branch: release-lolek_pve
-          - host: tola.pve
-            platform: x86-64-linux
-            runner: ubuntu-latest
-            target-branch: release-tola_pve
           - host: dziad
             platform: x86-64-linux
             runner: nixos

@@ -179,7 +179,7 @@
         "bolek.pve" = mkNixos [ ./hosts/bolek.pve ];
         "lolek.pve" = mkNixos [ ./hosts/lolek.pve ];
         "olek.pve" = mkNixos [ ./hosts/olek.pve ];
-        "tola.pve" = mkNixos [ ./hosts/tola.pve ];
+        # "tola.pve" = mkNixos [ ./hosts/tola.pve ];
         "tolek.oracle" = mkNixos [ ./hosts/tolek.oracle ];
         "ola.hetzner" = mkNixos [ ./hosts/ola.hetzner ];
       };
@@ -191,7 +191,7 @@
         "lukasz@bolek" = mkHome [ ./home/lukasz/bolek.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@lolek" = mkHome [ ./home/lukasz/lolek.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@olek" = mkHome [ ./home/lukasz/olek.nix ] nixpkgs.legacyPackages."x86_64-linux";
-        "lukasz@tola" = mkHome [ ./home/lukasz/tola.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        # "lukasz@tola" = mkHome [ ./home/lukasz/tola.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "lukasz@tolek" = mkHome [ ./home/lukasz/tolek.nix ] nixpkgs.legacyPackages."aarch64-linux";
         "lukasz@ola" = mkHome [ ./home/lukasz/ola.nix ] nixpkgs.legacyPackages."x86_64-linux";
       };
