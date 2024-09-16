@@ -19,12 +19,18 @@ in
   };
 
   services = {
+    redis.servers.nextcloud = {
+      enable = true;
+      user = "nextcloud";
+      port = 0;
+    };
     nextcloud = {
       inherit hostName;
       package = pkgs.nextcloud29;
       extraApps = with pkgs.nextcloud29Packages.apps; {
         inherit mail;
       };
+      caching.redis = true;
       # Auto-update Nextcloud Apps
       # autoUpdateApps.enable = true;
       # Set what time makes sense for you
@@ -35,6 +41,7 @@ in
       # enableBrokenCiphersForSSE = false;
       home = "/srv/nextcloud";
       maxUploadSize = "10G";
+      phpOptions."opcache.interned_strings_buffer" = "23";
       config = {
         adminuser = "root";
         adminpassFile = config.sops.secrets.nextcloud-password.path;

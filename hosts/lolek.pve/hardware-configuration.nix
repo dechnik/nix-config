@@ -12,7 +12,7 @@
     ../../common/optional/postgres.nix
   ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
   services.xserver.videoDrivers = ["nvidia"];
