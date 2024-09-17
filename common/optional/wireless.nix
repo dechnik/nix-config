@@ -10,19 +10,19 @@
     enable = true;
     fallbackToWPA2 = false;
     # Declarative
-    environmentFile = config.sops.secrets.wireless.path;
+    secretsFile = config.sops.secrets.wireless.path;
     networks = {
       "dziadowo5" = {
-        psk = "@PSK_HOME@";
+        pskRaw = "ext:PSK_HOME";
       };
       "biuro" = {
-        psk = "@PSK_BIURO@";
+        pskRaw = "ext:PSK_BIURO";
       };
       "NETIASPOT-D504A0" = {
-        psk = "@PSK_LUBSKO@";
+        pskRaw = "ext:PSK_LUBSKO";
       };
       "edge30_3887" = {
-        psk = "@PSK_MOTO@";
+        pskRaw = "ext:PSK_MOTO";
       };
     };
 
