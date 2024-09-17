@@ -7,6 +7,7 @@
     ./tailscale.nix
     ./tailscale-headscale.nix
     ./nc.nix
+    ./ollama.nix
     # ./website
   ];
 }

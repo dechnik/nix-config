@@ -23,6 +23,7 @@ in
       enable = true;
       user = "nextcloud";
       port = 0;
+      bind = null;
     };
     nextcloud = {
       inherit hostName;
@@ -51,6 +52,13 @@ in
         dbuser = "nextcloud";
       };
       settings = {
+        redis = {
+          host = "/run/redis-nextcloud/redis.sock";
+          port = 0;
+        };
+        "memcache.local" = "\\OC\\Memcache\\Redis";
+        "memcache.distributed" = "\\OC\\Memcache\\Redis";
+        "memcache.locking" = "\\OC\\Memcache\\Redis";
         overwriteprotocol = "https";
         default_phone_region = "PL";
         "bulkupload.enabled" = false;
