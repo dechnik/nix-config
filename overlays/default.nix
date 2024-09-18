@@ -69,6 +69,9 @@ rec {
       doCheck = false;
     });
 
+    # TODO https://github.com/NixOS/nixpkgs/pull/339619
+    cudaPackages = prev.cudaPackages_12_3;
+
     # TODO https://github.com/NixOS/nixpkgs/pull/336901
     olm = prev.olm.overrideAttrs (prev.lib.addMetaAttrs { knownVulnerabilities = [ ]; });
 

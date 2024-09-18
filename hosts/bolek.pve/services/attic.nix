@@ -6,9 +6,33 @@
 }:
 let
   port = 56789;
+  atticCollectGarbage = pkgs.writeShellScriptBin "attic-collect-garbage" ''
+    ATTICD=${inputs.attic.packages.${pkgs.system}.attic-server}/bin/atticd
+
+    exec ${pkgs.systemd}/bin/systemd-run \
+      --quiet \
+      --pty \
+      --same-dir \
+      --wait \
+      --collect \
+      --service-type=exec \
+      --property=EnvironmentFile=${config.services.atticd.credentialsFile} \
+      --property=DynamicUser=yes \
+      --property=User=${config.services.atticd.user} \
+      --property=Environment=ATTICADM_PWD=$(pwd) \
+      --property=ReadWritePaths=${config.services.atticd.settings.storage.path} \
+      --working-directory / \
+      -- \
+      $ATTICD \
+      --config ${config.services.atticd.configFile} \
+      --mode garbage-collector-once
+  '';
 in
 {
-  environment.systemPackages = [ pkgs.attic ];
+  environment.systemPackages = [
+    pkgs.attic
+    atticCollectGarbage
+  ];
   sops.secrets.attic-env = {
     sopsFile = ../secrets.yaml;
   };
@@ -67,6 +91,10 @@ in
 
           # The preferred maximum size of a chunk, in bytes
           max-size = 256 * 1024; # 256 KiB
+        };
+        garbage-collection = {
+          interval = "6h";
+          default-retention-period = "2 months";
         };
       };
     };
