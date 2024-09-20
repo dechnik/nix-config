@@ -24,7 +24,7 @@ jobs:
             target-branch: release-bolek_pve
           - host: lolek.pve
             platform: x86-64-linux
-            runner: ubuntu-latest
+            runner: nixos
             target-branch: release-lolek_pve
           - host: dziad
             platform: x86-64-linux
@@ -40,7 +40,7 @@ jobs:
             target-branch: release-ola_hetzner
           - host: tolek.oracle
             platform: aarch64-linux
-            runner: nixos
+            runner: ubuntu-latest
             target-branch: release-tolek_oracle
     name: Build - ${{ matrix.machine.host }}
     steps:
