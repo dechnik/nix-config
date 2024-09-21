@@ -39,6 +39,13 @@ rec {
   modifications = final: prev: {
     # neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
     ollama-cuda = prev.ollama.override { acceleration = "cuda"; };
+    cudapkgs = import inputs.nixpkgs {
+      system = "${prev.system}";
+      config = {
+        allowUnfree = true;
+        cudaSupport = true;
+      };
+    };
 
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
       version = "0.2.84";

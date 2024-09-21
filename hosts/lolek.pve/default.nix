@@ -4,8 +4,16 @@
   pkgs,
   ...
 }:
-
+let
+  cudaoverlay = (self: super: {
+    inherit (pkgs.cudapkgs) ffmpeg jellyfin jellyfin-ffmpeg;
+  });
+in
 {
+  nixpkgs.overlays = [ cudaoverlay ];
+  home-manager.users."lukasz" = {
+    nixpkgs.overlays = [ cudaoverlay ];
+  };
   imports = [
     ./hardware-configuration.nix
     ./services
