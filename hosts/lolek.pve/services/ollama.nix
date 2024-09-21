@@ -15,6 +15,7 @@ in
     sopsFile = ../secrets.yaml;
   };
   services.ollama = {
+    package = pkgs.ollama-cuda;
     enable = true;
     host = "10.60.0.2";
     port = 11434;

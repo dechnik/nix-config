@@ -38,6 +38,7 @@ rec {
   # Modifies existing packages
   modifications = final: prev: {
     # neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
+    ollama-cuda = prev.ollama.override { acceleration = "cuda"; };
 
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
       version = "0.2.84";

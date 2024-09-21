@@ -3,9 +3,7 @@
   lib,
   pkgs,
   ...
-}:
-
-let
+}: let
   cfg = config.programs.shellcolor;
   package = pkgs.shellcolord;
 
@@ -13,9 +11,7 @@ let
     ${key}=${value}
   '';
   renderSettings = settings: lib.concatStrings (lib.mapAttrsToList renderSetting settings);
-
-in
-{
+in {
   options.programs.shellcolor = {
     enable = lib.mkEnableOption "shellcolor";
 
@@ -31,6 +27,13 @@ in
       type = lib.types.bool;
       description = ''
         Whether to enable Zsh integration.
+      '';
+    };
+    enableNushellIntegration = lib.mkOption {
+      default = true;
+      type = lib.types.bool;
+      description = ''
+        Whether to enable Nushell integration.
       '';
     };
     enableFishIntegration = lib.mkOption {
@@ -58,7 +61,7 @@ in
 
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
-      default = { };
+      default = {};
       example = lib.literalExpression ''
         {
           base00 = "000000";
@@ -73,9 +76,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ package ];
+    home.packages = [package];
 
-    xdg.configFile."shellcolor.conf" = lib.mkIf (cfg.settings != { }) {
+    xdg.configFile."shellcolor.conf" = lib.mkIf (cfg.settings != {}) {
       text = renderSettings cfg.settings;
       onChange = ''
         timeout 1 ${package}/bin/shellcolor apply || true
@@ -101,6 +104,10 @@ in
         ${package}/bin/shellcolord $$ & disown
       ''
     );
+
+    programs.nushell.configFile.text = lib.mkIf cfg.enableNushellIntegration (lib.mkBefore ''
+      ${pkgs.bash}/bin/bash -c $"${package}/bin/shellcolord ($nu.pid) & disown"
+    '');
 
     programs.fish.interactiveShellInit = lib.mkIf cfg.enableFishIntegration (
       lib.mkBefore ''
