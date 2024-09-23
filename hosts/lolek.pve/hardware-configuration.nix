@@ -16,7 +16,7 @@
     enable = true;
   };
   services.xserver.videoDrivers = ["nvidia"];
-  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = true;
   hardware.nvidia = {
     open = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;

@@ -39,10 +39,22 @@ rec {
   modifications = final: prev: {
     # neovim = inputs.vimconfig.packages."${prev.system}".neovimFull;
     ollama-cuda = prev.ollama.override { acceleration = "cuda"; };
+    open-webui = prev.open-webui.override {
+      python3 = prev.python311.override ({
+        packageOverrides = pself: psuper: {
+          fake-useragent = psuper.fake-useragent.overridePythonAttrs (_: {
+            doCheck = false;
+          });
+          sentence-transformers = psuper.sentence-transformers.overridePythonAttrs (_: {
+            dependencies = _.dependencies ++ [psuper.pillow];
+          });
+        };
+      });
+    };
 
-    # pythonPackagesExtensions = [(py-final: py-prev: {
-    #   torch = py-final.pytorch-bin;
-    # })];
+    pythonPackagesExtensions = [(py-final: py-prev: {
+      torch = py-final.pytorch-bin;
+    })];
 
     wasm-bindgen-cli = prev.wasm-bindgen-cli.override {
       version = "0.2.84";
