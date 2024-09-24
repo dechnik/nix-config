@@ -30,6 +30,9 @@ lib.mkMerge [
       services.yt = {
         loadBalancer.servers = [ { url = "http://10.60.0.2:3000"; } ];
       };
+      services.ai = {
+        loadBalancer.servers = [ { url = "http://10.60.0.2:8080"; } ];
+      };
       services.ob = {
         loadBalancer.servers = [ { url = "http://10.60.0.3:9000"; } ];
       };
@@ -58,6 +61,12 @@ lib.mkMerge [
       routers.yt = {
         rule = "Host(`yt.pve.dechnik.net`)";
         service = "yt";
+        entryPoints = [ "web" ];
+        middlewares = [ "dechnik-ips" ];
+      };
+      routers.ai = {
+        rule = "Host(`ai.dechnik.net`)";
+        service = "ai";
         entryPoints = [ "web" ];
         middlewares = [ "dechnik-ips" ];
       };
