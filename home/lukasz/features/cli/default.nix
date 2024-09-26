@@ -2,6 +2,8 @@
 let
   pythonEnv = pkgs.python3.withPackages (
     ps: with ps; [
+      black
+      mypy
       tldextract # required by qute-pass
     ]
   );
