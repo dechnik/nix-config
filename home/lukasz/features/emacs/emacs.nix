@@ -7,6 +7,17 @@ let
   my_emacs = pkgs.emacs29-pgtk;
 in
 {
+  home.packages = with pkgs; [
+    shellcheck
+    graphviz
+    (aspellWithDicts (
+      ds: with ds; [
+        en
+        en-computers
+        en-science
+      ]
+    ))
+  ];
   services.emacs = {
     enable = true;
     package = my_emacs;
