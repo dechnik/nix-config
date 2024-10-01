@@ -20,6 +20,8 @@ in
     emacsql-sqlite
     shellcheck
     gnumake
+    cmake
+    gcc
     graphviz
     sdcv
     enchant
@@ -44,6 +46,7 @@ in
     extraPackages =
       epkgs: with epkgs; [
         vterm
+        jinx
         pdf-tools
         all-the-icons-ivy
         all-the-icons
