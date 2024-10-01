@@ -7,10 +7,21 @@ let
   my_emacs = pkgs.emacs29-pgtk;
 in
 {
+  xdg = {
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/org" = "emacsclient.desktop";
+      };
+    };
+  };
   home.packages = with pkgs; [
+    sqlite
+    emacsql-sqlite
     shellcheck
     gnumake
     graphviz
+    sdcv
     enchant
     (hunspellWithDicts (with hunspellDicts; [ en-us-large ]))
     hunspellDicts.en-us-large
