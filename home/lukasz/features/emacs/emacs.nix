@@ -9,7 +9,11 @@ in
 {
   home.packages = with pkgs; [
     shellcheck
+    gnumake
     graphviz
+    enchant
+    (hunspellWithDicts (with hunspellDicts; [ en-us-large ]))
+    hunspellDicts.en-us-large
     (aspellWithDicts (
       ds: with ds; [
         en

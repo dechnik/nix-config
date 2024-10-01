@@ -19,6 +19,9 @@
       alegreya-sans
       julia-mono
       geist-font
+      merriweather
+      ibm-plex
+      twitter-color-emoji
 
       #remacs-all-the-icons-fonts
       # nerdfonts

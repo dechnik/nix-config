@@ -5,6 +5,7 @@ let
       black
       mypy
       tldextract # required by qute-pass
+      pylatexenc
     ]
   );
 in
