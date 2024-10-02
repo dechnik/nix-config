@@ -53,5 +53,5 @@ in
         all-the-icons
       ];
   };
-  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:${pkgs.emacsql-sqlite}/bin:$PATH";
+  systemd.user.services.emacs.Service.Environment = "PATH=${config.programs.password-store.package}/bin:${pkgs.emacsql-sqlite}/bin:${pkgs.bash}/bin:$PATH";
 }
