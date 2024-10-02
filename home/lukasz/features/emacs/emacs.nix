@@ -17,6 +17,8 @@ in
   };
   home.packages = with pkgs; [
     sqlite
+    libxml2.bin
+    dockfmt
     emacsql-sqlite
     shellcheck
     gnumake
