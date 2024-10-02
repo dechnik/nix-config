@@ -25,6 +25,7 @@ in
     graphviz
     sdcv
     enchant
+    pyright
     (hunspellWithDicts (with hunspellDicts; [ en-us-large ]))
     hunspellDicts.en-us-large
     (aspellWithDicts (

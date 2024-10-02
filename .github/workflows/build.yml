@@ -22,26 +22,32 @@ jobs:
             platform: x86-64-linux
             runner: ubuntu-latest
             target-branch: release-bolek_pve
+            timeout: 60
           - host: lolek.pve
             platform: x86-64-linux
             runner: nixos
             target-branch: release-lolek_pve
+            timeout: 60
           - host: dziad
             platform: x86-64-linux
             runner: nixos
             target-branch: release-dziad
+            timeout: 60
           - host: ldlat
             platform: x86-64-linux
             runner: nixos
             target-branch: release-ldlat
+            timeout: 60
           - host: ola.hetzner
             platform: x86-64-linux
             runner: ubuntu-latest
             target-branch: release-ola_hetzner
+            timeout: 60
           - host: tolek.oracle
             platform: aarch64-linux
             runner: ubuntu-latest
             target-branch: release-tolek_oracle
+            timeout: 60
     name: Build - ${{ matrix.machine.host }}
     steps:
       - uses: actions/checkout@v4
@@ -72,6 +78,7 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build and push system
+        timeout-minutes: ${{ matrix.machine.timeout }}
         run: |
           nix run github:zhaofengli/attic#default login lukasz http://attic.panther-crocodile.ts.net ${{ secrets.ATTIC_TOKEN }}
           nix run github:zhaofengli/attic#default watch-store system &
