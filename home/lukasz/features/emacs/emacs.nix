@@ -28,6 +28,7 @@ in
     sdcv
     enchant
     pyright
+    zotero
     (hunspellWithDicts (with hunspellDicts; [ en-us-large ]))
     hunspellDicts.en-us-large
     (aspellWithDicts (
@@ -38,6 +39,13 @@ in
       ]
     ))
   ];
+  systemd.user.services.zotero = {
+    Unit.Description = "Headless Zotero Instance";
+    Install.WantedBy = [ "hyprland-session.target" ];
+    Service = {
+      ExecStart = "${pkgs.zotero}/bin/zotero --headless";
+    };
+  };
   services.emacs = {
     enable = true;
     package = my_emacs;
