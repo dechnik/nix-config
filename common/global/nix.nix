@@ -6,7 +6,8 @@
 }:
 {
   nix = {
-    package = pkgs.nixVersions.latest;
+    # package = pkgs.nixVersions.latest;
+    package = pkgs.nixVersions.nix_2_22;
     settings = {
       substituters = [
         "https://hyprland.cachix.org?priority=43"
