@@ -1,8 +1,8 @@
 { pkgs, ... }:
 {
-  # home.packages = with pkgs; [
-  #   vscode-with-extensions
-  # ];
+  home.packages = with pkgs; [
+    code-cursor
+  ];
   programs.vscode = {
     enable = true;
     extensions =

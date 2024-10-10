@@ -2,7 +2,6 @@
   pkgs ? null,
 }:
 rec {
-  shellcolord = pkgs.callPackage ./shellcolord { };
   lyrics = pkgs.python3Packages.callPackage ./lyrics { };
   pass-wofi = pkgs.callPackage ./pass-wofi { };
   primary-xwayland = pkgs.callPackage ./primary-xwayland { };

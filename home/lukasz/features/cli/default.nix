@@ -32,7 +32,6 @@ in
     ./ranger
     ./lyrics.nix
     # ./screen.nix
-    ./shellcolor.nix
     ./ssh.nix
     # ./spotifytui.nix
     ./starship.nix
