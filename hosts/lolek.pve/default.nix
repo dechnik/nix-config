@@ -17,7 +17,7 @@
     ../../common/optional/node-exporter.nix
     ../../common/optional/systemd-exporter.nix
     ../../common/optional/postfix.nix
-    ../../common/optional/auto-upgrade.nix
+    # ../../common/optional/auto-upgrade.nix
     ../../common/global
     ../../common/users/lukasz
   ];
