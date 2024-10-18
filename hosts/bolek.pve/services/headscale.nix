@@ -78,10 +78,12 @@ in
           private_key_path = config.sops.secrets.headscale-noise-key.path;
         };
         # acl_policy_path = config.sops.secrets.headscale-acl.path;
-        acl_policy_path = "/var/lib/headscale/headscale-acl";
-        dns_config = {
+        policy = {
+          path = "/var/lib/headscale/headscale-acl";
+        };
+        dns = {
           override_local_dns = true;
-          baseDomain = "dechnik.net";
+          base_domain = "dechnik.net";
         };
         derp = {
           server = {
