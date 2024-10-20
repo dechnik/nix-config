@@ -3,7 +3,7 @@
   imports = [
     ./cliphist.nix
     # ./gammastep.nix
-    ./kitty.nix
+    # ./kitty.nix
     ./alacritty.nix
     # ./foot.nix
     ./mako.nix

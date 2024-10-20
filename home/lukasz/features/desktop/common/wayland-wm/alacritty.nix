@@ -10,6 +10,18 @@ let
   inherit (config.colorscheme) palette;
 in
 {
+  home.sessionVariables = {
+    TERMINAL = "alacritty";
+  };
+  # Set as default terminal
+  xdg.mimeApps = {
+    associations.added = {
+      "x-scheme-handler/terminal" = "Alacritty.desktop";
+    };
+    defaultApplications = {
+      "x-scheme-handler/terminal" = "Alacritty.desktop";
+    };
+  };
   programs.alacritty = {
     enable = true;
     settings = {
@@ -35,8 +47,8 @@ in
         size = config.fontProfiles.monospace.size;
       };
 
-      draw_bold_text_with_bright_colors = true;
       colors = rec {
+        draw_bold_text_with_bright_colors = true;
         primary = {
           background = "#${palette.base00}";
           foreground = "#${palette.base05}";

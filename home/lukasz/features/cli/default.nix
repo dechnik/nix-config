@@ -14,7 +14,8 @@ in
     ./atuin.nix
     ./bash.nix
     ./bat.nix
-    ./fish.nix
+    # ./fish.nix
+    ./fish
     ./zsh.nix
     ./fzf.nix
     ./git.nix
@@ -34,7 +35,8 @@ in
     # ./screen.nix
     ./ssh.nix
     # ./spotifytui.nix
-    ./starship.nix
+    # ./starship.nix
+    ./jujutsu.nix
     ./xpo.nix
     ./tmux.nix
     ./zoxide.nix
