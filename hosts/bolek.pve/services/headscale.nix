@@ -82,8 +82,8 @@ in
           path = "/var/lib/headscale/headscale-acl";
         };
         dns = {
-          override_local_dns = true;
-          base_domain = "dechnik.net";
+          # override_local_dns = true;
+          base_domain = "dc";
         };
         derp = {
           server = {
@@ -96,10 +96,11 @@ in
         };
         server_url = "https://tailscale.dechnik.net";
         metrics_listen_addr = "127.0.0.1:8095";
-        ip_prefixes = [
-          "fd7a:115c:a1e0::/48"
-          "100.64.0.0/10"
-        ];
+        prefixes = {
+          v6 = "fd7a:115c:a1e0::/48";
+          v4 = "100.64.0.0/10";
+          allocation = "sequential";
+        };
         grpc_listen_addr = "127.0.0.1:50443";
         grpc_allow_insecure = true;
         oidc = {
