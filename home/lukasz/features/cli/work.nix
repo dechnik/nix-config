@@ -5,7 +5,7 @@
     awscli
     winbox
     # aws-sam-cli
-    azure-cli
+    # azure-cli
     # azure-functions-core-tools
     bicep
     terraform
