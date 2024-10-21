@@ -10,7 +10,7 @@ rec {
   spiceto = pkgs.callPackage ./spiceto { };
   cyrus-sasl-xoauth2 = pkgs.callPackage ./cyrus-sasl-xoauth2 { };
   oauth2ms = pkgs.callPackage ./oauth2ms { };
-  golink = pkgs.callPackage ./golink { };
+  # golink = pkgs.callPackage ./golink { };
   emacsql-sqlite = pkgs.callPackage ./emacsql-sqlite { };
   sessionx = pkgs.callPackage ./sessionx { };
   tailscale-tools = pkgs.callPackage ./tailscale-tools { };

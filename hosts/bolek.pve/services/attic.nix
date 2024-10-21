@@ -29,6 +29,7 @@ let
   '';
 in
 {
+  disabledModules = [ "services/networking/atticd.nix" ];
   environment.systemPackages = [
     pkgs.attic
     atticCollectGarbage
