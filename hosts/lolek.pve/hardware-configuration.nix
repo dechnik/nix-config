@@ -43,6 +43,11 @@
     };
   };
 
+  fileSystems."/media2" = {
+    device = "10.60.0.3:/mnt/pool1/nfs";
+    fsType = "nfs";
+  };
+
   fileSystems."/media" = {
     device = "/dev/disk/by-label/media";
     fsType = "ext4";
