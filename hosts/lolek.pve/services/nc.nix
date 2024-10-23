@@ -56,6 +56,7 @@ in
           host = "/run/redis-nextcloud/redis.sock";
           port = 0;
         };
+        log_type = "file";
         "memcache.local" = "\\OC\\Memcache\\Redis";
         "memcache.distributed" = "\\OC\\Memcache\\Redis";
         "memcache.locking" = "\\OC\\Memcache\\Redis";

@@ -48,14 +48,14 @@
       set -x tide_prompt_transient_enabled "false"
 
       set -x tide_left_prompt_frame_enabled "false"
-      set -x tide_left_prompt_items pwd git newline character
+      set -x tide_left_prompt_items pwd git jj newline character
       set -x tide_left_prompt_prefix ""
       set -x tide_left_prompt_separator_diff_color " "
       set -x tide_left_prompt_separator_same_color " "
       set -x tide_left_prompt_suffix " "
 
       set -x tide_right_prompt_frame_enabled "false"
-      set -x tide_right_prompt_items status cmd_duration context jobs direnv bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix3_shell crystal elixir zig time
+      set -x tide_right_prompt_items status cmd_duration context jobs direnv time newline bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws juju nix3_shell crystal elixir zig
       set -x tide_right_prompt_prefix " "
       set -x tide_right_prompt_separator_diff_color " "
       set -x tide_right_prompt_separator_same_color " "
@@ -165,6 +165,10 @@
       set -x tide_nix3_shell_color "brblue"
       set -x tide_nix3_shell_icon ""
 
+      set -x tide_juju_bg_color "normal"
+      set -x tide_juju_color "yellow"
+      set -x tide_juju_icon ""
+
       set -x tide_node_bg_color "normal"
       set -x tide_node_color "green"
       set -x tide_node_icon ""
@@ -210,6 +214,16 @@
       set -x tide_zig_icon ""
     '';
     functions = {
+      _tide_item_juju = /* fish */ ''
+        if not command -sq juju
+          return 1
+        end
+        set whoami (juju whoami 2>/dev/null | cut -d ':' -f2 | string trim)
+        if test $status -ne 0
+            return 1
+        end
+        _tide_print_item juju $tide_juju_icon' ' "$whoami[1]@$whoami[2]"
+      '';
       # Improved nix shell
       _tide_item_nix3_shell = /* fish */ ''
         set packages (nix-inspect)
@@ -220,6 +234,44 @@
         if set -q packages[1] &>/dev/null
           _tide_print_item nix3_shell $tide_nix3_shell_icon' ' " $(string shorten -m 40 "$packages")"
         end
+      '';
+      _tide_item_jj = /* fish */ ''
+        if not command -sq jj; or not jj root --quiet &>/dev/null
+            return 1
+        end
+
+        set jj_status (jj log -r@ -n1 --ignore-working-copy --no-graph --color always -T '
+          separate(" ",
+            branches.map(|x| if(
+              x.name().substr(0, 10).starts_with(x.name()),
+              x.name().substr(0, 10),
+              x.name().substr(0, 9) ++ "…")
+            ).join(" "),
+            tags.map(|x| if(
+              x.name().substr(0, 10).starts_with(x.name()),
+              x.name().substr(0, 10),
+              x.name().substr(0, 9) ++ "…")
+            ).join(" "),
+            surround("\"","\"",
+              if(
+                description.first_line().substr(0, 24).starts_with(description.first_line()),
+                description.first_line().substr(0, 24),
+                description.first_line().substr(0, 23) ++ "…"
+              )
+            ),
+            change_id.shortest(),
+            commit_id.shortest(),
+            if(empty, "(empty)"),
+            if(conflict, "(conflict)"),
+            if(divergent, "(divergent)"),
+            if(hidden, "(hidden)"),
+          )
+        ' | string trim)
+        _tide_print_item jj $tide_jj_icon' ' (
+            set_color black; echo -ns '('
+            set_color normal; echo -ns "$(string join ', ' $jj_status)"
+            set_color black; echo -ns ')'
+        )
       '';
     };
   };
