@@ -27,8 +27,8 @@ in
     };
     nextcloud = {
       inherit hostName;
-      package = pkgs.nextcloud29;
-      extraApps = with pkgs.nextcloud29Packages.apps; {
+      package = pkgs.nextcloud30;
+      extraApps = with pkgs.nextcloud30Packages.apps; {
         inherit mail;
       };
       caching.redis = true;

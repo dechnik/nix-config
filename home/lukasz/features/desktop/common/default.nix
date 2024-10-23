@@ -69,7 +69,7 @@ in
     brave
     google-chrome
     obsidian
-    ladybird
+    # ladybird
     # (vivaldi.override {
     #   proprietaryCodecs = true;
     #   enableWidevine = false;
