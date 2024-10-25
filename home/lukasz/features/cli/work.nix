@@ -2,7 +2,7 @@
 # cli utilities
 {
   home.packages = with pkgs; [
-    awscli
+    awscli2
     winbox
     # aws-sam-cli
     # azure-cli

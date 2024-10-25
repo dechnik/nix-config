@@ -10,6 +10,7 @@ let
   hasPackage = name: lib.any (x: x == name) packageNames;
   hasRipgrep = hasPackage "ripgrep";
   hasEza = hasPackage "eza";
+  hasAwsCli = hasPackage "awscli2";
   hasZoxide = hasPackage "zoxide";
   hasTmuxSessionizer = hasPackage "tmux-sessionizer";
   hasNeovim = config.programs.neovim.enable;
@@ -57,6 +58,8 @@ in
       z = mkIf hasZoxide "zoxide";
       za = mkIf hasZoxide "zoxide add .";
       tn = "tmux new -s (pwd | sed 's/.*\\///g')";
+      aws-switch = mkIf hasAwsCli "export AWS_PROFILE=(aws configure list-profiles | fzf)";
+      awssw = aws-switch;
     };
     shellAliases = {
       # Get ip
