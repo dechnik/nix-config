@@ -21,11 +21,11 @@
 }:
 stdenv.mkDerivation rec {
   pname = "boosteroid";
-  version = "1.9.7-beta";
+  version = "1.9.8-beta";
   src = fetchurl {
     curlOpts = "--user-agent 'Mozilla/5.0'";
     url = "https://boosteroid.com/linux/installer/boosteroid-install-x64.deb";
-    hash = "sha256-UDgofiR5gHN+UUNEwn30ciH/azK/vzAdOl9j9WDGQnQ=";
+    hash = "sha256-oyjK2kjKlrZugPSBQARI6+CAy7BjO9MTgUNe5ewFsGI=";
   };
 
   nativeBuildInputs = [
