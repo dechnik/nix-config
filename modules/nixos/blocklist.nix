@@ -18,7 +18,7 @@ let
         "$1" > "$(mktemp "$HOSTS_FILES"/XXXXXX)"
     }
     ## suspicious domains
-    download "https://hosts-file.net/grm.txt"
+    # download "https://hosts-file.net/grm.txt"
     download "https://reddestdream.github.io/Projects/MinimalHosts/etc/MinimalHostsBlocker/minimalhosts"
     # download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/KADhosts/hosts"
     download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/add.Spam/hosts"
@@ -28,7 +28,7 @@ let
     download "https://v.firebog.net/hosts/AdguardDNS.txt"
     download "https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt"
     download "https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt"
-    download "https://hosts-file.net/ad_servers.txt"
+    # download "https://hosts-file.net/ad_servers.txt"
     download "https://v.firebog.net/hosts/Easylist.txt"
     download "https://raw.githubusercontent.com/StevenBlack/hosts/master/data/UncheckyAds/hosts"
     ## tracking & telemetry domains
@@ -40,9 +40,9 @@ let
     ## malicious domains
     download "https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt"
     ## download "https://mirror1.malwaredomains.com/files/justdomains"
-    download "https://hosts-file.net/exp.txt"
-    download "https://hosts-file.net/emd.txt"
-    download "https://hosts-file.net/psh.txt"
+    # download "https://hosts-file.net/exp.txt"
+    # download "https://hosts-file.net/emd.txt"
+    # download "https://hosts-file.net/psh.txt"
     download "https://mirror.cedia.org.ec/malwaredomains/immortal_domains.txt"
     ## download "https://www.malwaredomainlist.com/hostslist/hosts.txt"
     download "https://bitbucket.org/ethanr/dns-blacklists/raw/8575c9f96e5b4a1308f2f12394abd86d0927a4a0/bad_lists/Mandiant_APT1_Report_Appendix_D.txt"
