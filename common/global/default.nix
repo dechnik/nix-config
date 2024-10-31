@@ -59,6 +59,7 @@
       mdadm
       nfs-utils
       nixos-shell
+      zerotierone
       #nextcloud-client
     ];
 

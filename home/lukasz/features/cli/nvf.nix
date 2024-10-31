@@ -112,7 +112,6 @@ in
           enable = true;
           type = "nvim-cmp";
           sources = {
-            cody = "[Cody]";
           };
         };
         filetree = {
@@ -252,14 +251,6 @@ in
           neocord.enable = false;
         };
         extraPlugins = {
-          sg-nvim = {
-            package = inputs.sg-nvim.packages.${pkgs.system}.sg-nvim;
-            setup = ''
-              require("sg").setup({
-                enable_cody = true,
-              })
-            '';
-          };
           harpoon = {
             package = pkgs.vimPlugins.harpoon2;
             setup = "require('harpoon').setup({})";
@@ -349,12 +340,6 @@ in
             silent = true;
             desc = "[O]bsidian [F]ollow Link";
           };
-          "<leader>fc" = {
-            action = "require('sg.extensions.telescope').fuzzy_search_results";
-            lua = true;
-            silent = true;
-            desc = "Cody search";
-          };
           "<leader>Ha" = {
             action = "function() require('harpoon'):list():add() end";
             silent = true;
@@ -388,7 +373,6 @@ in
     };
   };
   home = {
-    packages = [ inputs.sg-nvim.packages.${pkgs.system}.default ];
     sessionVariables = {
       EDITOR = "vim";
       VISUAL = "vim";

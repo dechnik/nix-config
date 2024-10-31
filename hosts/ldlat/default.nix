@@ -59,6 +59,7 @@
       path = "/run/vdir-config";
     };
   };
+  services.zerotierone.enable = true;
 
   services.gvfs.enable = true;
 

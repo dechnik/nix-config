@@ -44,7 +44,6 @@ in
     withNodeJs = true;
     withPython3 = true;
     extraPackages = with pkgs; [
-      inputs.sg-nvim.packages.${pkgs.system}.default
       lua-language-server
       nixd
       nil

@@ -82,7 +82,6 @@
       url = "github:dechnik/nixCats-nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sg-nvim.url = "github:sourcegraph/sg.nvim";
     nvf = {
       url = "github:notashelf/nvf";
       # you can override input nixpkgs
