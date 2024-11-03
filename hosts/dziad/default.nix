@@ -62,6 +62,7 @@
 
   services.dbus.packages = [ pkgs.pcmanfm ];
 
+  services.zerotierone.enable = true;
   networking = {
     hostName = "dziad"; # Define your hostname.
     domain = "dechnik.net";
