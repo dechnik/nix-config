@@ -31,6 +31,7 @@
 
   my.users.storage = true;
 
+  services.zerotierone.enable = true;
   my.wan = "ens19";
   my.lan = "ens20";
 
