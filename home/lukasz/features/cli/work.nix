@@ -9,6 +9,7 @@
     # azure-functions-core-tools
     bicep
     terraform
+    devenv
     inputs.azure-dev-cli.packages.${system}.default
   ];
   home.sessionVariables.FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT = 1;
