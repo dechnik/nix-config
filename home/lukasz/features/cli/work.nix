@@ -11,6 +11,8 @@
     terraform
     devenv
     inputs.azure-dev-cli.packages.${system}.default
+    inputs.clan-core.packages.${system}.clan-cli
+    inputs.clan-core.packages.${system}.clan-app
   ];
   home.sessionVariables.FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT = 1;
   home.sessionVariables.AZURE_DEV_COLLECT_TELEMETRY = "no";

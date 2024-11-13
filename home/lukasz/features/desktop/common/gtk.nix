@@ -61,6 +61,11 @@ rec {
       gtk-menu-images = true;
     };
   };
+    # Gtk sort directories first
+  dconf.settings = {
+    "org/gtk/Settings/FileChooser"      = { sort-directories-first = true; };
+    "org/gtk/gtk4/Settings/FileChooser" = { sort-directories-first = true; };
+  };
 
   services.xsettingsd = {
     enable = true;
