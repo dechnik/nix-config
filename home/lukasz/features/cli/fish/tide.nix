@@ -48,14 +48,14 @@
       set -x tide_prompt_transient_enabled "false"
 
       set -x tide_left_prompt_frame_enabled "false"
-      set -x tide_left_prompt_items pwd git jj newline character
+      set -x tide_left_prompt_items pwd git newline character
       set -x tide_left_prompt_prefix ""
       set -x tide_left_prompt_separator_diff_color " "
       set -x tide_left_prompt_separator_same_color " "
       set -x tide_left_prompt_suffix " "
 
       set -x tide_right_prompt_frame_enabled "false"
-      set -x tide_right_prompt_items status cmd_duration context jobs direnv time newline bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws juju nix3_shell crystal elixir zig
+      set -x tide_right_prompt_items status cmd_duration context jobs direnv time newline bun node python rustc java php pulumi ruby go gcloud kubectl distrobox toolbox terraform aws nix3_shell crystal elixir zig
       set -x tide_right_prompt_prefix " "
       set -x tide_right_prompt_separator_diff_color " "
       set -x tide_right_prompt_separator_same_color " "
