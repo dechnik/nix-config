@@ -25,16 +25,16 @@
       endpoint_port = 51820;
       public_key = "bX6+fkSSQwEkvlTG1FopF0whOSk28O1zoTyI8+wSBng=";
     };
-    hetzner = {
-      additional_networks = [ "10.62.0.0/16" ];
-      addresses = [
-        "10.69.0.202/32"
-        "2a03:94e0:200d:69::202/128"
-      ];
-      endpoint_address = "hetzner.dechnik.net";
-      endpoint_port = 51820;
-      public_key = "uGZRtR1CK9p66IrWbvpetPRRYk6f2C1w1R2UuHjfLC4=";
-    };
+    # hetzner = {
+    #   additional_networks = [ "10.62.0.0/16" ];
+    #   addresses = [
+    #     "10.69.0.202/32"
+    #     "2a03:94e0:200d:69::202/128"
+    #   ];
+    #   endpoint_address = "hetzner.dechnik.net";
+    #   endpoint_port = 51820;
+    #   public_key = "uGZRtR1CK9p66IrWbvpetPRRYk6f2C1w1R2UuHjfLC4=";
+    # };
   };
 
   clients = {

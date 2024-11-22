@@ -9,7 +9,7 @@ in
 
     hosts = [
       "bolek.pve.dechnik.net"
-      "consul.hetzner.dechnik.net"
+      # "consul.hetzner.dechnik.net"
       "consul.oracle.dechnik.net"
       # "core.ntnu.fap.no"
       "1.1.1.1"

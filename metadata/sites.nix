@@ -47,22 +47,22 @@ let
         # };
         inherit ipv4Gateway;
       };
-    hetzner =
-      let
-        ipv4Gateway = "10.62.0.1";
-      in
-      {
-        name = "hetzner";
-        nameservers = [ ipv4Gateway ];
-        consul = ipv4Gateway;
-        # openvpn = "10.60.200.0";
-        # k3s = {
-        #   master = "10.60.0.111";
-        #   clusterCidr = "10.60.4.0/24";
-        #   serviceCidr = "10.60.5.0/24";
-        # };
-        inherit ipv4Gateway;
-      };
+    # hetzner =
+    #   let
+    #     ipv4Gateway = "10.62.0.1";
+    #   in
+    #   {
+    #     name = "hetzner";
+    #     nameservers = [ ipv4Gateway ];
+    #     consul = ipv4Gateway;
+    #     # openvpn = "10.60.200.0";
+    #     # k3s = {
+    #     #   master = "10.60.0.111";
+    #     #   clusterCidr = "10.60.4.0/24";
+    #     #   serviceCidr = "10.60.5.0/24";
+    #     # };
+    #     inherit ipv4Gateway;
+    #   };
   };
 in
 {

@@ -38,11 +38,11 @@ jobs:
             runner: nixos
             target-branch: release-ldlat
             timeout: 120
-          - host: ola.hetzner
-            platform: x86-64-linux
-            runner: ubuntu-latest
-            target-branch: release-ola_hetzner
-            timeout: 120
+            # - host: ola.hetzner
+            #   platform: x86-64-linux
+            #   runner: ubuntu-latest
+            #   target-branch: release-ola_hetzner
+            #   timeout: 120
           - host: tolek.oracle
             platform: aarch64-linux
             runner: ubuntu-latest

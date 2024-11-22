@@ -32,7 +32,7 @@ in
         job_name = "consul";
         consul_sd_configs = [
           { server = "consul.pve.dechnik.net"; }
-          { server = "consul.hetzner.dechnik.net"; }
+          # { server = "consul.hetzner.dechnik.net"; }
           { server = "consul.oracle.dechnik.net"; }
         ];
         relabel_configs = [
