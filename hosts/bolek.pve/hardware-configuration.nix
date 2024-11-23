@@ -31,10 +31,10 @@
   };
 
   fileSystems = {
-    "/storage" = {
-      device = "/dev/disk/by-uuid/35607088-5b5b-4292-b9ab-2cdace0d290d";
-      fsType = "ext4";
-    };
+    # "/storage" = {
+    #   device = "/dev/disk/by-uuid/35607088-5b5b-4292-b9ab-2cdace0d290d";
+    #   fsType = "ext4";
+    # };
     "/mnt/sg" = {
       device = "/dev/disk/by-uuid/85365f44-8935-4c94-b2dc-bb6e4bed5a1c";
       fsType = "ext4";

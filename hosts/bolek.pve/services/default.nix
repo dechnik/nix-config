@@ -15,14 +15,14 @@
     # ./uwsgi.nix
     # ./searx.nix
     # ./website.nix
-    ./restic-server.nix
+    # ./restic-server.nix
     ./monitoring.nix
     ./loki.nix
     ./grafana.nix
     ./headscale.nix
     ./tailscale.nix
     ./tailscale-headscale.nix
-    ./restic.nix
+    # ./restic.nix
     # ./golink.nix
     ./wireguard.nix
     ./jellyfin.nix

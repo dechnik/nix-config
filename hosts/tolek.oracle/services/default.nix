@@ -6,7 +6,7 @@
     ./tailscale.nix
     ./tailscale-headscale.nix
     ./wireguard.nix
-    ./restic.nix
+    # ./restic.nix
     ./lldap.nix
     ./authelia.nix
     ./traefik.nix

@@ -4,6 +4,6 @@
     ./tailscale-headscale.nix
     ./docker.nix
     # ./gitness.nix
-    ./restic.nix
+    # ./restic.nix
   ];
 }
