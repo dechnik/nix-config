@@ -42,6 +42,7 @@ in
     ./zoxide.nix
     ./yazi.nix
   ];
+  programs.neovim.enable = true;
   home.packages = with pkgs; [
     pythonEnv
     pkgs.inputs.attic.default
@@ -52,7 +53,6 @@ in
     zip
     just
     jless
-    neovim
     # magic-wormhole
 
     bc # Calculator
