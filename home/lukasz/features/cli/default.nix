@@ -26,7 +26,7 @@ in
     # ./neovim.nix
     # ./nixvim/neovim.nix
     # ./nixcats
-    ./nvf.nix
+    # ./nvf.nix
     ./direnv.nix
     ./nix-index.nix
     # ./pfetch.nix
@@ -52,6 +52,7 @@ in
     zip
     just
     jless
+    neovim
     # magic-wormhole
 
     bc # Calculator

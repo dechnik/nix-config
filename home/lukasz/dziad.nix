@@ -12,7 +12,7 @@
     ./features/games/starsector.nix
     # ./features/desktop/optional/nvidia.nix
     ./features/desktop/optional/work.nix
-    ./features/emacs/emacs.nix
+    # ./features/emacs/emacs.nix
     ./features/cli/work.nix
     ./features/desktop/optional/nc.nix
     ./features/desktop/optional/vscode.nix

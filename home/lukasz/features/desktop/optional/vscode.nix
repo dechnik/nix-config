@@ -41,13 +41,13 @@
         ms-azuretools.vscode-docker
       ]
       ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "cody-ai";
-          publisher = "sourcegraph";
-          version = "0.17.1701270418";
-          # keep this sha for the first run, nix will tell you the correct one to change it to
-          sha256 = "sha256-iLixgLKz+GAvVSojjWgOEYHzfq2solMlelDUzGEcsCs=";
-        }
+        # {
+        #   name = "cody-ai";
+        #   publisher = "sourcegraph";
+        #   version = "0.17.1701270418";
+        #   # keep this sha for the first run, nix will tell you the correct one to change it to
+        #   sha256 = "sha256-iLixgLKz+GAvVSojjWgOEYHzfq2solMlelDUzGEcsCs=";
+        # }
       ];
   };
 }

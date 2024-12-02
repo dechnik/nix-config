@@ -25,13 +25,9 @@
 
       #remacs-all-the-icons-fonts
       # nerdfonts
-      (nerdfonts.override {
-        fonts = [
-          "FiraCode"
-          "JetBrainsMono"
-          "GeistMono"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.geist-mono
     ];
     # enableDefaultFonts = false;
 
