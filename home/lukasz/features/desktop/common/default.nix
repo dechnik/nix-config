@@ -69,6 +69,7 @@ in
     brave
     google-chrome
     obsidian
+    geany
     # ladybird
     # (vivaldi.override {
     #   proprietaryCodecs = true;
