@@ -20,7 +20,7 @@
     ./loki.nix
     ./grafana.nix
     ./headscale.nix
-    ./tailscale.nix
+    # ./tailscale.nix
     ./tailscale-headscale.nix
     # ./restic.nix
     # ./golink.nix

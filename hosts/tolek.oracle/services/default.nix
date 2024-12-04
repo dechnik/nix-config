@@ -3,7 +3,7 @@
     # ./nc.nix
     ./gitlab.nix
     ./atuin.nix
-    ./tailscale.nix
+    # ./tailscale.nix
     ./tailscale-headscale.nix
     ./wireguard.nix
     # ./restic.nix
