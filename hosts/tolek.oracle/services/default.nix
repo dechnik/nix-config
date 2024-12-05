@@ -1,17 +1,17 @@
 {
   imports = [
     # ./nc.nix
-    ./gitlab.nix
-    ./atuin.nix
+    # ./gitlab.nix
+    # ./atuin.nix
     # ./tailscale.nix
     ./tailscale-headscale.nix
     ./wireguard.nix
     # ./restic.nix
-    ./lldap.nix
-    ./authelia.nix
+    # ./lldap.nix
+    # ./authelia.nix
     ./traefik.nix
     # ./matrix-synapse.nix
-    ./psql-backup.nix
+    # ./psql-backup.nix
     # ./matterbridge.nix
     # ./mjolnir.nix
     # ./weechat.nix
