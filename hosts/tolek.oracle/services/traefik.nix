@@ -26,29 +26,29 @@ lib.mkMerge [
       };
     };
 
-    services.authelia.instances.main.settings.access_control.rules = [
-      {
-        domain = "traefik.oracle.dechnik.net";
-        subject = [ "group:admin" ];
-        policy = "one_factor";
-      }
-      {
-        domain = "traefik.hetzner.dechnik.net";
-        subject = [ "group:admin" ];
-        policy = "one_factor";
-      }
-      {
-        domain = "traefik.pve.dechnik.net";
-        subject = [ "group:admin" ];
-        policy = "one_factor";
-      }
-      {
-        domain = "tailscale.dechnik.net";
-        resources = [ "^/admin*" ];
-        subject = [ "group:admin" ];
-        policy = "one_factor";
-      }
-    ];
+    # services.authelia.instances.main.settings.access_control.rules = [
+    #   {
+    #     domain = "traefik.oracle.dechnik.net";
+    #     subject = [ "group:admin" ];
+    #     policy = "one_factor";
+    #   }
+    #   {
+    #     domain = "traefik.hetzner.dechnik.net";
+    #     subject = [ "group:admin" ];
+    #     policy = "one_factor";
+    #   }
+    #   {
+    #     domain = "traefik.pve.dechnik.net";
+    #     subject = [ "group:admin" ];
+    #     policy = "one_factor";
+    #   }
+    #   {
+    #     domain = "tailscale.dechnik.net";
+    #     resources = [ "^/admin*" ];
+    #     subject = [ "group:admin" ];
+    #     policy = "one_factor";
+    #   }
+    # ];
   }
 
   (traefik.traefik { site = "oracle"; })
