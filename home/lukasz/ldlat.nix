@@ -3,7 +3,7 @@
   imports = [
     ./global
     # ./features/emacs
-    # ./features/games
+    ./features/games/lutris.nix
     ./features/productivity/vdirsyncer.nix
     ./features/cli/work.nix
     ./features/trusted

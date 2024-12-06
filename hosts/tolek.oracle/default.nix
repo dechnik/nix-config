@@ -16,6 +16,11 @@
     ../../common/optional/nix-gc2.nix
   ];
 
+  services.openssh = {
+    settings = {
+      PermitRootLogin = lib.mkForce "yes";
+    };
+  };
   my.wan = "enp0s3";
   my.lan = "enp1s0";
 
