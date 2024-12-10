@@ -61,6 +61,11 @@ rec {
       hash = "sha256-0rK+Yx4/Jy44Fw5VwJ3tG243ZsyOIBBehYU54XP/JGk=";
       cargoHash = "sha256-vcpxcRlW1OKoD64owFF6mkxSqmNrvY+y3Ckn5UwEQ50=";
     };
+      brave = prev.brave.override {
+    commandLineArgs = [
+      "--enable-wayland-ime"
+    ];
+  };
 
     dart =
       (prev.dart.overrideAttrs (old: {
