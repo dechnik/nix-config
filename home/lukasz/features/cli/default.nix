@@ -45,7 +45,7 @@ in
   programs.neovim.enable = true;
   home.packages = with pkgs; [
     pythonEnv
-    pkgs.inputs.attic.default
+    # pkgs.inputs.attic.default
     comma # Install and run programs by sticking a , before them
     # distrobox # Nice escape hatch, integrates docker images with my environment
     cryptsetup
